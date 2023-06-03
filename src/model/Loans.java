@@ -12,16 +12,14 @@ package model;
  */
 public class Loans {
     private String loan_id,loan_type,loan_start_date,loan_end_date;
-    private Customer customer_id;
     private double amount;
     private float interest_date;
 
-    public Loans(String loan_id, String loan_type, String loan_start_date, String loan_end_date, Customer customer_id, double amount, float interest_date) {
+    public Loans(String loan_id, String loan_type, String loan_start_date, String loan_end_date, double amount, float interest_date) {
         this.loan_id = loan_id;
         this.loan_type = loan_type;
         this.loan_start_date = loan_start_date;
         this.loan_end_date = loan_end_date;
-        this.customer_id = customer_id;
         this.amount = amount;
         this.interest_date = interest_date;
     }
@@ -56,14 +54,6 @@ public class Loans {
 
     public void setLoan_end_date(String loan_end_date) {
         this.loan_end_date = loan_end_date;
-    }
-
-    public Customer getCustomer_id() {
-        return customer_id;
-    }
-
-    public void setCustomer_id(Customer customer_id) {
-        this.customer_id = customer_id;
     }
 
     public double getAmount() {
