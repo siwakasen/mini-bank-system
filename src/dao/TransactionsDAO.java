@@ -13,11 +13,11 @@ public class TransactionsDAO {
     private DbConnection DbCon = new DbConnection();
     private Connection conn;
 
-    public void insertTransaction(int account_id, String transaction_type, String transaction_date){
+    public void insertTransaction(int account_id, String transaction_fk, String transaction_date){
         try {
             conn = DbCon.makeConnection();
             int transaction_id = ThreadLocalRandom.current().nextInt(); 
-            String sql = "INSERT INTO transactions (transaction_id, account_id, transaction_fk, transaction_date) VALUES ('" + "TR-" + transaction_id + "', " + account_id + ", '" + transaction_type + "', '" + transaction_date + "')";
+            String sql = "INSERT INTO transactions (transaction_id, account_id, transaction_fk, transaction_date) VALUES ('" + "TR-" + transaction_id + "', " + account_id + ", '" + transaction_fk + "', '" + transaction_date + "')";
             Statement stmt = conn.createStatement();
             int result = stmt.executeUpdate(sql);
             System.out.println("Rows affected: " + result);
@@ -26,4 +26,6 @@ public class TransactionsDAO {
             System.out.println(e.getMessage());
         }
     }
+    
+    
 }
