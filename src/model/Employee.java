@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Employee {
+public class Employee {
     protected int employee_id;
     protected String first_name;
     protected String last_name;
@@ -8,9 +8,11 @@ public abstract class Employee {
     protected String password;
     protected String start_work_date;
     protected String end_work_date;
-    protected Role role_id;
+    protected int role_id;
+    protected String office_number;
+    protected String station_number;
 
-    public Employee(int employee_id, String first_name, String last_name, String username, String password, String start_work_date, String end_work_date, Role role_id) {
+    public Employee(int employee_id, String first_name, String last_name, String username, String password, String start_work_date, String end_work_date, int role_id, String office_number, String station_number) {
         this.employee_id = employee_id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -19,6 +21,8 @@ public abstract class Employee {
         this.start_work_date = start_work_date;
         this.end_work_date = end_work_date;
         this.role_id = role_id;
+        this.office_number = office_number;
+        this.station_number = station_number;
     }
 
     public int getEmployee_id() {
@@ -77,11 +81,30 @@ public abstract class Employee {
         this.end_work_date = end_work_date;
     }
 
-    public Role getRole_id() {
+    public int getRole_id() {
         return role_id;
     }
 
-    public void setRole_id(Role role_id) {
+    public void setRole_id(int role_id) {
         this.role_id = role_id;
     }
+
+    public String getOffice_number() {
+        return office_number;
+    }
+
+    public void setOffice_number(String office_number) {
+        this.office_number = office_number;
+    }
+
+    public String getStation_number() {
+        return station_number;
+    }
+
+    public void setStation_number(String station_number) {
+        this.station_number = station_number;
+    }
+    
+    
+
 }

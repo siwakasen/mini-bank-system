@@ -17,7 +17,10 @@ public class EmployeeDAO {
     public void insertEmployee(Employee em){
         con = dbcon.makeConnection();
         
-        String sql = "";
+        String sql = "INSERT INTO employees(first_name, last_name, username, password, start_work_date,"
+                + " end_work_date, role_id, station_number, office_number) VALUES ('"+em.getFirst_name()+"', "
+                + "'"+em.getLast_name()+"', '"+em.getStart_work_date()+"', '"+em.getEnd_work_date()+"', '"+em.getRole_id()+"',"
+                + "'"+em.getStation_number()+"', '"+em.getOffice_number()+"')";
         
         System.out.println("Insert data employee...");
         
@@ -56,7 +59,14 @@ public class EmployeeDAO {
     public void updateEmployee(Employee em){
         con = dbcon.makeConnection();
         
-        String sql = "";
+        String sql = "UPDATE employees SET first_name = '"+em.getFirst_name()+"',"
+                + " last_name = '"+em.getLast_name()+"',"
+                + " username = '"+em.getUsername()+"',"
+                + " password = '"+em.getPassword()+"',"
+                + " end_work_date = '"+em.getEnd_work_date()+"',"
+                + " station_number = '"+em.getStation_number()+"',"
+                + " office_number = '"+em.getOffice_number()+"' "
+                + " WHERE employee_id = '"+em.getEmployee_id()+"'";
         
         System.out.println("Updating data employee...");
         
@@ -74,17 +84,27 @@ public class EmployeeDAO {
     public List<Employee> showListCustomer(){
         con = dbcon.makeConnection();
         
-        String sql = "SELECT * FROM employee";
+        String sql = "SELECT * FROM employees";
         
         System.out.println("Collecting data employee...");
+        
+        List<Employee> list = new ArrayList<Employee>();
+        System.out.println("Collecting data employeea...");
         
         try {
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             
             if (rs!=null) {
-                while (rs.next()) {                    
-                    // Minus create object kalo dia teller or customer service
+                while (rs.next()) {
+                    Employee e = new Employee(rs.getInt("employee_id"),
+                            rs.getString("first_name"), rs.getString("last_name"),
+                            rs.getString("username"), rs.getString("password"), 
+                            rs.getString("start_work_date"), rs.getString("end_work_date"),
+                            rs.getInt("role_id"), rs.getString("office_number"), 
+                            rs.getString("station_number"));
+                    
+                    list.add(e);
                 }
             }
             
@@ -95,8 +115,8 @@ public class EmployeeDAO {
             System.out.println(e);
             System.out.println("Error colleting data employee...");
         }
-        
         dbcon.closeConnection();
+        return list;
     }
     
 }
