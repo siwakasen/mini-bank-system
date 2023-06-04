@@ -11,12 +11,12 @@ package model;
  * Fathur Rosi 210711562
  */
 public class Transaction {
-    private String transaction_id,transaction_type,transaction_date;
+    private String transaction_id,transaction_fk,transaction_date;
     private Account account_id;
 
-    public Transaction(String transaction_id, String transaction_type, String transaction_date, Account account_id) {
+    public Transaction(String transaction_id, String transaction_fk, String transaction_date, Account account_id) {
         this.transaction_id = transaction_id;
-        this.transaction_type = transaction_type;
+        this.transaction_fk = transaction_fk;
         this.transaction_date = transaction_date;
         this.account_id = account_id;
     }
@@ -30,11 +30,11 @@ public class Transaction {
     }
 
     public String getTransaction_type() {
-        return transaction_type;
+        return transaction_fk;
     }
 
-    public void setTransaction_type(String transaction_type) {
-        this.transaction_type = transaction_type;
+    public void setTransaction_type(String transaction_fk) {
+        this.transaction_fk = transaction_fk;
     }
 
     public String getTransaction_date() {
@@ -55,6 +55,6 @@ public class Transaction {
     
     @Override
     public String toString() {
-        return transaction_type;
+        return transaction_fk;
     }
 }

@@ -1,5 +1,7 @@
 package dao;
 
+import model.*;
+
 import connection.DbConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -25,6 +27,57 @@ public class TransactionsDAO {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public List<Transaction> getTransactions(Account account_id, String type){
+        List<Transaction> transactions = new ArrayList<Transaction>();
+        try {
+            conn = DbCon.makeConnection();
+            Statement stmt = conn.createStatement();
+            if(type == "LOA"){
+                String sql = "SELECT * FROM transactions WHERE account_id = " + account_id.getAccount_id() + " AND transaction_fk LIKE 'LOA-%'";
+                ResultSet rs = stmt.executeQuery(sql);
+                while (rs.next()) {
+                    String transaction_id = rs.getString("transaction_id");
+                    String transaction_fk = rs.getString("transaction_fk");
+                    String transaction_date = rs.getString("transaction_date");
+                    Transaction transaction = new Transaction(transaction_id, transaction_fk, transaction_date, account_id);
+                    transactions.add(transaction);
+                }
+                stmt.close();
+                rs.close();
+                return transactions;
+            }else if(type == "TN"){
+                String sql = "SELECT * FROM transactions WHERE account_id = " + account_id.getAccount_id() + " AND transaction_fk LIKE 'TN-%'";
+                ResultSet rs = stmt.executeQuery(sql);
+                while (rs.next()) {
+                    String transaction_id = rs.getString("transaction_id");
+                    String transaction_fk = rs.getString("transaction_fk");
+                    String transaction_date = rs.getString("transaction_date");
+                    Transaction transaction = new Transaction(transaction_id, transaction_fk, transaction_date, account_id);
+                    transactions.add(transaction);
+                }
+                stmt.close();
+                rs.close();
+                return transactions;
+            } else {
+                String sql = "SELECT * FROM transactions WHERE account_id = " + account_id.getAccount_id();
+                ResultSet rs = stmt.executeQuery(sql);
+                while (rs.next()) {
+                    String transaction_id = rs.getString("transaction_id");
+                    String transaction_fk = rs.getString("transaction_fk");
+                    String transaction_date = rs.getString("transaction_date");
+                    Transaction transaction = new Transaction(transaction_id, transaction_fk, transaction_date, account_id);
+                    transactions.add(transaction);
+                }
+                stmt.close();
+                rs.close();
+                return transactions;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return transactions;
     }
     
     
