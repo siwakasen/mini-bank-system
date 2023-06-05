@@ -48,14 +48,14 @@ public class TellerView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        base.setBackground(new java.awt.Color(232, 243, 214));
+        base.setBackground(new java.awt.Color(232, 249, 253));
 
         tellerLabel.setBackground(new java.awt.Color(0, 0, 0));
         tellerLabel.setFont(new java.awt.Font("Poppins Medium", 0, 48)); // NOI18N
         tellerLabel.setForeground(new java.awt.Color(0, 0, 0));
         tellerLabel.setText("Teller");
 
-        logoutBtn.setBackground(new java.awt.Color(220, 53, 69));
+        logoutBtn.setBackground(new java.awt.Color(194, 16, 16));
         logoutBtn.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         logoutBtn.setForeground(new java.awt.Color(255, 255, 255));
         logoutBtn.setText("Log out");
@@ -65,12 +65,17 @@ public class TellerView extends javax.swing.JFrame {
             }
         });
 
-        loansPanel.setBackground(new java.awt.Color(250, 171, 120));
+        loansPanel.setBackground(new java.awt.Color(208, 232, 242));
         loansPanel.setPreferredSize(new java.awt.Dimension(250, 80));
         loansPanel.setRoundBottomLeft(20);
         loansPanel.setRoundBottomRight(20);
         loansPanel.setRoundTopLeft(20);
         loansPanel.setRoundTopRight(20);
+        loansPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loansPanelMouseClicked(evt);
+            }
+        });
 
         loansLabel.setFont(new java.awt.Font("Poppins Medium", 0, 24)); // NOI18N
         loansLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -93,7 +98,7 @@ public class TellerView extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        transferPanel.setBackground(new java.awt.Color(250, 171, 120));
+        transferPanel.setBackground(new java.awt.Color(182, 227, 136));
         transferPanel.setPreferredSize(new java.awt.Dimension(250, 80));
         transferPanel.setRoundBottomLeft(20);
         transferPanel.setRoundBottomRight(20);
@@ -131,18 +136,21 @@ public class TellerView extends javax.swing.JFrame {
         baseLayout.setHorizontalGroup(
             baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(baseLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(logoutBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createSequentialGroup()
-                .addGap(0, 98, Short.MAX_VALUE)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(transferPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loansPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(baseLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(tellerLabel)))
-                .addGap(87, 87, 87))
+                        .addGap(16, 16, 16)
+                        .addComponent(logoutBtn))
+                    .addGroup(baseLayout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(transferPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(loansPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tellerLabel)
+                                .addGap(63, 63, 63)))))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         baseLayout.setVerticalGroup(
             baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,6 +189,12 @@ public class TellerView extends javax.swing.JFrame {
         this.dispose();
         tf.setVisible(true);
     }//GEN-LAST:event_transferPanelMouseClicked
+
+    private void loansPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loansPanelMouseClicked
+        TellerLoansView tl = new TellerLoansView();
+        this.dispose();
+        tl.setVisible(true);
+    }//GEN-LAST:event_loansPanelMouseClicked
 
     /**
      * @param args the command line arguments
