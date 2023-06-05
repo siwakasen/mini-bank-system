@@ -1,21 +1,5 @@
-<<<<<<< HEAD
 package model;
 
-public class Customer {
-     
-=======
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-package model;
-
-/*
-    Nama  : Ryan Pratama Wijaya
-    Kelas : C
-    NPM   : 210711008
-*/
 public class Customer {
     private int customer_id;
     private String first_name;
@@ -96,8 +80,4 @@ public class Customer {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    
-    
->>>>>>> 1c9772d291950661846c7bf7d869a1a7d7b0dc39
 }

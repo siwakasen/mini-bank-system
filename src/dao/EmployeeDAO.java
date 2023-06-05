@@ -17,9 +17,9 @@ public class EmployeeDAO {
     public void insertEmployee(Employee em){
         con = dbcon.makeConnection();
         
-        String sql = "INSERT INTO employees(first_name, last_name, username, password, start_work_date,"
-                + " end_work_date, role_id, station_number, office_number) VALUES ('"+em.getFirst_name()+"', "
-                + "'"+em.getLast_name()+"', '"+em.getStart_work_date()+"', '"+em.getEnd_work_date()+"', '"+em.getRole_id()+"',"
+        String sql = "INSERT INTO employees(employee_id, first_name, last_name, username, password, start_work_date,"
+                + " end_work_date, role_id, station_number, office_number) VALUES ('"+em.getEmployee_id()+"','"+em.getFirst_name()+"', "
+                + "'"+em.getLast_name()+"', '"+em.getUsername()+"', '"+em.getPassword()+"', '"+em.getStart_work_date()+"', '"+em.getEnd_work_date()+"', '"+em.getRole_id()+"',"
                 + "'"+em.getStation_number()+"', '"+em.getOffice_number()+"')";
         
         System.out.println("Insert data employee...");
@@ -40,7 +40,7 @@ public class EmployeeDAO {
     public void deleteEmployee(int id){
         con = dbcon.makeConnection();
         
-        String sql = "DELETE FROM employee WHERE id = "+id+"";
+        String sql = "DELETE FROM employees WHERE employee_id = "+id+"";
         
         System.out.println("Deleting data employee...");
         

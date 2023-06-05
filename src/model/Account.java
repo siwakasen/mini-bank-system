@@ -1,21 +1,5 @@
-<<<<<<< HEAD
 package model;
 
-public class Account {
-
-=======
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-package model;
-
-/*
-    Nama  : Ryan Pratama Wijaya
-    Kelas : C
-    NPM   : 210711008
-*/
 public class Account {
     private int account_id;
     private String account_type;
@@ -52,7 +36,4 @@ public class Account {
     public void setBalance(double balance) {
         this.balance = balance;
     }
-    
-    
->>>>>>> 1c9772d291950661846c7bf7d869a1a7d7b0dc39
 }

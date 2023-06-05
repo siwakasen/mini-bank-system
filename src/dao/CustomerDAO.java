@@ -1,23 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package dao;
-import connection.DBConnection;
+
+import connection.DbConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Customer;
-/*
-    Nama  : Ryan Pratama Wijaya
-    Kelas : C
-    NPM   : 210711008
-*/
+
 public class CustomerDAO {
-    private DBConnection dbCon = new DBConnection();
+    private DbConnection dbCon = new DbConnection();
     private Connection con;
     
     public void insertCustomer(Customer c){

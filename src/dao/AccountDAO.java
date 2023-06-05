@@ -5,7 +5,7 @@
 
 package dao;
 
-import connection.DBConnection;
+import connection.DbConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -14,13 +14,8 @@ import java.util.List;
 import model.Customer;
 import model.Account;
 
-/*
-    Nama  : Ryan Pratama Wijaya
-    Kelas : C
-    NPM   : 210711008
-*/
 public class AccountDAO {
-    private DBConnection dbCon = new DBConnection();
+    private DbConnection dbCon = new DbConnection();
     private Connection con;
     
     public void insertAccount(Account a){

@@ -38,7 +38,7 @@ public class AdministratorDAO {
     public void deleteAdministrator(int id){
         con = dbcon.makeConnection();
         
-        String sql = "DELETE FROM administrators WHERE id = "+id+"";
+        String sql = "DELETE FROM administrators WHERE administrator_id = "+id+"";
         
         System.out.println("Deleting data administrator...");
         
@@ -57,7 +57,7 @@ public class AdministratorDAO {
     public void updateAdministrator(Administrator a){
         con = dbcon.makeConnection();
         
-        String sql = "UPDATE administrator SET username = '"+a.getUsername()+"', password = '"+a.getPassword()+"'"
+        String sql = "UPDATE administrators SET username = '"+a.getUsername()+"', password = '"+a.getPassword()+"'"
                 + " WHERE administrator_id = '"+a.getAdministrator_id()+"'";
         
         System.out.println("Updating data administrator...");
