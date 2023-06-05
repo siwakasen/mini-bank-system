@@ -29,11 +29,11 @@ public class LoginView extends javax.swing.JFrame {
         gambar = new javax.swing.JLabel();
         rightPanel = new javax.swing.JPanel();
         userInput = new javax.swing.JTextField();
-        passInput = new javax.swing.JTextField();
         loginBtn = new javax.swing.JButton();
         userlabel = new javax.swing.JLabel();
         passlabel = new javax.swing.JLabel();
         loginlabel = new javax.swing.JLabel();
+        passwordInput = new javax.swing.JPasswordField();
         minibankLabel = new javax.swing.JLabel();
         welcomeLabel = new javax.swing.JLabel();
         katakataPanel = new view.PanelRound();
@@ -50,17 +50,10 @@ public class LoginView extends javax.swing.JFrame {
 
         rightPanel.setBackground(new java.awt.Color(235, 235, 255));
 
-        userInput.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        userInput.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         userInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userInputActionPerformed(evt);
-            }
-        });
-
-        passInput.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        passInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passInputActionPerformed(evt);
             }
         });
 
@@ -82,6 +75,9 @@ public class LoginView extends javax.swing.JFrame {
         loginlabel.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         loginlabel.setText("Login");
 
+        passwordInput.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        passwordInput.setPreferredSize(new java.awt.Dimension(64, 27));
+
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
         rightPanelLayout.setHorizontalGroup(
@@ -89,15 +85,14 @@ public class LoginView extends javax.swing.JFrame {
             .addGroup(rightPanelLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(userlabel)
-                        .addComponent(userInput)
-                        .addComponent(passlabel)
-                        .addComponent(passInput, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userlabel)
+                    .addComponent(userInput, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passlabel)
+                    .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(loginlabel)))
+                        .addComponent(loginlabel))
+                    .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(1333, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
@@ -111,11 +106,11 @@ public class LoginView extends javax.swing.JFrame {
                 .addComponent(userInput, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(passlabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passInput, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(452, Short.MAX_VALUE))
+                .addContainerGap(466, Short.MAX_VALUE))
         );
 
         minibankLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 48)); // NOI18N
@@ -207,7 +202,7 @@ public class LoginView extends javax.swing.JFrame {
                         .addComponent(katakataPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -227,10 +222,6 @@ public class LoginView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void passInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passInputActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
@@ -285,8 +276,8 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JButton loginBtn;
     private javax.swing.JLabel loginlabel;
     private javax.swing.JLabel minibankLabel;
-    private javax.swing.JTextField passInput;
     private javax.swing.JLabel passlabel;
+    private javax.swing.JPasswordField passwordInput;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JTextField userInput;
     private javax.swing.JLabel userlabel;

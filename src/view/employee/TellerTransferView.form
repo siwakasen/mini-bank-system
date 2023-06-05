@@ -3,9 +3,6 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1650, 1080]"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -207,9 +204,9 @@
                           <Component id="namaPenerimaLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="penerimaLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="cancelPenerimaBtn" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="inputNamaPenerima" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
+                          <Component id="namaPenerimaInput" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="inputRekPenerima" min="-2" pref="198" max="-2" attributes="0"/>
+                              <Component id="noRekPenerimaInput" min="-2" pref="198" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="okPenerimaBtn" min="-2" pref="49" max="-2" attributes="0"/>
                           </Group>
@@ -228,12 +225,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="okPenerimaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="inputRekPenerima" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="noRekPenerimaInput" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="namaPenerimaLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="inputNamaPenerima" min="-2" max="-2" attributes="0"/>
+                      <Component id="namaPenerimaInput" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="cancelPenerimaBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="26" max="32767" attributes="0"/>
@@ -256,7 +253,7 @@
                 <Property name="text" type="java.lang.String" value="Cancel"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="inputNamaPenerima">
+            <Component class="javax.swing.JTextField" name="namaPenerimaInput">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Poppins Medium" size="12" style="0"/>
@@ -274,7 +271,7 @@
                 <Property name="text" type="java.lang.String" value="Nama Penerima"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="inputRekPenerima">
+            <Component class="javax.swing.JTextField" name="noRekPenerimaInput">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Poppins Medium" size="12" style="0"/>
@@ -339,22 +336,19 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="noRekPengirimInput" min="-2" pref="198" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="okPengirimBtn" min="-2" pref="49" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="pengirimRekLabel" min="-2" max="-2" attributes="0"/>
                                   <Component id="cancelPengirimBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="namaPengirimLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="pengirimLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="namaPengirimInput" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="80" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="inputRekPengirim" min="-2" pref="198" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="okPengirimBtn" min="-2" pref="49" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="inputNamaPengirim" min="-2" pref="198" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -371,13 +365,13 @@
                       <Component id="pengirimRekLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="inputRekPengirim" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="noRekPengirimInput" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="okPengirimBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="namaPengirimLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                      <Component id="inputNamaPengirim" min="-2" max="-2" attributes="0"/>
+                      <Component id="namaPengirimInput" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="cancelPengirimBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="23" max="32767" attributes="0"/>
@@ -400,7 +394,7 @@
                 <Property name="text" type="java.lang.String" value="Cancel"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="inputNamaPengirim">
+            <Component class="javax.swing.JTextField" name="namaPengirimInput">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Poppins Medium" size="12" style="0"/>
@@ -418,7 +412,7 @@
                 <Property name="text" type="java.lang.String" value="Nama Pengirim"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="inputRekPengirim">
+            <Component class="javax.swing.JTextField" name="noRekPengirimInput">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Poppins Medium" size="12" style="0"/>
@@ -509,9 +503,9 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="inputJumlahTransfer" alignment="1" min="-2" pref="198" max="-2" attributes="0"/>
+                                  <Component id="jumlahTransferInput" alignment="1" min="-2" pref="198" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="inputIdTransfer" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
+                              <Component id="idTransferInput" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
                           </Group>
                           <Component id="transferBtn" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -525,11 +519,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="idTransferLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="inputIdTransfer" min="-2" max="-2" attributes="0"/>
+                      <Component id="idTransferInput" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="jumlahTransferLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="inputJumlahTransfer" min="-2" max="-2" attributes="0"/>
+                      <Component id="jumlahTransferInput" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="transferBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="31" max="32767" attributes="0"/>
@@ -552,7 +546,7 @@
                 <Property name="text" type="java.lang.String" value="Transfer"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="inputJumlahTransfer">
+            <Component class="javax.swing.JTextField" name="jumlahTransferInput">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Poppins Medium" size="12" style="0"/>
@@ -570,7 +564,7 @@
                 <Property name="text" type="java.lang.String" value="Jumlah Transfer"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="inputIdTransfer">
+            <Component class="javax.swing.JTextField" name="idTransferInput">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Poppins Medium" size="12" style="0"/>

@@ -33,30 +33,29 @@ public class TellerTransferView extends javax.swing.JFrame {
         transferTable = new javax.swing.JTable();
         penerimaPanel = new view.PanelRound();
         cancelPenerimaBtn = new javax.swing.JButton();
-        inputNamaPenerima = new javax.swing.JTextField();
+        namaPenerimaInput = new javax.swing.JTextField();
         namaPenerimaLabel = new javax.swing.JLabel();
-        inputRekPenerima = new javax.swing.JTextField();
+        noRekPenerimaInput = new javax.swing.JTextField();
         rekPenerimaLabel = new javax.swing.JLabel();
         penerimaLabel = new javax.swing.JLabel();
         okPenerimaBtn = new javax.swing.JButton();
         pengirimPanel = new view.PanelRound();
         cancelPengirimBtn = new javax.swing.JButton();
-        inputNamaPengirim = new javax.swing.JTextField();
+        namaPengirimInput = new javax.swing.JTextField();
         namaPengirimLabel = new javax.swing.JLabel();
-        inputRekPengirim = new javax.swing.JTextField();
+        noRekPengirimInput = new javax.swing.JTextField();
         pengirimRekLabel = new javax.swing.JLabel();
         pengirimLabel = new javax.swing.JLabel();
         okPengirimBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         transferPanel = new view.PanelRound();
         transferBtn = new javax.swing.JButton();
-        inputJumlahTransfer = new javax.swing.JTextField();
+        jumlahTransferInput = new javax.swing.JTextField();
         jumlahTransferLabel = new javax.swing.JLabel();
-        inputIdTransfer = new javax.swing.JTextField();
+        idTransferInput = new javax.swing.JTextField();
         idTransferLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1650, 1080));
 
         base.setBackground(new java.awt.Color(225, 255, 177));
         base.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -115,13 +114,13 @@ public class TellerTransferView extends javax.swing.JFrame {
         cancelPenerimaBtn.setForeground(new java.awt.Color(0, 0, 0));
         cancelPenerimaBtn.setText("Cancel");
 
-        inputNamaPenerima.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        namaPenerimaInput.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
 
         namaPenerimaLabel.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         namaPenerimaLabel.setForeground(new java.awt.Color(0, 0, 0));
         namaPenerimaLabel.setText("Nama Penerima");
 
-        inputRekPenerima.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        noRekPenerimaInput.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
 
         rekPenerimaLabel.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         rekPenerimaLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -147,9 +146,9 @@ public class TellerTransferView extends javax.swing.JFrame {
                     .addComponent(namaPenerimaLabel)
                     .addComponent(penerimaLabel)
                     .addComponent(cancelPenerimaBtn)
-                    .addComponent(inputNamaPenerima, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namaPenerimaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(penerimaPanelLayout.createSequentialGroup()
-                        .addComponent(inputRekPenerima, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(noRekPenerimaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(okPenerimaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
@@ -164,11 +163,11 @@ public class TellerTransferView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(penerimaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okPenerimaBtn)
-                    .addComponent(inputRekPenerima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(noRekPenerimaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(namaPenerimaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputNamaPenerima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(namaPenerimaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelPenerimaBtn)
                 .addContainerGap(26, Short.MAX_VALUE))
@@ -186,13 +185,13 @@ public class TellerTransferView extends javax.swing.JFrame {
         cancelPengirimBtn.setForeground(new java.awt.Color(0, 0, 0));
         cancelPengirimBtn.setText("Cancel");
 
-        inputNamaPengirim.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        namaPengirimInput.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
 
         namaPengirimLabel.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         namaPengirimLabel.setForeground(new java.awt.Color(0, 0, 0));
         namaPengirimLabel.setText("Nama Pengirim");
 
-        inputRekPengirim.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        noRekPengirimInput.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
 
         pengirimRekLabel.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         pengirimRekLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -214,19 +213,17 @@ public class TellerTransferView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pengirimPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pengirimPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pengirimPanelLayout.createSequentialGroup()
+                        .addComponent(noRekPengirimInput, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(okPengirimBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pengirimPanelLayout.createSequentialGroup()
                         .addGroup(pengirimPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pengirimRekLabel)
                             .addComponent(cancelPengirimBtn)
                             .addComponent(namaPengirimLabel)
-                            .addComponent(pengirimLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pengirimPanelLayout.createSequentialGroup()
-                        .addComponent(inputRekPengirim, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(okPengirimBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pengirimPanelLayout.createSequentialGroup()
-                        .addComponent(inputNamaPengirim, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pengirimLabel)
+                            .addComponent(namaPengirimInput, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(67, 67, 67)))
                 .addGap(14, 14, 14))
         );
@@ -239,12 +236,12 @@ public class TellerTransferView extends javax.swing.JFrame {
                 .addComponent(pengirimRekLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pengirimPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputRekPengirim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(noRekPengirimInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(okPengirimBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(namaPengirimLabel)
                 .addGap(9, 9, 9)
-                .addComponent(inputNamaPengirim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(namaPengirimInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cancelPengirimBtn)
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -272,13 +269,13 @@ public class TellerTransferView extends javax.swing.JFrame {
         transferBtn.setForeground(new java.awt.Color(0, 0, 0));
         transferBtn.setText("Transfer");
 
-        inputJumlahTransfer.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jumlahTransferInput.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
 
         jumlahTransferLabel.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         jumlahTransferLabel.setForeground(new java.awt.Color(0, 0, 0));
         jumlahTransferLabel.setText("Jumlah Transfer");
 
-        inputIdTransfer.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        idTransferInput.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
 
         idTransferLabel.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         idTransferLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -298,8 +295,8 @@ public class TellerTransferView extends javax.swing.JFrame {
                                     .addComponent(idTransferLabel)
                                     .addComponent(jumlahTransferLabel))
                                 .addGap(82, 82, 82))
-                            .addComponent(inputJumlahTransfer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(inputIdTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jumlahTransferInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(idTransferInput, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(transferBtn, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -309,11 +306,11 @@ public class TellerTransferView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(idTransferLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(inputIdTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(idTransferInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jumlahTransferLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputJumlahTransfer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jumlahTransferInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transferBtn)
                 .addContainerGap(31, Short.MAX_VALUE))
@@ -424,19 +421,19 @@ public class TellerTransferView extends javax.swing.JFrame {
     private javax.swing.JButton cancelPenerimaBtn;
     private javax.swing.JButton cancelPengirimBtn;
     private javax.swing.JPanel headerPane;
+    private javax.swing.JTextField idTransferInput;
     private javax.swing.JLabel idTransferLabel;
-    private javax.swing.JTextField inputIdTransfer;
-    private javax.swing.JTextField inputJumlahTransfer;
-    private javax.swing.JTextField inputNamaPenerima;
-    private javax.swing.JTextField inputNamaPengirim;
-    private javax.swing.JTextField inputRekPenerima;
-    private javax.swing.JTextField inputRekPengirim;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jumlahTransferInput;
     private javax.swing.JLabel jumlahTransferLabel;
     private javax.swing.JLabel labelPane;
+    private javax.swing.JTextField namaPenerimaInput;
     private javax.swing.JLabel namaPenerimaLabel;
+    private javax.swing.JTextField namaPengirimInput;
     private javax.swing.JLabel namaPengirimLabel;
+    private javax.swing.JTextField noRekPenerimaInput;
+    private javax.swing.JTextField noRekPengirimInput;
     private javax.swing.JButton okPenerimaBtn;
     private javax.swing.JButton okPengirimBtn;
     private javax.swing.JLabel penerimaLabel;
