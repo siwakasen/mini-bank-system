@@ -18,7 +18,11 @@ public class AdministratorDAO {
         con = dbcon.makeConnection();
         
         String sql = "INSERT INTO administrators(administrator_id, username, password) "
+<<<<<<< HEAD
                 + " VALUES("+a.getAdministrator_id()+", '"+a.getUsername()+"', '"+a.getPassword()+"')";
+=======
+                + " VALUES("+a.getAdministrator_id()+", '"+a.getUsername()+"', '"+a.getPassword+"')";
+>>>>>>> 21b49525ee8fc2585f08582a8659ae89f0c94d6b
         
         System.out.println("Insert data administrator...");     
         
@@ -38,7 +42,11 @@ public class AdministratorDAO {
     public void deleteAdministrator(int id){
         con = dbcon.makeConnection();
         
+<<<<<<< HEAD
         String sql = "DELETE FROM administrators WHERE administrator_id = "+id+"";
+=======
+        String sql = "DELETE FROM administrators WHERE id = "+id+"";
+>>>>>>> 21b49525ee8fc2585f08582a8659ae89f0c94d6b
         
         System.out.println("Deleting data administrator...");
         
@@ -57,8 +65,13 @@ public class AdministratorDAO {
     public void updateAdministrator(Administrator a){
         con = dbcon.makeConnection();
         
+<<<<<<< HEAD
         String sql = "UPDATE administrators SET username = '"+a.getUsername()+"', password = '"+a.getPassword()+"'"
                 + " WHERE administrator_id = '"+a.getAdministrator_id()+"'";
+=======
+        String sql = "UPDATE administrator SET username = '"+a.getUsername+"', password = '"+a.getPassword+"'"
+                + " WHERE administrator_id = '"+a.getAdiminstrator_id+"'";
+>>>>>>> 21b49525ee8fc2585f08582a8659ae89f0c94d6b
         
         System.out.println("Updating data administrator...");
         
