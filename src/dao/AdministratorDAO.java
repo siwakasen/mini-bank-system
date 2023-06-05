@@ -65,13 +65,8 @@ public class AdministratorDAO {
     public void updateAdministrator(Administrator a){
         con = dbcon.makeConnection();
         
-<<<<<<< HEAD
         String sql = "UPDATE administrators SET username = '"+a.getUsername()+"', password = '"+a.getPassword()+"'"
                 + " WHERE administrator_id = '"+a.getAdministrator_id()+"'";
-=======
-        String sql = "UPDATE administrator SET username = '"+a.getUsername+"', password = '"+a.getPassword+"'"
-                + " WHERE administrator_id = '"+a.getAdiminstrator_id+"'";
->>>>>>> 21b49525ee8fc2585f08582a8659ae89f0c94d6b
         
         System.out.println("Updating data administrator...");
         
