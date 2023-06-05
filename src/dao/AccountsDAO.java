@@ -11,43 +11,43 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import model.Customer;
-import model.Account;
+import model.Customers;
+import model.Accounts;
 
 /*
     Nama  : Ryan Pratama Wijaya
     Kelas : C
     NPM   : 210711008
 */
-public class AccountDAO {
+public class AccountsDAO {
     private DBConnection dbCon = new DBConnection();
     private Connection con;
     
-    public void insertAccount(Account a){
+    public void insertAccounts(Accounts a){
         con = dbCon.makeConnection();
         
-        String sql = "INSERT INTO account (account_id, account_type, balance, customer_id) VALUES ('" 
+        String sql = "INSERT INTO accounts (account_id, account_type, balance, customer_id) VALUES ('" 
                 + a.getAccount_id()+ "', '" + a.getAccount_type() + "', '" + a.getBalance() + "', '"
                 + a.getCustomer_id()+ "')";
         
-        System.out.println("Adding Account...");
+        System.out.println("Adding Accounts...");
         
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Added " + result + " Account");
+            System.out.println("Added " + result + " Accounts");
             statement.close();
         } catch (Exception e) {
-            System.out.println("Error adding Account...");
+            System.out.println("Error adding Accounts...");
             System.out.println(e);
         }
         dbCon.closeConnection();
     }
     
-    public List<Account> showAccount(String query) {
+    public List<Accounts> showAccounts(String query) {
         con = dbCon.makeConnection();
         
-        String sql = "SELECT a.*, c.* FROM account as a JOIN customer as c ON c.customer_id = a.customer_id "
+        String sql = "SELECT a.*, c.* FROM accounts as a JOIN customer as c ON c.customer_id = a.customer_id "
                 + "WHERE (c.first_name LIKE '%" + query + "%'"
                 + "OR c.last_name LIKE '%" + query + "%'"
                 + "OR c.email LIKE '%" + query + "%'"
@@ -55,8 +55,8 @@ public class AccountDAO {
                 + "OR c.address LIKE '%" + query + "%'"
                 + "OR a.account_type LIKE '%" + query + "%'"
                 + "OR a.balance '%" + query + "%'";
-        System.out.println("Mengambil data Account...");       
-        List<Account> list = new ArrayList();
+        System.out.println("Mengambil data Accounts...");       
+        List<Accounts> list = new ArrayList();
         
         try {
             Statement statement = con.createStatement();
@@ -64,7 +64,7 @@ public class AccountDAO {
             
             if (rs!=null){
                 while(rs.next()){
-                    Customer c = new Customer(
+                    Customers c = new Customers(
                             Integer.parseInt(rs.getString("c.customer_id")),
                             rs.getString("c.first_name"),
                             rs.getString("c.last_name"),
@@ -75,7 +75,7 @@ public class AccountDAO {
                             rs.getString("c.address")
                     );
                     
-                    Account a = new Account(
+                    Accounts a = new Accounts(
                             Integer.parseInt(rs.getString("a.account_id")),
                             rs.getString("a.account_type"),
                             Double.parseDouble(rs.getString("a.balance")),
@@ -96,39 +96,39 @@ public class AccountDAO {
         return list;
     }
     
-    public void updateAccount(Account a){
+    public void updateAccounts(Accounts a){
         con = dbCon.makeConnection();
         
-        String sql = "UPDATE account SET  account_type = '" + a.getAccount_type()
+        String sql = "UPDATE accounts SET  account_type = '" + a.getAccount_type()
                 + "', balance = '" + a.getBalance()
                 + "' WHERE account_id = '" + a.getAccount_id() + "'";
-        System.out.println("Editing Account...");
+        System.out.println("Editing Accounts...");
         
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Edited" + result + " Account "+ a.getAccount_id());
+            System.out.println("Edited" + result + " Accounts "+ a.getAccount_id());
             statement.close();
         } catch (Exception e) {
-            System.out.println("Error editing account...");
+            System.out.println("Error editing accounts...");
             System.out.println(e);
         }
         dbCon.closeConnection();
     }
     
-    public void deleteAccount(int account_id){
+    public void deleteAccounts(int account_id){
         con = dbCon.makeConnection();
         
-        String sql = "DELETE FROM account WHERE account_id = " + account_id + "";
-        System.out.println("Deleting Account...");
+        String sql = "DELETE FROM accounts WHERE account_id = " + account_id + "";
+        System.out.println("Deleting Accounts...");
         
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Delete " + result + " Account " + account_id);
+            System.out.println("Delete " + result + " Accounts " + account_id);
             statement.close();
         } catch (Exception e) {
-            System.out.println("Error deleting account...");
+            System.out.println("Error deleting accounts...");
             System.out.println(e);
         }
         dbCon.closeConnection();

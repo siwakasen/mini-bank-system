@@ -10,7 +10,7 @@ package model;
     Kelas : C
     NPM   : 210711008
 */
-public class Customer {
+public class Customers {
     private int customer_id;
     private String first_name;
     private String last_name;
@@ -20,7 +20,7 @@ public class Customer {
     private String phone_number;
     private String address;
 
-    public Customer(int customer_id, String first_name, String last_name, String email, String username, String password, String phone_number, String address) {
+    public Customers(int customer_id, String first_name, String last_name, String email, String username, String password, String phone_number, String address) {
         this.customer_id = customer_id;
         this.first_name = first_name;
         this.last_name = last_name;

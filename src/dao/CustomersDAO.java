@@ -10,46 +10,46 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import model.Customer;
+import model.Customers;
 /*
     Nama  : Ryan Pratama Wijaya
     Kelas : C
     NPM   : 210711008
 */
-public class CustomerDAO {
+public class CustomersDAO {
     private DBConnection dbCon = new DBConnection();
     private Connection con;
     
-    public void insertCustomer(Customer c){
+    public void insertCustomers(Customers c){
         con = dbCon.makeConnection();
        
-        String sql = "INSERT INTO customer(customer_id, first_name, last_name, email,"
+        String sql = "INSERT INTO customers(customer_id, first_name, last_name, email,"
                 + "username, password, phone_number, address) "
                 + "VALUES ('" + c.getCustomer_id()+ "', '" + c.getFirst_name()+ "', '"
                 + c.getEmail()+ "', '" + c.getUsername()+ "', '" + c.getPassword()+ "', '" 
                 + c.getPhone_number()+ "', '" + c.getAddress()+ "')";
      
-        System.out.println("Adding Customer...");
+        System.out.println("Adding Customers...");
        
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Added " + result + " Customer");
+            System.out.println("Added " + result + " Customers");
             statement.close();
         } catch (Exception e) {
-            System.out.println("Error adding Customer...");
+            System.out.println("Error adding Customers...");
             System.out.println(e);
         }
         dbCon.closeConnection();
     }
     
-    public List<Customer> showListCustomer() {
+    public List<Customers> showListCustomers() {
         con = dbCon.makeConnection();
         
-        String sql = "SELECT * FROM customer";
-        System.out.println("Mengambil data Customer...");
+        String sql = "SELECT * FROM customers";
+        System.out.println("Mengambil data Customers...");
         
-        List<Customer> list = new ArrayList();
+        List<Customers> list = new ArrayList();
         
         try {
             Statement statement = con.createStatement();
@@ -57,7 +57,7 @@ public class CustomerDAO {
             
             if (rs!=null){
                 while(rs.next()){
-                    Customer c = new Customer(
+                    Customers c = new Customers(
                             Integer.parseInt(rs.getString("customer_id")),
                             rs.getString("first_name"),
                             rs.getString("last_name"),
@@ -82,10 +82,10 @@ public class CustomerDAO {
     }
     
     
-    public List <Customer> showCustomerBySearch(String query){
+    public List <Customers> showCustomersBySearch(String query){
         con = dbCon.makeConnection();
        
-        String sql = "SELECT * FROM customer as c WHERE (c.customer_id LIKE '%" + query + "%' "
+        String sql = "SELECT * FROM customers as c WHERE (c.customer_id LIKE '%" + query + "%' "
                 + " OR c.first_name LIKE '%" + query + "%' "
                 + " OR c.last_name LIKE '%" + query + "%' "
                 + " OR c.email LIKE '%" + query + "%' "
@@ -93,9 +93,9 @@ public class CustomerDAO {
                 + " OR c.password LIKE '%" + query + "%' "
                 + " OR c.phone_number LIKE '%" + query + "%' "
                 + " OR c.address LIKE '%" + query + "%')";
-        System.out.println("Mengambil data Customer by Search...");
-        Customer c = null;
-        List <Customer> listCustomer = new ArrayList();
+        System.out.println("Mengambil data Customers by Search...");
+        Customers c = null;
+        List <Customers> listCustomers = new ArrayList();
        
         try {
             Statement statement = con.createStatement();
@@ -103,7 +103,7 @@ public class CustomerDAO {
            
             if(rs!=null){
                 while(rs.next()){
-                    c = new Customer(
+                    c = new Customers(
                             Integer.parseInt(rs.getString("customer_id")),
                             rs.getString("first_name"),
                             rs.getString("last_name"),
@@ -113,7 +113,7 @@ public class CustomerDAO {
                             rs.getString("phone_number"),
                             rs.getString("address")
                     );
-                    listCustomer.add(c);
+                    listCustomers.add(c);
                 }
             }
             rs.close();
@@ -124,13 +124,13 @@ public class CustomerDAO {
         }
         dbCon.closeConnection();
        
-        return listCustomer;
+        return listCustomers;
     }
     
-    public void updateCustomer(Customer c){
+    public void updateCustomers(Customers c){
         con = dbCon.makeConnection();
         
-        String sql = "UPDATE customer SET  first_name = '" + c.getFirst_name()
+        String sql = "UPDATE customers SET  first_name = '" + c.getFirst_name()
                 + "', last_name = '" + c.getLast_name()
                 + "', email = '" + c.getEmail()
                 + "', username = '" + c.getUsername()
@@ -138,33 +138,33 @@ public class CustomerDAO {
                 + "', phone_number = '" + c.getPhone_number()
                 + "', address = '" + c.getAddress()
                 + "' WHERE customer_id = '" + c.getCustomer_id()+ "'";
-        System.out.println("Editing Customer...");
+        System.out.println("Editing Customers...");
         
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Emdited" + result + " Customer "+ c.getCustomer_id());
+            System.out.println("Emdited" + result + " Customers "+ c.getCustomer_id());
             statement.close();
         } catch (Exception e) {
-            System.out.println("Error editing Customer...");
+            System.out.println("Error editing Customers...");
             System.out.println(e);
         }
         dbCon.closeConnection();
     } 
     
-    public void deleteCustomer(Integer customer_id){
+    public void deleteCustomers(Integer customer_id){
         con = dbCon.makeConnection();
        
-        String sql = "DELETE FROM customer WHERE customer_id = '" + customer_id + "'";
-        System.out.println("Deleting Customer...");
+        String sql = "DELETE FROM customers WHERE customer_id = '" + customer_id + "'";
+        System.out.println("Deleting Customers...");
        
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Delete " + result + " Customer " + customer_id);
+            System.out.println("Delete " + result + " Customers " + customer_id);
             statement.close();
         } catch (Exception e) {
-            System.out.println("Error deleting customer...");
+            System.out.println("Error deleting customers...");
             System.out.println(e);
         }
         dbCon.closeConnection();

@@ -10,13 +10,13 @@ package model;
     Kelas : C
     NPM   : 210711008
 */
-public class Account {
+public class Accounts {
     private int account_id;
     private String account_type;
     private double balance;
-    private Customer customer_id;
+    private Customers customer_id;
 
-    public Account(int account_id, String account_type, double balance, Customer customer_id) {
+    public Accounts(int account_id, String account_type, double balance, Customers customer_id) {
         this.account_id = account_id;
         this.account_type = account_type;
         this.balance = balance;
@@ -27,7 +27,7 @@ public class Account {
         return account_id;
     }
 
-    public Customer getCustomer_id() {
+    public Customers getCustomer_id() {
         return customer_id;
     }
 
