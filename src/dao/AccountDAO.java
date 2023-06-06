@@ -51,7 +51,7 @@ public class AccountDAO {
                 + "OR a.account_type LIKE '%" + query + "%'"
                 + "OR a.balance '%" + query + "%'";
         System.out.println("Mengambil data Account...");       
-        List<Account> list = new ArrayList();
+        List<Account> list = new ArrayList<>();
         
         try {
             Statement statement = con.createStatement();
