@@ -2,10 +2,10 @@ package model;
 
 public class Transfers {
     private String transfer_id,transfer_date;
-    private Accounts from_account_id,to_account_id;
+    private int from_account_id,to_account_id;
     private double amount;
 
-    public Transfers(String transfer_id, String transfer_date, Accounts from_account_id, Accounts to_account_id, double amount) {
+    public Transfers(String transfer_id, String transfer_date, int from_account_id, int to_account_id, double amount) {
         this.transfer_id = transfer_id;
         this.transfer_date = transfer_date;
         this.from_account_id = from_account_id;
@@ -29,19 +29,19 @@ public class Transfers {
         this.transfer_date = transfer_date;
     }
 
-    public Accounts getFrom_account_id() {
+    public int getFrom_account_id() {
         return from_account_id;
     }
 
-    public void setFrom_account_id(Accounts from_account_id) {
+    public void setFrom_account_id(int from_account_id) {
         this.from_account_id = from_account_id;
     }
 
-    public Accounts getTo_account_id() {
+    public int getTo_account_id() {
         return to_account_id;
     }
 
-    public void setTo_account_id(Accounts to_account_id) {
+    public void setTo_account_id(int to_account_id) {
         this.to_account_id = to_account_id;
     }
 
