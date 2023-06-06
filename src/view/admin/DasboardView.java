@@ -1,16 +1,18 @@
 
 package view.admin;
+import model.Administrators;
 
 public class DasboardView extends javax.swing.JFrame {
-
-    /**
-     * Creates new form DasboardView
-     */
+    
+    private Administrators admin;
     public DasboardView() {
+        admin =  new Administrators(1,"Riksi","123");
         initComponents();
         helloText.setEditable(false);
+        helloText.setText("Hello Admin "+admin.getUsername());
         totalAdminText.setEditable(false);
         totalEmpText.setEditable(false);
+        
     }
 
     /**
@@ -296,7 +298,7 @@ public class DasboardView extends javax.swing.JFrame {
                                     .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                                 .addGap(95, 95, 95)
                                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(totalEmpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(totalEmpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                                     .addComponent(panelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1241, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(baseLayout.createSequentialGroup()
@@ -346,9 +348,15 @@ public class DasboardView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private int countTotalAdmin(){
+        return 1;
+    }
+    private int countTotalEmployee(){
+        return 1;
+    }
     private void helloTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helloTextActionPerformed
-        // TODO add your handling code here:
+        helloText.setText("Hello Admin "+admin.getUsername());
     }//GEN-LAST:event_helloTextActionPerformed
 
     private void totalAdminTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAdminTextActionPerformed
