@@ -30,13 +30,13 @@ public class TransactionsDAO {
         }
     }
 
-    public List<Transactions> getTransactions(Accounts account_id, String type){
+    public List<Transactions> getTransactions(int account_id, String type){
         List<Transactions> transactions = new ArrayList<Transactions>();
         try {
             conn = DbCon.makeConnection();
             Statement stmt = conn.createStatement();
             if(type == "LOA"){
-                String sql = "SELECT * FROM transactions WHERE account_id = " + account_id.getAccount_id() + " AND transaction_type LIKE 'LOA-%'";
+                String sql = "SELECT * FROM transactions WHERE account_id = " + account_id + " AND transaction_type LIKE 'LOA-%'";
                 ResultSet rs = stmt.executeQuery(sql);
                 while (rs.next()) {
                     String transaction_id = rs.getString("transaction_id");
@@ -49,7 +49,7 @@ public class TransactionsDAO {
                 rs.close();
                 return transactions;
             }else if(type == "TN"){
-                String sql = "SELECT * FROM transactions WHERE account_id = " + account_id.getAccount_id() + " AND transaction_type LIKE 'TN-%'";
+                String sql = "SELECT * FROM transactions WHERE account_id = " + account_id + " AND transaction_type LIKE 'TN-%'";
                 ResultSet rs = stmt.executeQuery(sql);
                 while (rs.next()) {
                     String transaction_id = rs.getString("transaction_id");
@@ -62,7 +62,7 @@ public class TransactionsDAO {
                 rs.close();
                 return transactions;
             } else {
-                String sql = "SELECT * FROM transactions WHERE account_id = " + account_id.getAccount_id();
+                String sql = "SELECT * FROM transactions WHERE account_id = " + account_id;
                 ResultSet rs = stmt.executeQuery(sql);
                 while (rs.next()) {
                     String transaction_id = rs.getString("transaction_id");
