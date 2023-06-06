@@ -6,9 +6,9 @@ public class Accounts {
     private int account_id;
     private String account_type;
     private double balance;
-    private Customers customer_id;
+    private int customer_id;
 
-    public Accounts(int account_id, String account_type, double balance, Customers customer_id) {
+    public Accounts(int account_id, String account_type, double balance, int customer_id) {
         this.account_id = account_id;
         this.account_type = account_type;
         this.balance = balance;
@@ -19,7 +19,7 @@ public class Accounts {
         return account_id;
     }
 
-    public Customers getCustomer_id() {
+    public int getCustomer_id() {
         return customer_id;
     }
 
