@@ -4,7 +4,7 @@
  */
 
 package dao;
-import connection.DBConnection;
+import connection.DbConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -17,7 +17,7 @@ import model.Customers;
     NPM   : 210711008
 */
 public class CustomersDAO {
-    private DBConnection dbCon = new DBConnection();
+    private DbConnection dbCon = new DbConnection();
     private Connection con;
     
     public void insertCustomers(Customers c){
