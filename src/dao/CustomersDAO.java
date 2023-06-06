@@ -1,9 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package dao;
+
 import connection.DbConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,11 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Customers;
-/*
-    Nama  : Ryan Pratama Wijaya
-    Kelas : C
-    NPM   : 210711008
-*/
+
 public class CustomersDAO {
     private DbConnection dbCon = new DbConnection();
     private Connection con;
@@ -49,7 +41,7 @@ public class CustomersDAO {
         String sql = "SELECT * FROM customers";
         System.out.println("Mengambil data Customers...");
         
-        List<Customers> list = new ArrayList();
+        List<Customers> list = new ArrayList<>();
         
         try {
             Statement statement = con.createStatement();
@@ -95,7 +87,7 @@ public class CustomersDAO {
                 + " OR c.address LIKE '%" + query + "%')";
         System.out.println("Mengambil data Customers by Search...");
         Customers c = null;
-        List <Customers> listCustomers = new ArrayList();
+        List <Customers> listCustomers = new ArrayList<>();
        
         try {
             Statement statement = con.createStatement();

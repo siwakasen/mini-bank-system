@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 package dao;
 
@@ -14,11 +10,7 @@ import java.util.List;
 import model.Customers;
 import model.Accounts;
 
-/*
-    Nama  : Ryan Pratama Wijaya
-    Kelas : C
-    NPM   : 210711008
-*/
+
 public class AccountsDAO {
     private DbConnection dbCon = new DbConnection();
     private Connection con;

@@ -1,22 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package model;
 
-/**
- *
- * @author USER
- * Fathur Rosi 210711562
- */
 public class Loans {
     private String loan_id,loan_type,loan_start_date,loan_end_date;
-    private Customer customer;
+    private Customers customer;
     private double amount;
     private float interest_date;
 
-    public Loans(String loan_id, String loan_type, String loan_start_date, String loan_end_date, Customer customer, double amount, float interest_date) {
+    public Loans(String loan_id, String loan_type, String loan_start_date, String loan_end_date, Customers customer, double amount, float interest_date) {
         this.loan_id = loan_id;
         this.loan_type = loan_type;
         this.loan_start_date = loan_start_date;
@@ -58,11 +48,11 @@ public class Loans {
         this.loan_end_date = loan_end_date;
     }
 
-    public Customer getCustomer() {
+    public Customers getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(Customers customer) {
         this.customer = customer;
     }
 

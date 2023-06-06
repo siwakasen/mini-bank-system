@@ -1,20 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package model;
 
-/**
- *
- * @author USER
- * Fathur Rosi 210711562
- */
 public class Transaction {
     private String transaction_id,transaction_type,transaction_date;
-    private Account account_id;
+    private Accounts account_id;
 
-    public Transaction(String transaction_id, String transaction_type, String transaction_date, Account account_id) {
+    public Transaction(String transaction_id, String transaction_type, String transaction_date, Accounts account_id) {
         this.transaction_id = transaction_id;
         this.transaction_type = transaction_type;
         this.transaction_date = transaction_date;
@@ -45,11 +35,11 @@ public class Transaction {
         this.transaction_date = transaction_date;
     }
 
-    public Account getAccount_id() {
+    public Accounts getAccount_id() {
         return account_id;
     }
 
-    public void setAccount_id(Account account_id) {
+    public void setAccount_id(Accounts account_id) {
         this.account_id = account_id;
     }
     
