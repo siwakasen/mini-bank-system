@@ -2,18 +2,18 @@ package model;
 
 public class Loans {
     private String loan_id,loan_type,loan_start_date,loan_end_date;
-    private Customers customer;
+    private int customer_id;
     private double amount;
-    private float interest_date;
+    private float interest_rate;
 
-    public Loans(String loan_id, String loan_type, String loan_start_date, String loan_end_date, Customers customer, double amount, float interest_date) {
+    public Loans(String loan_id, String loan_type, String loan_start_date, String loan_end_date, int customer_id, double amount, float interest_rate) {
         this.loan_id = loan_id;
         this.loan_type = loan_type;
         this.loan_start_date = loan_start_date;
         this.loan_end_date = loan_end_date;
-        this.customer = customer;
+        this.customer_id = customer_id;
         this.amount = amount;
-        this.interest_date = interest_date;
+        this.interest_rate = interest_rate;
     }
 
     public String getLoan_id() {
@@ -48,12 +48,12 @@ public class Loans {
         this.loan_end_date = loan_end_date;
     }
 
-    public Customers getCustomer() {
-        return customer;
+    public int getCustomer_id() {
+        return customer_id;
     }
 
-    public void setCustomer(Customers customer) {
-        this.customer = customer;
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
     }
 
     public double getAmount() {
@@ -64,12 +64,12 @@ public class Loans {
         this.amount = amount;
     }
 
-    public float getInterest_date() {
-        return interest_date;
+    public float getInterest_rate() {
+        return interest_rate;
     }
 
-    public void setInterest_date(float interest_date) {
-        this.interest_date = interest_date;
+    public void setInterest_rate(float interest_rate) {
+        this.interest_rate = interest_rate;
     }
     @Override
     public String toString() {
