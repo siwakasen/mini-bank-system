@@ -1,3 +1,4 @@
+
 package dao;
 
 import connection.DbConnection;
@@ -10,11 +11,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeDAO {
+public class EmployeesDAO {
     DbConnection dbcon = new DbConnection();
     private Connection con;
     
-    public void insertEmployee(Employee em){
+    public void insertEmployee(Employees em){
         con = dbcon.makeConnection();
         
         String sql = "INSERT INTO employees(employee_id, first_name, last_name, username, password, start_work_date,"
@@ -56,7 +57,7 @@ public class EmployeeDAO {
         dbcon.closeConnection();
     }
     
-    public void updateEmployee(Employee em){
+    public void updateEmployee(Employees em){
         con = dbcon.makeConnection();
         
         String sql = "UPDATE employees SET first_name = '"+em.getFirst_name()+"',"
@@ -81,14 +82,14 @@ public class EmployeeDAO {
         dbcon.closeConnection();
     }
     
-    public List<Employee> showListCustomer(){
+    public List<Employees> showListCustomer(){
         con = dbcon.makeConnection();
         
         String sql = "SELECT * FROM employees";
         
         System.out.println("Collecting data employee...");
         
-        List<Employee> list = new ArrayList<Employee>();
+        List<Employees> list = new ArrayList<Employees>();
         System.out.println("Collecting data employeea...");
         
         try {
@@ -97,7 +98,7 @@ public class EmployeeDAO {
             
             if (rs!=null) {
                 while (rs.next()) {
-                    Employee e = new Employee(rs.getInt("employee_id"),
+                    Employees e = new Employees(rs.getInt("employee_id"),
                             rs.getString("first_name"), rs.getString("last_name"),
                             rs.getString("username"), rs.getString("password"), 
                             rs.getString("start_work_date"), rs.getString("end_work_date"),

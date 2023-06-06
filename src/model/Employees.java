@@ -1,6 +1,6 @@
 package model;
 
-public class Employee {
+public class Employees {
     protected int employee_id;
     protected String first_name;
     protected String last_name;
@@ -12,7 +12,7 @@ public class Employee {
     protected String office_number;
     protected String station_number;
 
-    public Employee(int employee_id, String first_name, String last_name, String username, String password, String start_work_date, String end_work_date, int role_id, String office_number, String station_number) {
+    public Employees(int employee_id, String first_name, String last_name, String username, String password, String start_work_date, String end_work_date, int role_id, String office_number, String station_number) {
         this.employee_id = employee_id;
         this.first_name = first_name;
         this.last_name = last_name;

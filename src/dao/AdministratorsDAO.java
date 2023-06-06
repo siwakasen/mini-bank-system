@@ -1,3 +1,4 @@
+
 package dao;
 
 import connection.DbConnection;
@@ -10,11 +11,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdministratorDAO {
+public class AdministratorsDAO {
     DbConnection dbcon = new DbConnection();
     private Connection con;
     
-    public void insertAdministrator(Administrator a){
+    public void insertAdministrator(Administrators a){
         con = dbcon.makeConnection();
         
         String sql = "INSERT INTO administrators(administrator_id, username, password) "
@@ -54,7 +55,7 @@ public class AdministratorDAO {
         dbcon.closeConnection();
     }
     
-    public void updateAdministrator(Administrator a){
+    public void updateAdministrator(Administrators a){
         con = dbcon.makeConnection();
         
         String sql = "UPDATE administrators SET username = '"+a.getUsername()+"', password = '"+a.getPassword()+"'"
@@ -73,12 +74,12 @@ public class AdministratorDAO {
         dbcon.closeConnection();
     }
     
-    public List<Administrator> showListAdministrator(){
+    public List<Administrators> showListAdministrator(){
         con = dbcon.makeConnection();
         
         String sql = "SELECT * FROM administrators";
         
-        List<Administrator> list = new ArrayList<Administrator>();
+        List<Administrators> list = new ArrayList<Administrators>();
         System.out.println("Collecting data administrator...");
         
         try {
@@ -87,7 +88,7 @@ public class AdministratorDAO {
             
             if (rs!=null) {
                 while (rs.next()) {                    
-                    Administrator a = new Administrator(rs.getInt("administrator_id"),
+                    Administrators a = new Administrators(rs.getInt("administrator_id"),
                             rs.getString("username"), rs.getString("password"));
                     
                     list.add(a);

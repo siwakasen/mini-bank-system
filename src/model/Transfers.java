@@ -1,11 +1,11 @@
 package model;
 
-public class Transfer {
+public class Transfers {
     private String transfer_id,transfer_date;
     private Accounts from_account_id,to_account_id;
     private double amount;
 
-    public Transfer(String transfer_id, String transfer_date, Accounts from_account_id, Accounts to_account_id, double amount) {
+    public Transfers(String transfer_id, String transfer_date, Accounts from_account_id, Accounts to_account_id, double amount) {
         this.transfer_id = transfer_id;
         this.transfer_date = transfer_date;
         this.from_account_id = from_account_id;

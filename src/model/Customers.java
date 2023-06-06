@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 
 package model;
 
-/*
-    Nama  : Ryan Pratama Wijaya
-    Kelas : C
-    NPM   : 210711008
-*/
 public class Customers {
     private int customer_id;
     private String first_name;

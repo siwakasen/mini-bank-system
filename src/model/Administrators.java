@@ -1,10 +1,10 @@
 package model;
 
-public class Administrator {
+public class Administrators{
     private int administrator_id;
     private String username,password;
 
-    public Administrator(int administrator_id, String username, String password) {
+    public Administrators(int administrator_id, String username, String password) {
         this.administrator_id = administrator_id;
         this.username = username;
         this.password = password;

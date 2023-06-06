@@ -1,10 +1,10 @@
 package model;
 
-public class Transaction {
+public class Transactions {
     private String transaction_id,transaction_type,transaction_date;
     private Accounts account_id;
 
-    public Transaction(String transaction_id, String transaction_type, String transaction_date, Accounts account_id) {
+    public Transactions(String transaction_id, String transaction_type, String transaction_date, Accounts account_id) {
         this.transaction_id = transaction_id;
         this.transaction_type = transaction_type;
         this.transaction_date = transaction_date;

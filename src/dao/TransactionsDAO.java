@@ -1,3 +1,4 @@
+
 package dao;
 
 import model.*;
@@ -29,8 +30,8 @@ public class TransactionsDAO {
         }
     }
 
-    public List<Transaction> getTransactions(Accounts account_id, String type){
-        List<Transaction> transactions = new ArrayList<Transaction>();
+    public List<Transactions> getTransactions(Accounts account_id, String type){
+        List<Transactions> transactions = new ArrayList<Transactions>();
         try {
             conn = DbCon.makeConnection();
             Statement stmt = conn.createStatement();
@@ -41,7 +42,7 @@ public class TransactionsDAO {
                     String transaction_id = rs.getString("transaction_id");
                     String transaction_type = rs.getString("transaction_type");
                     String transaction_date = rs.getString("transaction_date");
-                    Transaction transaction = new Transaction(transaction_id, transaction_type, transaction_date, account_id);
+                    Transactions transaction = new Transactions(transaction_id, transaction_type, transaction_date, account_id);
                     transactions.add(transaction);
                 }
                 stmt.close();
@@ -54,7 +55,7 @@ public class TransactionsDAO {
                     String transaction_id = rs.getString("transaction_id");
                     String transaction_type = rs.getString("transaction_type");
                     String transaction_date = rs.getString("transaction_date");
-                    Transaction transaction = new Transaction(transaction_id, transaction_type, transaction_date, account_id);
+                    Transactions transaction = new Transactions(transaction_id, transaction_type, transaction_date, account_id);
                     transactions.add(transaction);
                 }
                 stmt.close();
@@ -67,7 +68,7 @@ public class TransactionsDAO {
                     String transaction_id = rs.getString("transaction_id");
                     String transaction_type = rs.getString("transaction_type");
                     String transaction_date = rs.getString("transaction_date");
-                    Transaction transaction = new Transaction(transaction_id, transaction_type, transaction_date, account_id);
+                    Transactions transaction = new Transactions(transaction_id, transaction_type, transaction_date, account_id);
                     transactions.add(transaction);
                 }
                 stmt.close();
