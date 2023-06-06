@@ -17,15 +17,9 @@ public class EmployeeDAO {
     public void insertEmployee(Employee em){
         con = dbcon.makeConnection();
         
-<<<<<<< HEAD
         String sql = "INSERT INTO employees(employee_id, first_name, last_name, username, password, start_work_date,"
                 + " end_work_date, role_id, station_number, office_number) VALUES ('"+em.getEmployee_id()+"','"+em.getFirst_name()+"', "
                 + "'"+em.getLast_name()+"', '"+em.getUsername()+"', '"+em.getPassword()+"', '"+em.getStart_work_date()+"', '"+em.getEnd_work_date()+"', '"+em.getRole_id()+"',"
-=======
-        String sql = "INSERT INTO employees(first_name, last_name, username, password, start_work_date,"
-                + " end_work_date, role_id, station_number, office_number) VALUES ('"+em.getFirst_name()+"', "
-                + "'"+em.getLast_name()+"', '"+em.getStart_work_date()+"', '"+em.getEnd_work_date()+"', '"+em.getRole_id()+"',"
->>>>>>> 21b49525ee8fc2585f08582a8659ae89f0c94d6b
                 + "'"+em.getStation_number()+"', '"+em.getOffice_number()+"')";
         
         System.out.println("Insert data employee...");

@@ -41,7 +41,7 @@ public class CustomerDAO {
         String sql = "SELECT * FROM customer";
         System.out.println("Mengambil data Customer...");
         
-        List<Customer> list = new ArrayList();
+        List<Customer> list = new ArrayList<>();
         
         try {
             Statement statement = con.createStatement();
@@ -87,7 +87,7 @@ public class CustomerDAO {
                 + " OR c.address LIKE '%" + query + "%')";
         System.out.println("Mengambil data Customer by Search...");
         Customer c = null;
-        List <Customer> listCustomer = new ArrayList();
+        List <Customer> listCustomer = new ArrayList<>();
        
         try {
             Statement statement = con.createStatement();
