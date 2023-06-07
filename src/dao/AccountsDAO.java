@@ -90,8 +90,8 @@ public class AccountsDAO {
         con = dbCon.makeConnection();
         
         String sql = "UPDATE accounts SET  account_type = '" + a.getAccount_type()
-                + "', balance = '" + a.getBalance()
-                + "' WHERE account_id = '" + a.getAccount_id() + "'";
+                + "', balance = '" + a.getBalance() + "', username = '" +a.getUsername()
+                + "', password = '" +a.getPassword()+ "' WHERE account_id = '" + a.getAccount_id() + "'";
         System.out.println("Editing Accounts...");
         
         try {

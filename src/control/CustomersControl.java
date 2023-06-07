@@ -14,7 +14,7 @@ public class CustomersControl {
     private CustomersDAO cDao = new CustomersDAO();
     
     public void insertCustomer(Customers c){
-        insertCustomer(c);
+        cDao.insertCustomers(c);
     }
     
     public TableCustomers showCustomers(String query){
@@ -24,5 +24,23 @@ public class CustomersControl {
         return tableCustomers;
     }
     
+    public int lastCostumer(){
+        List<Customers> list = cDao.showListCustomers();
+        int last = 0;
+        for (Customers customers : list) {
+            if (customers.getCustomer_id() > last) {
+                last = customers.getCustomer_id();
+            }
+        }
+        return last;
+    }
+    
+    public void updateCustomer(Customers c){
+        cDao.updateCustomers(c);
+    }
+    
+    public void deleteCustomer(int customer_id){
+        cDao.deleteCustomers(customer_id);
+    }
     
 }

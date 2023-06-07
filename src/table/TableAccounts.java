@@ -42,7 +42,10 @@ public class TableAccounts extends AbstractTableModel{
                 return accounts.get(row).getCustomer().getPhone_number();
             case 8: 
                 return accounts.get(row).getCustomer().getAddress();
-            
+            case 9: 
+                return accounts.get(row).getUsername();
+            case 10: 
+                return accounts.get(row).getPassword();
             default: 
                 return null;
         }

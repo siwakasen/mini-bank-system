@@ -16,9 +16,8 @@ public class CustomersDAO {
     public void insertCustomers(Customers c){
         con = dbCon.makeConnection();
        
-        String sql = "INSERT INTO customers(customer_id, first_name, last_name, email,"
-                + "phone_number, address) "
-                + "VALUES ('" + c.getCustomer_id()+ "', '" + c.getFirst_name()+ "', '"
+        String sql = "INSERT INTO customers(customer_id, first_name, last_name, email, phone_number, address) "
+                + "VALUES ('" + c.getCustomer_id()+ "', '" + c.getFirst_name()+ "', '" + c.getLast_name()+ "', '"
                 + c.getEmail()+ "', '"+ c.getPhone_number()+ "', '" + c.getAddress()+ "')";
      
         System.out.println("Adding Customers...");
@@ -136,7 +135,7 @@ public class CustomersDAO {
         dbCon.closeConnection();
     } 
     
-    public void deleteCustomers(Integer customer_id){
+    public void deleteCustomers(int customer_id){
         con = dbCon.makeConnection();
        
         String sql = "DELETE FROM customers WHERE customer_id = '" + customer_id + "'";

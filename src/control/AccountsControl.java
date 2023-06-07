@@ -21,5 +21,11 @@ public class AccountsControl {
         return tableAccounts;
     }
     
+    public void updateAccount(Accounts a){
+        aDao.updateAccounts(a);
+    }
     
+    public void deleteAccount(int account_id){
+        aDao.deleteAccounts(account_id);
+    }
 }
