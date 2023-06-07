@@ -6,15 +6,71 @@ import model.Customers;
 import control.AccountsControl;
 import control.CustomersControl;
 import java.util.List;
+import table.TableCustomers;
+import javax.swing.table.TableModel;
 
 public class CustomerServiceView extends javax.swing.JFrame {
-
+    AccountsControl accountControl;
+    CustomersControl customerControl;
+    String action = null;
+    int selectedId = 0;
     /**
      * Creates new form CustomerServiceView
      */
     public CustomerServiceView() {
         initComponents();
+        customerControl = new CustomersControl();
+        setComponent(false);
+        setEditDeleteBtn(false);
+//        showCustomers();
+//        setEditDeleteBtn(false);
     }
+    
+    public void setComponent(boolean value){
+        inputFirstName.setEnabled(value);
+        inputLastName.setEnabled(value);
+        inputEmail.setEnabled(value);
+        inputPhoneNumber.setEnabled(value);
+        inputAddress.setEnabled(value);
+        
+        inputUsername.setEnabled(value);
+        inputPassword.setEnabled(value);
+        inputBalance.setEnabled(value);
+        accountTypeComboBox.setEnabled(value);
+        
+        saveBtn.setEnabled(value);
+        cancelBtn.setEnabled(value);
+    }
+    
+    public void clearText(){
+        inputFirstName.setText("");
+        inputLastName.setText("");
+        inputEmail.setText("");
+        inputPhoneNumber.setText("");
+        inputAddress.setText("");
+        
+        inputUsername.setText("");
+        inputPassword.setText("");
+        inputBalance.setText("");
+        accountTypeComboBox.setSelectedItem(ABORT);
+    }
+    
+    public void setEditDeleteBtn(boolean value){
+        editCus.setEnabled(value);
+        deleteCus.setEnabled(value);
+        if(value==false){
+            editCus.setBackground(new java.awt.Color(204, 204, 204));
+            deleteCus.setBackground(new java.awt.Color(204, 204, 204));
+        }else{
+            editCus.setBackground(new java.awt.Color(241, 196, 15));
+            deleteCus.setBackground(new java.awt.Color(220, 53, 69));
+        }
+    }
+    
+    public void showCustomers(){
+        tableCustomers.setModel(customerControl.showCustomers(""));
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +99,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
         lastNameLabel = new javax.swing.JLabel();
         inputLastName = new javax.swing.JTextField();
         emailLabel = new javax.swing.JLabel();
-        emailInput = new javax.swing.JTextField();
+        inputEmail = new javax.swing.JTextField();
         phoneNumberLabel = new javax.swing.JLabel();
         inputPhoneNumber = new javax.swing.JTextField();
         addressLabel = new javax.swing.JLabel();
@@ -61,7 +117,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
         saveBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableCustomers = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1650, 1080));
@@ -128,6 +184,11 @@ public class CustomerServiceView extends javax.swing.JFrame {
         createCus.setRoundBottomRight(20);
         createCus.setRoundTopLeft(20);
         createCus.setRoundTopRight(20);
+        createCus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                createCusMouseClicked(evt);
+            }
+        });
 
         labelAdd.setBackground(new java.awt.Color(255, 255, 255));
         labelAdd.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 14)); // NOI18N
@@ -236,9 +297,9 @@ public class CustomerServiceView extends javax.swing.JFrame {
         emailLabel.setForeground(new java.awt.Color(51, 51, 51));
         emailLabel.setText("Email");
 
-        emailInput.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        emailInput.setForeground(new java.awt.Color(0, 0, 0));
-        emailInput.setPreferredSize(new java.awt.Dimension(64, 27));
+        inputEmail.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        inputEmail.setForeground(new java.awt.Color(0, 0, 0));
+        inputEmail.setPreferredSize(new java.awt.Dimension(64, 27));
 
         phoneNumberLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         phoneNumberLabel.setForeground(new java.awt.Color(51, 51, 51));
@@ -366,7 +427,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
                             .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(inputFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(inputLastName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(emailInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(inputEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(inputPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(inputAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(baseInputCusLayout.createSequentialGroup()
@@ -403,7 +464,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailLabel)
-                    .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phoneNumberLabel)
@@ -437,7 +498,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableCustomers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -448,7 +509,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableCustomers);
 
         javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
         base.setLayout(baseLayout);
@@ -534,6 +595,14 @@ public class CustomerServiceView extends javax.swing.JFrame {
         //        clearText();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    private void createCusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createCusMouseClicked
+        setComponent(true);
+        setEditDeleteBtn(true);
+        
+        clearText();
+        action = "Tambah";
+    }//GEN-LAST:event_createCusMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -582,12 +651,12 @@ public class CustomerServiceView extends javax.swing.JFrame {
     private view.PanelRound dataCustomer;
     private view.PanelRound deleteCus;
     private view.PanelRound editCus;
-    private javax.swing.JTextField emailInput;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JPanel header;
     private javax.swing.JTextField inputAddress;
     private javax.swing.JTextField inputBalance;
+    private javax.swing.JTextField inputEmail;
     private javax.swing.JTextField inputFirstName;
     private javax.swing.JTextField inputLastName;
     private javax.swing.JTextField inputPassword;
@@ -595,7 +664,6 @@ public class CustomerServiceView extends javax.swing.JFrame {
     private javax.swing.JTextField inputUsername;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelAcc;
     private javax.swing.JLabel labelAdd;
     private javax.swing.JLabel labelCus;
@@ -606,6 +674,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
     private javax.swing.JLabel password;
     private javax.swing.JLabel phoneNumberLabel;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JTable tableCustomers;
     private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }

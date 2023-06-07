@@ -2,9 +2,9 @@ package model;
 
 public class Transactions {
     private String transaction_id,transaction_type,transaction_date;
-    private Accounts account_id;
+    private int account_id;
 
-    public Transactions(String transaction_id, String transaction_type, String transaction_date, Accounts account_id) {
+    public Transactions(String transaction_id, String transaction_type, String transaction_date, int account_id) {
         this.transaction_id = transaction_id;
         this.transaction_type = transaction_type;
         this.transaction_date = transaction_date;
@@ -35,11 +35,11 @@ public class Transactions {
         this.transaction_date = transaction_date;
     }
 
-    public Accounts getAccount_id() {
+    public int getAccount_id() {
         return account_id;
     }
 
-    public void setAccount_id(Accounts account_id) {
+    public void setAccount(int account_id) {
         this.account_id = account_id;
     }
     

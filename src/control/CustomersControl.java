@@ -5,11 +5,24 @@
 
 package control;
 
-/**
- * @author 
- * Made Riksi Purnama Sadnya Agung / 210711396
- * Pemrograman Berorientasi Obyek C
- */
-public class CustomersControl {
+import dao.CustomersDAO;
+import model.Customers;
+import table.TableCustomers;
+import java.util.List;
 
+public class CustomersControl {
+    private CustomersDAO cDao = new CustomersDAO();
+    
+    public void insertCustomer(Customers c){
+        insertCustomer(c);
+    }
+    
+    public TableCustomers showCustomers(String query){
+        List<Customers> list = cDao.showCustomersBySearch(query);
+        TableCustomers tableCustomers = new TableCustomers(list);
+        
+        return tableCustomers;
+    }
+    
+    
 }

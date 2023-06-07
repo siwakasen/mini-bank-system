@@ -61,17 +61,15 @@ public class AccountsDAO {
                             rs.getString("c.first_name"),
                             rs.getString("c.last_name"),
                             rs.getString("c.email"),
-                            rs.getString("c.username"),
-                            rs.getString("c.password"),
                             rs.getString("c.phone_number"),
                             rs.getString("c.address")
                     );
-                    
+
                     Accounts a = new Accounts(
                             Integer.parseInt(rs.getString("a.account_id")),
                             rs.getString("a.account_type"),
                             Double.parseDouble(rs.getString("a.balance")),
-                            c
+                            Integer.parseInt(rs.getString("c.customer_id"))
                     );
                     
                     list.add(a);
