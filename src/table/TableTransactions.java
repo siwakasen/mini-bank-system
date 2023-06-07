@@ -7,7 +7,7 @@ import java.util.List;
 public class TableTransactions extends AbstractTableModel{
     private List<Transactions> transactions;
 
-    TableTransactions(List<Transactions> transactions){
+    public TableTransactions(List<Transactions> transactions){
         this.transactions=transactions;
     }
     
