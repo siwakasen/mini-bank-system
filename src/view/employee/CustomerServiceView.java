@@ -20,9 +20,10 @@ public class CustomerServiceView extends javax.swing.JFrame {
     public CustomerServiceView() {
         initComponents();
         customerControl = new CustomersControl();
+        accountControl = new AccountsControl();
         setComponent(false);
         setEditDeleteBtn(false);
-//        showCustomers();
+        showAccounts();
 //        setEditDeleteBtn(false);
     }
     
@@ -67,8 +68,8 @@ public class CustomerServiceView extends javax.swing.JFrame {
         }
     }
     
-    public void showCustomers(){
-        tableCustomers.setModel(customerControl.showCustomers(""));
+    public void showAccounts(){
+        tableCustomers.setModel( accountControl.showAccounts(""));
     }
 
 

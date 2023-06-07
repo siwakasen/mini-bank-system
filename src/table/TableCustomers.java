@@ -37,10 +37,6 @@ public class TableCustomers extends AbstractTableModel{
                 return customers.get(row).getPhone_number();
             case 5:
                 return customers.get(row).getAddress();
-//            case 6:
-//                return customers.get(row).getPhone_number();
-//            case 7:
-//                return customers.get(row).getAddress();
             default: 
                 return null;
         }
@@ -61,10 +57,6 @@ public class TableCustomers extends AbstractTableModel{
                 return "Phone Number";
             case 5:
                 return "Address";
-//            case 6:
-//                return "Phone Number";
-//            case 7:
-//                return "Address";
             default: 
                 return null;
         }

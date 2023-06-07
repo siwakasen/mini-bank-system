@@ -18,7 +18,7 @@ public class TableAccounts extends AbstractTableModel{
 
     @Override
     public int getColumnCount(){
-        return 4;
+        return 9;
     }
 
     @Override
@@ -27,11 +27,22 @@ public class TableAccounts extends AbstractTableModel{
             case 0: 
                 return accounts.get(row).getAccount_id();
             case 1: 
-                return accounts.get(row).getCustomer_id();
+                return accounts.get(row).getCustomer().getCustomer_id();
             case 2: 
-                return accounts.get(row).getAccount_type();
+                return accounts.get(row).getCustomer().getFirst_name();
             case 3: 
+                return accounts.get(row).getCustomer().getLast_name();
+            case 4: 
+                return accounts.get(row).getAccount_type();
+            case 5: 
                 return accounts.get(row).getBalance();
+            case 6: 
+                return accounts.get(row).getCustomer().getEmail();
+            case 7: 
+                return accounts.get(row).getCustomer().getPhone_number();
+            case 8: 
+                return accounts.get(row).getCustomer().getAddress();
+            
             default: 
                 return null;
         }
@@ -45,9 +56,19 @@ public class TableAccounts extends AbstractTableModel{
             case 1: 
                 return "Customer ID";
             case 2: 
-                return "Account Type";
+                return "First Name";
             case 3:
+                return "Last Name";
+            case 4: 
+                return "Account Type";
+            case 5:
                 return "Balance";
+            case 6: 
+                return "Email";
+            case 7:
+                return "Phone Number";
+            case 8: 
+                return "Address";
             default: 
                 return null;
         }
