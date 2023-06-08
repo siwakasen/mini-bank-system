@@ -4,7 +4,6 @@
  */
 
 package control;
-<<<<<<< HEAD
 import dao.CustomersDAO;
 import java.util.List;
 import model.Customers;
@@ -37,45 +36,4 @@ public class CustomersControl {
     public void deleteCustomer(int id){
         customerDAO.deleteCustomers(id);
     }
-=======
-
-import dao.CustomersDAO;
-import model.Customers;
-import table.TableCustomers;
-import java.util.List;
-
-public class CustomersControl {
-    private CustomersDAO cDao = new CustomersDAO();
-    
-    public void insertCustomer(Customers c){
-        cDao.insertCustomers(c);
-    }
-    
-    public TableCustomers showCustomers(String query){
-        List<Customers> list = cDao.showCustomersBySearch(query);
-        TableCustomers tableCustomers = new TableCustomers(list);
-        
-        return tableCustomers;
-    }
-    
-    public int lastCostumer(){
-        List<Customers> list = cDao.showListCustomers();
-        int last = 0;
-        for (Customers customers : list) {
-            if (customers.getCustomer_id() > last) {
-                last = customers.getCustomer_id();
-            }
-        }
-        return last;
-    }
-    
-    public void updateCustomer(Customers c){
-        cDao.updateCustomers(c);
-    }
-    
-    public void deleteCustomer(int customer_id){
-        cDao.deleteCustomers(customer_id);
-    }
-    
->>>>>>> devMain
 }
