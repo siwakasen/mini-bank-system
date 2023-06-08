@@ -216,7 +216,7 @@ public class LoginEmployee extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked
-       admin.setUsername();
+//       admin.setUsername();
     }//GEN-LAST:event_loginBtnMouseClicked
 
     /**
