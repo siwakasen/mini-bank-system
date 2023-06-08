@@ -4,6 +4,40 @@
  */
 
 package control;
+<<<<<<< HEAD
+import dao.CustomersDAO;
+import java.util.List;
+import model.Customers;
+import table.TableCustomers;
+/**
+ * @author 
+ * Made Riksi Purnama Sadnya Agung / 210711396
+ * Pemrograman Berorientasi Obyek C
+ */
+public class CustomersControl {
+    private CustomersDAO customerDAO = new CustomersDAO();
+    public List<Customers> getAllCustomer(){
+        List<Customers> customers = customerDAO.showListCustomers();
+        return customers;
+    }
+    public TableCustomers showCustomer(String query){
+        List<Customers> listCustomer = customerDAO.showCustomersBySearch(query);
+        TableCustomers tableCustomer = new TableCustomers(listCustomer);
+        return tableCustomer;
+    }
+
+    public void insertCustomer(Customers customer){
+        customerDAO.insertCustomers(customer);
+    }
+
+    public void updateCustomer(Customers customer){
+        customerDAO.updateCustomers(customer);
+    }
+
+    public void deleteCustomer(int id){
+        customerDAO.deleteCustomers(id);
+    }
+=======
 
 import dao.CustomersDAO;
 import model.Customers;
@@ -43,4 +77,5 @@ public class CustomersControl {
         cDao.deleteCustomers(customer_id);
     }
     
+>>>>>>> devMain
 }
