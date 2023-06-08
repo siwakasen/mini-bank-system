@@ -10,10 +10,6 @@ import java.util.List;
 public class testingDB {
     
     public static void main(String[] args) {
-<<<<<<< HEAD
-
-=======
->>>>>>> viewRosi
         //Di sini nanti buat cek database pake class controlnya
         //kelar class control baru cek
         
