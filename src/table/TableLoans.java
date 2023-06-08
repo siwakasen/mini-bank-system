@@ -27,7 +27,7 @@ public class TableLoans extends AbstractTableModel{
             case 0: 
                 return loans.get(row).getLoan_id();
             case 1: 
-                return loans.get(row).getCustomer_id();
+                return loans.get(row).getaccount_id();
             case 2: 
                 return loans.get(row).getLoantype();
             case 3: 

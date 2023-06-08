@@ -1,11 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package table;
 
 import javax.swing.table.AbstractTableModel;
 import model.Accounts;
 import java.util.List;
 
-public class TableAccounts extends AbstractTableModel{
-    private List<Accounts> accounts;
+/**
+ *
+ * @author personal7
+ */
+public class TableAccounts extends AbstractTableModel {
+     private List<Accounts> accounts;
 
     public TableAccounts(List<Accounts> accounts){
         this.accounts = accounts;
@@ -76,5 +85,4 @@ public class TableAccounts extends AbstractTableModel{
                 return null;
         }
     }
-
 }
