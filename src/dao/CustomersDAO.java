@@ -16,11 +16,17 @@ public class CustomersDAO {
     public void insertCustomers(Customers c){
         con = dbCon.makeConnection();
        
+<<<<<<< HEAD
         String sql = "INSERT INTO customers(first_name, last_name, email,"
                 + "username, password, phone_number, address) "
                 + "VALUES ('" + c.getFirst_name()+ "','" + c.getLast_name()+ "', '"
                 + c.getEmail()+ "', '" + c.getUsername()+ "', '" + c.getPassword()+ "', '" 
                 + c.getPhone_number()+ "', '" + c.getAddress()+ "')";
+=======
+        String sql = "INSERT INTO customers(customer_id, first_name, last_name, email, phone_number, address) "
+                + "VALUES ('" + c.getCustomer_id()+ "', '" + c.getFirst_name()+ "', '" + c.getLast_name()+ "', '"
+                + c.getEmail()+ "', '"+ c.getPhone_number()+ "', '" + c.getAddress()+ "')";
+>>>>>>> devMain
      
         System.out.println("Adding Customers...");
        
@@ -55,8 +61,6 @@ public class CustomersDAO {
                             rs.getString("first_name"),
                             rs.getString("last_name"),
                             rs.getString("email"),
-                            rs.getString("user_name"),
-                            rs.getString("password"),
                             rs.getString("phone_number"),
                             rs.getString("address")
                     );
@@ -82,8 +86,6 @@ public class CustomersDAO {
                 + " OR c.first_name LIKE '%" + query + "%' "
                 + " OR c.last_name LIKE '%" + query + "%' "
                 + " OR c.email LIKE '%" + query + "%' "
-                + " OR c.username LIKE '%" + query + "%' "
-                + " OR c.password LIKE '%" + query + "%' "
                 + " OR c.phone_number LIKE '%" + query + "%' "
                 + " OR c.address LIKE '%" + query + "%')";
         System.out.println("Mengambil data Customers by Search...");
@@ -101,8 +103,6 @@ public class CustomersDAO {
                             rs.getString("first_name"),
                             rs.getString("last_name"),
                             rs.getString("email"),
-                            rs.getString("user_name"),
-                            rs.getString("password"),
                             rs.getString("phone_number"),
                             rs.getString("address")
                     );
@@ -126,8 +126,6 @@ public class CustomersDAO {
         String sql = "UPDATE customers SET  first_name = '" + c.getFirst_name()
                 + "', last_name = '" + c.getLast_name()
                 + "', email = '" + c.getEmail()
-                + "', username = '" + c.getUsername()
-                + "', password = '" + c.getPassword()
                 + "', phone_number = '" + c.getPhone_number()
                 + "', address = '" + c.getAddress()
                 + "' WHERE customer_id = '" + c.getCustomer_id()+ "'";
@@ -145,7 +143,7 @@ public class CustomersDAO {
         dbCon.closeConnection();
     } 
     
-    public void deleteCustomers(Integer customer_id){
+    public void deleteCustomers(int customer_id){
         con = dbCon.makeConnection();
        
         String sql = "DELETE FROM customers WHERE customer_id = '" + customer_id + "'";
