@@ -1,5 +1,4 @@
 
-
 package control;
 
 import dao.AccountsDAO;
@@ -8,20 +7,24 @@ import table.TableAccounts;
 import java.util.List;
 
 public class AccountsControl {
-    private AccountsDAO accDao = new AccountsDAO();
+    private AccountsDAO aDao = new AccountsDAO();
+    
+    public void insertAccounts(Accounts a){
+        aDao.insertAccounts(a);
+    }
     
     public TableAccounts showAccounts(String query){
-        List<Accounts> listAccount = accDao.showAccounts(query);
-        TableAccounts tabelAccounts = new TableAccounts(listAccount);
-        return tabelAccounts;
+        List<Accounts> list = aDao.showAccounts(query);
+        TableAccounts tableAccounts = new TableAccounts(list);
+        
+        return tableAccounts;
     }
-    public void insertAccounts(Accounts accounts){
-        accDao.insertAccounts(accounts);
+    
+    public void updateAccount(Accounts a){
+        aDao.updateAccounts(a);
     }
-    public void updateAccounts(Accounts accounts){
-        accDao.updateAccounts(accounts);
-    }
-    public void deleteAccounts(int id){
-        accDao.deleteAccounts(id);
+    
+    public void deleteAccount(int account_id){
+        aDao.deleteAccounts(account_id);
     }
 }
