@@ -4,11 +4,9 @@ package model;
 
 public class Accounts {
     private int account_id;
-    private String account_type;
+    private String account_type, username, password;
     private double balance;
     private Customers customer;
-    private String username;
-    private String password;
 
     public Accounts(int account_id, String account_type, double balance, Customers customer, String username, String password) {
         this.account_id = account_id;
@@ -26,9 +24,16 @@ public class Accounts {
     public void setAccount_id(int account_id) {
         this.account_id = account_id;
     }
-
     public String getAccount_type() {
         return account_type;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setAccount_type(String account_type) {
@@ -51,16 +56,8 @@ public class Accounts {
         this.customer = customer;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {

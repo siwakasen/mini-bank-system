@@ -1,0 +1,48 @@
+package table;
+
+import javax.swing.table.AbstractTableModel;
+import model.Accounts;
+import java.util.List;
+
+public class TableDaftarTransfer extends AbstractTableModel{
+    private List<Accounts> accounts;
+
+    public TableDaftarTransfer(List<Accounts> accounts){
+        this.accounts = accounts;
+    }
+
+    @Override
+    public int getRowCount(){
+        return accounts.size();
+    }
+
+    @Override
+    public int getColumnCount(){
+        return 2;
+    }
+
+    @Override
+    public Object getValueAt(int row, int col){
+        switch(col){
+            case 0: 
+                return accounts.get(row).getAccount_id();
+            case 1: 
+                return accounts.get(row).getUsername();
+            default: 
+                return null;
+        }
+    }
+
+    @Override
+    public String getColumnName(int col){
+        switch (col) {
+            case 0: 
+                return "Account ID";
+            case 1: 
+                return "Username";
+            default: 
+                return null;
+        }
+    }
+    
+}

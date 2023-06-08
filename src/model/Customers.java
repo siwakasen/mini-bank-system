@@ -15,6 +15,7 @@ public class Customers {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
+<<<<<<< HEAD
         this.phone_number = phone_number;
         this.address = address;
     }
@@ -24,6 +25,8 @@ public class Customers {
         this.email = email;
         this.username = username;
         this.password = password;
+=======
+>>>>>>> viewFerdy
         this.phone_number = phone_number;
         this.address = address;
     }

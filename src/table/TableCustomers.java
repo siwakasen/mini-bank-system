@@ -29,9 +29,9 @@ public class TableCustomers extends AbstractTableModel{
                 return customers.get(row).getCustomer_id();
             case 1: 
                 return customers.get(row).getFirst_name();
-            case 2: 
+            case 2:
                 return customers.get(row).getLast_name();
-            case 3: 
+            case 3:
                 return customers.get(row).getEmail();
             case 4:
                 return customers.get(row).getPhone_number();
@@ -47,9 +47,9 @@ public class TableCustomers extends AbstractTableModel{
         switch (col) {
             case 0: 
                 return "Customer ID";
-            case 1: 
+            case 1:
                 return "First Name";
-            case 2: 
+            case 2:
                 return "Last Name";
             case 3:
                 return "Email";
