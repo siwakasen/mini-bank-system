@@ -18,9 +18,9 @@ public class AccountsDAO {
     public void insertAccounts(Accounts a){
         con = dbCon.makeConnection();
         
-        String sql = "INSERT INTO accounts (account_id, account_type, balance, customer_id) VALUES ('" 
-                + a.getAccount_id()+ "', '" + a.getAccount_type() + "', '" + a.getBalance() + "', '"
-                + a.getCustomer_id()+ "')";
+        String sql = "INSERT INTO accounts (account_id, account_type, balance, customer_id) VALUES (" 
+                + a.getAccount_id()+ ", '" + a.getAccount_type() + "', " + a.getBalance() + ", "
+                + a.getCustomer_id()+ ")";
         
         System.out.println("Adding Accounts...");
         

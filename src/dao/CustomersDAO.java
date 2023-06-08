@@ -16,9 +16,9 @@ public class CustomersDAO {
     public void insertCustomers(Customers c){
         con = dbCon.makeConnection();
        
-        String sql = "INSERT INTO customers(customer_id, first_name, last_name, email,"
+        String sql = "INSERT INTO customers(first_name, last_name, email,"
                 + "username, password, phone_number, address) "
-                + "VALUES ('" + c.getCustomer_id()+ "', '" + c.getFirst_name()+ "', '"
+                + "VALUES ('" + c.getFirst_name()+ "','" + c.getLast_name()+ "', '"
                 + c.getEmail()+ "', '" + c.getUsername()+ "', '" + c.getPassword()+ "', '" 
                 + c.getPhone_number()+ "', '" + c.getAddress()+ "')";
      
