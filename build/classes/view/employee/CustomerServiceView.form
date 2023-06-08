@@ -49,33 +49,29 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="baseInputCus" pref="600" max="32767" attributes="0"/>
+                          <Component id="header" min="-2" pref="1658" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="createCus" min="-2" pref="178" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                      <Component id="editCus" min="-2" pref="178" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                      <Component id="deleteCus" min="-2" pref="178" max="-2" attributes="0"/>
+                                      <Component id="createCus" min="-2" pref="136" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Component id="editCus" min="-2" pref="117" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="deleteCus" pref="115" max="32767" attributes="0"/>
                                   </Group>
+                                  <Component id="baseInputCus" min="-2" pref="412" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jScrollPane1" min="-2" pref="864" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
                                       <Component id="inputSearch" min="-2" pref="290" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="searchBtn" min="-2" pref="81" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane1" min="-2" pref="895" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <EmptySpace min="-2" pref="321" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="header" min="-2" pref="1658" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -85,25 +81,26 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="header" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="createCus" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="editCus" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="deleteCus" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="editCus" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="deleteCus" min="-2" pref="50" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="searchBtn" alignment="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="inputSearch" alignment="0" pref="27" max="32767" attributes="0"/>
+                                  <Component id="inputSearch" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="createCus" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="baseInputCus" pref="800" max="32767" attributes="0"/>
+                          <Component id="baseInputCus" pref="592" max="32767" attributes="0"/>
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="91" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="299" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -176,10 +173,10 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="39" max="32767" attributes="0"/>
                           <Component id="labelEdit" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="32" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -205,7 +202,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Ubah Customer"/>
+                    <Property name="text" type="java.lang.String" value="Ubah "/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -230,19 +227,19 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="41" max="32767" attributes="0"/>
                           <Component id="labelAdd" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="22" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Component id="labelAdd" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <EmptySpace pref="17" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -259,7 +256,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Tambah Customer"/>
+                    <Property name="text" type="java.lang.String" value="Tambah"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -285,9 +282,9 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Component id="labelDelete" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="27" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -313,7 +310,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Hapus Customer"/>
+                    <Property name="text" type="java.lang.String" value="Hapus"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -336,112 +333,124 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="dataCustomer" alignment="0" min="-2" pref="268" max="-2" attributes="0"/>
-                              <Component id="dataAccount" min="-2" pref="269" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="firstNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lastNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="emailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="phoneNumberLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="addressLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="inputFirstName" max="32767" attributes="0"/>
-                                          <Component id="inputLastName" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="inputEmail" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="inputPhoneNumber" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="inputAddress" alignment="0" min="-2" pref="349" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="username" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="password" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="balanceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="accountTypeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="accountTypeComboBox" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="saveBtn" min="-2" pref="101" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="cancelBtn" min="-2" pref="86" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="inputUsername" pref="203" max="32767" attributes="0"/>
+                                              <Component id="inputPassword" max="32767" attributes="0"/>
+                                              <Component id="inputBalance" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="username" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="password" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="balanceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="accountTypeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="35" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="firstNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lastNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="emailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="phoneNumberLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="addressLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="inputPhoneNumber" alignment="0" pref="200" max="32767" attributes="0"/>
+                                              <Component id="inputEmail" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="inputLastName" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="inputFirstName" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="inputAddress" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="inputUsername" min="-2" pref="352" max="-2" attributes="0"/>
-                                          <Component id="inputBalance" min="-2" pref="352" max="-2" attributes="0"/>
-                                          <Component id="accountTypeComboBox" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                          <Component id="inputPassword" min="-2" pref="352" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="dataCustomer" alignment="0" min="-2" pref="268" max="-2" attributes="0"/>
+                                      <Component id="dataAccount" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="saveBtn" min="-2" pref="101" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="cancelBtn" min="-2" pref="86" max="-2" attributes="0"/>
-                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="dataCustomer" min="-2" pref="42" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="firstNameLabel" min="-2" max="-2" attributes="0"/>
                               <Component id="inputFirstName" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lastNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="inputLastName" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="emailLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="inputEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="phoneNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="inputPhoneNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="addressLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="inputAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="dataAccount" min="-2" pref="42" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="username" min="-2" max="-2" attributes="0"/>
-                              <Component id="inputUsername" min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="username" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="inputUsername" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="password" min="-2" max="-2" attributes="0"/>
                               <Component id="inputPassword" min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="balanceLabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="inputBalance" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                  <Component id="balanceLabel" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                  <Component id="inputBalance" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="accountTypeLabel" min="-2" max="-2" attributes="0"/>
                               <Component id="accountTypeComboBox" min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="cancelBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                               <Component id="saveBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="39" max="32767" attributes="0"/>
+                          <EmptySpace pref="22" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -521,6 +530,9 @@
                       <Dimension value="[64, 27]"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputFirstNameActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lastNameLabel">
                   <Properties>
@@ -545,6 +557,9 @@
                       <Dimension value="[64, 27]"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputLastNameActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="emailLabel">
                   <Properties>
