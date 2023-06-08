@@ -1,21 +1,26 @@
 
 package dao;
 
+import model.*;
+
 import connection.DbConnection;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TransfersDAO {
     private DbConnection DbCon = new DbConnection();
     private Connection conn;
 
-    public void insertTransfer(String transfer_id, int from_account_id, int to_account_id, double amount){
+    public void insertTransfer(Transfers transfer){
         try {
             conn = DbCon.makeConnection();
-            String sql = "INSERT INTO transfers (transfer_id, from_account_id, to_account_id, amount) VALUES ('" + transfer_id + "', '" + from_account_id + "', '" + to_account_id + "', " + amount + ")";
-            String sql_update = "UPDATE accounts SET balance = balance - " + amount + " WHERE account_id = '" + from_account_id + "'";
-            String sql_update2 = "UPDATE accounts SET balance = balance + " + amount + " WHERE account_id = '" + to_account_id + "'";
+            String sql = "INSERT INTO transfers (transfer_id, from_account_id, to_account_id, amount) VALUES ('" + transfer.getTransfer_id() + "', '" + transfer.getFrom_account_id() + "', '" + transfer.getTo_account_id() + "', " + transfer.getAmount() + ")";
+            String sql_update = "UPDATE accounts SET balance = balance - " + transfer.getAmount() + " WHERE account_id = '" + transfer.getFrom_account_id() + "'";
+            String sql_update2 = "UPDATE accounts SET balance = balance + " + transfer.getAmount() + " WHERE account_id = '" + transfer.getTo_account_id() + "'";
             Statement stmt = conn.createStatement();
             int result = stmt.executeUpdate(sql);
             int result2 = stmt.executeUpdate(sql_update);
@@ -73,6 +78,27 @@ public class TransfersDAO {
             System.out.println(e.getMessage());
         }
         return false;
+    }
+
+    public List<Accounts> getAccounts(int account_id){
+        List<Accounts> accounts = new ArrayList<Accounts>();
+        try {
+            conn = DbCon.makeConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT DISTINCT * FROM transfers JOIN accounts ON transfers.to_account_id = accounts.account_id JOIN customers ON accounts.customer_id = customers.customer_id WHERE from_account_id = " + account_id + " AND to_account_id != " + account_id + " LIMIT 5";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                Accounts account = (new Accounts(rs.getInt("account_id"), rs.getString("account_type"), rs.getDouble("balance"), 
+                        new Customers(rs.getInt("customers.customer_id"), rs.getString("customers.first_name"), rs.getString("customers.last_name"), rs.getString("customers.email"), rs.getString("phone_number"), rs.getString("address")), rs.getString("username"), rs.getString("password")));
+                accounts.add(account);
+            }
+            stmt.close();
+            rs.close();
+            return accounts;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
 }
