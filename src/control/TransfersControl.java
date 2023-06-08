@@ -4,11 +4,6 @@
  */
 
 package control;
-<<<<<<< HEAD
-import dao.TransfersDAO;
-import model.Transfers;
-import java.util.List;
-=======
 
 import dao.TransfersDAO;
 import java.util.List;
@@ -17,26 +12,12 @@ import model.Accounts;
 import table.TableTransfer;
 import table.TableDaftarTransfer;
 
->>>>>>> viewFerdy
 /**
  * @author 
  * Made Riksi Purnama Sadnya Agung / 210711396
  * Pemrograman Berorientasi Obyek C
  */
 public class TransfersControl {
-<<<<<<< HEAD
-    private TransfersDAO transferDao = new TransfersDAO();
-    
-    public void insertTransfer(String transfer_id, int from_account_id, int to_account_id, double amount){
-        transferDao.insertTransfer(transfer_id, from_account_id, to_account_id, amount);
-    }
-    public boolean checkAccount(int account_id){
-       return transferDao.checkAccount(account_id);
-    }
-    public boolean checkBalance(int account_id, double amount){
-        return transferDao.checkBalance(account_id, amount);
-    }
-=======
     private TransfersDAO transfersDAO = new TransfersDAO();
 
     public void insertTransfer(Transfers transfer){
@@ -57,5 +38,4 @@ public class TransfersControl {
         return table;
     }
     
->>>>>>> viewFerdy
 }
