@@ -1,14 +1,85 @@
 
 package view.employee;
 
-public class CustomerServiceView extends javax.swing.JFrame {
+import model.Accounts;
+import model.Customers;
+import control.AccountsControl;
+import control.CustomersControl;
+import java.util.List;
+import table.TableCustomers;
+import javax.swing.table.TableModel;
+import table.TableAccounts;
 
+public class CustomerServiceView extends javax.swing.JFrame {
+    AccountsControl accountControl;
+    CustomersControl customerControl;
+    String action = null;
+    int selectedIdAccount = 0;
+    int selectedIdCustomer = 0;
     /**
      * Creates new form CustomerServiceView
      */
     public CustomerServiceView() {
         initComponents();
+        customerControl = new CustomersControl();
+        accountControl = new AccountsControl();
+        setComponent(false);
+        setEditDeleteBtn(false);
+        showAccounts();
+//        setEditDeleteBtn(false);
     }
+    
+    public void setComponent(boolean value){
+        inputFirstName.setEnabled(value);
+        inputLastName.setEnabled(value);
+        inputEmail.setEnabled(value);
+        inputPhoneNumber.setEnabled(value);
+        inputAddress.setEnabled(value);
+        
+        inputUsername.setEnabled(value);
+        inputPassword.setEnabled(value);
+        inputBalance.setEnabled(value);
+        accountTypeComboBox.setEnabled(value);
+        
+        saveBtn.setEnabled(value);
+        cancelBtn.setEnabled(value);
+    }
+    
+    public void clearText(){
+        inputFirstName.setText("");
+        inputLastName.setText("");
+        inputEmail.setText("");
+        inputPhoneNumber.setText("");
+        inputAddress.setText("");
+        
+        inputUsername.setText("");
+        inputPassword.setText("");
+        inputBalance.setText("");
+        accountTypeComboBox.setSelectedItem(ABORT);
+    }
+    
+    public void setEditDeleteBtn(boolean value){
+        editCus.setEnabled(value);
+        deleteCus.setEnabled(value);
+        if(value==false){
+            editCus.setBackground(new java.awt.Color(204, 204, 204));
+            deleteCus.setBackground(new java.awt.Color(204, 204, 204));
+        }else{
+            editCus.setBackground(new java.awt.Color(241, 196, 15));
+            deleteCus.setBackground(new java.awt.Color(220, 53, 69));
+        }
+    }
+    public void setAddBtn(boolean value){
+        createCus.setEnabled(value);
+        if(value==false) createCus.setBackground(new java.awt.Color(204, 204, 204));
+        else createCus.setBackground(new java.awt.Color(25, 135, 84));
+        
+    }
+    
+    public void showAccounts(){
+        tableCustomers.setModel( accountControl.showAccounts(""));
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -19,21 +90,653 @@ public class CustomerServiceView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        base = new javax.swing.JPanel();
+        header = new javax.swing.JPanel();
+        labelPane = new javax.swing.JLabel();
+        editCus = new view.PanelRound();
+        labelEdit = new javax.swing.JLabel();
+        createCus = new view.PanelRound();
+        labelAdd = new javax.swing.JLabel();
+        deleteCus = new view.PanelRound();
+        labelDelete = new javax.swing.JLabel();
+        baseInputCus = new view.PanelRound();
+        dataCustomer = new view.PanelRound();
+        labelCus = new javax.swing.JLabel();
+        firstNameLabel = new javax.swing.JLabel();
+        inputFirstName = new javax.swing.JTextField();
+        lastNameLabel = new javax.swing.JLabel();
+        inputLastName = new javax.swing.JTextField();
+        emailLabel = new javax.swing.JLabel();
+        inputEmail = new javax.swing.JTextField();
+        phoneNumberLabel = new javax.swing.JLabel();
+        inputPhoneNumber = new javax.swing.JTextField();
+        addressLabel = new javax.swing.JLabel();
+        inputAddress = new javax.swing.JTextField();
+        dataAccount = new view.PanelRound();
+        labelAcc = new javax.swing.JLabel();
+        password = new javax.swing.JLabel();
+        inputPassword = new javax.swing.JPasswordField();
+        inputUsername = new javax.swing.JTextField();
+        username = new javax.swing.JLabel();
+        inputBalance = new javax.swing.JTextField();
+        balanceLabel = new javax.swing.JLabel();
+        accountTypeLabel = new javax.swing.JLabel();
+        accountTypeComboBox = new javax.swing.JComboBox<>();
+        saveBtn = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableCustomers = new javax.swing.JTable();
+        inputSearch = new javax.swing.JTextField();
+        searchBtn = new view.PanelRound();
+        labelDelete1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        base.setBackground(new java.awt.Color(255, 255, 255));
+
+        header.setBackground(new java.awt.Color(0, 97, 154));
+        header.setPreferredSize(new java.awt.Dimension(1920, 113));
+
+        labelPane.setBackground(new java.awt.Color(255, 255, 255));
+        labelPane.setFont(new java.awt.Font("Poppins Medium", 0, 48)); // NOI18N
+        labelPane.setForeground(new java.awt.Color(255, 255, 255));
+        labelPane.setText("Customer Service");
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(labelPane)
+                .addContainerGap(1225, Short.MAX_VALUE))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addComponent(labelPane)
+                .addGap(24, 24, 24))
+        );
+
+        editCus.setBackground(new java.awt.Color(241, 196, 15));
+        editCus.setPreferredSize(new java.awt.Dimension(285, 100));
+        editCus.setRoundBottomLeft(20);
+        editCus.setRoundBottomRight(20);
+        editCus.setRoundTopLeft(20);
+        editCus.setRoundTopRight(20);
+        editCus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editCusMouseClicked(evt);
+            }
+        });
+
+        labelEdit.setBackground(new java.awt.Color(255, 255, 255));
+        labelEdit.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 14)); // NOI18N
+        labelEdit.setForeground(new java.awt.Color(255, 255, 255));
+        labelEdit.setText("Ubah Customer");
+
+        javax.swing.GroupLayout editCusLayout = new javax.swing.GroupLayout(editCus);
+        editCus.setLayout(editCusLayout);
+        editCusLayout.setHorizontalGroup(
+            editCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editCusLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(labelEdit)
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+        editCusLayout.setVerticalGroup(
+            editCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editCusLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(labelEdit)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        createCus.setBackground(new java.awt.Color(25, 135, 84));
+        createCus.setPreferredSize(new java.awt.Dimension(285, 100));
+        createCus.setRoundBottomLeft(20);
+        createCus.setRoundBottomRight(20);
+        createCus.setRoundTopLeft(20);
+        createCus.setRoundTopRight(20);
+        createCus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                createCusMouseClicked(evt);
+            }
+        });
+
+        labelAdd.setBackground(new java.awt.Color(255, 255, 255));
+        labelAdd.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 14)); // NOI18N
+        labelAdd.setForeground(new java.awt.Color(255, 255, 255));
+        labelAdd.setText("Tambah Customer");
+
+        javax.swing.GroupLayout createCusLayout = new javax.swing.GroupLayout(createCus);
+        createCus.setLayout(createCusLayout);
+        createCusLayout.setHorizontalGroup(
+            createCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createCusLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(labelAdd)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        createCusLayout.setVerticalGroup(
+            createCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createCusLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(labelAdd)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        deleteCus.setBackground(new java.awt.Color(220, 53, 69));
+        deleteCus.setPreferredSize(new java.awt.Dimension(285, 100));
+        deleteCus.setRoundBottomLeft(20);
+        deleteCus.setRoundBottomRight(20);
+        deleteCus.setRoundTopLeft(20);
+        deleteCus.setRoundTopRight(20);
+        deleteCus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteCusMouseClicked(evt);
+            }
+        });
+
+        labelDelete.setBackground(new java.awt.Color(255, 255, 255));
+        labelDelete.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 14)); // NOI18N
+        labelDelete.setForeground(new java.awt.Color(255, 255, 255));
+        labelDelete.setText("Hapus Customer");
+
+        javax.swing.GroupLayout deleteCusLayout = new javax.swing.GroupLayout(deleteCus);
+        deleteCus.setLayout(deleteCusLayout);
+        deleteCusLayout.setHorizontalGroup(
+            deleteCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteCusLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(labelDelete)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        deleteCusLayout.setVerticalGroup(
+            deleteCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteCusLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(labelDelete)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        baseInputCus.setBackground(new java.awt.Color(245, 245, 245));
+        baseInputCus.setPreferredSize(new java.awt.Dimension(285, 100));
+        baseInputCus.setRoundBottomLeft(20);
+        baseInputCus.setRoundBottomRight(20);
+        baseInputCus.setRoundTopLeft(20);
+        baseInputCus.setRoundTopRight(20);
+
+        dataCustomer.setBackground(new java.awt.Color(92, 92, 92));
+        dataCustomer.setPreferredSize(new java.awt.Dimension(285, 100));
+        dataCustomer.setRoundBottomLeft(20);
+        dataCustomer.setRoundBottomRight(20);
+        dataCustomer.setRoundTopLeft(20);
+        dataCustomer.setRoundTopRight(20);
+
+        labelCus.setBackground(new java.awt.Color(255, 255, 255));
+        labelCus.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 24)); // NOI18N
+        labelCus.setForeground(new java.awt.Color(255, 255, 255));
+        labelCus.setText("Data Customer");
+
+        javax.swing.GroupLayout dataCustomerLayout = new javax.swing.GroupLayout(dataCustomer);
+        dataCustomer.setLayout(dataCustomerLayout);
+        dataCustomerLayout.setHorizontalGroup(
+            dataCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataCustomerLayout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addComponent(labelCus)
+                .addGap(27, 27, 27))
+        );
+        dataCustomerLayout.setVerticalGroup(
+            dataCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dataCustomerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelCus)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        firstNameLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
+        firstNameLabel.setForeground(new java.awt.Color(51, 51, 51));
+        firstNameLabel.setText("First Name");
+
+        inputFirstName.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        inputFirstName.setForeground(new java.awt.Color(0, 0, 0));
+        inputFirstName.setPreferredSize(new java.awt.Dimension(64, 27));
+
+        lastNameLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
+        lastNameLabel.setForeground(new java.awt.Color(51, 51, 51));
+        lastNameLabel.setText("Last Name");
+
+        inputLastName.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        inputLastName.setForeground(new java.awt.Color(0, 0, 0));
+        inputLastName.setPreferredSize(new java.awt.Dimension(64, 27));
+
+        emailLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
+        emailLabel.setForeground(new java.awt.Color(51, 51, 51));
+        emailLabel.setText("Email");
+
+        inputEmail.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        inputEmail.setForeground(new java.awt.Color(0, 0, 0));
+        inputEmail.setPreferredSize(new java.awt.Dimension(64, 27));
+
+        phoneNumberLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
+        phoneNumberLabel.setForeground(new java.awt.Color(51, 51, 51));
+        phoneNumberLabel.setText("Phone Number");
+
+        inputPhoneNumber.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        inputPhoneNumber.setForeground(new java.awt.Color(0, 0, 0));
+        inputPhoneNumber.setPreferredSize(new java.awt.Dimension(64, 27));
+
+        addressLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
+        addressLabel.setForeground(new java.awt.Color(51, 51, 51));
+        addressLabel.setText("Address");
+
+        inputAddress.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        inputAddress.setForeground(new java.awt.Color(0, 0, 0));
+        inputAddress.setPreferredSize(new java.awt.Dimension(64, 27));
+
+        dataAccount.setBackground(new java.awt.Color(92, 92, 92));
+        dataAccount.setPreferredSize(new java.awt.Dimension(285, 100));
+        dataAccount.setRoundBottomLeft(20);
+        dataAccount.setRoundBottomRight(20);
+        dataAccount.setRoundTopLeft(20);
+        dataAccount.setRoundTopRight(20);
+
+        labelAcc.setBackground(new java.awt.Color(255, 255, 255));
+        labelAcc.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 24)); // NOI18N
+        labelAcc.setForeground(new java.awt.Color(255, 255, 255));
+        labelAcc.setText("Data Account");
+
+        javax.swing.GroupLayout dataAccountLayout = new javax.swing.GroupLayout(dataAccount);
+        dataAccount.setLayout(dataAccountLayout);
+        dataAccountLayout.setHorizontalGroup(
+            dataAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dataAccountLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(labelAcc)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+        dataAccountLayout.setVerticalGroup(
+            dataAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dataAccountLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelAcc)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        password.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
+        password.setForeground(new java.awt.Color(51, 51, 51));
+        password.setText("Password");
+
+        inputUsername.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        inputUsername.setForeground(new java.awt.Color(0, 0, 0));
+        inputUsername.setPreferredSize(new java.awt.Dimension(64, 27));
+
+        username.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
+        username.setForeground(new java.awt.Color(51, 51, 51));
+        username.setText("Username");
+
+        inputBalance.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        inputBalance.setForeground(new java.awt.Color(0, 0, 0));
+        inputBalance.setPreferredSize(new java.awt.Dimension(64, 27));
+
+        balanceLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
+        balanceLabel.setForeground(new java.awt.Color(51, 51, 51));
+        balanceLabel.setText("Balance");
+
+        accountTypeLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
+        accountTypeLabel.setForeground(new java.awt.Color(51, 51, 51));
+        accountTypeLabel.setText("Account Type");
+
+        accountTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silver", "Gold", "Platinum", "Titanium", "Spesial" }));
+        accountTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountTypeComboBoxActionPerformed(evt);
+            }
+        });
+
+        saveBtn.setBackground(new java.awt.Color(13, 110, 253));
+        saveBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        saveBtn.setForeground(new java.awt.Color(255, 255, 255));
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-save.png"))); // NOI18N
+        saveBtn.setText("Simpan");
+        saveBtn.setBorder(null);
+        saveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
+
+        cancelBtn.setBackground(new java.awt.Color(220, 53, 69));
+        cancelBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
+        cancelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-cancel.png"))); // NOI18N
+        cancelBtn.setText("Batal");
+        cancelBtn.setBorder(null);
+        cancelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout baseInputCusLayout = new javax.swing.GroupLayout(baseInputCus);
+        baseInputCus.setLayout(baseInputCusLayout);
+        baseInputCusLayout.setHorizontalGroup(
+            baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(baseInputCusLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dataCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, baseInputCusLayout.createSequentialGroup()
+                            .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(firstNameLabel)
+                                .addComponent(lastNameLabel)
+                                .addComponent(emailLabel)
+                                .addComponent(phoneNumberLabel)
+                                .addComponent(addressLabel))
+                            .addGap(34, 34, 34)
+                            .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(inputFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(inputLastName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(inputEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(inputPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(inputAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(baseInputCusLayout.createSequentialGroup()
+                            .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(username)
+                                .addComponent(password)
+                                .addComponent(balanceLabel)
+                                .addComponent(accountTypeLabel))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(inputBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(accountTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(baseInputCusLayout.createSequentialGroup()
+                            .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        baseInputCusLayout.setVerticalGroup(
+            baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(baseInputCusLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(dataCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(firstNameLabel)
+                    .addComponent(inputFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lastNameLabel)
+                    .addComponent(inputLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emailLabel)
+                    .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(phoneNumberLabel)
+                    .addComponent(inputPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addressLabel)
+                    .addComponent(inputAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(dataAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(username)
+                    .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(password)
+                    .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(balanceLabel)
+                    .addComponent(inputBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(accountTypeLabel)
+                    .addComponent(accountTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
+        tableCustomers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableCustomers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableCustomersMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableCustomers);
+
+        inputSearch.setFocusable(false);
+        inputSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inputSearchMouseClicked(evt);
+            }
+        });
+
+        searchBtn.setBackground(new java.awt.Color(153, 204, 255));
+        searchBtn.setPreferredSize(new java.awt.Dimension(285, 100));
+        searchBtn.setRoundBottomLeft(20);
+        searchBtn.setRoundBottomRight(20);
+        searchBtn.setRoundTopLeft(20);
+        searchBtn.setRoundTopRight(20);
+        searchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchBtnMouseClicked(evt);
+            }
+        });
+
+        labelDelete1.setBackground(new java.awt.Color(255, 255, 255));
+        labelDelete1.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 14)); // NOI18N
+        labelDelete1.setForeground(new java.awt.Color(255, 255, 255));
+        labelDelete1.setText("Cari");
+
+        javax.swing.GroupLayout searchBtnLayout = new javax.swing.GroupLayout(searchBtn);
+        searchBtn.setLayout(searchBtnLayout);
+        searchBtnLayout.setHorizontalGroup(
+            searchBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchBtnLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(labelDelete1)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+        searchBtnLayout.setVerticalGroup(
+            searchBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchBtnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelDelete1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
+        base.setLayout(baseLayout);
+        baseLayout.setHorizontalGroup(
+            baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(baseLayout.createSequentialGroup()
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(baseLayout.createSequentialGroup()
+                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(baseInputCus, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                            .addGroup(baseLayout.createSequentialGroup()
+                                .addComponent(createCus, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(editCus, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(deleteCus, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60))
+                            .addGroup(baseLayout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 895, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(55, 55, 55))))
+                    .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 1658, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        baseLayout.setVerticalGroup(
+            baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(baseLayout.createSequentialGroup()
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(createCus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editCus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteCus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(baseLayout.createSequentialGroup()
+                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(searchBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(inputSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)))
+                .addGap(18, 18, 18)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(baseInputCus, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addGap(0, 91, Short.MAX_VALUE))
+        );
+
+        jScrollPane2.setViewportView(base);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1650, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1650, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tableCustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCustomersMouseClicked
+        setEditDeleteBtn(true);
+        setComponent(false);
+        setAddBtn(false);
+        cancelBtn.setEnabled(true);
+
+        int clickedRow = tableCustomers.getSelectedRow();
+        TableModel tableModel = tableCustomers.getModel();
+
+        selectedIdAccount = Integer.parseInt(tableModel.getValueAt(clickedRow,0).toString());
+        selectedIdCustomer = Integer.parseInt(tableModel.getValueAt(clickedRow,1).toString());
+
+        inputFirstName.setText(tableModel.getValueAt(clickedRow,2).toString());
+        inputLastName.setText(tableModel.getValueAt(clickedRow,3).toString());
+        accountTypeComboBox.setSelectedItem(tableModel.getValueAt(clickedRow,4).toString());
+        inputBalance.setText(tableModel.getValueAt(clickedRow,5).toString());
+        inputEmail.setText(tableModel.getValueAt(clickedRow,6).toString());
+        inputPhoneNumber.setText(tableModel.getValueAt(clickedRow,7).toString());
+        inputAddress.setText(tableModel.getValueAt(clickedRow,8).toString());
+        inputUsername.setText(tableModel.getValueAt(clickedRow,9).toString());
+        inputPassword.setText(tableModel.getValueAt(clickedRow,10).toString());
+    }//GEN-LAST:event_tableCustomersMouseClicked
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        setComponent(false);
+        setEditDeleteBtn(false);
+        setAddBtn(true);
+        clearText();
+        inputSearch.setText("");
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        if (action=="Tambah") {
+            Customers c = new Customers((customerControl.lastCostumer() + 1), inputFirstName.getText(), inputLastName.getText(), inputEmail.getText(), inputPhoneNumber.getText(), inputAddress.getText());
+            Accounts a = new Accounts(0, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(), inputPassword.getText());
+            customerControl.insertCustomer(c);
+            accountControl.insertAccounts(a);
+        }else{
+            Customers c = new Customers(selectedIdCustomer, inputFirstName.getText(), inputLastName.getText(), inputEmail.getText(), inputPhoneNumber.getText(), inputAddress.getText());
+            Accounts a = new Accounts(selectedIdAccount, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(), inputPassword.getText());
+            customerControl.updateCustomer(c);
+            accountControl.updateAccount(a);
+        }
+        clearText();
+        showAccounts();
+        setComponent(false);
+        setEditDeleteBtn(false);
+        setAddBtn(true);
+
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void accountTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountTypeComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_accountTypeComboBoxActionPerformed
+
+    private void deleteCusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteCusMouseClicked
+        accountControl.deleteAccount(selectedIdAccount);
+        customerControl.deleteCustomer(selectedIdCustomer);
+        clearText();
+        showAccounts();
+        setComponent(false);
+        setEditDeleteBtn(false);
+        setAddBtn(true);
+    }//GEN-LAST:event_deleteCusMouseClicked
+
+    private void createCusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createCusMouseClicked
+        setComponent(true);
+        setEditDeleteBtn(false);
+        inputSearch.setText("");
+
+        clearText();
+        action = "Tambah";
+    }//GEN-LAST:event_createCusMouseClicked
+
+    private void editCusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editCusMouseClicked
+        setComponent(true);
+        action = "Edit";
+    }//GEN-LAST:event_editCusMouseClicked
+
+    private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
+        setComponent(false);
+        TableAccounts accounts = accountControl.showAccounts(inputSearch.getText());
+        if(accounts.getRowCount()==0){
+                clearText();
+                setEditDeleteBtn(false);
+                inputSearch.setText("");
+            }else{
+                tableCustomers.setModel(accounts);
+            }
+        clearText();
+        inputSearch.setText("");
+    }//GEN-LAST:event_searchBtnMouseClicked
+
+    private void inputSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputSearchMouseClicked
+        setEditDeleteBtn(false);
+    }//GEN-LAST:event_inputSearchMouseClicked
 
     /**
      * @param args the command line arguments
@@ -71,5 +774,45 @@ public class CustomerServiceView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> accountTypeComboBox;
+    private javax.swing.JLabel accountTypeLabel;
+    private javax.swing.JLabel addressLabel;
+    private javax.swing.JLabel balanceLabel;
+    private javax.swing.JPanel base;
+    private view.PanelRound baseInputCus;
+    private javax.swing.JButton cancelBtn;
+    private view.PanelRound createCus;
+    private view.PanelRound dataAccount;
+    private view.PanelRound dataCustomer;
+    private view.PanelRound deleteCus;
+    private view.PanelRound editCus;
+    private javax.swing.JLabel emailLabel;
+    private javax.swing.JLabel firstNameLabel;
+    private javax.swing.JPanel header;
+    private javax.swing.JTextField inputAddress;
+    private javax.swing.JTextField inputBalance;
+    private javax.swing.JTextField inputEmail;
+    private javax.swing.JTextField inputFirstName;
+    private javax.swing.JTextField inputLastName;
+    private javax.swing.JPasswordField inputPassword;
+    private javax.swing.JTextField inputPhoneNumber;
+    private javax.swing.JTextField inputSearch;
+    private javax.swing.JTextField inputUsername;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelAcc;
+    private javax.swing.JLabel labelAdd;
+    private javax.swing.JLabel labelCus;
+    private javax.swing.JLabel labelDelete;
+    private javax.swing.JLabel labelDelete1;
+    private javax.swing.JLabel labelEdit;
+    private javax.swing.JLabel labelPane;
+    private javax.swing.JLabel lastNameLabel;
+    private javax.swing.JLabel password;
+    private javax.swing.JLabel phoneNumberLabel;
+    private javax.swing.JButton saveBtn;
+    private view.PanelRound searchBtn;
+    private javax.swing.JTable tableCustomers;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }
