@@ -17,23 +17,10 @@ public class AccountsDAO {
     
     public void insertAccounts(Accounts a){
         con = dbCon.makeConnection();
-        
-<<<<<<< HEAD
-<<<<<<< HEAD
         String sql = "INSERT INTO accounts (account_id, account_type, balance, customer_id) VALUES (" 
                 + a.getAccount_id()+ ", '" + a.getAccount_type() + "', " + a.getBalance() + ", "
-                + a.getCustomer_id()+ ")";
-=======
-=======
->>>>>>> viewFerdy
-        String sql = "INSERT INTO accounts (account_id, customer_id, account_type, balance, username, password) VALUES ('" 
-                + a.getAccount_id()+ "', '"+ a.getCustomer().getCustomer_id()+ "', '" 
-                + a.getAccount_type() + "', '" + a.getBalance() + "', '" 
-                + a.getUsername() + "', '" + a.getPassword() + "')";
-<<<<<<< HEAD
->>>>>>> devMain
-=======
->>>>>>> viewFerdy
+                + a.getAccount_id()+ ")";
+
         
         System.out.println("Adding Accounts...");
         
