@@ -7,7 +7,7 @@ import java.util.List;
 public class TableTransfer extends AbstractTableModel{
     private List<Transfers> transfers;
 
-    TableTransfer(List<Transfers> transfers){
+    public TableTransfer(List<Transfers> transfers){
         this.transfers=transfers;
     }
     
