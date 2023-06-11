@@ -7,7 +7,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import model.Administrators;
-import table.TableAdministrators;
 import view.LoginView;
 
 
@@ -27,6 +26,7 @@ public class AdminManageView extends javax.swing.JFrame {
         setComponent(false);
         setEditDeleteBtn(false);
         showAdministrators();
+        
         
     }
     
@@ -542,9 +542,12 @@ public class AdminManageView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "You don't have permissions to add new Administrators");
             return;
         }
+       
         setEditDeleteBtn(false);
         setComponent(true);
         clearText();
+        idInput.setEditable(false);
+        idInput.setText(String.valueOf(administratorsControl.autoGenerateID()));
         action = "Add";
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -572,7 +575,9 @@ public class AdminManageView extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        if(admin.getAdministrator_id()!=1){
+        TableModel tableModel = adminTable.getModel();
+        int clickedRow = adminTable.getSelectedRow();
+        if(admin.getAdministrator_id()!=1 && !admin.getUsername().equals(tableModel.getValueAt(clickedRow, 1).toString())){
             JOptionPane.showMessageDialog(this, "You don't have permissions to edit another Administrators");
             return;
         }

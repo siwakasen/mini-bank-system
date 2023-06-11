@@ -48,13 +48,13 @@ public class TableEmployees extends AbstractTableModel{
                 if(employees.get(row).getRole_id()==1){
                     return employees.get(row).getStation_number();
                 }else{
-                    return "-";
+                    return "";
                 }
             case 9:
                 if(employees.get(row).getRole_id()==2){
                     return employees.get(row).getOffice_number();
                 }else{
-                    return "-";
+                    return "";
                 }
             default: 
                 return null;

@@ -85,7 +85,7 @@ public class EmployeesDAO {
     public List<Employees> showListEmployees(){
         con = dbcon.makeConnection();
         
-        String sql = "SELECT * FROM employees";
+        String sql = "SELECT * FROM employees ORDER BY role_id asc";
         
         System.out.println("Collecting data employee...");
         

@@ -18,7 +18,6 @@ public class EmployeeManageView extends javax.swing.JFrame {
     List<Employees> listEmployees;
     int selectedId = 0;
     
-    
     /**
      * Creates new form EmployeeManageView
      */
@@ -843,6 +842,8 @@ public class EmployeeManageView extends javax.swing.JFrame {
         officeLabel.setEnabled(false);
         clearText();
         roleBtnGroup.clearSelection();
+        idInput.setEditable(false);
+        idInput.setText(String.valueOf(employeesControl.autoGenerateID()));
         action = "Add";
     }//GEN-LAST:event_addBtnActionPerformed
 

@@ -36,5 +36,13 @@ public class EmployeesControl {
     public int countEmployee(){
         return showEmployees("").getRowCount();
     }
-    
+    public int autoGenerateID(){
+        List<Employees> listEmp = employDao.showListEmployees();
+        int max=0;
+        for(int i=0;i<listEmp.size();i++){
+            if(max<listEmp.get(i).getEmployee_id())
+                 max=listEmp.get(i).getEmployee_id();
+        }
+        return max+1;
+    }
 }

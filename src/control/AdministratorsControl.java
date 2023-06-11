@@ -39,4 +39,8 @@ public class AdministratorsControl {
     public int countAdmin(){
         return showAdministrator("").getRowCount();
     }
+    public int autoGenerateID(){
+        List<Administrators> listAdmin = adminDao.showListAdministrator();
+        return listAdmin.get(listAdmin.size()-1).getAdministrator_id()+1;
+    }
 }
