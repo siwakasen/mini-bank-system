@@ -51,7 +51,7 @@ public class TableEmployees extends AbstractTableModel{
                     return "-";
                 }
             case 9:
-                if(employees.get(row).getRole_id()==1){
+                if(employees.get(row).getRole_id()==2){
                     employees.get(row).getOffice_number();
                 }else{
                     return "-";

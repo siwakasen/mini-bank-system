@@ -39,7 +39,7 @@ public class AdministratorsDAO {
     public void deleteAdministrator(int id){
         con = dbcon.makeConnection();
         
-        String sql = "DELETE FROM administrators WHERE administrator_id = "+id+"";
+        String sql = "DELETE FROM administrators WHERE administrator_id = "+id;
         
         System.out.println("Deleting data administrator...");
         
