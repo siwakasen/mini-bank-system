@@ -2,16 +2,16 @@ package model;
 
 public class Loans {
     private String loan_id,loan_type,loan_start_date,loan_end_date;
-    private int customer_id;
+    private Accounts account;
     private double amount;
     private float interest_rate;
 
-    public Loans(String loan_id, String loan_type, String loan_start_date, String loan_end_date, int customer_id, double amount, float interest_rate) {
+    public Loans(String loan_id, String loan_type, String loan_start_date, String loan_end_date, Accounts account, double amount, float interest_rate) {
         this.loan_id = loan_id;
         this.loan_type = loan_type;
         this.loan_start_date = loan_start_date;
         this.loan_end_date = loan_end_date;
-        this.customer_id = customer_id;
+        this.account = account;
         this.amount = amount;
         this.interest_rate = interest_rate;
     }
@@ -48,12 +48,12 @@ public class Loans {
         this.loan_end_date = loan_end_date;
     }
 
-    public int getCustomer_id() {
-        return customer_id;
+    public int getaccount_id() {
+        return account.getAccount_id();
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setaccount(int account) {
+        this.account.setAccount_id(account);
     }
 
     public double getAmount() {

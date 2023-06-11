@@ -3,6 +3,8 @@ package table;
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 import model.Customers;
+import model.Accounts;
+
 public class TableCustomers extends AbstractTableModel{
     private List<Customers> customers;
 
@@ -17,7 +19,7 @@ public class TableCustomers extends AbstractTableModel{
 
     @Override
     public int getColumnCount(){
-        return 8;
+        return 6;
     }
 
     @Override
@@ -26,18 +28,14 @@ public class TableCustomers extends AbstractTableModel{
             case 0: 
                 return customers.get(row).getCustomer_id();
             case 1: 
-                return customers.get(row).getUsername();
-            case 2: 
-                return customers.get(row).getPassword();
-            case 3: 
                 return customers.get(row).getFirst_name();
-            case 4:
+            case 2:
                 return customers.get(row).getLast_name();
-            case 5:
+            case 3:
                 return customers.get(row).getEmail();
-            case 6:
+            case 4:
                 return customers.get(row).getPhone_number();
-            case 7:
+            case 5:
                 return customers.get(row).getAddress();
             default: 
                 return null;
@@ -49,19 +47,15 @@ public class TableCustomers extends AbstractTableModel{
         switch (col) {
             case 0: 
                 return "Customer ID";
-            case 1: 
-                return "Username";
-            case 2: 
-                return "Password";
-            case 3:
+            case 1:
                 return "First Name";
-            case 4:
+            case 2:
                 return "Last Name";
-            case 5:
+            case 3:
                 return "Email";
-            case 6:
+            case 4:
                 return "Phone Number";
-            case 7:
+            case 5:
                 return "Address";
             default: 
                 return null;

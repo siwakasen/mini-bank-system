@@ -1,14 +1,70 @@
 
 package view.admin;
 
-public class AdminManageView extends javax.swing.JFrame {
+import control.AdministratorsControl;
+import exception.BlankInputException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+import model.Administrators;
+import table.TableAdministrators;
 
+
+public class AdminManageView extends javax.swing.JFrame {
+    private AdministratorsControl administratorsControl;
+    String action = null;
+    List<Administrators> listAdministrators;
+    int selectedId = 0;
     /**
      * Creates new form AdminManageView
      */
     public AdminManageView() {
         initComponents();
+        administratorsControl = new AdministratorsControl();
+        setComponent(false);
+        setEditDeleteBtn(false);
+        showAdministrators();
+        
     }
+    
+    public void setComponent(boolean value){
+        
+        inputPane.setEnabled(value);
+        idInput.setEnabled(value);
+        passInput.setEnabled(value);
+        userInput.setEnabled(value);
+        idlabel.setEnabled(value);
+        passlabel.setEnabled(value);
+        userlabel.setEnabled(value);
+        
+  
+        saveBtn.setEnabled(value);
+        cancelBtn.setEnabled(value);
+    }
+    
+    public void setEditDeleteBtn(boolean value){
+        editBtn.setEnabled(value);
+        deleteBtn.setEnabled(value);
+    }
+   
+    
+    public void showAdministrators(){
+        adminTable.setModel(administratorsControl.showAdministrator(""));
+    }
+    
+    public void clearText(){
+       idInput.setText("");
+       passInput.setText("");
+       userInput.setText("");
+    }
+    
+    public void blankInputException() throws BlankInputException{
+        if(idInput.getText().isEmpty() || passInput.getText().isEmpty() || userInput.getText().isEmpty()){
+            throw new BlankInputException();
+        }
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,6 +102,7 @@ public class AdminManageView extends javax.swing.JFrame {
         cancelBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         adminTable = new javax.swing.JTable();
+        logoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -172,12 +229,12 @@ public class AdminManageView extends javax.swing.JFrame {
         leftSidePaneLayout.setHorizontalGroup(
             leftSidePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(homePane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftSidePaneLayout.createSequentialGroup()
-                .addComponent(EmployeePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(leftSidePaneLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(adminPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(leftSidePaneLayout.createSequentialGroup()
+                .addComponent(EmployeePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         leftSidePaneLayout.setVerticalGroup(
             leftSidePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,7 +445,25 @@ public class AdminManageView extends javax.swing.JFrame {
             }
         ));
         adminTable.setSelectionForeground(new java.awt.Color(92, 70, 156));
+        adminTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(adminTable);
+
+        logoutBtn.setBackground(new java.awt.Color(174, 74, 241));
+        logoutBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        logoutBtn.setForeground(new java.awt.Color(255, 255, 255));
+        logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-logout.png"))); // NOI18N
+        logoutBtn.setText("Logout");
+        logoutBtn.setBorder(null);
+        logoutBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
         base.setLayout(baseLayout);
@@ -409,7 +484,10 @@ public class AdminManageView extends javax.swing.JFrame {
                             .addComponent(inputPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(98, 98, 98)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(baseLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         baseLayout.setVerticalGroup(
@@ -427,7 +505,9 @@ public class AdminManageView extends javax.swing.JFrame {
                                 .addComponent(inputPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(saveCancelPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(73, 73, 73)
+                        .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
@@ -448,38 +528,42 @@ public class AdminManageView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+          
+    
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-//        setEditDeleteBtn(false);
-//        setComponent(true);
-//        clearText();
-//        searchInput.setText("");
-//        action = "Tambah";
+        setEditDeleteBtn(false);
+        setComponent(true);
+        clearText();
+        action = "Add";
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-//        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data?\r\nMenghapus data Pegawai berarti menghapus data job historynya juga.", "CFL - Confirmation", JOptionPane.YES_NO_OPTION);
-//        if(getAnswer == 0){
-//            try{
-//                pc.deleteDataPegawai(selectedId);
-//                clearText();
-//                getTableData("", false);
-//                setComponent(false);
-//                setEditDeleteBtn(false);
-//            } catch(Exception e){
-//                System.out.println("Error deleting data...");
-//                System.out.println(e);
-//            }
-//        }
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure want to delete data?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if(getAnswer == 0){
+            try{
+                administratorsControl.deleteAdministrator(Integer.parseInt(idInput.getText()));
+                clearText();
+                setComponent(false);
+                setEditDeleteBtn(false);
+                addBtn.setEnabled(true);
+                showAdministrators();
+                JOptionPane.showMessageDialog(this, "Successfully delete administrators data");
+            } catch(Exception e){
+                System.out.println("Error deleting data...");
+                System.out.println(e);
+            }
+        }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         // TODO add your handling code here:
-//        setComponent(true);
-//        idInput.setEnabled(false);
-//        action = "Ubah";
+        addBtn.setEnabled(false);
+        deleteBtn.setEnabled(false);
+        setComponent(true);
+        idInput.setEnabled(false);
+        action = "Change";
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void passInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passInputActionPerformed
@@ -496,29 +580,44 @@ public class AdminManageView extends javax.swing.JFrame {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
 //        // TODO add your handling code here:
-//        try{
-//            inputKosongException();
-//
-//            Pegawai p = new Pegawai(idInput.getText(), namaInput.getText(), getFullDate(inputTglLahir), nohpInput.getText(), dropdownJobdesc.getSelectedItem().toString());
-//            if(action.equalsIgnoreCase("Tambah")){
-//                pc.InsertDataPegawai(p);
-//            } else
-//            pc.updateDataPegawai(p);
-//        } catch(InputKosongException e){
-//            JOptionPane.showConfirmDialog(null, "Input tidak boleh kosong", "CFL - Warning", JOptionPane.DEFAULT_OPTION);
-//            System.out.println("Error: " + e.toString());
-//        }
-//        clearText();
-//        getTableData("", false);
-//        setComponent(false);
-//        setEditDeleteBtn(false);
+        try{
+            blankInputException();
+
+            if(action.equals("Add")){
+                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure want to add administrators?","Confirmation", JOptionPane.YES_NO_OPTION);
+                if(getAnswer == JOptionPane.YES_OPTION){
+                    Administrators a = new Administrators (Integer.parseInt(idInput.getText()), userInput.getText(), passInput.getText());
+                    administratorsControl.insertAdministrator(a);
+                    JOptionPane.showMessageDialog(this, "Success to add administrators");
+                }else {
+                    JOptionPane.showMessageDialog(this, "Failed to add administrators");
+                }
+            }else{
+                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure want to change administrators?","Confirmation", JOptionPane.YES_NO_OPTION);
+                if(getAnswer == JOptionPane.YES_OPTION){
+                    Administrators a = new Administrators (Integer.parseInt(idInput.getText()), userInput.getText(), passInput.getText());
+                    administratorsControl.updateAdministrator(a);
+                    JOptionPane.showMessageDialog(this, "Success to change administrators");
+                }else {
+                    JOptionPane.showMessageDialog(this, "Failed to change administrators");
+                }
+            }
+            clearText();
+            setComponent(false);
+            setEditDeleteBtn(false);
+            showAdministrators();
+        } catch(BlankInputException e){
+            JOptionPane.showConfirmDialog(null, "Input cannot be empty", "Warning", JOptionPane.DEFAULT_OPTION);
+            System.out.println("Error: " + e.toString());
+        }
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-//        // TODO add your handling code here:
-//        setComponent(false);
-//        setEditDeleteBtn(false);
-//        clearText();
+        // TODO add your handling code here:
+        setComponent(false);
+        setEditDeleteBtn(false);
+        addBtn.setEnabled(true);
+        clearText();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void homePaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homePaneMouseClicked
@@ -532,6 +631,22 @@ public class AdminManageView extends javax.swing.JFrame {
         this.dispose();
         ep.setVisible(true);
     }//GEN-LAST:event_EmployeePaneMouseClicked
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void adminTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminTableMouseClicked
+        // TODO add your handling code here:
+        setComponent(false);
+        setEditDeleteBtn(true);
+        int clickedRow = adminTable.getSelectedRow();
+        TableModel tableModel = adminTable.getModel();
+
+        idInput.setText(tableModel.getValueAt(clickedRow, 0).toString());
+        userInput.setText(tableModel.getValueAt(clickedRow, 1).toString());
+        passInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
+    }//GEN-LAST:event_adminTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -590,6 +705,7 @@ public class AdminManageView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel leftSidePane;
+    private javax.swing.JButton logoutBtn;
     private javax.swing.JTextField passInput;
     private javax.swing.JLabel passlabel;
     private javax.swing.JButton saveBtn;
