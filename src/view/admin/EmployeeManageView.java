@@ -871,6 +871,10 @@ public class EmployeeManageView extends javax.swing.JFrame {
         addBtn.setEnabled(false);
         deleteBtn.setEnabled(false);
         setComponent(true);
+        stationInput.setEnabled(false);
+        officeInput.setEnabled(false);
+        stationLabel.setEnabled(false);
+        officeLabel.setEnabled(false);
         idInput.setEnabled(false);
         action = "Change";
     }//GEN-LAST:event_editBtnActionPerformed
@@ -879,7 +883,6 @@ public class EmployeeManageView extends javax.swing.JFrame {
                 // TODO add your handling code here:
                 try{
                         blankInputException();
-
                         if(action.equals("Add")){
                             int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure want to add employee?","Confirmation", JOptionPane.YES_NO_OPTION);
                             if(getAnswer == JOptionPane.YES_OPTION){
@@ -918,6 +921,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
                         clearText();
                         setComponent(false);
                         setEditDeleteBtn(false);
+                        roleBtnGroup.clearSelection();
                         showEmployees();
                     } catch(BlankInputException e){
                         JOptionPane.showConfirmDialog(null, "Input cannot be empty", "Warning", JOptionPane.DEFAULT_OPTION);
@@ -966,8 +970,10 @@ public class EmployeeManageView extends javax.swing.JFrame {
     private void tellerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tellerRadioActionPerformed
         // TODO add your handling code here:
         officeInput.setEnabled(false);
+        officeInput.setText("");
         stationInput.setEnabled(true);
         stationLabel.setEnabled(true);
+        
     }//GEN-LAST:event_tellerRadioActionPerformed
 
     private void custumerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custumerRadioActionPerformed
@@ -975,6 +981,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
         officeLabel.setEnabled(true);
         officeInput.setEnabled(true);
         stationInput.setEnabled(false);
+       stationInput.setText("");
     }//GEN-LAST:event_custumerRadioActionPerformed
 
     private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
