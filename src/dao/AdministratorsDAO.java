@@ -91,6 +91,12 @@ public class AdministratorsDAO {
                     Administrators a = new Administrators(rs.getInt("administrator_id"),
                             rs.getString("username"), rs.getString("password"));
                     
+                    String conv = "";
+                    for (int i = 0; i < a.getPassword().length(); i++) {
+                         conv += "*";
+                    }
+                    
+                    a.setPassword(conv);
                     list.add(a);
                 }
             }
@@ -106,7 +112,8 @@ public class AdministratorsDAO {
         return list;
     }
     
-    public boolean searchAdmin(Administrators admin){
+    
+    public Administrators searchAdmin(Administrators admin){
         con = dbcon.makeConnection();
         
         String sql = "SELECT * from administrators WHERE username = '" +admin.getUsername()+ "' "+"AND password = '"+admin.getPassword()+"'";
@@ -122,7 +129,7 @@ public class AdministratorsDAO {
                             rs.getString("username"), rs.getString("password"));
                             
                     if(a.getUsername().equals(admin.getUsername()) && a.getPassword().equals(admin.getPassword())){
-                        return true;
+                        return a;
                     }
                 }
             }
@@ -133,6 +140,6 @@ public class AdministratorsDAO {
             System.out.println(e);
         }
         dbcon.closeConnection();
-        return false;
+        return null;
     }
 }

@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import model.Administrators;
 import table.TableAdministrators;
+import view.LoginView;
 
 
 public class AdminManageView extends javax.swing.JFrame {
@@ -452,6 +453,9 @@ public class AdminManageView extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 adminTableMouseClicked(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                adminTableMouseReleased(evt);
+            }
         });
         jScrollPane1.setViewportView(adminTable);
 
@@ -534,7 +538,10 @@ public class AdminManageView extends javax.swing.JFrame {
           
     
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
+        if(admin.getAdministrator_id()!=1){
+            JOptionPane.showMessageDialog(this, "You don't have permissions to add new Administrators");
+            return;
+        }
         setEditDeleteBtn(false);
         setComponent(true);
         clearText();
@@ -542,7 +549,11 @@ public class AdminManageView extends javax.swing.JFrame {
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        // TODO add your handling code here:
+        System.out.println("This admin ID : "+admin.getAdministrator_id());
+        if(admin.getAdministrator_id()!=1){
+            JOptionPane.showMessageDialog(this, "You don't have permissions to delete another Administrators");
+            return;
+        }
         int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure want to delete data?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if(getAnswer == 0){
             try{
@@ -561,7 +572,10 @@ public class AdminManageView extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        // TODO add your handling code here:
+        if(admin.getAdministrator_id()!=1){
+            JOptionPane.showMessageDialog(this, "You don't have permissions to edit another Administrators");
+            return;
+        }
         addBtn.setEnabled(false);
         deleteBtn.setEnabled(false);
         setComponent(true);
@@ -619,6 +633,7 @@ public class AdminManageView extends javax.swing.JFrame {
         // TODO add your handling code here:
         setComponent(false);
         setEditDeleteBtn(false);
+        showAdministrators();
         addBtn.setEnabled(true);
         clearText();
     }//GEN-LAST:event_cancelBtnActionPerformed
@@ -636,20 +651,36 @@ public class AdminManageView extends javax.swing.JFrame {
     }//GEN-LAST:event_EmployeePaneMouseClicked
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        // TODO add your handling code here:
+       LoginView lv = new LoginView();
+        this.dispose();
+        lv.setVisible(true);
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void adminTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminTableMouseClicked
-        // TODO add your handling code here:
+        
         setComponent(false);
         setEditDeleteBtn(true);
+        cancelBtn.setEnabled(true);
+        addBtn.setEnabled(false);
         int clickedRow = adminTable.getSelectedRow();
         TableModel tableModel = adminTable.getModel();
 
         idInput.setText(tableModel.getValueAt(clickedRow, 0).toString());
         userInput.setText(tableModel.getValueAt(clickedRow, 1).toString());
-        passInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
+        if(this.admin.getUsername().equals(tableModel.getValueAt(clickedRow, 1).toString())){
+            passInput.setText(this.admin.getPassword());
+        }else{
+            System.out.println(tableModel.getValueAt(clickedRow, 1).toString());
+            System.out.println("masuk");
+           passInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
+            
+        }
+        
     }//GEN-LAST:event_adminTableMouseClicked
+
+    private void adminTableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminTableMouseReleased
+        
+    }//GEN-LAST:event_adminTableMouseReleased
 
     /**
      * @param args the command line arguments

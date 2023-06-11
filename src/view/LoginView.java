@@ -11,7 +11,7 @@ import view.employee.CustomerServiceView;
 import view.employee.TellerView;
 
 public class LoginView extends javax.swing.JFrame {
-        private Administrators admin;
+    private Administrators admin;
     private Employees emp;
     private AdministratorsControl adminControl;
     private EmployeesControl empControl;
@@ -235,7 +235,8 @@ public class LoginView extends javax.swing.JFrame {
         admin = new Administrators(0, userInput.getText(), String.valueOf(passwordInput.getPassword()));
        emp= new Employees(0,"", "",userInput.getText(), String.valueOf(passwordInput.getPassword()), "", "", 0, "", "");
        
-      if(adminControl.searchAdministrators(admin)){
+      if(adminControl.searchAdministrators(admin)!=null){
+          this.admin=adminControl.searchAdministrators(admin);
            dasView = new DasboardView(admin);
            this.dispose();
            dasView.setVisible(true);

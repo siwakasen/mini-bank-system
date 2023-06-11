@@ -5,6 +5,7 @@
 
 package control;
 import dao.AdministratorsDAO;
+import dao.EmployeesDAO;
 import model.Administrators;
 import table.TableAdministrators;
 import java.util.List;
@@ -30,8 +31,12 @@ public class AdministratorsControl {
     public void deleteAdministrator(int id){
         adminDao.deleteAdministrator(id);
     }
-    public boolean searchAdministrators(Administrators a){
-        if(adminDao.searchAdmin(a)) return true;
-        return false;
+    public Administrators searchAdministrators(Administrators admin){
+        if(adminDao.searchAdmin(admin)!=null) return adminDao.searchAdmin(admin);
+        return null;
+    }
+    
+    public int countAdmin(){
+        return showAdministrator("").getRowCount();
     }
 }

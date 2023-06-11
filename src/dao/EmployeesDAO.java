@@ -82,7 +82,7 @@ public class EmployeesDAO {
         dbcon.closeConnection();
     }
     
-    public List<Employees> showListCustomer(){
+    public List<Employees> showListEmployees(){
         con = dbcon.makeConnection();
         
         String sql = "SELECT * FROM employees";

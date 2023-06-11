@@ -15,10 +15,11 @@ public class EmployeesControl {
     private EmployeesDAO employDao = new EmployeesDAO();
     
     public TableEmployees showEmployees(String query){
-        List<Employees> listEmploye = employDao.showListCustomer();
+        List<Employees> listEmploye = employDao.showListEmployees();
         TableEmployees tabelemploye = new TableEmployees(listEmploye);
         return tabelemploye;
     }
+    
     public void insertEmployees(Employees employees){
         employDao.insertEmployee(employees);
     }
@@ -30,6 +31,10 @@ public class EmployeesControl {
     }
     public Employees searchEmployees(Employees e){
         return employDao.searchEmployee(e);
+    }
+    
+    public int countEmployee(){
+        return showEmployees("").getRowCount();
     }
     
 }

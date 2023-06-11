@@ -234,7 +234,7 @@ public class LoginEmployee extends javax.swing.JFrame {
         admin = new Administrators(0, userInput.getText(), String.valueOf(passInput.getPassword()));
        emp= new Employees(0,"", "",userInput.getText(), String.valueOf(passInput.getPassword()), "", "", 0, "", "");
        
-      if(adminControl.searchAdministrators(admin)){
+      if(adminControl.searchAdministrators(admin)!=null){
            dasView = new DasboardView(admin);
            this.dispose();
            dasView.setVisible(true);

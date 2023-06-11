@@ -1,18 +1,42 @@
 
 package view.admin;
+
+import control.AdministratorsControl;
+import control.EmployeesControl;
+import exception.BlankInputException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 import model.Administrators;
+import model.Employees;
+import view.LoginView;
 
 public class DasboardView extends javax.swing.JFrame {
-    
+    private AdministratorsControl administratorsControl;
+    private EmployeesControl employeesControl;
     private Administrators admin;
+    String action = null;
+    List<Administrators> listAdministrators;
+    int selectedId = 0;
+    List<Employees> listEmployees;
+    
     public DasboardView(Administrators admin) {
+        administratorsControl = new AdministratorsControl();
+        employeesControl = new EmployeesControl();
         this.admin = admin;
         initComponents();
         helloText.setEditable(false);
         helloText.setText("Hello Admin "+admin.getUsername());
         totalAdminText.setEditable(false);
         totalEmpText.setEditable(false);
-        
+        showDashboard();
+        totalAdminText.setText(String.valueOf(countTotalAdmin()));
+        totalEmpText.setText(String.valueOf(countTotalEmployee()));
+    }
+    
+    public void showDashboard(){
+        adminTable.setModel(administratorsControl.showAdministrator(""));
+         EmployeesTable.setModel(employeesControl.showEmployees(""));  
     }
 
     /**
@@ -38,11 +62,14 @@ public class DasboardView extends javax.swing.JFrame {
         totalAdminLabel = new javax.swing.JLabel();
         totalEmpLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        dashboardTabel = new javax.swing.JTable();
+        EmployeesTable = new javax.swing.JTable();
         panelRound1 = new view.PanelRound();
         totalAdminText = new javax.swing.JTextField();
         panelRound2 = new view.PanelRound();
         totalEmpText = new javax.swing.JTextField();
+        logoutBtn = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        adminTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -194,8 +221,8 @@ public class DasboardView extends javax.swing.JFrame {
         totalEmpLabel.setForeground(new java.awt.Color(246, 241, 241));
         totalEmpLabel.setText("Total Employee");
 
-        dashboardTabel.setBackground(new java.awt.Color(152, 238, 204));
-        dashboardTabel.setModel(new javax.swing.table.DefaultTableModel(
+        EmployeesTable.setBackground(new java.awt.Color(152, 238, 204));
+        EmployeesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -206,7 +233,7 @@ public class DasboardView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(dashboardTabel);
+        jScrollPane1.setViewportView(EmployeesTable);
 
         panelRound1.setBackground(new java.awt.Color(255, 234, 210));
         panelRound1.setPreferredSize(new java.awt.Dimension(122, 56));
@@ -280,6 +307,33 @@ public class DasboardView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        logoutBtn.setBackground(new java.awt.Color(174, 74, 241));
+        logoutBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        logoutBtn.setForeground(new java.awt.Color(255, 255, 255));
+        logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-logout.png"))); // NOI18N
+        logoutBtn.setText("Logout");
+        logoutBtn.setBorder(null);
+        logoutBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+
+        adminTable.setBackground(new java.awt.Color(152, 238, 204));
+        adminTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(adminTable);
+
         javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
         base.setLayout(baseLayout);
         baseLayout.setHorizontalGroup(
@@ -288,8 +342,18 @@ public class DasboardView extends javax.swing.JFrame {
                 .addComponent(leftSidePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(baseLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(dashboardLabel))
+                    .addGroup(baseLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(baseLayout.createSequentialGroup()
                         .addGap(111, 111, 111)
                         .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(baseLayout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(baseLayout.createSequentialGroup()
                                 .addComponent(helloText, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(67, 67, 67)
@@ -298,12 +362,8 @@ public class DasboardView extends javax.swing.JFrame {
                                     .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                                 .addGap(95, 95, 95)
                                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(totalEmpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                                    .addComponent(panelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1241, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(baseLayout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(dashboardLabel)))
+                                    .addComponent(totalEmpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(panelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))))))
                 .addContainerGap(198, Short.MAX_VALUE))
         );
         baseLayout.setVerticalGroup(
@@ -316,10 +376,7 @@ public class DasboardView extends javax.swing.JFrame {
                 .addComponent(dashboardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(baseLayout.createSequentialGroup()
-                        .addComponent(helloText, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(98, 98, 98)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(helloText, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(baseLayout.createSequentialGroup()
                         .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(totalAdminLabel)
@@ -328,6 +385,12 @@ public class DasboardView extends javax.swing.JFrame {
                         .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(panelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                             .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(104, 104, 104)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -350,17 +413,17 @@ public class DasboardView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private int countTotalAdmin(){
-        return 1;
+        return administratorsControl.countAdmin();
     }
     private int countTotalEmployee(){
-        return 1;
+        return employeesControl.countEmployee();
     }
     private void helloTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helloTextActionPerformed
         helloText.setText("Hello Admin "+admin.getUsername());
     }//GEN-LAST:event_helloTextActionPerformed
 
     private void totalAdminTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAdminTextActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_totalAdminTextActionPerformed
 
     private void totalEmpTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalEmpTextActionPerformed
@@ -378,6 +441,12 @@ public class DasboardView extends javax.swing.JFrame {
         this.dispose();
         ep.setVisible(true);
     }//GEN-LAST:event_EmployeePaneMouseClicked
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+       LoginView lv = new LoginView();
+        this.dispose();
+        lv.setVisible(true);
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -416,10 +485,11 @@ public class DasboardView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel EmployeePane;
+    private javax.swing.JTable EmployeesTable;
     private javax.swing.JPanel adminPane;
+    private javax.swing.JTable adminTable;
     private javax.swing.JPanel base;
     private javax.swing.JLabel dashboardLabel;
-    private javax.swing.JTable dashboardTabel;
     private javax.swing.JTextField helloText;
     private javax.swing.JPanel homePanel;
     private javax.swing.JLabel jLabel1;
@@ -427,7 +497,9 @@ public class DasboardView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel leftSidePane;
+    private javax.swing.JButton logoutBtn;
     private view.PanelRound panelRound1;
     private view.PanelRound panelRound2;
     private javax.swing.JLabel totalAdminLabel;
