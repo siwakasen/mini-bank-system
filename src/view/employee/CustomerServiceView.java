@@ -90,7 +90,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
         tableCustomers.getTableHeader().setOpaque(false);
         tableCustomers.getTableHeader().setForeground(new Color(0, 61, 121));
         tableCustomers.setRowHeight(25);
-        tableCustomers.setModel( accountControl.showAccounts(""));
+        tableCustomers.setModel( accountControl.showTableAccounts(""));
     }
 
 
@@ -664,7 +664,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
                     Customers c = new Customers(selectedIdCustomer, inputFirstName.getText(), inputLastName.getText(), inputEmail.getText(), inputPhoneNumber.getText(), inputAddress.getText());
                     Accounts a = new Accounts(selectedIdAccount, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(), inputPassword.getText());
                     customerControl.updateCustomer(c);
-                    accountControl.updateAccount(a);
+                    accountControl.updateAccounts(a);
                 }
                 clearText();
                 showAccounts();
@@ -686,7 +686,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
 
     private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
         setComponent(false);
-        TableAccounts accounts = accountControl.showAccounts(inputSearch.getText());
+        TableAccounts accounts = accountControl.showTableAccounts(inputSearch.getText());
         if(accounts.getRowCount()==0){
                 clearText();
                 setEditDeleteBtn(false);
@@ -725,7 +725,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
             JOptionPane.YES_NO_OPTION);
         switch (getAnswer) {
             case 0:
-            accountControl.deleteAccount(selectedIdAccount);
+            accountControl.deleteAccounts(selectedIdAccount);
             customerControl.deleteCustomer(selectedIdCustomer);
             clearText();
             showAccounts();

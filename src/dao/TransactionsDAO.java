@@ -11,18 +11,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 
 public class TransactionsDAO {
     private DbConnection DbCon = new DbConnection();
     private Connection conn;
 
-    public void insertTransaction(Transactions t){
+    public void insertTransaction(Transactions transaction){
         try {
             conn = DbCon.makeConnection();
-            int transaction_id = ThreadLocalRandom.current().nextInt(0,99999); 
-            String sql = "INSERT INTO transactions (transaction_id, account_id, transaction_fk, transaction_date) VALUES ('" + "TR-" + transaction_id + "', " + t.getAccount_id() + ", '" + t.getTransaction_fk() + "', '" + t.getTransaction_date() + "')";
+            String sql = "INSERT INTO transactions (transaction_id, account_id, transaction_fk, transaction_date) VALUES ('"+transaction.getTransaction_id() + "', " + transaction.getAccount_id() + ", '" + transaction.getTransaction_fk() + "', '" + transaction.getTransaction_date() + "')";
             Statement stmt = conn.createStatement();
             int result = stmt.executeUpdate(sql);
             System.out.println("Rows affected: " + result);
@@ -44,7 +42,7 @@ public class TransactionsDAO {
                     String transaction_id = rs.getString("transaction_id");
                     String transaction_fk = rs.getString("transaction_fk");
                     String transaction_date = rs.getString("transaction_date");
-                    Transactions transaction = new Transactions(transaction_id, transaction_fk, transaction_date, account_id);
+                    Transactions transaction = new Transactions(transaction_id, account_id, transaction_fk, transaction_date);
                     transactions.add(transaction);
                 }
                 stmt.close();
@@ -57,7 +55,7 @@ public class TransactionsDAO {
                     String transaction_id = rs.getString("transaction_id");
                     String transaction_fk = rs.getString("transaction_fk");
                     String transaction_date = rs.getString("transaction_date");
-                    Transactions transaction = new Transactions(transaction_id, transaction_fk, transaction_date, account_id);
+                    Transactions transaction = new Transactions(transaction_id, account_id, transaction_fk, transaction_date);
                     transactions.add(transaction);
                 }
                 stmt.close();
@@ -70,7 +68,7 @@ public class TransactionsDAO {
                     String transaction_id = rs.getString("transaction_id");
                     String transaction_fk = rs.getString("transaction_fk");
                     String transaction_date = rs.getString("transaction_date");
-                    Transactions transaction = new Transactions(transaction_id, transaction_fk, transaction_date, account_id);
+                    Transactions transaction = new Transactions(transaction_id, account_id, transaction_fk, transaction_date);
                     transactions.add(transaction);
                 }
                 stmt.close();
@@ -97,10 +95,11 @@ public class TransactionsDAO {
                 System.out.println("Success collecting loan datas...");
                 if (rs!=null) {
                     while (rs.next()) {                        
-                        TransactionsJoins t = new TransactionsJoins(new Transactions(rs.getString("t.transaction_id"), rs.getString("t.transaction_fk"),
-                                rs.getString("t.transaction_date"), rs.getInt("t.account_id")), null
+                        TransactionsJoins t = new TransactionsJoins(new Transactions(rs.getString("t.transaction_id"), rs.getInt("t.account_id"), 
+                                rs.getString("t.transaction_fk"), rs.getString("t.transaction_date")), null
                                 , new Loans(rs.getString("l.loan_id"), rs.getString("l.loan_type"), rs.getString("l.loan_start_date")
-                                        , rs.getString("l.loan_end_date"), rs.getDouble("l.amount"), rs.getFloat("l.interest_rate")));
+                                , rs.getString("l.loan_end_date"), rs.getDouble("l.amount"), rs.getFloat("l.interest_rate")
+                                , rs.getString("l.interest_rate_type"), rs.getDouble("l.end_amount_pay"), rs.getString("l.confirm")));
                         
                         t.getL().setLoan_start_date(t.getL().getLoan_start_date().substring(8, 10)+
                                 t.getL().getLoan_start_date().substring(4, 8)+
@@ -122,8 +121,8 @@ public class TransactionsDAO {
                 System.out.println("Success collecting loan datas...");
                 if (rs!=null) {
                     while (rs.next()) {                        
-                        TransactionsJoins t = new TransactionsJoins(new Transactions(rs.getString("t.transaction_id"), rs.getString("t.transaction_fk"),
-                                rs.getString("t.transaction_date"), rs.getInt("t.account_id")), new Transfers(rs.getString("tf.transfer_id"), 
+                        TransactionsJoins t = new TransactionsJoins(new Transactions(rs.getString("t.transaction_id"), rs.getInt("t.account_id"), 
+                        rs.getString("t.transaction_fk"), rs.getString("t.transaction_date")), new Transfers(rs.getString("tf.transfer_id"), 
                                         rs.getInt("tf.from_account_id"),rs.getInt("tf.to_account_id"), rs.getDouble("tf.amount"))
                                 , null);
                         
@@ -145,4 +144,37 @@ public class TransactionsDAO {
         return null;
     }
     
+    public Transactions singleTransaction(int account_id, String transaction_id, String type){
+        if(!transaction_id.isEmpty()){
+            try {
+                conn = DbCon.makeConnection();
+                String sql = "SELECT * FROM transactions WHERE account_id = "+account_id+" && transaction_id = '"+transaction_id+"'";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                if (rs.next()) {
+                    return new Transactions(rs.getString("transaction_id"), account_id, rs.getString("transaction_fk"), rs.getString("transaction_date"));
+                }
+                stmt.close();
+                rs.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            return null;
+        }else{
+            try {
+                conn = DbCon.makeConnection();
+                String sql = "SELECT * FROM transactions WHERE account_id = " + account_id + " AND transaction_fk LIKE '" + type + "-%'";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                if (rs.next()) {
+                    return new Transactions(rs.getString("transaction_id"), account_id, rs.getString("transaction_fk"), rs.getString("transaction_date"));
+                }
+                stmt.close();
+                rs.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            return null;
+        }
+    }
 }

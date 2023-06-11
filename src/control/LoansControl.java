@@ -17,12 +17,25 @@ import table.TableLoans;
  * Pemrograman Berorientasi Obyek C
  */
 public class LoansControl {
-    private LoansDAO loansDao = new LoansDAO();
+    private static LoansDAO LoansDAO = new LoansDAO();
     private TransactionsDAO transactionDao = new TransactionsDAO();
-    public void insertLoans(Loans l){
-        loansDao.insertLoan(l);
+
+    public void insertLoan(Loans loan){
+        LoansDAO.insertLoan(loan);
     }
-    
+
+    public void updateLoan(Loans loan){
+        LoansDAO.updateLoan(loan);
+    }
+
+    public void deleteLoan(Loans loan){
+        LoansDAO.deleteLoan(loan);
+    }
+
+    public Loans getLoan(String loan_id, String status){
+        return LoansDAO.getLoan(loan_id, status);
+    }
+
     public TableJoinLoans showAllJoinLoans(String type){
         List<TransactionsJoins> tf = transactionDao.showAllTransactions(type);
         TableJoinLoans table = new TableJoinLoans(tf);

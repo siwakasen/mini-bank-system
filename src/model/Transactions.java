@@ -4,7 +4,7 @@ public class Transactions {
     private String transaction_id,transaction_fk,transaction_date;
     private int account_id;
 
-    public Transactions(String transaction_id, String transaction_fk, String transaction_date, int account_id) {
+    public Transactions(String transaction_id, int account_id, String transaction_fk, String transaction_date) {
         this.transaction_id = transaction_id;
         this.transaction_fk = transaction_fk;
         this.transaction_date = transaction_date;

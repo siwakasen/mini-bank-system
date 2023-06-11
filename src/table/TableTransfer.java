@@ -3,41 +3,35 @@ package table;
 import javax.swing.table.AbstractTableModel;
 import model.Transfers;
 import java.util.List;
-import model.Transactions;
-import model.TransactionsJoins;
 
 public class TableTransfer extends AbstractTableModel{
-    private List<TransactionsJoins> transfers;
+    private List<Transfers> transfers;
 
-    public TableTransfer(List<TransactionsJoins> transfers) {
-        this.transfers = transfers;
+    TableTransfer(List<Transfers> transfers){
+        this.transfers=transfers;
     }
     
     @Override
     public int getRowCount(){
-        return transfers.size() ;
+        return transfers.size();
     }
 
     @Override
     public int getColumnCount(){
-        return 6;
+        return 7;
     }
 
     @Override
     public Object getValueAt(int row, int col){
         switch(col){
             case 0: 
-                return transfers.get(row).getTn().getTransaction_id();
+                return transfers.get(row).getTransfer_id();
             case 1: 
-                return transfers.get(row).getTf().getTransfer_id();
+                return transfers.get(row).getFrom_account_id();
             case 2: 
-                return transfers.get(row).getTf().getFrom_account_id();
+                return transfers.get(row).getTo_account_id();
             case 3: 
-                return transfers.get(row).getTf().getTo_account_id();
-            case 4: 
-                return transfers.get(row).getTf().getAmount();
-            case 5:
-                return transfers.get(row).getTn().getTransaction_date();
+                return transfers.get(row).getAmount();
             default: 
                 return null;
         }
@@ -46,18 +40,14 @@ public class TableTransfer extends AbstractTableModel{
     @Override
     public String getColumnName(int col){
         switch (col) {
-            case 0:
-                return "Transcation ID";
-            case 1: 
+            case 0: 
                 return "Transfer ID";
-            case 2: 
+            case 1: 
                 return "From Account ID";
-            case 3: 
+            case 2: 
                 return "To Account ID";
-            case 4:
+            case 3:
                 return "Amount";
-            case 5:
-                return "Date";
             default: 
                 return null;
         }

@@ -39,7 +39,7 @@ public class LoginView extends javax.swing.JFrame {
         base.setBackground(new java.awt.Color(255, 255, 255));
         base.setPreferredSize(new java.awt.Dimension(1650, 1080));
 
-        gambar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/login/loginpage (2).jpg"))); // NOI18N
+        gambar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/login/login.jpg"))); // NOI18N
 
         rightPanel.setBackground(new java.awt.Color(235, 235, 255));
 
@@ -107,11 +107,9 @@ public class LoginView extends javax.swing.JFrame {
         );
 
         minibankLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 48)); // NOI18N
-        minibankLabel.setForeground(new java.awt.Color(0, 0, 0));
         minibankLabel.setText("MiniBank");
 
         welcomeLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 44)); // NOI18N
-        welcomeLabel.setForeground(new java.awt.Color(0, 0, 0));
 
         katakataPanel.setBackground(new java.awt.Color(235, 235, 255));
         katakataPanel.setRoundBottomLeft(70);
@@ -119,15 +117,12 @@ public class LoginView extends javax.swing.JFrame {
         katakataPanel.setRoundTopRight(70);
 
         baris1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        baris1.setForeground(new java.awt.Color(0, 0, 0));
         baris1.setText("Welcome to MiniBank, your trusted financial companion!");
 
         baris2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        baris2.setForeground(new java.awt.Color(0, 0, 0));
         baris2.setText("Unlock a world of possibilities and take control of your banking journey.");
 
         baris3.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        baris3.setForeground(new java.awt.Color(0, 0, 0));
         baris3.setText("Login now and experience banking made simple and secure.");
 
         javax.swing.GroupLayout katakataPanelLayout = new javax.swing.GroupLayout(katakataPanel);
@@ -195,7 +190,7 @@ public class LoginView extends javax.swing.JFrame {
                         .addComponent(katakataPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

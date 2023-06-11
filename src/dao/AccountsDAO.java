@@ -112,7 +112,7 @@ public class AccountsDAO {
     public void deleteAccounts(int account_id){
         con = dbCon.makeConnection();
         
-        String sql = "DELETE FROM accounts WHERE account_id = " + account_id + "";
+        String sql = "DELETE FROM accounts WHERE account_id = " + account_id;
         System.out.println("Deleting Accounts...");
         
         try {
@@ -151,5 +151,37 @@ public class AccountsDAO {
         dbCon.closeConnection();
         System.out.println("a");
         return a;
+    }
+    public Accounts selectAccount(int account_id){
+        con = dbCon.makeConnection();
+        String sql = "SELECT * FROM accounts JOIN customers ON accounts.customer_id = customers.customer_id WHERE account_id = "+account_id ;
+        try{
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if(rs.next()){
+                return new Accounts(Integer.parseInt(rs.getString("accounts.account_id")),
+                            rs.getString("accounts.account_type"), Double.parseDouble(rs.getString("accounts.balance")),
+                            new Customers(Integer.parseInt(rs.getString("customers.customer_id")),rs.getString("customers.first_name"),rs.getString("customers.last_name"),rs.getString("customers.email"),rs.getString("customers.phone_number"),rs.getString("customers.address")), rs.getString("accounts.username"), rs.getString("accounts.password"));
+            }
+        } catch (Exception e){
+            return null;
+        }
+        return null;
+    }
+    
+    public boolean checkAccountAvail(int account_id){
+        con = dbCon.makeConnection();
+        
+        String sql = "SELECT * FROM accounts WHERE account_id = "+account_id;
+        try{
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if(rs.next()){
+                return true;
+            }
+        } catch (Exception e){
+            return false;
+        }
+        return false;
     }
 }
