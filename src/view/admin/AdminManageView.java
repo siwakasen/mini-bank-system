@@ -12,14 +12,16 @@ import table.TableAdministrators;
 
 public class AdminManageView extends javax.swing.JFrame {
     private AdministratorsControl administratorsControl;
+    private Administrators admin;
     String action = null;
     List<Administrators> listAdministrators;
     int selectedId = 0;
     /**
      * Creates new form AdminManageView
      */
-    public AdminManageView() {
+    public AdminManageView(Administrators admin) {
         initComponents();
+        this.admin=admin;
         administratorsControl = new AdministratorsControl();
         setComponent(false);
         setEditDeleteBtn(false);
@@ -622,13 +624,13 @@ public class AdminManageView extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void homePaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homePaneMouseClicked
-       DasboardView ds = new DasboardView();
+       DasboardView ds = new DasboardView(admin);
        this.dispose();
        ds.setVisible(true);
     }//GEN-LAST:event_homePaneMouseClicked
 
     private void EmployeePaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeePaneMouseClicked
-        EmployeeManageView ep = new EmployeeManageView();
+        EmployeeManageView ep = new EmployeeManageView(admin);
         this.dispose();
         ep.setVisible(true);
     }//GEN-LAST:event_EmployeePaneMouseClicked
@@ -679,7 +681,7 @@ public class AdminManageView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminManageView().setVisible(true);
+                new AdminManageView(null).setVisible(true);
             }
         });
     }

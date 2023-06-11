@@ -8,10 +8,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import model.Employees;
 import table.TableEmployees;
+import model.Administrators;
 
 
 public class EmployeeManageView extends javax.swing.JFrame {
     private EmployeesControl employeesControl;
+    private Administrators admin;
     String action = null;
     List<Employees> listEmployees;
     int selectedId = 0;
@@ -20,8 +22,9 @@ public class EmployeeManageView extends javax.swing.JFrame {
     /**
      * Creates new form EmployeeManageView
      */
-    public EmployeeManageView() {
+    public EmployeeManageView(Administrators admin) {
         initComponents();
+        this.admin=admin;
         employeesControl = new EmployeesControl();
         setComponent(false);
         setEditDeleteBtn(false);
@@ -816,13 +819,13 @@ public class EmployeeManageView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void adminPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminPaneMouseClicked
-        AdminManageView amv = new AdminManageView();
+        AdminManageView amv = new AdminManageView(admin);
         this.dispose();
         amv.setVisible(true);
     }//GEN-LAST:event_adminPaneMouseClicked
 
     private void homePaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homePaneMouseClicked
-       DasboardView ds = new DasboardView();
+       DasboardView ds = new DasboardView(admin);
        this.dispose();
        ds.setVisible(true);
     }//GEN-LAST:event_homePaneMouseClicked
@@ -1026,7 +1029,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EmployeeManageView().setVisible(true);
+                new EmployeeManageView(null).setVisible(true);
             }
         });
     }
