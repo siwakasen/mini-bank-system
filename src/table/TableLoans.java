@@ -26,17 +26,17 @@ public class TableLoans extends AbstractTableModel{
         switch(col){
             case 0: 
                 return loans.get(row).getLoan_id();
+//            case 1: 
+//                return loans.get(row).getaccount_id();
             case 1: 
-                return loans.get(row).getaccount_id();
+                return loans.get(row).getLoan_type();
             case 2: 
-                return loans.get(row).getLoantype();
-            case 3: 
                 return loans.get(row).getAmount();
-            case 4:
+            case 3:
                 return loans.get(row).getInterest_rate();
-            case 5:
+            case 4:
                 return loans.get(row).getLoan_start_date();
-            case 6:
+            case 5:
                 return loans.get(row).getLoan_end_date();
             default: 
                 return null;
@@ -48,17 +48,17 @@ public class TableLoans extends AbstractTableModel{
         switch (col) {
             case 0: 
                 return "Loans ID";
+//            case 1: 
+//                return "Account ID";
             case 1: 
-                return "Customer ID";
-            case 2: 
                 return "Loan Type";
-            case 3:
+            case 2:
                 return "Amount";
-            case 4:
+            case 3:
                 return "Interest Rate";
-            case 5:
+            case 4:
                 return "Start Date";
-            case 6:
+            case 5:
                 return "End Date";
             default: 
                 return null;

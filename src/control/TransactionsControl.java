@@ -21,7 +21,9 @@ public class TransactionsControl {
         TableTransactions tabelTransaction = new TableTransactions(listTransaction);
         return tabelTransaction;
     }
-    public void inserTransaction(int account_id, String transaction_type, String transaction_date){
-        transactionDao.insertTransaction(account_id, transaction_type, transaction_date);
+    
+    
+    public void inserTransaction(Transactions t){
+        transactionDao.insertTransaction(t);
     }
 }

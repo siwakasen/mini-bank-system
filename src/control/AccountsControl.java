@@ -27,4 +27,8 @@ public class AccountsControl {
     public void deleteAccount(int account_id){
         aDao.deleteAccounts(account_id);
     }
+    
+    public Accounts searchAccount(int account_id){
+        return aDao.searchAccounts(account_id);
+    }
 }

@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Customers;
 import model.Accounts;
+import control.CustomersControl;
 
 
 public class AccountsDAO {
     private DbConnection dbCon = new DbConnection();
     private Connection con;
+    private CustomersControl c = new CustomersControl();
     
     public void insertAccounts(Accounts a){
         con = dbCon.makeConnection();
@@ -49,7 +51,8 @@ public class AccountsDAO {
                 + "OR a.account_type LIKE '%" + query + "%'"
                 + "OR a.balance LIKE '%" + query + "%'"
                 + "OR a.username LIKE '%" + query + "%'"
-                + "OR a.password LIKE '%" + query + "%')";
+                + "OR a.password LIKE '%" + query + "%'"
+                + "OR a.customer_id LIKE '%" + query + "%')";
         System.out.println("Mengambil data Accounts...");       
         List<Accounts> list = new ArrayList<>();
         
@@ -122,5 +125,31 @@ public class AccountsDAO {
             System.out.println(e);
         }
         dbCon.closeConnection();
+    }
+    
+    public Accounts searchAccounts(int account_id){
+        con = dbCon.makeConnection();
+        System.out.println("a");
+        String sql = "SELECT * FROM accounts WHERE account_id = '"+account_id+"'";
+        System.out.println("Searching Accounts...");
+        Accounts a = null;
+        try {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            
+            if(rs!=null){
+                while(rs.next()){
+                    a = new Accounts(rs.getInt("account_id"), rs.getString("account_type"), 
+                        rs.getDouble("balance"), c.searchCustomer(rs.getInt("customer_id")), rs.getString("username"), 
+                        rs.getString("password"));
+                }
+            }
+            rs.close();
+            statement.close();
+        } catch (Exception e) {
+        }
+        dbCon.closeConnection();
+        System.out.println("a");
+        return a;
     }
 }

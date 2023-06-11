@@ -1,11 +1,18 @@
 
 package view.employee;
 
+import java.awt.geom.RoundRectangle2D;
+
 import model.Accounts;
 import model.Customers;
 import control.AccountsControl;
 import control.CustomersControl;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.geom.RoundRectangle2D;
 import java.util.List;
+import javaswingdev.swing.table.TableHeader;
+import javax.swing.JOptionPane;
 import table.TableCustomers;
 import javax.swing.table.TableModel;
 import table.TableAccounts;
@@ -26,7 +33,18 @@ public class CustomerServiceView extends javax.swing.JFrame {
         setComponent(false);
         setEditDeleteBtn(false);
         showAccounts();
-//        setEditDeleteBtn(false);
+        init();
+        initJFrame();
+    }
+    
+    
+    public void initJFrame(){
+        setLocationRelativeTo(null);
+        setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
+    }
+    
+    public void init(){
+        titleBar.initJFram(this);
     }
     
     public void setComponent(boolean value){
@@ -59,24 +77,19 @@ public class CustomerServiceView extends javax.swing.JFrame {
     }
     
     public void setEditDeleteBtn(boolean value){
-        editCus.setEnabled(value);
-        deleteCus.setEnabled(value);
-        if(value==false){
-            editCus.setBackground(new java.awt.Color(204, 204, 204));
-            deleteCus.setBackground(new java.awt.Color(204, 204, 204));
-        }else{
-            editCus.setBackground(new java.awt.Color(241, 196, 15));
-            deleteCus.setBackground(new java.awt.Color(220, 53, 69));
-        }
+        deleteBtn.setEnabled(value);
+        editBtn.setEnabled(value);
+
     }
     public void setAddBtn(boolean value){
-        createCus.setEnabled(value);
-        if(value==false) createCus.setBackground(new java.awt.Color(204, 204, 204));
-        else createCus.setBackground(new java.awt.Color(25, 135, 84));
-        
+        addBtn.setEnabled(value);
     }
     
     public void showAccounts(){
+        tableCustomers.getTableHeader().setFont(new Font("Montserrat", Font.PLAIN, 12));
+        tableCustomers.getTableHeader().setOpaque(false);
+        tableCustomers.getTableHeader().setForeground(new Color(0, 61, 121));
+        tableCustomers.setRowHeight(25);
         tableCustomers.setModel( accountControl.showAccounts(""));
     }
 
@@ -90,19 +103,12 @@ public class CustomerServiceView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
         base = new javax.swing.JPanel();
-        header = new javax.swing.JPanel();
+        kGradientPanel1 = new keeptoo.KGradientPanel();
         labelPane = new javax.swing.JLabel();
-        editCus = new view.PanelRound();
-        labelEdit = new javax.swing.JLabel();
-        createCus = new view.PanelRound();
-        labelAdd = new javax.swing.JLabel();
-        deleteCus = new view.PanelRound();
-        labelDelete = new javax.swing.JLabel();
+        titleBar = new javaswingdev.swing.titlebar.TitleBar();
+        jLabel1 = new javax.swing.JLabel();
         baseInputCus = new view.PanelRound();
-        dataCustomer = new view.PanelRound();
-        labelCus = new javax.swing.JLabel();
         firstNameLabel = new javax.swing.JLabel();
         inputFirstName = new javax.swing.JTextField();
         lastNameLabel = new javax.swing.JLabel();
@@ -113,8 +119,6 @@ public class CustomerServiceView extends javax.swing.JFrame {
         inputPhoneNumber = new javax.swing.JTextField();
         addressLabel = new javax.swing.JLabel();
         inputAddress = new javax.swing.JTextField();
-        dataAccount = new view.PanelRound();
-        labelAcc = new javax.swing.JLabel();
         password = new javax.swing.JLabel();
         inputPassword = new javax.swing.JPasswordField();
         inputUsername = new javax.swing.JTextField();
@@ -125,178 +129,75 @@ public class CustomerServiceView extends javax.swing.JFrame {
         accountTypeComboBox = new javax.swing.JComboBox<>();
         saveBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
+        labelCus = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        labelAcc = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        backgroundTable = new view.PanelRound();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCustomers = new javax.swing.JTable();
         inputSearch = new javax.swing.JTextField();
         searchBtn = new view.PanelRound();
         labelDelete1 = new javax.swing.JLabel();
+        addBtn = new javax.swing.JButton();
+        editBtn = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
-        base.setBackground(new java.awt.Color(255, 255, 255));
+        base.setBackground(new java.awt.Color(245, 245, 245));
 
-        header.setBackground(new java.awt.Color(0, 97, 154));
-        header.setPreferredSize(new java.awt.Dimension(1920, 113));
+        kGradientPanel1.setkEndColor(new java.awt.Color(0, 73, 178));
+        kGradientPanel1.setkGradientFocus(1000);
+        kGradientPanel1.setkStartColor(new java.awt.Color(0, 149, 182));
+        kGradientPanel1.setPreferredSize(new java.awt.Dimension(1440, 122));
 
         labelPane.setBackground(new java.awt.Color(255, 255, 255));
-        labelPane.setFont(new java.awt.Font("Poppins Medium", 0, 48)); // NOI18N
+        labelPane.setFont(new java.awt.Font("Montserrat ExtraBold", 0, 48)); // NOI18N
         labelPane.setForeground(new java.awt.Color(255, 255, 255));
         labelPane.setText("Customer Service");
 
-        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
-        header.setLayout(headerLayout);
-        headerLayout.setHorizontalGroup(
-            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(labelPane)
-                .addContainerGap(1225, Short.MAX_VALUE))
-        );
-        headerLayout.setVerticalGroup(
-            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(labelPane)
-                .addGap(24, 24, 24))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/admin/help-desk.png"))); // NOI18N
 
-        editCus.setBackground(new java.awt.Color(241, 196, 15));
-        editCus.setPreferredSize(new java.awt.Dimension(285, 100));
-        editCus.setRoundBottomLeft(20);
-        editCus.setRoundBottomRight(20);
-        editCus.setRoundTopLeft(20);
-        editCus.setRoundTopRight(20);
-        editCus.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                editCusMouseClicked(evt);
-            }
-        });
-
-        labelEdit.setBackground(new java.awt.Color(255, 255, 255));
-        labelEdit.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 14)); // NOI18N
-        labelEdit.setForeground(new java.awt.Color(255, 255, 255));
-        labelEdit.setText("Ubah ");
-
-        javax.swing.GroupLayout editCusLayout = new javax.swing.GroupLayout(editCus);
-        editCus.setLayout(editCusLayout);
-        editCusLayout.setHorizontalGroup(
-            editCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editCusLayout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addComponent(labelEdit)
-                .addGap(34, 34, 34))
-        );
-        editCusLayout.setVerticalGroup(
-            editCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(editCusLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(labelEdit)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-
-        createCus.setBackground(new java.awt.Color(25, 135, 84));
-        createCus.setPreferredSize(new java.awt.Dimension(285, 100));
-        createCus.setRoundBottomLeft(20);
-        createCus.setRoundBottomRight(20);
-        createCus.setRoundTopLeft(20);
-        createCus.setRoundTopRight(20);
-        createCus.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                createCusMouseClicked(evt);
-            }
-        });
-
-        labelAdd.setBackground(new java.awt.Color(255, 255, 255));
-        labelAdd.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 14)); // NOI18N
-        labelAdd.setForeground(new java.awt.Color(255, 255, 255));
-        labelAdd.setText("Tambah");
-
-        javax.swing.GroupLayout createCusLayout = new javax.swing.GroupLayout(createCus);
-        createCus.setLayout(createCusLayout);
-        createCusLayout.setHorizontalGroup(
-            createCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createCusLayout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
-                .addComponent(labelAdd)
-                .addGap(33, 33, 33))
-        );
-        createCusLayout.setVerticalGroup(
-            createCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(createCusLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(labelAdd)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-
-        deleteCus.setBackground(new java.awt.Color(220, 53, 69));
-        deleteCus.setPreferredSize(new java.awt.Dimension(285, 100));
-        deleteCus.setRoundBottomLeft(20);
-        deleteCus.setRoundBottomRight(20);
-        deleteCus.setRoundTopLeft(20);
-        deleteCus.setRoundTopRight(20);
-        deleteCus.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteCusMouseClicked(evt);
-            }
-        });
-
-        labelDelete.setBackground(new java.awt.Color(255, 255, 255));
-        labelDelete.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 14)); // NOI18N
-        labelDelete.setForeground(new java.awt.Color(255, 255, 255));
-        labelDelete.setText("Hapus");
-
-        javax.swing.GroupLayout deleteCusLayout = new javax.swing.GroupLayout(deleteCus);
-        deleteCus.setLayout(deleteCusLayout);
-        deleteCusLayout.setHorizontalGroup(
-            deleteCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(deleteCusLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(labelDelete)
+        javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
+        kGradientPanel1.setLayout(kGradientPanel1Layout);
+        kGradientPanel1Layout.setHorizontalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(titleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelPane)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        deleteCusLayout.setVerticalGroup(
-            deleteCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(deleteCusLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(labelDelete)
-                .addContainerGap(18, Short.MAX_VALUE))
+        kGradientPanel1Layout.setVerticalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(titleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelPane)
+                        .addGap(20, 20, 20))))
         );
 
-        baseInputCus.setBackground(new java.awt.Color(245, 245, 245));
+        baseInputCus.setBackground(new java.awt.Color(255, 255, 255));
         baseInputCus.setPreferredSize(new java.awt.Dimension(285, 100));
         baseInputCus.setRoundBottomLeft(20);
         baseInputCus.setRoundBottomRight(20);
         baseInputCus.setRoundTopLeft(20);
         baseInputCus.setRoundTopRight(20);
-
-        dataCustomer.setBackground(new java.awt.Color(92, 92, 92));
-        dataCustomer.setPreferredSize(new java.awt.Dimension(285, 100));
-        dataCustomer.setRoundBottomLeft(20);
-        dataCustomer.setRoundBottomRight(20);
-        dataCustomer.setRoundTopLeft(20);
-        dataCustomer.setRoundTopRight(20);
-
-        labelCus.setBackground(new java.awt.Color(255, 255, 255));
-        labelCus.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 24)); // NOI18N
-        labelCus.setForeground(new java.awt.Color(255, 255, 255));
-        labelCus.setText("Data Customer");
-
-        javax.swing.GroupLayout dataCustomerLayout = new javax.swing.GroupLayout(dataCustomer);
-        dataCustomer.setLayout(dataCustomerLayout);
-        dataCustomerLayout.setHorizontalGroup(
-            dataCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataCustomerLayout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addComponent(labelCus)
-                .addGap(27, 27, 27))
-        );
-        dataCustomerLayout.setVerticalGroup(
-            dataCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dataCustomerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelCus)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         firstNameLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         firstNameLabel.setForeground(new java.awt.Color(51, 51, 51));
@@ -304,6 +205,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
 
         inputFirstName.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         inputFirstName.setForeground(new java.awt.Color(0, 0, 0));
+        inputFirstName.setNextFocusableComponent(inputLastName);
         inputFirstName.setPreferredSize(new java.awt.Dimension(64, 27));
         inputFirstName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -317,6 +219,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
 
         inputLastName.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         inputLastName.setForeground(new java.awt.Color(0, 0, 0));
+        inputLastName.setNextFocusableComponent(inputEmail);
         inputLastName.setPreferredSize(new java.awt.Dimension(64, 27));
         inputLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -330,6 +233,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
 
         inputEmail.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         inputEmail.setForeground(new java.awt.Color(0, 0, 0));
+        inputEmail.setNextFocusableComponent(inputPhoneNumber);
         inputEmail.setPreferredSize(new java.awt.Dimension(64, 27));
 
         phoneNumberLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
@@ -338,6 +242,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
 
         inputPhoneNumber.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         inputPhoneNumber.setForeground(new java.awt.Color(0, 0, 0));
+        inputPhoneNumber.setNextFocusableComponent(inputAddress);
         inputPhoneNumber.setPreferredSize(new java.awt.Dimension(64, 27));
 
         addressLabel.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
@@ -348,38 +253,15 @@ public class CustomerServiceView extends javax.swing.JFrame {
         inputAddress.setForeground(new java.awt.Color(0, 0, 0));
         inputAddress.setPreferredSize(new java.awt.Dimension(64, 27));
 
-        dataAccount.setBackground(new java.awt.Color(92, 92, 92));
-        dataAccount.setPreferredSize(new java.awt.Dimension(285, 100));
-        dataAccount.setRoundBottomLeft(20);
-        dataAccount.setRoundBottomRight(20);
-        dataAccount.setRoundTopLeft(20);
-        dataAccount.setRoundTopRight(20);
-
-        labelAcc.setBackground(new java.awt.Color(255, 255, 255));
-        labelAcc.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 24)); // NOI18N
-        labelAcc.setForeground(new java.awt.Color(255, 255, 255));
-        labelAcc.setText("Data Account");
-
-        javax.swing.GroupLayout dataAccountLayout = new javax.swing.GroupLayout(dataAccount);
-        dataAccount.setLayout(dataAccountLayout);
-        dataAccountLayout.setHorizontalGroup(
-            dataAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dataAccountLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(labelAcc)
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
-        dataAccountLayout.setVerticalGroup(
-            dataAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dataAccountLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelAcc)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         password.setFont(new java.awt.Font("Montserrat SemiBold", 1, 14)); // NOI18N
         password.setForeground(new java.awt.Color(51, 51, 51));
         password.setText("Password");
+
+        inputPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputPasswordActionPerformed(evt);
+            }
+        });
 
         inputUsername.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         inputUsername.setForeground(new java.awt.Color(0, 0, 0));
@@ -434,35 +316,70 @@ public class CustomerServiceView extends javax.swing.JFrame {
             }
         });
 
+        labelCus.setBackground(new java.awt.Color(51, 51, 51));
+        labelCus.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 24)); // NOI18N
+        labelCus.setForeground(new java.awt.Color(0, 61, 121));
+        labelCus.setText("Data Customer");
+
+        jPanel1.setBackground(new java.awt.Color(255, 183, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
+
+        labelAcc.setBackground(new java.awt.Color(255, 255, 255));
+        labelAcc.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 24)); // NOI18N
+        labelAcc.setForeground(new java.awt.Color(0, 61, 121));
+        labelAcc.setText("Data Account");
+
+        jPanel2.setBackground(new java.awt.Color(255, 183, 0));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout baseInputCusLayout = new javax.swing.GroupLayout(baseInputCus);
         baseInputCus.setLayout(baseInputCusLayout);
         baseInputCusLayout.setHorizontalGroup(
             baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(baseInputCusLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(baseInputCusLayout.createSequentialGroup()
                         .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(username)
                             .addComponent(password)
                             .addComponent(balanceLabel)
                             .addComponent(accountTypeLabel))
-                        .addGap(44, 44, 44)
                         .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(accountTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(baseInputCusLayout.createSequentialGroup()
-                                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(inputUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                    .addComponent(inputPassword)
-                                    .addComponent(inputBalance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 35, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, baseInputCusLayout.createSequentialGroup()
-                        .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, baseInputCusLayout.createSequentialGroup()
+                            .addGroup(baseInputCusLayout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseInputCusLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(accountTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(inputBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(baseInputCusLayout.createSequentialGroup()
+                        .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelCus)
+                            .addGroup(baseInputCusLayout.createSequentialGroup()
                                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(firstNameLabel)
                                     .addComponent(lastNameLabel)
@@ -471,67 +388,84 @@ public class CustomerServiceView extends javax.swing.JFrame {
                                     .addComponent(addressLabel))
                                 .addGap(34, 34, 34)
                                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(inputPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(inputPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(inputEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(inputLastName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(inputAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(inputFirstName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(inputAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(dataCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dataAccount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelAcc)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         baseInputCusLayout.setVerticalGroup(
             baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(baseInputCusLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(dataCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(21, 21, 21)
+                .addComponent(labelCus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(firstNameLabel)
-                    .addComponent(inputFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                    .addComponent(inputFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lastNameLabel)
-                    .addComponent(inputLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                    .addComponent(inputLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailLabel)
-                    .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                    .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phoneNumberLabel)
-                    .addComponent(inputPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                    .addComponent(inputPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addressLabel)
-                    .addComponent(inputAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(dataAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                    .addComponent(inputAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addComponent(labelAcc)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username)
-                    .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(password)
-                    .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(baseInputCusLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(balanceLabel))
-                    .addGroup(baseInputCusLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(inputBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
-                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(balanceLabel)
+                    .addComponent(inputBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(accountTypeLabel)
-                    .addComponent(accountTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(accountTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
+
+        backgroundTable.setBackground(new java.awt.Color(255, 255, 255));
+        backgroundTable.setPreferredSize(new java.awt.Dimension(285, 100));
+        backgroundTable.setRoundBottomLeft(20);
+        backgroundTable.setRoundBottomRight(20);
+        backgroundTable.setRoundTopLeft(20);
+        backgroundTable.setRoundTopRight(20);
+        backgroundTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backgroundTableMouseClicked(evt);
+            }
+        });
 
         tableCustomers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -551,14 +485,30 @@ public class CustomerServiceView extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableCustomers);
 
-        inputSearch.setFocusable(false);
+        javax.swing.GroupLayout backgroundTableLayout = new javax.swing.GroupLayout(backgroundTable);
+        backgroundTable.setLayout(backgroundTableLayout);
+        backgroundTableLayout.setHorizontalGroup(
+            backgroundTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundTableLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        backgroundTableLayout.setVerticalGroup(
+            backgroundTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundTableLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         inputSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 inputSearchMouseClicked(evt);
             }
         });
 
-        searchBtn.setBackground(new java.awt.Color(153, 204, 255));
+        searchBtn.setBackground(new java.awt.Color(153, 89, 222));
         searchBtn.setPreferredSize(new java.awt.Dimension(285, 100));
         searchBtn.setRoundBottomLeft(20);
         searchBtn.setRoundBottomRight(20);
@@ -569,90 +519,105 @@ public class CustomerServiceView extends javax.swing.JFrame {
                 searchBtnMouseClicked(evt);
             }
         });
+        searchBtn.setLayout(null);
 
         labelDelete1.setBackground(new java.awt.Color(255, 255, 255));
         labelDelete1.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 14)); // NOI18N
         labelDelete1.setForeground(new java.awt.Color(255, 255, 255));
         labelDelete1.setText("Cari");
+        searchBtn.add(labelDelete1);
+        labelDelete1.setBounds(23, 6, 29, 18);
 
-        javax.swing.GroupLayout searchBtnLayout = new javax.swing.GroupLayout(searchBtn);
-        searchBtn.setLayout(searchBtnLayout);
-        searchBtnLayout.setHorizontalGroup(
-            searchBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchBtnLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(labelDelete1)
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
-        searchBtnLayout.setVerticalGroup(
-            searchBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchBtnLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelDelete1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        addBtn.setBackground(new java.awt.Color(0, 61, 121));
+        addBtn.setFont(new java.awt.Font("Montserrat SemiBold", 1, 18)); // NOI18N
+        addBtn.setForeground(new java.awt.Color(255, 255, 255));
+        addBtn.setText("Tambah");
+        addBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addBtnMouseClicked(evt);
+            }
+        });
+
+        editBtn.setBackground(new java.awt.Color(255, 183, 0));
+        editBtn.setFont(new java.awt.Font("Montserrat SemiBold", 1, 18)); // NOI18N
+        editBtn.setForeground(new java.awt.Color(255, 255, 255));
+        editBtn.setText("Ubah");
+        editBtn.setNextFocusableComponent(baseInputCus);
+        editBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editBtnMouseClicked(evt);
+            }
+        });
+
+        deleteBtn.setBackground(new java.awt.Color(220, 53, 69));
+        deleteBtn.setFont(new java.awt.Font("Montserrat SemiBold", 1, 18)); // NOI18N
+        deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
+        deleteBtn.setText("Hapus");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
         base.setLayout(baseLayout);
         baseLayout.setHorizontalGroup(
             baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(baseLayout.createSequentialGroup()
-                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 1658, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(baseInputCus, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(baseLayout.createSequentialGroup()
-                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(baseLayout.createSequentialGroup()
-                                .addComponent(createCus, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(editCus, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(deleteCus, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
-                            .addComponent(baseInputCus, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(baseLayout.createSequentialGroup()
-                                .addComponent(inputSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(321, 321, 321)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createSequentialGroup()
+                        .addComponent(inputSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(backgroundTable, javax.swing.GroupLayout.PREFERRED_SIZE, 843, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(46, Short.MAX_VALUE))
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1366, Short.MAX_VALUE)
         );
         baseLayout.setVerticalGroup(
             baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(baseLayout.createSequentialGroup()
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(editCus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deleteCus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(searchBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(inputSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(createCus, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(baseInputCus, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addGap(0, 299, Short.MAX_VALUE))
+                    .addComponent(baseInputCus, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                    .addComponent(backgroundTable, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
+                .addGap(0, 35, Short.MAX_VALUE))
         );
-
-        jScrollPane2.setViewportView(base);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1650, Short.MAX_VALUE)
+            .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tableCustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCustomersMouseClicked
@@ -687,52 +652,37 @@ public class CustomerServiceView extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        if (action=="Tambah") {
-            Customers c = new Customers((customerControl.lastCostumer() + 1), inputFirstName.getText(), inputLastName.getText(), inputEmail.getText(), inputPhoneNumber.getText(), inputAddress.getText());
-            Accounts a = new Accounts(0, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(), inputPassword.getText());
-            customerControl.insertCustomer(c);
-            accountControl.insertAccounts(a);
-        }else{
-            Customers c = new Customers(selectedIdCustomer, inputFirstName.getText(), inputLastName.getText(), inputEmail.getText(), inputPhoneNumber.getText(), inputAddress.getText());
-            Accounts a = new Accounts(selectedIdAccount, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(), inputPassword.getText());
-            customerControl.updateCustomer(c);
-            accountControl.updateAccount(a);
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah menambah data transfer?", "Konfirmasi",JOptionPane.YES_NO_OPTION);
+        switch (getAnswer) {
+            case 0:
+                if (action=="Tambah") {
+                    Customers c = new Customers((customerControl.lastCostumer() + 1), inputFirstName.getText(), inputLastName.getText(), inputEmail.getText(), inputPhoneNumber.getText(), inputAddress.getText());
+                    Accounts a = new Accounts(0, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(), inputPassword.getText());
+                    customerControl.insertCustomer(c);
+                    accountControl.insertAccounts(a);
+                }else{
+                    Customers c = new Customers(selectedIdCustomer, inputFirstName.getText(), inputLastName.getText(), inputEmail.getText(), inputPhoneNumber.getText(), inputAddress.getText());
+                    Accounts a = new Accounts(selectedIdAccount, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(), inputPassword.getText());
+                    customerControl.updateCustomer(c);
+                    accountControl.updateAccount(a);
+                }
+                clearText();
+                showAccounts();
+                setComponent(false);
+                setEditDeleteBtn(false);
+                setAddBtn(true);
+                break;
+            case 1:
+                //do nothing
+                break;
+            default:
+                throw new AssertionError();
         }
-        clearText();
-        showAccounts();
-        setComponent(false);
-        setEditDeleteBtn(false);
-        setAddBtn(true);
-
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void accountTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountTypeComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_accountTypeComboBoxActionPerformed
-
-    private void deleteCusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteCusMouseClicked
-        accountControl.deleteAccount(selectedIdAccount);
-        customerControl.deleteCustomer(selectedIdCustomer);
-        clearText();
-        showAccounts();
-        setComponent(false);
-        setEditDeleteBtn(false);
-        setAddBtn(true);
-    }//GEN-LAST:event_deleteCusMouseClicked
-
-    private void createCusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createCusMouseClicked
-        setComponent(true);
-        setEditDeleteBtn(false);
-        inputSearch.setText("");
-
-        clearText();
-        action = "Tambah";
-    }//GEN-LAST:event_createCusMouseClicked
-
-    private void editCusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editCusMouseClicked
-        setComponent(true);
-        action = "Edit";
-    }//GEN-LAST:event_editCusMouseClicked
 
     private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
         setComponent(false);
@@ -741,6 +691,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
                 clearText();
                 setEditDeleteBtn(false);
                 inputSearch.setText("");
+                JOptionPane.showMessageDialog(null,"Data tidak ditemukan!","Konfirmasi", JOptionPane.DEFAULT_OPTION);
             }else{
                 tableCustomers.setModel(accounts);
             }
@@ -759,6 +710,54 @@ public class CustomerServiceView extends javax.swing.JFrame {
     private void inputLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputLastNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputLastNameActionPerformed
+
+    private void backgroundTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backgroundTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backgroundTableMouseClicked
+
+    private void inputPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputPasswordActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane,
+            "Apakah yakin ingin menghapus data?", "Konfirmasi",
+            JOptionPane.YES_NO_OPTION);
+        switch (getAnswer) {
+            case 0:
+            accountControl.deleteAccount(selectedIdAccount);
+            customerControl.deleteCustomer(selectedIdCustomer);
+            clearText();
+            showAccounts();
+            setComponent(false);
+            setEditDeleteBtn(false);
+            setAddBtn(true);
+            JOptionPane.showMessageDialog(null, " Data berhasil dihapus!");
+            break;
+            case 1:
+
+            break;
+            default:
+            throw new AssertionError();
+        }
+
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
+        setComponent(true);
+        setEditDeleteBtn(false);
+        inputSearch.setText("");
+
+        clearText();
+        action = "Tambah";
+    }//GEN-LAST:event_addBtnMouseClicked
+
+    private void editBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBtnMouseClicked
+        setComponent(true);
+        setEditDeleteBtn(false);
+        inputSearch.setText("");
+        action = "Tambah";
+    }//GEN-LAST:event_editBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -798,19 +797,17 @@ public class CustomerServiceView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> accountTypeComboBox;
     private javax.swing.JLabel accountTypeLabel;
+    private javax.swing.JButton addBtn;
     private javax.swing.JLabel addressLabel;
+    private view.PanelRound backgroundTable;
     private javax.swing.JLabel balanceLabel;
     private javax.swing.JPanel base;
     private view.PanelRound baseInputCus;
     private javax.swing.JButton cancelBtn;
-    private view.PanelRound createCus;
-    private view.PanelRound dataAccount;
-    private view.PanelRound dataCustomer;
-    private view.PanelRound deleteCus;
-    private view.PanelRound editCus;
+    private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton editBtn;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel firstNameLabel;
-    private javax.swing.JPanel header;
     private javax.swing.JTextField inputAddress;
     private javax.swing.JTextField inputBalance;
     private javax.swing.JTextField inputEmail;
@@ -820,14 +817,14 @@ public class CustomerServiceView extends javax.swing.JFrame {
     private javax.swing.JTextField inputPhoneNumber;
     private javax.swing.JTextField inputSearch;
     private javax.swing.JTextField inputUsername;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel labelAcc;
-    private javax.swing.JLabel labelAdd;
     private javax.swing.JLabel labelCus;
-    private javax.swing.JLabel labelDelete;
     private javax.swing.JLabel labelDelete1;
-    private javax.swing.JLabel labelEdit;
     private javax.swing.JLabel labelPane;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JLabel password;
@@ -835,6 +832,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
     private javax.swing.JButton saveBtn;
     private view.PanelRound searchBtn;
     private javax.swing.JTable tableCustomers;
+    private javaswingdev.swing.titlebar.TitleBar titleBar;
     private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }

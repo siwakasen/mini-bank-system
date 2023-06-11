@@ -22,8 +22,11 @@ public class TransfersDAO {
             String sql_update = "UPDATE accounts SET balance = balance - " + transfer.getAmount() + " WHERE account_id = '" + transfer.getFrom_account_id() + "'";
             String sql_update2 = "UPDATE accounts SET balance = balance + " + transfer.getAmount() + " WHERE account_id = '" + transfer.getTo_account_id() + "'";
             Statement stmt = conn.createStatement();
+            System.out.println("a");
             int result = stmt.executeUpdate(sql);
+            System.out.println("b");
             int result2 = stmt.executeUpdate(sql_update);
+            System.out.println("c");
             int result3 = stmt.executeUpdate(sql_update2);
             System.out.println("Rows affected: " + result + ", " + result2 + ", " + result3);
             stmt.close();
@@ -31,6 +34,37 @@ public class TransfersDAO {
             System.out.println(e.getMessage());
         }
     }
+    
+        public List<Transfers> showListTransfer() {
+        conn = DbCon.makeConnection();
+        
+        String sql = "SELECT * FROM transfers";
+        System.out.println("Mengambil data Transfer...");
+        
+        List<Transfers> list = new ArrayList<>();
+        
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            
+            if (rs!=null){
+                while(rs.next()){
+                    Transfers t = new Transfers(rs.getString("transfer_id"), rs.getInt("from_account_id"),
+                            rs.getInt("to_account_id"), rs.getDouble("amount"));
+                    list.add(t);
+                }
+            }
+            rs.close();
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("Error reading database...");
+            System.out.println(e);
+        }
+        DbCon.closeConnection();
+        
+        return list;
+    }
+    
     
     public boolean checkAccount(int account_id){
         try {
