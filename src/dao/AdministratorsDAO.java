@@ -105,4 +105,34 @@ public class AdministratorsDAO {
         dbcon.closeConnection();
         return list;
     }
+    
+    public boolean searchAdmin(Administrators admin){
+        con = dbcon.makeConnection();
+        
+        String sql = "SELECT * from administrators WHERE username = '" +admin.getUsername()+ "' "+"AND password = '"+admin.getPassword()+"'";
+        System.out.println("Searching administrators...");
+        
+        try {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            
+            if (rs!=null) {
+                while (rs.next()) {                    
+                    Administrators a = new Administrators(rs.getInt("administrator_id"),
+                            rs.getString("username"), rs.getString("password"));
+                            
+                    if(a.getUsername().equals(admin.getUsername()) && a.getPassword().equals(admin.getPassword())){
+                        return true;
+                    }
+                }
+            }
+            rs.close();
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("Error searching administrators...");
+            System.out.println(e);
+        }
+        dbcon.closeConnection();
+        return false;
+    }
 }

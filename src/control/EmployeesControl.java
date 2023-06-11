@@ -28,8 +28,8 @@ public class EmployeesControl {
     public void deleteEmployees(int id){
         employDao.deleteEmployee(id);
     }
-    /**
-     * @param args the command line arguments
-     */
+    public Employees searchEmployees(Employees e){
+        return employDao.searchEmployee(e);
+    }
     
 }

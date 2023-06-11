@@ -1,6 +1,8 @@
 
 package view.employee;
 
+import view.LoginView;
+
 public class TellerView extends javax.swing.JFrame {
 
     /**
@@ -42,6 +44,7 @@ public class TellerView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         base.setBackground(new java.awt.Color(232, 249, 253));
+        base.setPreferredSize(new java.awt.Dimension(1650, 1080));
 
         tellerLabel.setBackground(new java.awt.Color(0, 0, 0));
         tellerLabel.setFont(new java.awt.Font("Poppins Medium", 0, 48)); // NOI18N
@@ -81,7 +84,7 @@ public class TellerView extends javax.swing.JFrame {
             .addGroup(loansPanelLayout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(loansLabel)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         loansPanelLayout.setVerticalGroup(
             loansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,27 +137,23 @@ public class TellerView extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addComponent(logoutBtn))
                     .addGroup(baseLayout.createSequentialGroup()
-                        .addGap(91, 91, 91)
+                        .addGap(167, 167, 167)
                         .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(transferPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(loansPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tellerLabel)
-                                .addGap(63, 63, 63)))))
-                .addContainerGap(94, Short.MAX_VALUE))
+                            .addComponent(tellerLabel)
+                            .addComponent(loansPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(transferPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(1233, Short.MAX_VALUE))
         );
         baseLayout.setVerticalGroup(
             baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(baseLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(30, 30, 30)
                 .addComponent(tellerLabel)
-                .addGap(49, 49, 49)
+                .addGap(184, 184, 184)
                 .addComponent(loansPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(53, 53, 53)
                 .addComponent(transferPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 529, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
                 .addGap(23, 23, 23))
         );
@@ -174,7 +173,9 @@ public class TellerView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        // TODO add your handling code here:
+        LoginView log = new LoginView();
+        this.dispose();
+        log.setVisible(true);
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void transferPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferPanelMouseClicked

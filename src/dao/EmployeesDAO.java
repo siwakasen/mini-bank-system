@@ -119,5 +119,40 @@ public class EmployeesDAO {
         dbcon.closeConnection();
         return list;
     }
-    
+        public Employees searchEmployee(Employees emp){
+        con = dbcon.makeConnection();
+         String sql = "SELECT * FROM employees where username = '"+emp.getUsername()+"' AND password ='"+emp.getPassword()+"'";
+        
+        System.out.println("Searching data employee...");
+        
+        try {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            System.out.println(emp.getUsername()+" "+emp.getPassword());
+            if (rs!=null) {
+                while (rs.next()) {
+                    Employees e = new Employees(rs.getInt("employee_id"),
+                            rs.getString("first_name"), rs.getString("last_name"),
+                            rs.getString("username"), rs.getString("password"), 
+                            rs.getString("start_work_date"), rs.getString("end_work_date"),
+                            rs.getInt("role_id"), rs.getString("office_number"), 
+                            rs.getString("station_number"));
+                   
+                    if(e.getUsername().equals(emp.getUsername()) && e.getPassword().equals(emp.getPassword())){
+                        return e;
+                    }
+                    
+                }
+            }
+            
+            rs.close();
+            statement.close();
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println("Error colleting data employee...");
+        }
+        dbcon.closeConnection();
+//        return new Employees(0, "", "", "", "", "", "", 0, "", "");
+          return null;
+    }
 }

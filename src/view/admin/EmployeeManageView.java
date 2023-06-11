@@ -1,12 +1,15 @@
 
 package view.admin;
+import model.Administrators;
 
 public class EmployeeManageView extends javax.swing.JFrame {
 
     /**
      * Creates new form EmployeeManageView
      */
-    public EmployeeManageView() {
+    private Administrators admin;
+    public EmployeeManageView(Administrators admin) {
+        this.admin=admin;
         initComponents();
     }
 
@@ -38,8 +41,6 @@ public class EmployeeManageView extends javax.swing.JFrame {
         saveCancelPane = new javax.swing.JPanel();
         saveBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        employeeTable = new javax.swing.JTable();
         inputPane = new javax.swing.JPanel();
         lastLabel = new javax.swing.JLabel();
         idLabel = new javax.swing.JLabel();
@@ -47,11 +48,10 @@ public class EmployeeManageView extends javax.swing.JFrame {
         firstInput = new javax.swing.JTextField();
         firstLabel = new javax.swing.JLabel();
         idInput = new javax.swing.JTextField();
-        userpassPane = new javax.swing.JPanel();
+        userInput = new javax.swing.JTextField();
         userLabel = new javax.swing.JLabel();
         passInput = new javax.swing.JTextField();
         passLabel = new javax.swing.JLabel();
-        userInput = new javax.swing.JTextField();
         startendPane = new javax.swing.JPanel();
         endInput = new javax.swing.JTextField();
         endLabel = new javax.swing.JLabel();
@@ -322,19 +322,6 @@ public class EmployeeManageView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        employeeTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(employeeTable);
-
         inputPane.setBackground(new java.awt.Color(187, 187, 187));
 
         lastLabel.setBackground(new java.awt.Color(0, 0, 0));
@@ -370,41 +357,11 @@ public class EmployeeManageView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout inputPaneLayout = new javax.swing.GroupLayout(inputPane);
-        inputPane.setLayout(inputPaneLayout);
-        inputPaneLayout.setHorizontalGroup(
-            inputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inputPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(inputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lastLabel)
-                    .addGroup(inputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lastInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                        .addComponent(idLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(firstLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(idInput, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(firstInput, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        inputPaneLayout.setVerticalGroup(
-            inputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inputPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(idLabel)
-                .addGap(5, 5, 5)
-                .addComponent(idInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(firstLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(firstInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lastLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lastInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        userpassPane.setBackground(new java.awt.Color(187, 187, 187));
+        userInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userInputActionPerformed(evt);
+            }
+        });
 
         userLabel.setBackground(new java.awt.Color(0, 0, 0));
         userLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
@@ -422,37 +379,53 @@ public class EmployeeManageView extends javax.swing.JFrame {
         passLabel.setForeground(new java.awt.Color(0, 0, 0));
         passLabel.setText("Password");
 
-        userInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userInputActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout userpassPaneLayout = new javax.swing.GroupLayout(userpassPane);
-        userpassPane.setLayout(userpassPaneLayout);
-        userpassPaneLayout.setHorizontalGroup(
-            userpassPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userpassPaneLayout.createSequentialGroup()
+        javax.swing.GroupLayout inputPaneLayout = new javax.swing.GroupLayout(inputPane);
+        inputPane.setLayout(inputPaneLayout);
+        inputPaneLayout.setHorizontalGroup(
+            inputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(userpassPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(inputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lastLabel)
+                    .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(firstLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(firstInput, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                    .addComponent(idInput)
+                    .addComponent(lastInput))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(inputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(userLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                    .addComponent(userInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                     .addComponent(passInput, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
-        userpassPaneLayout.setVerticalGroup(
-            userpassPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userpassPaneLayout.createSequentialGroup()
+        inputPaneLayout.setVerticalGroup(
+            inputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(userLabel)
-                .addGap(5, 5, 5)
-                .addComponent(userInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(passLabel)
+                .addGroup(inputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inputPaneLayout.createSequentialGroup()
+                        .addComponent(idLabel)
+                        .addGap(5, 5, 5)
+                        .addComponent(idInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(firstLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(firstInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(inputPaneLayout.createSequentialGroup()
+                        .addComponent(userLabel)
+                        .addGap(5, 5, 5)
+                        .addComponent(userInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(passLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(passInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addComponent(lastLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lastInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         startendPane.setBackground(new java.awt.Color(187, 187, 187));
@@ -504,7 +477,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
                 .addComponent(endLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(endInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         rolePane.setBackground(new java.awt.Color(187, 187, 187));
@@ -564,35 +537,26 @@ public class EmployeeManageView extends javax.swing.JFrame {
             baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(baseLayout.createSequentialGroup()
                 .addComponent(leftSidePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, baseLayout.createSequentialGroup()
+                        .addComponent(EmployeeBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(baseLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, baseLayout.createSequentialGroup()
-                                .addComponent(EmployeeBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(baseLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(inputPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(startendPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
                                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rolePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(baseLayout.createSequentialGroup()
-                                        .addComponent(inputPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(userpassPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(startendPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(baseLayout.createSequentialGroup()
-                                                .addGap(53, 53, 53)
-                                                .addComponent(rolePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(baseLayout.createSequentialGroup()
-                                                .addGap(78, 78, 78)
-                                                .addComponent(saveCancelPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(291, 291, 291))))
-                    .addGroup(baseLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(291, 291, 291))))
+                                        .addGap(25, 25, 25)
+                                        .addComponent(saveCancelPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(587, 587, 587))))
         );
         baseLayout.setVerticalGroup(
             baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -605,16 +569,12 @@ public class EmployeeManageView extends javax.swing.JFrame {
                         .addComponent(btnPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(userpassPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(startendPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(inputPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(inputPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(startendPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(baseLayout.createSequentialGroup()
                                 .addComponent(rolePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(56, 56, 56)
-                                .addComponent(saveCancelPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(saveCancelPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -622,65 +582,61 @@ public class EmployeeManageView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, 1366, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void adminPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminPaneMouseClicked
-        AdminManageView amv = new AdminManageView();
-        this.dispose();
-        amv.setVisible(true);
-    }//GEN-LAST:event_adminPaneMouseClicked
-
-    private void homePaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homePaneMouseClicked
-       DasboardView ds = new DasboardView();
-       this.dispose();
-       ds.setVisible(true);
-    }//GEN-LAST:event_homePaneMouseClicked
-
-    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+    private void custumerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custumerRadioActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_custumerRadioActionPerformed
+
+    private void tellerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tellerRadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tellerRadioActionPerformed
+
+    private void startInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startInputActionPerformed
+
+    private void endInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_endInputActionPerformed
+
+    private void passInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passInputActionPerformed
+
+    private void userInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userInputActionPerformed
+
+    private void idInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idInputActionPerformed
+
+    private void firstInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_firstInputActionPerformed
+
+    private void lastInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lastInputActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        //        // TODO add your handling code here:
+        //        setComponent(false);
         //        setEditDeleteBtn(false);
-        //        setComponent(true);
         //        clearText();
-        //        searchInput.setText("");
-        //        action = "Tambah";
-    }//GEN-LAST:event_addBtnActionPerformed
-
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        // TODO add your handling code here:
-        //        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data?\r\nMenghapus data Pegawai berarti menghapus data job historynya juga.", "CFL - Confirmation", JOptionPane.YES_NO_OPTION);
-        //        if(getAnswer == 0){
-            //            try{
-                //                pc.deleteDataPegawai(selectedId);
-                //                clearText();
-                //                getTableData("", false);
-                //                setComponent(false);
-                //                setEditDeleteBtn(false);
-                //            } catch(Exception e){
-                //                System.out.println("Error deleting data...");
-                //                System.out.println(e);
-                //            }
-            //        }
-    }//GEN-LAST:event_deleteBtnActionPerformed
-
-    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        // TODO add your handling code here:
-        //        setComponent(true);
-        //        idInput.setEnabled(false);
-        //        action = "Ubah";
-    }//GEN-LAST:event_editBtnActionPerformed
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         //        // TODO add your handling code here:
@@ -702,48 +658,50 @@ public class EmployeeManageView extends javax.swing.JFrame {
         //        setEditDeleteBtn(false);
     }//GEN-LAST:event_saveBtnActionPerformed
 
-    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        //        // TODO add your handling code here:
-        //        setComponent(false);
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        //        setComponent(true);
+        //        idInput.setEnabled(false);
+        //        action = "Ubah";
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        //        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data?\r\nMenghapus data Pegawai berarti menghapus data job historynya juga.", "CFL - Confirmation", JOptionPane.YES_NO_OPTION);
+        //        if(getAnswer == 0){
+            //            try{
+                //                pc.deleteDataPegawai(selectedId);
+                //                clearText();
+                //                getTableData("", false);
+                //                setComponent(false);
+                //                setEditDeleteBtn(false);
+                //            } catch(Exception e){
+                //                System.out.println("Error deleting data...");
+                //                System.out.println(e);
+                //            }
+            //        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
         //        setEditDeleteBtn(false);
+        //        setComponent(true);
         //        clearText();
-    }//GEN-LAST:event_cancelBtnActionPerformed
+        //        searchInput.setText("");
+        //        action = "Tambah";
+    }//GEN-LAST:event_addBtnActionPerformed
 
-    private void lastInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lastInputActionPerformed
+    private void adminPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminPaneMouseClicked
+        AdminManageView amv = new AdminManageView(admin);
+        this.dispose();
+        amv.setVisible(true);
+    }//GEN-LAST:event_adminPaneMouseClicked
 
-    private void firstInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_firstInputActionPerformed
-
-    private void idInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idInputActionPerformed
-
-    private void passInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passInputActionPerformed
-
-    private void userInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userInputActionPerformed
-
-    private void endInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_endInputActionPerformed
-
-    private void startInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_startInputActionPerformed
-
-    private void tellerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tellerRadioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tellerRadioActionPerformed
-
-    private void custumerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custumerRadioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_custumerRadioActionPerformed
+    private void homePaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homePaneMouseClicked
+        DasboardView ds = new DasboardView(admin);
+        this.dispose();
+        ds.setVisible(true);
+    }//GEN-LAST:event_homePaneMouseClicked
 
     /**
      * @param args the command line arguments
@@ -775,7 +733,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EmployeeManageView().setVisible(true);
+                new EmployeeManageView(null).setVisible(true);
             }
         });
     }
@@ -792,7 +750,6 @@ public class EmployeeManageView extends javax.swing.JFrame {
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JLabel employeeLabel;
-    private javax.swing.JTable employeeTable;
     private javax.swing.JTextField endInput;
     private javax.swing.JLabel endLabel;
     private javax.swing.JTextField firstInput;
@@ -805,7 +762,6 @@ public class EmployeeManageView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lastInput;
     private javax.swing.JLabel lastLabel;
     private javax.swing.JPanel leftSidePane;
@@ -822,6 +778,5 @@ public class EmployeeManageView extends javax.swing.JFrame {
     private javax.swing.JRadioButton tellerRadio;
     private javax.swing.JTextField userInput;
     private javax.swing.JLabel userLabel;
-    private javax.swing.JPanel userpassPane;
     // End of variables declaration//GEN-END:variables
 }

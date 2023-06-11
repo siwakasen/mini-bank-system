@@ -1,10 +1,22 @@
 
 package view;
 
+import control.AdministratorsControl;
+import control.EmployeesControl;
+import javax.swing.JOptionPane;
+import model.Administrators;
+import model.Employees;
+import view.admin.DasboardView;
+import view.employee.CustomerServiceView;
+import view.employee.TellerView;
+
 public class LoginView extends javax.swing.JFrame {
-    /**
-     * Creates new form LoginView
-     */
+        private Administrators admin;
+    private Employees emp;
+    private AdministratorsControl adminControl;
+    private EmployeesControl empControl;
+    
+    private DasboardView dasView;
     public LoginView() {
         initComponents();
     }
@@ -217,7 +229,30 @@ public class LoginView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
+        adminControl= new AdministratorsControl();
+       empControl=new EmployeesControl();
+       
+        admin = new Administrators(0, userInput.getText(), String.valueOf(passwordInput.getPassword()));
+       emp= new Employees(0,"", "",userInput.getText(), String.valueOf(passwordInput.getPassword()), "", "", 0, "", "");
+       
+      if(adminControl.searchAdministrators(admin)){
+           dasView = new DasboardView(admin);
+           this.dispose();
+           dasView.setVisible(true);
+       }else if(empControl.searchEmployees(emp)!=null){
+           emp=empControl.searchEmployees(emp);
+           if(emp.getRole_id()==1){
+               TellerView tv = new TellerView();
+               this.dispose();
+               tv.setVisible(true);
+           }else{
+               CustomerServiceView csv = new CustomerServiceView();
+               this.dispose();
+               csv.setVisible(true);
+           }
+       }else{
+           JOptionPane.showMessageDialog(this,"Akun tidak ditemukan");
+       }
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void userInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userInputActionPerformed

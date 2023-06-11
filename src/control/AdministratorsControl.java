@@ -30,4 +30,8 @@ public class AdministratorsControl {
     public void deleteAdministrator(int id){
         adminDao.deleteAdministrator(id);
     }
+    public boolean searchAdministrators(Administrators a){
+        if(adminDao.searchAdmin(a)) return true;
+        return false;
+    }
 }

@@ -1,12 +1,14 @@
 
 package view.admin;
-
+import model.Administrators;
 public class AdminManageView extends javax.swing.JFrame {
 
     /**
      * Creates new form AdminManageView
      */
-    public AdminManageView() {
+    private Administrators admin;
+    public AdminManageView(Administrators admin) {
+        this.admin=admin;
         initComponents();
     }
 
@@ -522,13 +524,13 @@ public class AdminManageView extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void homePaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homePaneMouseClicked
-       DasboardView ds = new DasboardView();
+       DasboardView ds = new DasboardView(admin);
        this.dispose();
        ds.setVisible(true);
     }//GEN-LAST:event_homePaneMouseClicked
 
     private void EmployeePaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeePaneMouseClicked
-        EmployeeManageView ep = new EmployeeManageView();
+        EmployeeManageView ep = new EmployeeManageView(admin);
         this.dispose();
         ep.setVisible(true);
     }//GEN-LAST:event_EmployeePaneMouseClicked
@@ -563,7 +565,7 @@ public class AdminManageView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminManageView().setVisible(true);
+                new AdminManageView(null).setVisible(true);
             }
         });
     }

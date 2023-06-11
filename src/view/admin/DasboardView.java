@@ -5,8 +5,8 @@ import model.Administrators;
 public class DasboardView extends javax.swing.JFrame {
     
     private Administrators admin;
-    public DasboardView() {
-        admin =  new Administrators(1,"Riksi","123");
+    public DasboardView(Administrators admin) {
+        this.admin = admin;
         initComponents();
         helloText.setEditable(false);
         helloText.setText("Hello Admin "+admin.getUsername());
@@ -368,13 +368,13 @@ public class DasboardView extends javax.swing.JFrame {
     }//GEN-LAST:event_totalEmpTextActionPerformed
 
     private void adminPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminPaneMouseClicked
-        AdminManageView amv = new AdminManageView();
+        AdminManageView amv = new AdminManageView(admin);
         this.dispose();
         amv.setVisible(true);
     }//GEN-LAST:event_adminPaneMouseClicked
 
     private void EmployeePaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeePaneMouseClicked
-        EmployeeManageView ep = new EmployeeManageView();
+        EmployeeManageView ep = new EmployeeManageView(admin);
         this.dispose();
         ep.setVisible(true);
     }//GEN-LAST:event_EmployeePaneMouseClicked
@@ -409,7 +409,7 @@ public class DasboardView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DasboardView().setVisible(true);
+                new DasboardView(null).setVisible(true);
             }
         });
     }

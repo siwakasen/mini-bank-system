@@ -5,6 +5,12 @@
 package view;
 
 import model.Administrators;
+import model.Employees;
+import control.AdministratorsControl;
+import control.EmployeesControl;
+import javax.swing.JOptionPane;
+import view.admin.*;
+import view.employee.*;
 
 /**
  *
@@ -12,6 +18,12 @@ import model.Administrators;
  */
 public class LoginEmployee extends javax.swing.JFrame {
     private Administrators admin;
+    private Employees emp;
+    private AdministratorsControl adminControl;
+    private EmployeesControl empControl;
+    
+    private DasboardView dasView;
+    
     /**
      * Creates new form LoginEmployee
      */
@@ -216,8 +228,30 @@ public class LoginEmployee extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked
-       admin.setUsername(userInput.getText());
-       admin.setPassword(passInput.getPassword().toString());
+       adminControl= new AdministratorsControl();
+       empControl=new EmployeesControl();
+       
+        admin = new Administrators(0, userInput.getText(), String.valueOf(passInput.getPassword()));
+       emp= new Employees(0,"", "",userInput.getText(), String.valueOf(passInput.getPassword()), "", "", 0, "", "");
+       
+      if(adminControl.searchAdministrators(admin)){
+           dasView = new DasboardView(admin);
+           this.dispose();
+           dasView.setVisible(true);
+       }else if(empControl.searchEmployees(emp)!=null){
+           emp=empControl.searchEmployees(emp);
+           if(emp.getRole_id()==1){
+               TellerView tv = new TellerView();
+               this.dispose();
+               tv.setVisible(true);
+           }else{
+               CustomerServiceView csv = new CustomerServiceView();
+               this.dispose();
+               csv.setVisible(true);
+           }
+       }else{
+           JOptionPane.showMessageDialog(this,"Akun tidak ditemukan");
+       }
        
     }//GEN-LAST:event_loginBtnMouseClicked
 
