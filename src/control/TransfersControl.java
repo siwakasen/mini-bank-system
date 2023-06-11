@@ -12,11 +12,6 @@ import model.Accounts;
 import table.TableTransfer;
 import table.TableDaftarTransfer;
 
-/**
- * @author 
- * Made Riksi Purnama Sadnya Agung / 210711396
- * Pemrograman Berorientasi Obyek C
- */
 public class TransfersControl {
     private TransfersDAO transfersDAO = new TransfersDAO();
 
@@ -32,10 +27,20 @@ public class TransfersControl {
         return transfersDAO.checkBalance(account_id, amount);
     }
 
-    public TableDaftarTransfer getAccounts(int customer_id){
-        List<Accounts> accounts = transfersDAO.getAccounts(customer_id);
+    public TableDaftarTransfer getAccounts(int account_id){
+        List<Accounts> accounts = transfersDAO.getAccounts(account_id);
         TableDaftarTransfer table = new TableDaftarTransfer(accounts);
         return table;
+    }
+    
+    public TableDaftarTransfer getSearchList(int account_id, String search_id){
+        List<Accounts> accounts = transfersDAO.searchTransferList(account_id, search_id);
+        TableDaftarTransfer search = new TableDaftarTransfer(accounts);
+        return search;
+    }
+    
+    public Transfers singleTransfers(String search_id){
+        return transfersDAO.singleTransfers(search_id);
     }
     
 }

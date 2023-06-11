@@ -5,11 +5,25 @@
 
 package control;
 
-/**
- * @author 
- * Made Riksi Purnama Sadnya Agung / 210711396
- * Pemrograman Berorientasi Obyek C
- */
-public class TransactionsControl {
+import dao.TransactionsDAO;
+import java.util.List;
+import model.Transactions;
+import table.TableHistori;
 
+public class TransactionsControl {
+    private TransactionsDAO TransactionsDAO = new TransactionsDAO();
+    
+    public void insertTransaction(Transactions transaction){
+        TransactionsDAO.insertTransaction(transaction);
+    }
+    
+    public TableHistori getTransaction(int account_id, String type){
+        List<Transactions> tr = TransactionsDAO.getTransactions(account_id, type);
+        TableHistori table = new TableHistori(tr);
+        return table;
+    }
+
+    public Transactions singleTransaction(int account_id, String transaction_id, String type){
+        return TransactionsDAO.singleTransaction(account_id, transaction_id, type);
+    }
 }

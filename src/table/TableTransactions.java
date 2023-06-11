@@ -29,7 +29,7 @@ public class TableTransactions extends AbstractTableModel{
             case 1: 
                 return transactions.get(row).getAccount_id();
             case 2: 
-                return transactions.get(row).getTransaction_type();
+                return transactions.get(row).getTransaction_fk();
             case 3: 
                 return transactions.get(row).getTransaction_date();
             default: 

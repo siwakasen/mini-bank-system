@@ -85,9 +85,30 @@ public class TransfersDAO {
         try {
             conn = DbCon.makeConnection();
             Statement stmt = conn.createStatement();
-            String sql = "SELECT DISTINCT * FROM transfers JOIN accounts ON transfers.to_account_id = accounts.account_id JOIN customers ON accounts.customer_id = customers.customer_id WHERE from_account_id = " + account_id + " AND to_account_id != " + account_id + " LIMIT 5";
+            String sql = "SELECT DISTINCT accounts.*, customers.* FROM transfers JOIN accounts ON transfers.to_account_id = accounts.account_id JOIN customers ON accounts.customer_id = customers.customer_id WHERE transfers.from_account_id = "+account_id+" AND transfers.to_account_id != "+account_id+" LIMIT 10";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
+                Accounts account = (new Accounts(rs.getInt("account_id"), rs.getString("account_type"), rs.getDouble("balance"), 
+                        new Customers(rs.getInt("customer_id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), rs.getString("phone_number"), rs.getString("address")), rs.getString("username"), rs.getString("password")));
+                accounts.add(account);
+            }
+            stmt.close();
+            rs.close();
+            return accounts;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+    
+    public List<Accounts> searchTransferList(int account_id, String search_id){
+        List<Accounts> accounts = new ArrayList<Accounts>();
+        try{
+            conn = DbCon.makeConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT DISTINCT accounts.*, customers.* FROM transfers JOIN accounts ON transfers.to_account_id = accounts.account_id JOIN customers ON accounts.customer_id = customers.customer_id WHERE from_account_id = " + account_id + " AND to_account_id != " + account_id + " AND first_name LIKE '%" + search_id + "%'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
                 Accounts account = (new Accounts(rs.getInt("account_id"), rs.getString("account_type"), rs.getDouble("balance"), 
                         new Customers(rs.getInt("customers.customer_id"), rs.getString("customers.first_name"), rs.getString("customers.last_name"), rs.getString("customers.email"), rs.getString("phone_number"), rs.getString("address")), rs.getString("username"), rs.getString("password")));
                 accounts.add(account);
@@ -95,6 +116,23 @@ public class TransfersDAO {
             stmt.close();
             rs.close();
             return accounts;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+    
+    public Transfers singleTransfers(String search_id){
+        try {
+            conn = DbCon.makeConnection();
+            String sql = "SELECT * FROM transfers WHERE transfer_id = '"+search_id+"'";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                return new Transfers(rs.getString("transfer_id"), rs.getInt("from_account_id"), rs.getInt("to_account_id"), rs.getDouble("amount"));
+            }
+            stmt.close();
+            rs.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

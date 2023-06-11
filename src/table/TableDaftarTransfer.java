@@ -27,7 +27,7 @@ public class TableDaftarTransfer extends AbstractTableModel{
             case 0: 
                 return accounts.get(row).getAccount_id();
             case 1: 
-                return accounts.get(row).getUsername();
+                return accounts.get(row).getCustomer().getFirst_name() + " " + accounts.get(row).getCustomer().getLast_name();
             default: 
                 return null;
         }
@@ -39,7 +39,7 @@ public class TableDaftarTransfer extends AbstractTableModel{
             case 0: 
                 return "Account ID";
             case 1: 
-                return "Username";
+                return "Nama";
             default: 
                 return null;
         }
