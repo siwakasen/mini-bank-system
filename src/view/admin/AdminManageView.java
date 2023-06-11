@@ -433,6 +433,7 @@ public class AdminManageView extends javax.swing.JFrame {
         );
 
         adminTable.setBackground(new java.awt.Color(29, 38, 125));
+        adminTable.setForeground(new java.awt.Color(255, 255, 255));
         adminTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
