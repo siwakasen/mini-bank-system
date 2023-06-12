@@ -778,6 +778,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Transfer"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transferBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

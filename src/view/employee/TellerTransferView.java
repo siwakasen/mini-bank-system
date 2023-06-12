@@ -170,7 +170,7 @@ public class TellerTransferView extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(labelPane1)))
-                .addContainerGap(815, Short.MAX_VALUE))
+                .addContainerGap(876, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,7 +392,7 @@ public class TellerTransferView extends javax.swing.JFrame {
                 .addComponent(namaPengirimInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cancelPengirimBtn)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jButton1.setBackground(new java.awt.Color(194, 16, 16));
@@ -529,6 +529,11 @@ public class TellerTransferView extends javax.swing.JFrame {
         transferBtn.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         transferBtn.setForeground(new java.awt.Color(255, 255, 255));
         transferBtn.setText("Transfer");
+        transferBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transferBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
         base.setLayout(baseLayout);
@@ -638,6 +643,10 @@ public class TellerTransferView extends javax.swing.JFrame {
         cancelPenerimaBtn.setEnabled(false);
     }//GEN-LAST:event_cancelPenerimaBtnActionPerformed
 
+    private void transferBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transferBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -687,8 +696,6 @@ public class TellerTransferView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
