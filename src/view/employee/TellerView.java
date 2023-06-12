@@ -213,7 +213,7 @@ public class TellerView extends javax.swing.JFrame {
     }//GEN-LAST:event_transferPanelMouseClicked
 
     private void loansPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loansPanelMouseClicked
-        TellerLoansView tl = new TellerLoansView();
+        TellerLoanView tl = new TellerLoanView();
         this.dispose();
         tl.setVisible(true);
     }//GEN-LAST:event_loansPanelMouseClicked
