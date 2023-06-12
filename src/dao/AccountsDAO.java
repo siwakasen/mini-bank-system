@@ -129,7 +129,6 @@ public class AccountsDAO {
     
     public Accounts searchAccounts(int account_id){
         con = dbCon.makeConnection();
-        System.out.println("a");
         String sql = "SELECT * FROM accounts WHERE account_id = '"+account_id+"'";
         System.out.println("Searching Accounts...");
         Accounts a = null;
@@ -149,7 +148,6 @@ public class AccountsDAO {
         } catch (Exception e) {
         }
         dbCon.closeConnection();
-        System.out.println("a");
         return a;
     }
     public Accounts selectAccount(int account_id){
