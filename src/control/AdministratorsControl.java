@@ -35,6 +35,10 @@ public class AdministratorsControl {
         if(adminDao.searchAdmin(admin)!=null) return adminDao.searchAdmin(admin);
         return null;
     }
+    public Administrators searchByUsername(String user){
+        adminDao.searchByUsername(user);
+        return null;
+    }
     
     public int countAdmin(){
         return showAdministrator("").getRowCount();

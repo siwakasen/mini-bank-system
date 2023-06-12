@@ -12,6 +12,6 @@ package exception;
 */
 public class BlankInputException extends Exception {
     public String message(){
-        return "[!] INPUT FIELD CANNOT BE EMPTY [!]";
+        return "Input Cannot Be Empty !";
     }  
 }

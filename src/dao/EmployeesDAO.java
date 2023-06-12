@@ -105,6 +105,13 @@ public class EmployeesDAO {
                             rs.getInt("role_id"), rs.getString("office_number"), 
                             rs.getString("station_number"));
                     
+                    e.setStart_work_date(e.getStart_work_date().substring(8, 10)+e.getStart_work_date().substring(4, 8)+
+                            e.getStart_work_date().substring(0, 4));
+                    
+                    e.setEnd_work_date(e.getEnd_work_date().substring(8, 10)+e.getEnd_work_date().substring(4, 8)+
+                            e.getEnd_work_date().substring(0, 4));
+                    
+                    
                     list.add(e);
                 }
             }

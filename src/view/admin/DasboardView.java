@@ -14,7 +14,7 @@ import view.LoginView;
 public class DasboardView extends javax.swing.JFrame {
     private AdministratorsControl administratorsControl;
     private EmployeesControl employeesControl;
-    private Administrators admin;
+    private Administrators admin =null;
     String action = null;
     List<Administrators> listAdministrators;
     int selectedId = 0;
@@ -26,7 +26,7 @@ public class DasboardView extends javax.swing.JFrame {
         this.admin = admin;
         initComponents();
         helloText.setEditable(false);
-        helloText.setText("Hello Admin "+admin.getUsername());
+        helloText.setText("Hello, Admin "+ this.admin.getUsername());
         totalAdminText.setEditable(false);
         totalEmpText.setEditable(false);
         showDashboard();
@@ -59,17 +59,20 @@ public class DasboardView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         dashboardLabel = new javax.swing.JLabel();
         helloText = new javax.swing.JTextField();
-        totalAdminLabel = new javax.swing.JLabel();
-        totalEmpLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         EmployeesTable = new javax.swing.JTable();
-        panelRound1 = new view.PanelRound();
-        totalAdminText = new javax.swing.JTextField();
-        panelRound2 = new view.PanelRound();
-        totalEmpText = new javax.swing.JTextField();
         logoutBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         adminTable = new javax.swing.JTable();
+        totalAdminLabel1 = new javax.swing.JLabel();
+        totalAdminLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        totalAdminLabel = new javax.swing.JLabel();
+        panelRound1 = new view.PanelRound();
+        totalAdminText = new javax.swing.JTextField();
+        totalEmpLabel = new javax.swing.JLabel();
+        panelRound2 = new view.PanelRound();
+        totalEmpText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -213,14 +216,6 @@ public class DasboardView extends javax.swing.JFrame {
             }
         });
 
-        totalAdminLabel.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
-        totalAdminLabel.setForeground(new java.awt.Color(246, 241, 241));
-        totalAdminLabel.setText("Total Admin");
-
-        totalEmpLabel.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
-        totalEmpLabel.setForeground(new java.awt.Color(246, 241, 241));
-        totalEmpLabel.setText("Total Employee");
-
         EmployeesTable.setBackground(new java.awt.Color(152, 238, 204));
         EmployeesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -234,78 +229,6 @@ public class DasboardView extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(EmployeesTable);
-
-        panelRound1.setBackground(new java.awt.Color(255, 234, 210));
-        panelRound1.setPreferredSize(new java.awt.Dimension(122, 56));
-        panelRound1.setRoundBottomLeft(20);
-        panelRound1.setRoundBottomRight(20);
-        panelRound1.setRoundTopLeft(20);
-        panelRound1.setRoundTopRight(20);
-
-        totalAdminText.setEditable(false);
-        totalAdminText.setBackground(new java.awt.Color(255, 234, 210));
-        totalAdminText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        totalAdminText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        totalAdminText.setText("10");
-        totalAdminText.setBorder(null);
-        totalAdminText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                totalAdminTextActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
-        panelRound1.setLayout(panelRound1Layout);
-        panelRound1Layout.setHorizontalGroup(
-            panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(totalAdminText, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelRound1Layout.setVerticalGroup(
-            panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(totalAdminText, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
-        );
-
-        panelRound2.setBackground(new java.awt.Color(255, 234, 210));
-        panelRound2.setPreferredSize(new java.awt.Dimension(122, 56));
-        panelRound2.setRoundBottomLeft(20);
-        panelRound2.setRoundBottomRight(20);
-        panelRound2.setRoundTopLeft(20);
-        panelRound2.setRoundTopRight(20);
-
-        totalEmpText.setBackground(new java.awt.Color(255, 234, 210));
-        totalEmpText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        totalEmpText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        totalEmpText.setText("310");
-        totalEmpText.setBorder(null);
-        totalEmpText.setPreferredSize(new java.awt.Dimension(64, 26));
-        totalEmpText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                totalEmpTextActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
-        panelRound2.setLayout(panelRound2Layout);
-        panelRound2Layout.setHorizontalGroup(
-            panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(totalEmpText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panelRound2Layout.setVerticalGroup(
-            panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(totalEmpText, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-        );
 
         logoutBtn.setBackground(new java.awt.Color(174, 74, 241));
         logoutBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -334,6 +257,127 @@ public class DasboardView extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(adminTable);
 
+        totalAdminLabel1.setFont(new java.awt.Font("Poppins Medium", 1, 18)); // NOI18N
+        totalAdminLabel1.setForeground(new java.awt.Color(246, 241, 241));
+        totalAdminLabel1.setText("Admin Table");
+
+        totalAdminLabel2.setFont(new java.awt.Font("Poppins Medium", 1, 18)); // NOI18N
+        totalAdminLabel2.setForeground(new java.awt.Color(246, 241, 241));
+        totalAdminLabel2.setText("Employee Table");
+
+        jPanel1.setBackground(new java.awt.Color(71, 169, 146));
+
+        totalAdminLabel.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        totalAdminLabel.setForeground(new java.awt.Color(246, 241, 241));
+        totalAdminLabel.setText("Total Admin");
+
+        panelRound1.setBackground(new java.awt.Color(255, 234, 210));
+        panelRound1.setPreferredSize(new java.awt.Dimension(122, 56));
+        panelRound1.setRoundBottomLeft(20);
+        panelRound1.setRoundBottomRight(20);
+        panelRound1.setRoundTopLeft(20);
+        panelRound1.setRoundTopRight(20);
+
+        totalAdminText.setEditable(false);
+        totalAdminText.setBackground(new java.awt.Color(255, 234, 210));
+        totalAdminText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        totalAdminText.setForeground(new java.awt.Color(0, 0, 0));
+        totalAdminText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        totalAdminText.setText("10");
+        totalAdminText.setBorder(null);
+        totalAdminText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalAdminTextActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
+        panelRound1.setLayout(panelRound1Layout);
+        panelRound1Layout.setHorizontalGroup(
+            panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(totalAdminText, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelRound1Layout.setVerticalGroup(
+            panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(totalAdminText, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
+        );
+
+        totalEmpLabel.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        totalEmpLabel.setForeground(new java.awt.Color(246, 241, 241));
+        totalEmpLabel.setText("Total Employee");
+
+        panelRound2.setBackground(new java.awt.Color(255, 234, 210));
+        panelRound2.setPreferredSize(new java.awt.Dimension(122, 56));
+        panelRound2.setRoundBottomLeft(20);
+        panelRound2.setRoundBottomRight(20);
+        panelRound2.setRoundTopLeft(20);
+        panelRound2.setRoundTopRight(20);
+
+        totalEmpText.setBackground(new java.awt.Color(255, 234, 210));
+        totalEmpText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        totalEmpText.setForeground(new java.awt.Color(0, 0, 0));
+        totalEmpText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        totalEmpText.setText("310");
+        totalEmpText.setBorder(null);
+        totalEmpText.setPreferredSize(new java.awt.Dimension(64, 26));
+        totalEmpText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalEmpTextActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
+        panelRound2.setLayout(panelRound2Layout);
+        panelRound2Layout.setHorizontalGroup(
+            panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(totalEmpText, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panelRound2Layout.setVerticalGroup(
+            panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(totalEmpText, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(totalAdminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(totalEmpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelRound2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalAdminLabel)
+                    .addComponent(totalEmpLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
         base.setLayout(baseLayout);
         baseLayout.setHorizontalGroup(
@@ -342,29 +386,25 @@ public class DasboardView extends javax.swing.JFrame {
                 .addComponent(leftSidePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(baseLayout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(dashboardLabel))
-                    .addGroup(baseLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(baseLayout.createSequentialGroup()
-                        .addGap(111, 111, 111)
+                        .addGap(117, 117, 117)
                         .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(baseLayout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(helloText, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(66, 66, 66)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dashboardLabel)
                             .addGroup(baseLayout.createSequentialGroup()
-                                .addComponent(helloText, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67)
-                                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(totalAdminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                .addGap(95, 95, 95)
-                                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(totalEmpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(panelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))))))
-                .addContainerGap(198, Short.MAX_VALUE))
+                                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(totalAdminLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(totalAdminLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
         baseLayout.setVerticalGroup(
             baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,22 +414,19 @@ public class DasboardView extends javax.swing.JFrame {
             .addGroup(baseLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(dashboardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(helloText, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(baseLayout.createSequentialGroup()
-                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(totalAdminLabel)
-                            .addComponent(totalEmpLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                            .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(104, 104, 104)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(72, 72, 72)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalAdminLabel1)
+                    .addComponent(totalAdminLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGap(54, 54, 54)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -404,12 +441,11 @@ public class DasboardView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     private int countTotalAdmin(){
@@ -419,7 +455,7 @@ public class DasboardView extends javax.swing.JFrame {
         return employeesControl.countEmployee();
     }
     private void helloTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helloTextActionPerformed
-        helloText.setText("Hello Admin "+admin.getUsername());
+
     }//GEN-LAST:event_helloTextActionPerformed
 
     private void totalAdminTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAdminTextActionPerformed
@@ -495,6 +531,7 @@ public class DasboardView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -503,6 +540,8 @@ public class DasboardView extends javax.swing.JFrame {
     private view.PanelRound panelRound1;
     private view.PanelRound panelRound2;
     private javax.swing.JLabel totalAdminLabel;
+    private javax.swing.JLabel totalAdminLabel1;
+    private javax.swing.JLabel totalAdminLabel2;
     private javax.swing.JTextField totalAdminText;
     private javax.swing.JLabel totalEmpLabel;
     private javax.swing.JTextField totalEmpText;

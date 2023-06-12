@@ -2,7 +2,10 @@
 package view.admin;
 
 import control.EmployeesControl;
-import exception.BlankInputException;
+import exception.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
@@ -50,8 +53,8 @@ public class EmployeeManageView extends javax.swing.JFrame {
         userLabel.setEnabled(value);
         
         startendPane.setEnabled(value);
-        startInput.setEnabled(value);
-        endInput.setEnabled(value);
+        startWorkDate.setEnabled(value);
+        endWorkDate.setEnabled(value);
         startLabel.setEnabled(value);
         endLabel.setEnabled(value);
         
@@ -86,8 +89,8 @@ public class EmployeeManageView extends javax.swing.JFrame {
        lastInput.setText("");
        passInput.setText("");
        userInput.setText("");
-       startInput.setText("");
-       endInput.setText("");
+       startWorkDate.setCalendar(null);
+       endWorkDate.setCalendar(null);
        stationInput.setText("");
        officeInput.setText("");
        tellerRadio.setSelected(false);
@@ -98,24 +101,42 @@ public class EmployeeManageView extends javax.swing.JFrame {
         if(tellerRadio.isSelected()){
             if(idInput.getText().isEmpty() || firstInput.getText().isEmpty() || lastInput.getText().isEmpty()
                 || userInput.getText().isEmpty() || passInput.getText().isEmpty()
-                || startInput.getText().isEmpty() || endInput.getText().isEmpty()
                 || stationInput.getText().isEmpty()){
                 throw new BlankInputException();
             }
         }else{
             if(idInput.getText().isEmpty() || firstInput.getText().isEmpty() || lastInput.getText().isEmpty()
                 || userInput.getText().isEmpty() || passInput.getText().isEmpty()
-                || startInput.getText().isEmpty() || endInput.getText().isEmpty()
                 || officeInput.getText().isEmpty()){
                 throw new BlankInputException();
             }
         }
     }
     
+    public String convDateSql(Date input){
+        String dateSql = null;
+        Date fromView = input;    
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");   
+        Date date = new Date(fromView.getTime());
+                try {
+                    dateSql = format.format(date);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+        
+        return dateSql;
+    }
+    
     public void blankRadioInputException() throws BlankInputException{
         if(tellerRadio.isSelected() || custumerRadio.isSelected()){
             throw new BlankInputException();
         }
+    }
+    private void invalidCalendarException() throws InvalidCalendarException{
+        if(startWorkDate.getCalendar()==null || endWorkDate.getCalendar()==null){
+            throw new InvalidCalendarException();
+        } 
     }
 
     /**
@@ -161,10 +182,10 @@ public class EmployeeManageView extends javax.swing.JFrame {
         passLabel = new javax.swing.JLabel();
         userInput = new javax.swing.JTextField();
         startendPane = new javax.swing.JPanel();
-        endInput = new javax.swing.JTextField();
         endLabel = new javax.swing.JLabel();
-        startInput = new javax.swing.JTextField();
         startLabel = new javax.swing.JLabel();
+        startWorkDate = new com.toedter.calendar.JDateChooser();
+        endWorkDate = new com.toedter.calendar.JDateChooser();
         rolePane = new javax.swing.JPanel();
         roleLabel = new javax.swing.JLabel();
         tellerRadio = new javax.swing.JRadioButton();
@@ -225,7 +246,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
         adminPaneLayout.setHorizontalGroup(
             adminPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminPaneLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(17, 17, 17))
         );
@@ -282,8 +303,8 @@ public class EmployeeManageView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftSidePaneLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(leftSidePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(adminPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(EmployeePane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, Short.MAX_VALUE)))
+                    .addComponent(adminPane, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(EmployeePane, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
         );
         leftSidePaneLayout.setVerticalGroup(
             leftSidePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -574,22 +595,10 @@ public class EmployeeManageView extends javax.swing.JFrame {
 
         startendPane.setBackground(new java.awt.Color(187, 187, 187));
 
-        endInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                endInputActionPerformed(evt);
-            }
-        });
-
         endLabel.setBackground(new java.awt.Color(0, 0, 0));
         endLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         endLabel.setForeground(new java.awt.Color(0, 0, 0));
         endLabel.setText("End Work Date");
-
-        startInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startInputActionPerformed(evt);
-            }
-        });
 
         startLabel.setBackground(new java.awt.Color(0, 0, 0));
         startLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
@@ -603,11 +612,10 @@ public class EmployeeManageView extends javax.swing.JFrame {
             .addGroup(startendPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(startendPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(startendPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(startInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                        .addComponent(endInput, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(endLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(startLabel))
+                    .addComponent(endLabel)
+                    .addComponent(startLabel)
+                    .addComponent(startWorkDate, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endWorkDate, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         startendPaneLayout.setVerticalGroup(
@@ -616,11 +624,11 @@ public class EmployeeManageView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(startLabel)
                 .addGap(5, 5, 5)
-                .addComponent(startInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(startWorkDate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(endLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(endInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(endWorkDate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -808,16 +816,17 @@ public class EmployeeManageView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, 1558, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void adminPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminPaneMouseClicked
@@ -883,17 +892,18 @@ public class EmployeeManageView extends javax.swing.JFrame {
                 // TODO add your handling code here:
                 try{
                         blankInputException();
+                        invalidCalendarException();
                         if(action.equals("Add")){
                             int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure want to add employee?","Confirmation", JOptionPane.YES_NO_OPTION);
                             if(getAnswer == JOptionPane.YES_OPTION){
                                 if(tellerRadio.isSelected()){
                                     Employees e = new Employees (Integer.parseInt(idInput.getText()), firstInput.getText(), lastInput.getText(), userInput.getText(), passInput.getText(),
-                                        startInput.getText(), endInput.getText(), 1, officeInput.getText(), stationInput.getText());
+                                            convDateSql(startWorkDate.getDate()), convDateSql(endWorkDate.getDate()), 1, officeInput.getText(), stationInput.getText());
                                     employeesControl.insertEmployees(e);
                                     JOptionPane.showMessageDialog(this, "Success to add employee");
                                 }else{
                                     Employees e = new Employees (Integer.parseInt(idInput.getText()), firstInput.getText(), lastInput.getText(), userInput.getText(), passInput.getText(),
-                                        startInput.getText(), endInput.getText(), 2, officeInput.getText(), stationInput.getText());
+                                        convDateSql(startWorkDate.getDate()), convDateSql(endWorkDate.getDate()), 2, officeInput.getText(), stationInput.getText());
                                     employeesControl.insertEmployees(e);
                                     JOptionPane.showMessageDialog(this, "Success to add employee");
                                 }
@@ -905,12 +915,12 @@ public class EmployeeManageView extends javax.swing.JFrame {
                             if(getAnswer == JOptionPane.YES_OPTION){
                                 if(tellerRadio.isSelected()){
                                     Employees e = new Employees (Integer.parseInt(idInput.getText()), firstInput.getText(), lastInput.getText(), userInput.getText(), passInput.getText(),
-                                        startInput.getText(), endInput.getText(), 1, officeInput.getText(), stationInput.getText());
+                                        convDateSql(startWorkDate.getDate()), convDateSql(endWorkDate.getDate()), 1, officeInput.getText(), stationInput.getText());
                                     employeesControl.updateEmployees(e);
                                     JOptionPane.showMessageDialog(this, "Success to change employee");
                                 }else{
                                     Employees e = new Employees (Integer.parseInt(idInput.getText()), firstInput.getText(), lastInput.getText(), userInput.getText(), passInput.getText(),
-                                        startInput.getText(), endInput.getText(), 2, officeInput.getText(), stationInput.getText());
+                                        convDateSql(startWorkDate.getDate()), convDateSql(endWorkDate.getDate()), 2, officeInput.getText(), stationInput.getText());
                                     employeesControl.updateEmployees(e);
                                     JOptionPane.showMessageDialog(this, "Success to change employee");
                                 }
@@ -924,8 +934,11 @@ public class EmployeeManageView extends javax.swing.JFrame {
                         roleBtnGroup.clearSelection();
                         showEmployees();
                     } catch(BlankInputException e){
-                        JOptionPane.showConfirmDialog(null, "Input cannot be empty", "Warning", JOptionPane.DEFAULT_OPTION);
+                        JOptionPane.showConfirmDialog(null, e.message(), "Warning", JOptionPane.DEFAULT_OPTION);
                         System.out.println("Error: " + e.toString());
+                    }catch(InvalidCalendarException e1){
+                        JOptionPane.showConfirmDialog(null, e1.message(), "Warning", JOptionPane.DEFAULT_OPTION);
+                        System.out.println("Error: " + e1.toString());
                     }
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -959,14 +972,6 @@ public class EmployeeManageView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_userInputActionPerformed
 
-    private void endInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_endInputActionPerformed
-
-    private void startInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_startInputActionPerformed
-
     private void tellerRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tellerRadioActionPerformed
         // TODO add your handling code here:
         officeInput.setEnabled(false);
@@ -996,9 +1001,18 @@ public class EmployeeManageView extends javax.swing.JFrame {
         firstInput.setText(tableModel.getValueAt(clickedRow, 3).toString());
         lastInput.setText(tableModel.getValueAt(clickedRow, 4).toString());
         passInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
-        userInput.setText(tableModel.getValueAt(clickedRow, 1).toString());
-        startInput.setText(tableModel.getValueAt(clickedRow, 5).toString());
-        endInput.setText(tableModel.getValueAt(clickedRow, 6).toString());
+        userInput.setText(tableModel.getValueAt(clickedRow, 1).toString());        
+        Calendar c = Calendar.getInstance();
+        c.set(Integer.parseInt(tableModel.getValueAt(clickedRow,5).toString().substring(6, 10)),
+                Integer.parseInt(tableModel.getValueAt(clickedRow,5).toString().substring(3, 5))-1,
+                Integer.parseInt(tableModel.getValueAt(clickedRow,5).toString().substring(0, 2)));
+        startWorkDate.setCalendar(c);
+        c.set(Integer.parseInt(tableModel.getValueAt(clickedRow,6).toString().substring(6, 10)),
+                Integer.parseInt(tableModel.getValueAt(clickedRow,6).toString().substring(3, 5))-1,
+                Integer.parseInt(tableModel.getValueAt(clickedRow,6).toString().substring(0, 2)));
+        endWorkDate.setCalendar(c);
+//        startWorkDate.setText(tableModel.getValueAt(clickedRow, 5).toString());
+//        endWorkDate.setText(tableModel.getValueAt(clickedRow, 6).toString());
         if(tableModel.getValueAt(clickedRow, 7).toString().equals("Teller")){
             tellerRadio.setSelected(true);
         }else if(tableModel.getValueAt(clickedRow, 7).toString().equals("Customer Services")){
@@ -1076,8 +1090,8 @@ public class EmployeeManageView extends javax.swing.JFrame {
     private javax.swing.JButton editBtn;
     private javax.swing.JLabel employeeLabel;
     private javax.swing.JTable employeeTable;
-    private javax.swing.JTextField endInput;
     private javax.swing.JLabel endLabel;
+    private com.toedter.calendar.JDateChooser endWorkDate;
     private javax.swing.JTextField firstInput;
     private javax.swing.JLabel firstLabel;
     private javax.swing.JPanel homePane;
@@ -1087,7 +1101,6 @@ public class EmployeeManageView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lastInput;
@@ -1103,8 +1116,8 @@ public class EmployeeManageView extends javax.swing.JFrame {
     private javax.swing.JPanel rolePane;
     private javax.swing.JButton saveBtn;
     private javax.swing.JPanel saveCancelPane;
-    private javax.swing.JTextField startInput;
     private javax.swing.JLabel startLabel;
+    private com.toedter.calendar.JDateChooser startWorkDate;
     private javax.swing.JPanel startendPane;
     private javax.swing.JTextField stationInput;
     private javax.swing.JLabel stationLabel;

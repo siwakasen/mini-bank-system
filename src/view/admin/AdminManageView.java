@@ -94,8 +94,8 @@ public class AdminManageView extends javax.swing.JFrame {
         idlabel = new javax.swing.JLabel();
         passInput = new javax.swing.JTextField();
         userInput = new javax.swing.JTextField();
-        idInput = new javax.swing.JTextField();
         userlabel = new javax.swing.JLabel();
+        idInput = new javax.swing.JTextField();
         btnPanel = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
@@ -106,10 +106,13 @@ public class AdminManageView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         adminTable = new javax.swing.JTable();
         logoutBtn = new javax.swing.JButton();
+        searchInput = new javax.swing.JTextField();
+        searchBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         base.setBackground(new java.awt.Color(12, 19, 79));
+        base.setPreferredSize(new java.awt.Dimension(1650, 1080));
 
         adminBase.setBackground(new java.awt.Color(29, 38, 125));
 
@@ -275,16 +278,16 @@ public class AdminManageView extends javax.swing.JFrame {
             }
         });
 
+        userlabel.setBackground(new java.awt.Color(255, 255, 255));
+        userlabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        userlabel.setForeground(new java.awt.Color(246, 241, 241));
+        userlabel.setText("Username");
+
         idInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idInputActionPerformed(evt);
             }
         });
-
-        userlabel.setBackground(new java.awt.Color(255, 255, 255));
-        userlabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
-        userlabel.setForeground(new java.awt.Color(246, 241, 241));
-        userlabel.setText("Username");
 
         javax.swing.GroupLayout inputPaneLayout = new javax.swing.GroupLayout(inputPane);
         inputPane.setLayout(inputPaneLayout);
@@ -298,9 +301,9 @@ public class AdminManageView extends javax.swing.JFrame {
                         .addComponent(userlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(idlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(inputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(passInput, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(userInput, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(idInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(passInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                        .addComponent(userInput, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(idInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         inputPaneLayout.setVerticalGroup(
@@ -308,9 +311,9 @@ public class AdminManageView extends javax.swing.JFrame {
             .addGroup(inputPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(idlabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(idInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(22, 22, 22)
                 .addComponent(userlabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -472,6 +475,25 @@ public class AdminManageView extends javax.swing.JFrame {
             }
         });
 
+        searchInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInputActionPerformed(evt);
+            }
+        });
+
+        searchBtn.setBackground(new java.awt.Color(13, 110, 253));
+        searchBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        searchBtn.setForeground(new java.awt.Color(255, 255, 255));
+        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-save.png"))); // NOI18N
+        searchBtn.setText("Cari");
+        searchBtn.setBorder(null);
+        searchBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
         base.setLayout(baseLayout);
         baseLayout.setHorizontalGroup(
@@ -490,8 +512,15 @@ public class AdminManageView extends javax.swing.JFrame {
                                 .addComponent(saveCancelPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(inputPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(98, 98, 98)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(baseLayout.createSequentialGroup()
+                                .addGap(103, 103, 103)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(baseLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -504,18 +533,28 @@ public class AdminManageView extends javax.swing.JFrame {
                     .addComponent(leftSidePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(baseLayout.createSequentialGroup()
                         .addComponent(adminBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
                         .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(baseLayout.createSequentialGroup()
-                                .addComponent(btnPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(btnPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(searchInput)
+                                    .addComponent(searchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                                .addGap(13, 13, 13)))
+                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(baseLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(inputPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(saveCancelPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(73, 73, 73)
+                            .addGroup(baseLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(7, 7, 7)
                         .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -524,16 +563,15 @@ public class AdminManageView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(base, javax.swing.GroupLayout.PREFERRED_SIZE, 960, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
           
     
@@ -620,6 +658,9 @@ public class AdminManageView extends javax.swing.JFrame {
                     Administrators a = new Administrators (Integer.parseInt(idInput.getText()), userInput.getText(), passInput.getText());
                     administratorsControl.updateAdministrator(a);
                     JOptionPane.showMessageDialog(this, "Success to change administrators");
+                    if(a.getAdministrator_id()==admin.getAdministrator_id()){
+                        admin=a;
+                    }
                 }else {
                     JOptionPane.showMessageDialog(this, "Failed to change administrators");
                 }
@@ -629,7 +670,7 @@ public class AdminManageView extends javax.swing.JFrame {
             setEditDeleteBtn(false);
             showAdministrators();
         } catch(BlankInputException e){
-            JOptionPane.showConfirmDialog(null, "Input cannot be empty", "Warning", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showConfirmDialog(null, e.message(), "Warning", JOptionPane.DEFAULT_OPTION);
             System.out.println("Error: " + e.toString());
         }
     }//GEN-LAST:event_saveBtnActionPerformed
@@ -675,8 +716,6 @@ public class AdminManageView extends javax.swing.JFrame {
         if(this.admin.getUsername().equals(tableModel.getValueAt(clickedRow, 1).toString())){
             passInput.setText(this.admin.getPassword());
         }else{
-            System.out.println(tableModel.getValueAt(clickedRow, 1).toString());
-            System.out.println("masuk");
            passInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
             
         }
@@ -686,6 +725,14 @@ public class AdminManageView extends javax.swing.JFrame {
     private void adminTableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminTableMouseReleased
         
     }//GEN-LAST:event_adminTableMouseReleased
+
+    private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInputActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        setComponent(false);
+    }//GEN-LAST:event_searchBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -749,6 +796,8 @@ public class AdminManageView extends javax.swing.JFrame {
     private javax.swing.JLabel passlabel;
     private javax.swing.JButton saveBtn;
     private javax.swing.JPanel saveCancelPane;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JTextField searchInput;
     private javax.swing.JTextField userInput;
     private javax.swing.JLabel userlabel;
     // End of variables declaration//GEN-END:variables

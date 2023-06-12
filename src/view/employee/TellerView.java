@@ -2,9 +2,10 @@
 package view.employee;
 
 import java.awt.geom.RoundRectangle2D;
+import view.LoginView;
 
 public class TellerView extends javax.swing.JFrame {
-
+    private LoginView l = null;
     /**
      * Creates new form TellerView
      */
@@ -203,7 +204,9 @@ public class TellerView extends javax.swing.JFrame {
     
     
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        // TODO add your handling code here:
+        l = new LoginView();
+        this.dispose();
+        l.setVisible(true);
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void transferPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferPanelMouseClicked

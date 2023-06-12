@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import table.TableCustomers;
 import javax.swing.table.TableModel;
 import table.TableAccounts;
+import view.LoginView;
 
 public class CustomerServiceView extends javax.swing.JFrame {
     AccountsControl accountControl;
@@ -107,6 +108,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
         labelPane = new javax.swing.JLabel();
         titleBar = new javaswingdev.swing.titlebar.TitleBar();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         baseInputCus = new view.PanelRound();
         firstNameLabel = new javax.swing.JLabel();
         inputFirstName = new javax.swing.JTextField();
@@ -159,21 +161,32 @@ public class CustomerServiceView extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/admin/help-desk.png"))); // NOI18N
 
+        jButton1.setBackground(new java.awt.Color(194, 16, 16));
+        jButton1.setFont(new java.awt.Font("Montserrat SemiBold", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Logout");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(titleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelPane)))
+                .addContainerGap()
+                .addComponent(titleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(labelPane)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(37, 37, 37))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +200,9 @@ public class CustomerServiceView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                         .addComponent(titleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelPane)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelPane)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))))
         );
 
@@ -364,17 +379,10 @@ public class CustomerServiceView extends javax.swing.JFrame {
                             .addComponent(password)
                             .addComponent(balanceLabel)
                             .addComponent(accountTypeLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                         .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(baseInputCusLayout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseInputCusLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(accountTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inputBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(accountTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inputBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(baseInputCusLayout.createSequentialGroup()
                         .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelCus)
@@ -396,9 +404,14 @@ public class CustomerServiceView extends javax.swing.JFrame {
                                     .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelAcc)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(baseInputCusLayout.createSequentialGroup()
+                                .addGap(145, 145, 145)
+                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         baseInputCusLayout.setVerticalGroup(
             baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -451,7 +464,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         backgroundTable.setBackground(new java.awt.Color(255, 255, 255));
@@ -525,7 +538,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
         labelDelete1.setForeground(new java.awt.Color(255, 255, 255));
         labelDelete1.setText("Cari");
         searchBtn.add(labelDelete1);
-        labelDelete1.setBounds(23, 6, 29, 18);
+        labelDelete1.setBounds(23, 6, 28, 19);
 
         addBtn.setBackground(new java.awt.Color(0, 61, 121));
         addBtn.setFont(new java.awt.Font("Montserrat SemiBold", 1, 18)); // NOI18N
@@ -685,21 +698,26 @@ public class CustomerServiceView extends javax.swing.JFrame {
 
     private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
         setComponent(false);
-        TableAccounts accounts = accountControl.showTableAccounts(inputSearch.getText());
-        if(accounts.getRowCount()==0){
-                clearText();
-                setEditDeleteBtn(false);
-                inputSearch.setText("");
-                JOptionPane.showMessageDialog(null,"Data tidak ditemukan!","Konfirmasi", JOptionPane.DEFAULT_OPTION);
-            }else{
-                tableCustomers.setModel(accounts);
-            }
-        clearText();
-        inputSearch.setText("");
+         setEditDeleteBtn(false);
+         try{
+             TableAccounts accounts = accountControl.showTableAccounts(inputSearch.getText());
+            if(accounts.getRowCount()==0){
+                    clearText();
+                    inputSearch.setText("");
+                    JOptionPane.showMessageDialog(null,"Data tidak ditemukan!","Konfirmasi", JOptionPane.DEFAULT_OPTION);
+                }else{
+                    tableCustomers.setModel(accounts);
+                }
+            clearText();
+            inputSearch.setText("");
+         }catch (Exception e) {
+            System.out.println("Eror : "+e.getMessage());
+        }
+        
     }//GEN-LAST:event_searchBtnMouseClicked
 
     private void inputSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputSearchMouseClicked
-        setEditDeleteBtn(false);
+       
     }//GEN-LAST:event_inputSearchMouseClicked
 
     private void inputFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputFirstNameActionPerformed
@@ -757,6 +775,12 @@ public class CustomerServiceView extends javax.swing.JFrame {
         inputSearch.setText("");
         action = "Tambah";
     }//GEN-LAST:event_editBtnMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        LoginView l = new LoginView();
+        this.dispose();
+        l.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -816,6 +840,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
     private javax.swing.JTextField inputPhoneNumber;
     private javax.swing.JTextField inputSearch;
     private javax.swing.JTextField inputUsername;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

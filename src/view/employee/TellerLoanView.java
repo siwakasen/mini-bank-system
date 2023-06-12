@@ -115,54 +115,54 @@ public class TellerLoanView extends javax.swing.JFrame {
         batalkanPinjamanBtn.setEnabled(!value);
     }
     
-    private void hideColumnHistory(){
-        loanTable.getColumnModel().getColumn(7).setWidth(0);
-        loanTable.getColumnModel().getColumn(7).setMinWidth(0);
-        loanTable.getColumnModel().getColumn(7).setMaxWidth(0); 
-        
-        loanTable.getColumnModel().getColumn(8).setWidth(0);
-        loanTable.getColumnModel().getColumn(8).setMinWidth(0);
-        loanTable.getColumnModel().getColumn(8).setMaxWidth(0); 
-        
-        loanTable.getColumnModel().getColumn(9).setWidth(0);
-        loanTable.getColumnModel().getColumn(9).setMinWidth(0);
-        loanTable.getColumnModel().getColumn(9).setMaxWidth(0); 
-        
-        loanTable.getColumnModel().getColumn(10).setWidth(0);
-        loanTable.getColumnModel().getColumn(10).setMinWidth(0);
-        loanTable.getColumnModel().getColumn(10).setMaxWidth(0); 
-    }
+//    private void hideColumnHistory(){
+//        loanTable.getColumnModel().getColumn(7).setWidth(0);
+//        loanTable.getColumnModel().getColumn(7).setMinWidth(0);
+//        loanTable.getColumnModel().getColumn(7).setMaxWidth(0); 
+//        
+//        loanTable.getColumnModel().getColumn(8).setWidth(0);
+//        loanTable.getColumnModel().getColumn(8).setMinWidth(0);
+//        loanTable.getColumnModel().getColumn(8).setMaxWidth(0); 
+//        
+//        loanTable.getColumnModel().getColumn(9).setWidth(0);
+//        loanTable.getColumnModel().getColumn(9).setMinWidth(0);
+//        loanTable.getColumnModel().getColumn(9).setMaxWidth(0); 
+//        
+//        loanTable.getColumnModel().getColumn(10).setWidth(0);
+//        loanTable.getColumnModel().getColumn(10).setMinWidth(0);
+//        loanTable.getColumnModel().getColumn(10).setMaxWidth(0); 
+//    }
     public void showDataHistory(){
         loanTable.getTableHeader().setOpaque(false);
         loanTable.getTableHeader().setForeground(new Color(0, 61, 121));
         loanTable.setRowHeight(25);
         loanTable.setModel(lControl.showAllJoinLoans("LOA", "Lunas", "Dibatalkan"));
-        hideColumnHistory();
+//        hideColumnHistory();
     }
     
-    private void hideColumnCurrently(){
-        confirmLoanTable.getColumnModel().getColumn(7).setWidth(0);
-        confirmLoanTable.getColumnModel().getColumn(7).setMinWidth(0);
-        confirmLoanTable.getColumnModel().getColumn(7).setMaxWidth(0); 
-        
-        confirmLoanTable.getColumnModel().getColumn(8).setWidth(0);
-        confirmLoanTable.getColumnModel().getColumn(8).setMinWidth(0);
-        confirmLoanTable.getColumnModel().getColumn(8).setMaxWidth(0); 
-        
-        confirmLoanTable.getColumnModel().getColumn(9).setWidth(0);
-        confirmLoanTable.getColumnModel().getColumn(9).setMinWidth(0);
-        confirmLoanTable.getColumnModel().getColumn(9).setMaxWidth(0); 
-        
-        confirmLoanTable.getColumnModel().getColumn(10).setWidth(0);
-        confirmLoanTable.getColumnModel().getColumn(10).setMinWidth(0);
-        confirmLoanTable.getColumnModel().getColumn(10).setMaxWidth(0); 
-    }
+//    private void hideColumnCurrently(){
+//        confirmLoanTable.getColumnModel().getColumn(7).setWidth(0);
+//        confirmLoanTable.getColumnModel().getColumn(7).setMinWidth(0);
+//        confirmLoanTable.getColumnModel().getColumn(7).setMaxWidth(0); 
+//        
+//        confirmLoanTable.getColumnModel().getColumn(8).setWidth(0);
+//        confirmLoanTable.getColumnModel().getColumn(8).setMinWidth(0);
+//        confirmLoanTable.getColumnModel().getColumn(8).setMaxWidth(0); 
+//        
+//        confirmLoanTable.getColumnModel().getColumn(9).setWidth(0);
+//        confirmLoanTable.getColumnModel().getColumn(9).setMinWidth(0);
+//        confirmLoanTable.getColumnModel().getColumn(9).setMaxWidth(0); 
+//        
+//        confirmLoanTable.getColumnModel().getColumn(10).setWidth(0);
+//        confirmLoanTable.getColumnModel().getColumn(10).setMinWidth(0);
+//        confirmLoanTable.getColumnModel().getColumn(10).setMaxWidth(0); 
+//    }
     public void showDataCurrently(){
         confirmLoanTable.getTableHeader().setOpaque(false);
         confirmLoanTable.getTableHeader().setForeground(new Color(0, 61, 121));
         confirmLoanTable.setRowHeight(25);
         confirmLoanTable.setModel(lControl.showAllJoinLoans("LOA", "Dikonfirmasi", "Menunggu Konfirmasi"));
-        hideColumnCurrently();
+//        hideColumnCurrently();
     }
     
     public String convDateSql(Date input){
@@ -361,18 +361,17 @@ public class TellerLoanView extends javax.swing.JFrame {
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(titleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelPane1)))
-                .addGap(343, 343, 343)
+                .addContainerGap()
+                .addComponent(titleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(labelPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(532, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,7 +381,7 @@ public class TellerLoanView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                         .addComponent(titleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelPane1)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))
@@ -399,7 +398,7 @@ public class TellerLoanView extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(184, 184, 184)
                 .addComponent(labelPane)
-                .addContainerGap(789, Short.MAX_VALUE))
+                .addContainerGap(740, Short.MAX_VALUE))
             .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1368, Short.MAX_VALUE)
         );
         headerLayout.setVerticalGroup(
@@ -678,15 +677,14 @@ public class TellerLoanView extends javax.swing.JFrame {
             panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19)
-                    .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(dateEndPicker, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(dateStartPicker, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel17)
+                    .addComponent(dateStartPicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateEndPicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelRound3Layout.setVerticalGroup(
             panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1039,11 +1037,10 @@ public class TellerLoanView extends javax.swing.JFrame {
             baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(baseLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelJumlahPinjaman1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(panelDetailPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(panelRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelJumlahPinjaman1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelDetailPeminjaman, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelRound3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -1054,10 +1051,10 @@ public class TellerLoanView extends javax.swing.JFrame {
                         .addComponent(batalkanPinjamanBtn)
                         .addGap(18, 18, 18)
                         .addComponent(ajukanPinjamanBtn)))
-                .addGap(31, 31, 31)
+                .addGap(30, 30, 30)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelTableKonfirmasi, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
-                    .addComponent(panelTableHistory, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE))
+                    .addComponent(panelTableHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(baseLayout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 1368, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1068,12 +1065,7 @@ public class TellerLoanView extends javax.swing.JFrame {
             .addGroup(baseLayout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
-                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(baseLayout.createSequentialGroup()
-                        .addComponent(panelTableHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panelTableKonfirmasi, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(baseLayout.createSequentialGroup()
                         .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(baseLayout.createSequentialGroup()
@@ -1092,7 +1084,12 @@ public class TellerLoanView extends javax.swing.JFrame {
                                 .addComponent(panelJumlahPinjaman1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(panelRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(61, 61, 61))))
+                        .addGap(52, 52, 52))
+                    .addGroup(baseLayout.createSequentialGroup()
+                        .addComponent(panelTableHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(panelTableKonfirmasi, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1158,25 +1155,25 @@ public class TellerLoanView extends javax.swing.JFrame {
         setEditComponent(false);
         int clickedRow = confirmLoanTable.getSelectedRow();
         TableModel tableModel = confirmLoanTable.getModel();
-        idLoan = confirmLoanTable.getValueAt(clickedRow,0).toString();
+        idLoan = tableModel.getValueAt(clickedRow,0).toString();
         tampilIdPinjaman.setText(idLoan);
-        idAcc = confirmLoanTable.getValueAt(clickedRow,1).toString();
+        idAcc = tableModel.getValueAt(clickedRow,1).toString();
         inputIdNasabah.setText(idAcc);
         peminjam = aControl.searchAccount(Integer.parseInt(inputIdNasabah.getText()));
         tampilNamaNasabah.setText(peminjam.getCustomer().getFirst_name()+" "+peminjam.getCustomer().getLast_name());
         Calendar c = Calendar.getInstance();
-        c.set(Integer.parseInt(confirmLoanTable.getValueAt(clickedRow,5).toString().substring(6, 10)),
-                Integer.parseInt(confirmLoanTable.getValueAt(clickedRow,5).toString().substring(3, 5)),
-                Integer.parseInt(confirmLoanTable.getValueAt(clickedRow,5).toString().substring(0, 2)));
+        c.set(Integer.parseInt(tableModel.getValueAt(clickedRow,5).toString().substring(6, 10)),
+                Integer.parseInt(tableModel.getValueAt(clickedRow,5).toString().substring(3, 5))-1,
+                Integer.parseInt(tableModel.getValueAt(clickedRow,5).toString().substring(0, 2)));
         dateStartPicker.setCalendar(c);
-        c.set(Integer.parseInt(confirmLoanTable.getValueAt(clickedRow,9).toString().substring(6, 10)),
-                Integer.parseInt(confirmLoanTable.getValueAt(clickedRow,9).toString().substring(3, 5)),
-                Integer.parseInt(confirmLoanTable.getValueAt(clickedRow,9).toString().substring(0, 2)));
+        c.set(Integer.parseInt(tableModel.getValueAt(clickedRow,9).toString().substring(6, 10)),
+                Integer.parseInt(tableModel.getValueAt(clickedRow,9).toString().substring(3, 5))-1,
+                Integer.parseInt(tableModel.getValueAt(clickedRow,9).toString().substring(0, 2)));
         dateEndPicker.setCalendar(c);
-        inputJumlahPinjaman.setText(confirmLoanTable.getValueAt(clickedRow,3).toString());
-        cbTipePinjaman.setSelectedItem(confirmLoanTable.getValueAt(clickedRow,2).toString());
-        cbJenisBunga.setSelectedItem(confirmLoanTable.getValueAt(clickedRow,8).toString());
-        cbStatus.setSelectedItem(confirmLoanTable.getValueAt(clickedRow,6).toString());
+        inputJumlahPinjaman.setText(tableModel.getValueAt(clickedRow,3).toString());
+        cbTipePinjaman.setSelectedItem(tableModel.getValueAt(clickedRow,2).toString());
+        cbJenisBunga.setSelectedItem(tableModel.getValueAt(clickedRow,8).toString());
+        cbStatus.setSelectedItem(tableModel.getValueAt(clickedRow,6).toString());
         setRate();
         if (cbJenisBunga.getSelectedIndex()==1) tampilBiayaTahun.setText("");
         else tampilBiayaBulan.setText("");

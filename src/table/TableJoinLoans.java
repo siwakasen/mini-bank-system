@@ -26,7 +26,7 @@ public class TableJoinLoans extends AbstractTableModel{
 
     @Override
     public int getColumnCount(){
-        return 11;
+        return 7;
     }
 
     @Override

@@ -179,6 +179,7 @@ public class DashPeminjamanView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
@@ -188,28 +189,27 @@ public class DashPeminjamanView extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
+        // ini nyari udh ada transaksi loans apa belum
         Transactions tr = TransactionControl.singleTransaction(account.getAccount_id(), "", "LOA");
-        if(tr != null){
-            Loans loan = LoansControl.getLoan(tr.getTransaction_fk(), "Menunggu Konfirmasi");
-            if(loan != null){
-                JOptionPane.showMessageDialog(null, "Anda sudah memiliki peminjaman yang belum dikonfirmasi!");
-            } else {
-                Loans loan2 = LoansControl.getLoan(tr.getTransaction_fk(), "Dibatalkan");
-                if(loan2 != null){
-                    this.dispose();
-                    new FormPeminjamanView(account).setVisible(true);
-                } else {
-                    Loans loan3 = LoansControl.getLoan(tr.getTransaction_fk(), "Lunas");
-                    if(loan3 != null){
-                        this.dispose();
-                        new FormPeminjamanView(account).setVisible(true);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Anda sudah memiliki peminjaman yang belum lunas!");
-                    }
-                }
-            }
+        
+        //jika tidak ada sama sekali, masuk form
+        if(tr==null){
+            this.dispose();
+            new FormPeminjamanView(account).setVisible(true);
+            return;
+        } 
+        Loans loan = LoansControl.getLoan(tr.getTransaction_fk(), "Menunggu Konfirmasi");
+        if(loan != null){
+            JOptionPane.showMessageDialog(null, "Anda sudah memiliki peminjaman yang belum dikonfirmasi!");
+            return;
         }
+        loan = LoansControl.getLoan(tr.getTransaction_fk(), "Dikonfirmasi");
+        if(loan!=null){
+            JOptionPane.showMessageDialog(null, "Anda sudah memiliki peminjaman yang belum lunas!");
+            return;
+        }
+        this.dispose();
+        new FormPeminjamanView(account).setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

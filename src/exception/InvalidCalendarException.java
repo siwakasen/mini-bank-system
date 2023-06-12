@@ -10,8 +10,8 @@ package exception;
  * Made Riksi Purnama Sadnya Agung / 210711396
  * Pemrograman Berorientasi Obyek C
  */
-public class OnlyNumberException extends Exception{
+public class InvalidCalendarException extends Exception{
     public String message(){
-        return "[!] INPUT MUST BE NUMBERS [!]";
-    }
+            return "Date Input is Invalid !";
+        }  
 }
