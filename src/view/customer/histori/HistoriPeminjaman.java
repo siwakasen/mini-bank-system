@@ -33,7 +33,7 @@ public class HistoriPeminjaman extends javax.swing.JFrame {
         initComponents();
         date_idtrans.setText(create_date(transaction.getTransaction_date())+" ∙ No. Transaksi : "+transaction.getTransaction_id());
         nama_penerima.setText(account.getCustomer().getFirst_name() + " " + account.getCustomer().getLast_name());
-        tipe_peminjaman.setText(loan.getLoantype());
+        tipe_peminjaman.setText(loan.getLoan_type());
         BigDecimal total = new BigDecimal(loan.getAmount()).setScale(0, RoundingMode.HALF_EVEN);
         total_peminjaman.setText("Rp. "+formatNominal(total));
         tanggal_peminjaman.setText(create_date_loan(loan.getLoan_start_date()));

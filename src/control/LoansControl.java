@@ -36,8 +36,8 @@ public class LoansControl {
         return LoansDAO.getLoan(loan_id, status);
     }
 
-    public TableJoinLoans showAllJoinLoans(String type){
-        List<TransactionsJoins> tf = transactionDao.showAllTransactions(type);
+    public TableJoinLoans showAllJoinLoans(String type, String status1, String status2){
+        List<TransactionsJoins> tf = transactionDao.showAllTransactions(type, status1, status2);
         TableJoinLoans table = new TableJoinLoans(tf);
         return table;
     }

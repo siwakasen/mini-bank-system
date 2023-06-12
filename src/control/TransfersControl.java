@@ -37,8 +37,8 @@ public class TransfersControl {
         return table;
     }
     
-    public TableJoinTransfers showTransfer(String type){
-        List<TransactionsJoins> tf = transactionDAO.showAllTransactions(type);
+    public TableJoinTransfers showTransfer(String type, String status1, String status2){
+        List<TransactionsJoins> tf = transactionDAO.showAllTransactions(type, status1, status2);
         TableJoinTransfers table = new TableJoinTransfers(tf);
         return table;
     }

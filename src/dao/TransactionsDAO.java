@@ -81,7 +81,7 @@ public class TransactionsDAO {
         return transactions;
     }
     
-    public List<TransactionsJoins> showAllTransactions(String type){
+    public List<TransactionsJoins> showAllTransactions(String type, String status1, String status2){
         conn = DbCon.makeConnection();
         
         try {
@@ -90,7 +90,7 @@ public class TransactionsDAO {
             Statement statement = conn.createStatement();
             if (type=="LOA") {
                 String sql = "SELECT t.*, l.* FROM transactions as t JOIN loans as l ON (t.transaction_fk = l.loan_id)"
-                        + "WHERE t.transaction_fk LIKE 'LOA-%'";
+                        + "WHERE t.transaction_fk LIKE 'LOA-%' AND (l.confirm = '"+status1+"' OR l.confirm = '"+status2+"') ORDER BY l.confirm DESC";
                 ResultSet rs = statement.executeQuery(sql);
                 System.out.println("Success collecting loan datas...");
                 if (rs!=null) {

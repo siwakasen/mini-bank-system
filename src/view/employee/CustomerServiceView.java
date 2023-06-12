@@ -11,7 +11,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
 import java.util.List;
-import javaswingdev.swing.table.TableHeader;
 import javax.swing.JOptionPane;
 import table.TableCustomers;
 import javax.swing.table.TableModel;

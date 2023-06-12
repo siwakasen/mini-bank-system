@@ -86,7 +86,7 @@ public class TellerTransferView extends javax.swing.JFrame {
         transferTable.getTableHeader().setOpaque(false);
         transferTable.getTableHeader().setForeground(new Color(0, 61, 121));
         transferTable.setRowHeight(25);
-        transferTable.setModel(transferControl.showTransfer("TN"));
+        transferTable.setModel(transferControl.showTransfer("TN", "", ""));
     }
     /**
      * This method is called from within the constructor to initialize the form.

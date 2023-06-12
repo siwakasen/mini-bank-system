@@ -29,7 +29,7 @@ public class TransactionsControl {
     }
 
     public TableTransactions showTransaction(int account_id, String type){
-        List<Transactions> listTransaction = TransactionDao.getTransactions(account_id, type);
+        List<Transactions> listTransaction = TransactionsDAO.getTransactions(account_id, type);
         TableTransactions tabelTransaction = new TableTransactions(listTransaction);
         return tabelTransaction;
     }

@@ -26,7 +26,7 @@ public class TableJoinLoans extends AbstractTableModel{
 
     @Override
     public int getColumnCount(){
-        return 7;
+        return 11;
     }
 
     @Override
@@ -45,7 +45,15 @@ public class TableJoinLoans extends AbstractTableModel{
             case 5:
                 return loans.get(row).getL().getLoan_start_date();
             case 6:
+                return loans.get(row).getL().getConfirm();
+            case 7:
+                return loans.get(row).getTn().getTransaction_id();
+            case 8:
+                return loans.get(row).getL().getInterest_rate_type();
+            case 9:
                 return loans.get(row).getL().getLoan_end_date();
+            case 10:
+                return loans.get(row).getL().getEnd_amount_pay();
             default: 
                 return null;
         }
@@ -67,7 +75,7 @@ public class TableJoinLoans extends AbstractTableModel{
             case 5:
                 return "Start Date";
             case 6:
-                return "End Date";
+                return "Status";
             default: 
                 return null;
         }

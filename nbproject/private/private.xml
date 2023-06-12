@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/view/customer/peminjaman/FormPeminjamanView.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/table/TableTransactions.java</file>
-            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/model/Loans.java</file>
-            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/control/LoansControl.java</file>
+            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/view/customer/transfer/ConfirmTransfer.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/dao/TransfersDAO.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/control/AccountsControl.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/table/TableTransfer.java</file>
@@ -16,44 +15,19 @@
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/control/CustomersControl.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/view/LoginView.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/model/Transactions.java</file>
-            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/dao/LoansDAO.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/model/TransactionsJoins.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/javaswingdev/swing/titlebar/ComponentResizer.java</file>
-            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/view/employee/TellerLoansView.java</file>
-            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/dao/TransactionsDAO.java</file>
-            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/table/TableJoinLoans.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/view/employee/TellerView.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/control/TransactionsControl.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/view/employee/TellerTransferView.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/dao/AccountsDAO.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/control/TransfersControl.java</file>
-            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/view/employee/CustomerServiceView.java</file>
+            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/model/Roles.java</file>
+            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/view/customer/peminjaman/CompletePeminjaman.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/testing/testingDB.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/model/Transfers.java</file>
             <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/model/Accounts.java</file>
-=======
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/view/customer/LoginCustomerView.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/model/Transactions.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/dao/TransfersDAO.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/control/TransactionsControl.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/model/Transfers.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/dao/AccountsDAO.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/dao/LoansDAO.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/view/customer/transfer/FindTransferCustomerView.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/view/customer/peminjaman/FormPeminjamanView.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/control/AccountsControl.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/view/customer/transfer/CompleteTransferView.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/table/TableDaftarTransfer.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/view/customer/transfer/TransferView.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/view/customer/transfer/TransferCustomerView.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/view/customer/transfer/ConfirmTransfer.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/view/customer/peminjaman/DashPeminjamanView.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/dao/TransactionsDAO.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/view/customer/CustomerView.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/control/TransfersControl.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/table/TableTransactions.java</file>
-            <file>file:/E:/Ferdy/Project/mini-bank-system/src/model/Accounts.java</file>
->>>>>>> viewFerdy
+            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/mini-bank-system/src/view/customer/peminjaman/ConfirmPeminjaman.java</file>
         </group>
     </open-files>
 </project-private>
