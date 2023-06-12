@@ -616,6 +616,7 @@ public class TellerTransferView extends javax.swing.JFrame {
     private void cancelPengirimBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelPengirimBtnActionPerformed
         setPengirimArea(true);
         cancelPengirimBtn.setEnabled(false);
+         System.out.println("halooo");
     }//GEN-LAST:event_cancelPengirimBtnActionPerformed
 
     private void okPenerimaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okPenerimaBtnActionPerformed

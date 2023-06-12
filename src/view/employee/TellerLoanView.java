@@ -1118,38 +1118,30 @@ public class TellerLoanView extends javax.swing.JFrame {
     }//GEN-LAST:event_cbTipePinjamanActionPerformed
 
     private void confirmLoanTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmLoanTableMouseClicked
+        System.out.println("HALOOO");
         cbStatus.setEnabled(true);
         setEditComponent(false);
         int clickedRow = confirmLoanTable.getSelectedRow();
         TableModel tableModel = confirmLoanTable.getModel();
-        System.out.println("1");
         idLoan = confirmLoanTable.getValueAt(clickedRow,0).toString();
         tampilIdPinjaman.setText(idLoan);
         idAcc = confirmLoanTable.getValueAt(clickedRow,1).toString();
         inputIdNasabah.setText(idAcc);
-        System.out.println("2");
         peminjam = aControl.searchAccount(Integer.parseInt(inputIdNasabah.getText()));
         tampilNamaNasabah.setText(peminjam.getCustomer().getFirst_name()+" "+peminjam.getCustomer().getLast_name());
-        System.out.println("3"); 
         Calendar c = Calendar.getInstance();
-        System.out.println("3.1");
         c.set(Integer.parseInt(confirmLoanTable.getValueAt(clickedRow,5).toString().substring(6, 10)),
                 Integer.parseInt(confirmLoanTable.getValueAt(clickedRow,5).toString().substring(3, 5)),
                 Integer.parseInt(confirmLoanTable.getValueAt(clickedRow,5).toString().substring(0, 2)));
-        System.out.println("3.2");
         dateStartPicker.setCalendar(c);
-        System.out.println("3.3");
         c.set(Integer.parseInt(confirmLoanTable.getValueAt(clickedRow,9).toString().substring(6, 10)),
                 Integer.parseInt(confirmLoanTable.getValueAt(clickedRow,9).toString().substring(3, 5)),
                 Integer.parseInt(confirmLoanTable.getValueAt(clickedRow,9).toString().substring(0, 2)));
-        System.out.println("3.4");
         dateEndPicker.setCalendar(c);
-        System.out.println("4");
         inputJumlahPinjaman.setText(confirmLoanTable.getValueAt(clickedRow,3).toString());
         cbTipePinjaman.setSelectedItem(confirmLoanTable.getValueAt(clickedRow,2).toString());
         cbJenisBunga.setSelectedItem(confirmLoanTable.getValueAt(clickedRow,8).toString());
         cbStatus.setSelectedItem(confirmLoanTable.getValueAt(clickedRow,6).toString());
-        System.out.println("5");
         setRate();
         if (cbJenisBunga.getSelectedIndex()==1) tampilBiayaTahun.setText("");
         else tampilBiayaBulan.setText("");
