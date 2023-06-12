@@ -1,22 +1,10 @@
 
 package view;
 
-import control.AdministratorsControl;
-import control.EmployeesControl;
-import javax.swing.JOptionPane;
-import model.Administrators;
-import model.Employees;
-import view.admin.DasboardView;
-//import view.employee.CustomerServiceView;
-//import view.employee.TellerView;
-
 public class LoginView extends javax.swing.JFrame {
-    private Administrators admin;
-    private Employees emp;
-    private AdministratorsControl adminControl;
-    private EmployeesControl empControl;
-    
-    private DasboardView dasView;
+    /**
+     * Creates new form LoginView
+     */
     public LoginView() {
         initComponents();
     }
@@ -51,7 +39,7 @@ public class LoginView extends javax.swing.JFrame {
         base.setBackground(new java.awt.Color(255, 255, 255));
         base.setPreferredSize(new java.awt.Dimension(1650, 1080));
 
-        gambar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/login/loginpage (2).jpg"))); // NOI18N
+        gambar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/login/login.jpg"))); // NOI18N
 
         rightPanel.setBackground(new java.awt.Color(235, 235, 255));
 
@@ -72,12 +60,15 @@ public class LoginView extends javax.swing.JFrame {
         });
 
         userlabel.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        userlabel.setForeground(new java.awt.Color(0, 0, 0));
         userlabel.setText("Username");
 
         passlabel.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        passlabel.setForeground(new java.awt.Color(0, 0, 0));
         passlabel.setText("Password");
 
         loginlabel.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
+        loginlabel.setForeground(new java.awt.Color(0, 0, 0));
         loginlabel.setText("Login");
 
         passwordInput.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
@@ -123,7 +114,6 @@ public class LoginView extends javax.swing.JFrame {
         minibankLabel.setText("MiniBank");
 
         welcomeLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 44)); // NOI18N
-        welcomeLabel.setForeground(new java.awt.Color(0, 0, 0));
 
         katakataPanel.setBackground(new java.awt.Color(235, 235, 255));
         katakataPanel.setRoundBottomLeft(70);
@@ -229,31 +219,7 @@ public class LoginView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        adminControl= new AdministratorsControl();
-       empControl=new EmployeesControl();
        
-        admin = new Administrators(0, userInput.getText(), String.valueOf(passwordInput.getPassword()));
-       emp= new Employees(0,"", "",userInput.getText(), String.valueOf(passwordInput.getPassword()), "", "", 0, "", "");
-       
-      if(adminControl.searchAdministrators(admin)!=null){
-          this.admin=adminControl.searchAdministrators(admin);
-           dasView = new DasboardView(admin);
-           this.dispose();
-           dasView.setVisible(true);
-       }else if(empControl.searchEmployees(emp)!=null){
-           emp=empControl.searchEmployees(emp);
-           if(emp.getRole_id()==1){
-//               TellerView tv = new TellerView();
-               this.dispose();
-//               tv.setVisible(true);
-           }else{
-//               CustomerServiceView csv = new CustomerServiceView();
-               this.dispose();
-//               csv.setVisible(true);
-           }
-       }else{
-           JOptionPane.showMessageDialog(this,"Akun tidak ditemukan");
-       }
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void userInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userInputActionPerformed
