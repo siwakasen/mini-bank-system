@@ -43,4 +43,8 @@
          cDao.deleteCustomers(customer_id);
      }
      
+     public Customers searchCustomer(int customer_id){
+         return cDao.searchCustomer(customer_id);
+     }
+     
  }

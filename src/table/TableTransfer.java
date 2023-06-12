@@ -7,7 +7,7 @@ import java.util.List;
 public class TableTransfer extends AbstractTableModel{
     private List<Transfers> transfers;
 
-    public TableTransfer(List<Transfers> transfers){
+    TableTransfer(List<Transfers> transfers){
         this.transfers=transfers;
     }
     
@@ -32,8 +32,6 @@ public class TableTransfer extends AbstractTableModel{
                 return transfers.get(row).getTo_account_id();
             case 3: 
                 return transfers.get(row).getAmount();
-            case 4:
-                return transfers.get(row).getTransfer_date();
             default: 
                 return null;
         }
@@ -50,8 +48,6 @@ public class TableTransfer extends AbstractTableModel{
                 return "To Account ID";
             case 3:
                 return "Amount";
-            case 4:
-                return "Transfer Date";
             default: 
                 return null;
         }

@@ -4,24 +4,33 @@
  */
 
 package control;
+
 import dao.TransactionsDAO;
+import java.util.List;
 import model.Transactions;
 import table.TableTransactions;
-import java.util.List;
-/**
- * @author 
- * Made Riksi Purnama Sadnya Agung / 210711396
- * Pemrograman Berorientasi Obyek C
- */
+import table.TableHistori;
+
 public class TransactionsControl {
-    private TransactionsDAO transactionDao = new TransactionsDAO();
+    private TransactionsDAO TransactionsDAO = new TransactionsDAO();
     
+    public void insertTransaction(Transactions transaction){
+        TransactionsDAO.insertTransaction(transaction);
+    }
+    
+    public TableHistori getTransaction(int account_id, String type){
+        List<Transactions> tr = TransactionsDAO.getTransactions(account_id, type);
+        TableHistori table = new TableHistori(tr);
+        return table;
+    }
+
+    public Transactions singleTransaction(int account_id, String transaction_id, String type){
+        return TransactionsDAO.singleTransaction(account_id, transaction_id, type);
+    }
+
     public TableTransactions showTransaction(int account_id, String type){
-        List<Transactions> listTransaction = transactionDao.getTransactions(account_id, type);
+        List<Transactions> listTransaction = TransactionsDAO.getTransactions(account_id, type);
         TableTransactions tabelTransaction = new TableTransactions(listTransaction);
         return tabelTransaction;
-    }
-    public void inserTransaction(int account_id, String transaction_type, String transaction_date){
-        transactionDao.insertTransaction(account_id, transaction_type, transaction_date);
     }
 }

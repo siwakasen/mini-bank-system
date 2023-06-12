@@ -153,4 +153,27 @@ public class CustomersDAO {
         dbCon.closeConnection();
     }
     
+        public Customers searchCustomer(int customer_id){
+        con = dbCon.makeConnection();
+        String sql = "SELECT * FROM customers WHERE customer_id = '"+customer_id+"'";
+        System.out.println("Searching Customers...");
+        Customers c = null;
+        try {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            
+            if(rs!=null){
+                while(rs.next()){
+                    c = new Customers(customer_id, rs.getString("first_name"),
+                            rs.getString("last_name"), rs.getString("email"),
+                            rs.getString("phone_number"), rs.getString("address"));
+                }
+            }
+            rs.close();
+            statement.close();
+        } catch (Exception e) {
+        }
+        dbCon.closeConnection();
+        return c;
+    }
 }
