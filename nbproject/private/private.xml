@@ -3,36 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/employee/CustomerServiceView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/table/TableEmployees.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/peminjaman/FormPeminjamanView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/transfer/TransferCustomerView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/CustomerView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/dao/TransactionsDAO.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/table/TableAdministrators.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/LoginCustomerView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/peminjaman/CompletePeminjaman.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/employee/TellerLoanView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/transfer/ConfirmTransfer.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/peminjaman/DashPeminjamanView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/transfer/CompleteTransferView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/control/AdministratorsControl.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/table/TableJoinLoans.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/model/Employees.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/dao/LoansDAO.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/histori/HistoriPeminjaman.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/employee/TellerTransferView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/table/TableDaftarTransfer.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/histori/HistoriView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/dao/AdministratorsDAO.java</file>
             <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/dao/AccountsDAO.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/control/EmployeesControl.java</file>
+            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/employee/TellerView.java</file>
             <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/dao/EmployeesDAO.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/transfer/TransferView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/histori/HistoriTransferView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/peminjaman/ConfirmPeminjaman.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/customer/transfer/FindTransferCustomerView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/control/AccountsControl.java</file>
+            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/employee/TellerLoanView.java</file>
+            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/connection/DbConnection.java</file>
         </group>
     </open-files>
 </project-private>

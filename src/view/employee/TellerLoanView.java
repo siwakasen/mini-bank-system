@@ -115,18 +115,54 @@ public class TellerLoanView extends javax.swing.JFrame {
         batalkanPinjamanBtn.setEnabled(!value);
     }
     
+    private void hideColumnHistory(){
+        loanTable.getColumnModel().getColumn(7).setWidth(0);
+        loanTable.getColumnModel().getColumn(7).setMinWidth(0);
+        loanTable.getColumnModel().getColumn(7).setMaxWidth(0); 
+        
+        loanTable.getColumnModel().getColumn(8).setWidth(0);
+        loanTable.getColumnModel().getColumn(8).setMinWidth(0);
+        loanTable.getColumnModel().getColumn(8).setMaxWidth(0); 
+        
+        loanTable.getColumnModel().getColumn(9).setWidth(0);
+        loanTable.getColumnModel().getColumn(9).setMinWidth(0);
+        loanTable.getColumnModel().getColumn(9).setMaxWidth(0); 
+        
+        loanTable.getColumnModel().getColumn(10).setWidth(0);
+        loanTable.getColumnModel().getColumn(10).setMinWidth(0);
+        loanTable.getColumnModel().getColumn(10).setMaxWidth(0); 
+    }
     public void showDataHistory(){
         loanTable.getTableHeader().setOpaque(false);
         loanTable.getTableHeader().setForeground(new Color(0, 61, 121));
         loanTable.setRowHeight(25);
         loanTable.setModel(lControl.showAllJoinLoans("LOA", "Lunas", "Dibatalkan"));
+        hideColumnHistory();
     }
     
+    private void hideColumnCurrently(){
+        confirmLoanTable.getColumnModel().getColumn(7).setWidth(0);
+        confirmLoanTable.getColumnModel().getColumn(7).setMinWidth(0);
+        confirmLoanTable.getColumnModel().getColumn(7).setMaxWidth(0); 
+        
+        confirmLoanTable.getColumnModel().getColumn(8).setWidth(0);
+        confirmLoanTable.getColumnModel().getColumn(8).setMinWidth(0);
+        confirmLoanTable.getColumnModel().getColumn(8).setMaxWidth(0); 
+        
+        confirmLoanTable.getColumnModel().getColumn(9).setWidth(0);
+        confirmLoanTable.getColumnModel().getColumn(9).setMinWidth(0);
+        confirmLoanTable.getColumnModel().getColumn(9).setMaxWidth(0); 
+        
+        confirmLoanTable.getColumnModel().getColumn(10).setWidth(0);
+        confirmLoanTable.getColumnModel().getColumn(10).setMinWidth(0);
+        confirmLoanTable.getColumnModel().getColumn(10).setMaxWidth(0); 
+    }
     public void showDataCurrently(){
         confirmLoanTable.getTableHeader().setOpaque(false);
         confirmLoanTable.getTableHeader().setForeground(new Color(0, 61, 121));
         confirmLoanTable.setRowHeight(25);
         confirmLoanTable.setModel(lControl.showAllJoinLoans("LOA", "Dikonfirmasi", "Menunggu Konfirmasi"));
+        hideColumnCurrently();
     }
     
     public String convDateSql(Date input){
@@ -336,7 +372,7 @@ public class TellerLoanView extends javax.swing.JFrame {
                         .addComponent(labelPane1)))
                 .addGap(343, 343, 343)
                 .addComponent(jButton1)
-                .addContainerGap(485, Short.MAX_VALUE))
+                .addContainerGap(532, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -736,7 +772,7 @@ public class TellerLoanView extends javax.swing.JFrame {
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         panelJumlahPinjaman.setBackground(new java.awt.Color(255, 255, 255));
@@ -859,7 +895,7 @@ public class TellerLoanView extends javax.swing.JFrame {
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         panelRound6.setBackground(new java.awt.Color(255, 255, 255));
@@ -1118,7 +1154,6 @@ public class TellerLoanView extends javax.swing.JFrame {
     }//GEN-LAST:event_cbTipePinjamanActionPerformed
 
     private void confirmLoanTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmLoanTableMouseClicked
-        System.out.println("HALOOO");
         cbStatus.setEnabled(true);
         setEditComponent(false);
         int clickedRow = confirmLoanTable.getSelectedRow();

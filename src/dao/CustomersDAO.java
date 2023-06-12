@@ -155,9 +155,8 @@ public class CustomersDAO {
     
         public Customers searchCustomer(int customer_id){
         con = dbCon.makeConnection();
-        System.out.println("a");
         String sql = "SELECT * FROM customers WHERE customer_id = '"+customer_id+"'";
-        System.out.println("Searching Accounts...");
+        System.out.println("Searching Customers...");
         Customers c = null;
         try {
             Statement statement = con.createStatement();
@@ -175,7 +174,6 @@ public class CustomersDAO {
         } catch (Exception e) {
         }
         dbCon.closeConnection();
-        System.out.println("a");
         return c;
     }
 }
