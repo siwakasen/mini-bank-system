@@ -7,8 +7,8 @@ import javax.swing.JOptionPane;
 import model.Administrators;
 import model.Employees;
 import view.admin.DasboardView;
-import view.employee.CustomerServiceView;
-import view.employee.TellerView;
+//import view.employee.CustomerServiceView;
+//import view.employee.TellerView;
 
 public class LoginView extends javax.swing.JFrame {
     private Administrators admin;
@@ -243,13 +243,13 @@ public class LoginView extends javax.swing.JFrame {
        }else if(empControl.searchEmployees(emp)!=null){
            emp=empControl.searchEmployees(emp);
            if(emp.getRole_id()==1){
-               TellerView tv = new TellerView();
+//               TellerView tv = new TellerView();
                this.dispose();
-               tv.setVisible(true);
+//               tv.setVisible(true);
            }else{
-               CustomerServiceView csv = new CustomerServiceView();
+//               CustomerServiceView csv = new CustomerServiceView();
                this.dispose();
-               csv.setVisible(true);
+//               csv.setVisible(true);
            }
        }else{
            JOptionPane.showMessageDialog(this,"Akun tidak ditemukan");
