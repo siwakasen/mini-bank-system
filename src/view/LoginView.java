@@ -78,9 +78,19 @@ public class LoginView extends javax.swing.JFrame {
         loginBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         loginBtn.setForeground(new java.awt.Color(245, 245, 245));
         loginBtn.setText("Login");
+        loginBtn.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                loginBtnFocusGained(evt);
+            }
+        });
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBtnActionPerformed(evt);
+            }
+        });
+        loginBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                loginBtnKeyPressed(evt);
             }
         });
 
@@ -279,13 +289,45 @@ public class LoginView extends javax.swing.JFrame {
                csv.setVisible(true);
            }
        }else{
-           JOptionPane.showMessageDialog(this,"Akun tidak ditemukan");
+           JOptionPane.showMessageDialog(this,"Username atau Password Salah !");
        }
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void userInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userInputActionPerformed
+
+    private void loginBtnFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_loginBtnFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginBtnFocusGained
+
+    private void loginBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginBtnKeyPressed
+        adminControl= new AdministratorsControl();
+       empControl=new EmployeesControl();
+       
+        admin = new Administrators(0, userInput.getText(), String.valueOf(passwordInput.getPassword()));
+       emp= new Employees(0,"", "",userInput.getText(), String.valueOf(passwordInput.getPassword()), "", "", 0, "", "");
+       
+      if(adminControl.searchAdministrators(admin)!=null){
+          this.admin=adminControl.searchAdministrators(admin);
+           dasView = new DasboardView(admin);
+           this.dispose();
+           dasView.setVisible(true);
+       }else if(empControl.searchEmployees(emp)!=null){
+           emp=empControl.searchEmployees(emp);
+           if(emp.getRole_id()==1){
+               TellerView tv = new TellerView();
+               this.dispose();
+               tv.setVisible(true);
+           }else{
+               CustomerServiceView csv = new CustomerServiceView();
+               this.dispose();
+               csv.setVisible(true);
+           }
+       }else{
+           JOptionPane.showMessageDialog(this,"Username atau Password Salah !");
+       }
+    }//GEN-LAST:event_loginBtnKeyPressed
 
     /**
      * @param args the command line arguments

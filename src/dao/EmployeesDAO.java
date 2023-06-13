@@ -81,7 +81,44 @@ public class EmployeesDAO {
         }
         dbcon.closeConnection();
     }
-    
+    public Employees searchByUsername(String user){
+        con = dbcon.makeConnection();
+        
+        String sql = "SELECT * from employees WHERE username = '" +user+"'";
+        System.out.println("Searching employees...");
+        
+        try {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            
+            if (rs!=null) {
+                while (rs.next()) {
+                    Employees e = new Employees(rs.getInt("employee_id"),
+                            rs.getString("first_name"), rs.getString("last_name"),
+                            rs.getString("username"), rs.getString("password"), 
+                            rs.getString("start_work_date"), rs.getString("end_work_date"),
+                            rs.getInt("role_id"), rs.getString("office_number"), 
+                            rs.getString("station_number"));
+                    
+                    e.setStart_work_date(e.getStart_work_date().substring(8, 10)+e.getStart_work_date().substring(4, 8)+
+                            e.getStart_work_date().substring(0, 4));
+                    
+                    e.setEnd_work_date(e.getEnd_work_date().substring(8, 10)+e.getEnd_work_date().substring(4, 8)+
+                            e.getEnd_work_date().substring(0, 4));
+                    
+                    dbcon.closeConnection();
+                    return e;
+                }
+            }
+            rs.close();
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("Error searching administrators...");
+            System.out.println(e);
+        }
+        dbcon.closeConnection();
+        return null;
+    }
     public List<Employees> showListEmployees(){
         con = dbcon.makeConnection();
         
@@ -146,6 +183,7 @@ public class EmployeesDAO {
                             rs.getString("station_number"));
                    
                     if(e.getUsername().equals(emp.getUsername()) && e.getPassword().equals(emp.getPassword())){
+                        dbcon.closeConnection();
                         return e;
                     }
                     
@@ -159,7 +197,49 @@ public class EmployeesDAO {
             System.out.println("Error colleting data employee...");
         }
         dbcon.closeConnection();
-//        return new Employees(0, "", "", "", "", "", "", 0, "", "");
           return null;
+    }
+        
+      public List<Employees> searchShowEmp(String query) {
+        con = dbcon.makeConnection();
+        
+        String sql = "SELECT e.*,r.* FROM employees as e JOIN roles as r ON (e.role_id = r.role_id) "
+                + "WHERE ( e.employee_id LIKE '%" + query + "%'"
+                + " OR e.first_name LIKE '%" + query + "%'"
+                + " OR e.last_name LIKE '%" + query + "%'"
+                + " OR e.username LIKE '%" + query + "%'"
+                + " OR e.password LIKE '%" + query + "%'"
+                + " OR e.start_work_date LIKE '%" + query + "%'"
+                + " OR e.end_work_date LIKE '%" + query + "%'"
+                + " OR r.role_name LIKE '%" + query + "%'"
+                + " OR e.station_number LIKE '%" + query + "%'"
+                + " OR e.office_number LIKE '%" + query + "%')";
+        System.out.println("Mengambil data Admins...");       
+        List<Employees> list = new ArrayList<>();
+        
+        try {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            
+            if (rs!=null){
+                while(rs.next()){
+                    Employees e = new Employees(rs.getInt("employee_id"),
+                            rs.getString("first_name"), rs.getString("last_name"),
+                            rs.getString("username"), rs.getString("password"), 
+                            rs.getString("start_work_date"), rs.getString("end_work_date"),
+                            rs.getInt("role_id"), rs.getString("office_number"), 
+                            rs.getString("station_number"));
+                    list.add(e);
+                }
+            }
+            rs.close();
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("Error reading database...");
+            System.out.println(e);
+        }
+        dbcon.closeConnection();
+        
+        return list;
     }
 }

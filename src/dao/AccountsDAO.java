@@ -162,8 +162,10 @@ public class AccountsDAO {
                             new Customers(Integer.parseInt(rs.getString("customers.customer_id")),rs.getString("customers.first_name"),rs.getString("customers.last_name"),rs.getString("customers.email"),rs.getString("customers.phone_number"),rs.getString("customers.address")), rs.getString("accounts.username"), rs.getString("accounts.password"));
             }
         } catch (Exception e){
+            dbCon.closeConnection();
             return null;
         }
+        dbCon.closeConnection();
         return null;
     }
     
@@ -177,9 +179,12 @@ public class AccountsDAO {
             if(rs.next()){
                 return true;
             }
+            rs.close();
+            stmt.close();
         } catch (Exception e){
             return false;
         }
+        dbCon.closeConnection();
         return false;
     }
 }

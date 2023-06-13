@@ -2,11 +2,12 @@
 package view.admin;
 
 import control.AdministratorsControl;
-import exception.BlankInputException;
+import exception.*;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import model.Administrators;
+import table.TableAdministrators;
 import view.LoginView;
 
 
@@ -66,7 +67,6 @@ public class AdminManageView extends javax.swing.JFrame {
             throw new BlankInputException();
         }
     }
-    
     
 
     /**
@@ -488,6 +488,11 @@ public class AdminManageView extends javax.swing.JFrame {
         searchBtn.setText("Cari");
         searchBtn.setBorder(null);
         searchBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchBtnMouseClicked(evt);
+            }
+        });
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBtnActionPerformed(evt);
@@ -545,7 +550,6 @@ public class AdminManageView extends javax.swing.JFrame {
                                 .addGap(13, 13, 13)))
                         .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(baseLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addComponent(inputPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(saveCancelPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -595,7 +599,7 @@ public class AdminManageView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "You don't have permissions to delete another Administrators");
             return;
         }
-        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure want to delete data?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to delete this administrator?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if(getAnswer == 0){
             try{
                 administratorsControl.deleteAdministrator(Integer.parseInt(idInput.getText()));
@@ -642,9 +646,8 @@ public class AdminManageView extends javax.swing.JFrame {
 //        // TODO add your handling code here:
         try{
             blankInputException();
-
             if(action.equals("Add")){
-                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure want to add administrators?","Confirmation", JOptionPane.YES_NO_OPTION);
+                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add administrator?","Confirmation", JOptionPane.YES_NO_OPTION);
                 if(getAnswer == JOptionPane.YES_OPTION){
                     Administrators a = new Administrators (Integer.parseInt(idInput.getText()), userInput.getText(), passInput.getText());
                     administratorsControl.insertAdministrator(a);
@@ -653,7 +656,7 @@ public class AdminManageView extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Failed to add administrators");
                 }
             }else{
-                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure want to change administrators?","Confirmation", JOptionPane.YES_NO_OPTION);
+                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to change this administrator?","Confirmation", JOptionPane.YES_NO_OPTION);
                 if(getAnswer == JOptionPane.YES_OPTION){
                     Administrators a = new Administrators (Integer.parseInt(idInput.getText()), userInput.getText(), passInput.getText());
                     administratorsControl.updateAdministrator(a);
@@ -732,7 +735,41 @@ public class AdminManageView extends javax.swing.JFrame {
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         setComponent(false);
+         setEditDeleteBtn(false);
+         try{
+             TableAdministrators admins = administratorsControl.showTableAdmins(searchInput.getText());
+            if(admins.getRowCount()==0){
+                    clearText();
+                    searchInput.setText("");
+                    JOptionPane.showMessageDialog(this, "Admin not found");
+                }else{
+                    adminTable.setModel(admins);
+                }
+            clearText();
+            searchInput.setText("");
+         }catch (Exception e) {
+            System.out.println("Eror : "+e.getMessage());
+        }
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
+       setComponent(false);
+         setEditDeleteBtn(false);
+         try{
+             TableAdministrators admins = administratorsControl.showTableAdmins(searchInput.getText());
+            if(admins.getRowCount()==0){
+                    clearText();
+                    searchInput.setText("");
+                    JOptionPane.showMessageDialog(this, "Admin not found");
+                }else{
+                    adminTable.setModel(admins);
+                }
+            clearText();
+            searchInput.setText("");
+         }catch (Exception e) {
+            System.out.println("Eror : "+e.getMessage());
+        }
+    }//GEN-LAST:event_searchBtnMouseClicked
 
     /**
      * @param args the command line arguments

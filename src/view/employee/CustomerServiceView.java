@@ -7,6 +7,7 @@ import model.Accounts;
 import model.Customers;
 import control.AccountsControl;
 import control.CustomersControl;
+import exception.BlankInputException;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
@@ -410,8 +411,8 @@ public class CustomerServiceView extends javax.swing.JFrame {
                                 .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                        .addGap(0, 7, Short.MAX_VALUE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         baseInputCusLayout.setVerticalGroup(
             baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -534,11 +535,11 @@ public class CustomerServiceView extends javax.swing.JFrame {
         searchBtn.setLayout(null);
 
         labelDelete1.setBackground(new java.awt.Color(255, 255, 255));
-        labelDelete1.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 14)); // NOI18N
+        labelDelete1.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 18)); // NOI18N
         labelDelete1.setForeground(new java.awt.Color(255, 255, 255));
         labelDelete1.setText("Cari");
         searchBtn.add(labelDelete1);
-        labelDelete1.setBounds(23, 6, 28, 19);
+        labelDelete1.setBounds(20, 0, 50, 30);
 
         addBtn.setBackground(new java.awt.Color(0, 61, 121));
         addBtn.setFont(new java.awt.Font("Montserrat SemiBold", 1, 18)); // NOI18N
@@ -558,6 +559,11 @@ public class CustomerServiceView extends javax.swing.JFrame {
         editBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editBtnMouseClicked(evt);
+            }
+        });
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
             }
         });
 
@@ -662,33 +668,49 @@ public class CustomerServiceView extends javax.swing.JFrame {
         clearText();
         inputSearch.setText("");
     }//GEN-LAST:event_cancelBtnActionPerformed
-
+    private void blankInputException() throws BlankInputException{
+        if(inputFirstName.getText().isEmpty() || inputLastName.getText().isEmpty()
+           || inputEmail.getText().isEmpty() || inputPhoneNumber.getText().isEmpty()
+           || inputAddress.getText().isEmpty() || inputBalance.getText().isEmpty()
+           || inputUsername.getText().isEmpty() || String.valueOf(inputPassword.getPassword()).isEmpty()){
+            
+            throw new BlankInputException();
+        }
+    }
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah menambah data transfer?", "Konfirmasi",JOptionPane.YES_NO_OPTION);
-        switch (getAnswer) {
-            case 0:
-                if (action=="Tambah") {
-                    Customers c = new Customers((customerControl.lastCostumer() + 1), inputFirstName.getText(), inputLastName.getText(), inputEmail.getText(), inputPhoneNumber.getText(), inputAddress.getText());
-                    Accounts a = new Accounts(0, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(), inputPassword.getText());
-                    customerControl.insertCustomer(c);
-                    accountControl.insertAccounts(a);
-                }else{
-                    Customers c = new Customers(selectedIdCustomer, inputFirstName.getText(), inputLastName.getText(), inputEmail.getText(), inputPhoneNumber.getText(), inputAddress.getText());
-                    Accounts a = new Accounts(selectedIdAccount, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(), inputPassword.getText());
-                    customerControl.updateCustomer(c);
-                    accountControl.updateAccounts(a);
+        try{
+            blankInputException();
+            if (action=="Tambah") {
+                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add Customer?", "Confirmation",JOptionPane.YES_NO_OPTION);
+                if(getAnswer == JOptionPane.YES_OPTION){
+                        Customers c = new Customers((customerControl.lastCostumer() + 1), inputFirstName.getText(), inputLastName.getText(), inputEmail.getText(), inputPhoneNumber.getText(), inputAddress.getText());
+                        Accounts a = new Accounts(0, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(),String.valueOf(inputPassword.getPassword()));
+                        customerControl.insertCustomer(c);
+                        accountControl.insertAccounts(a);
+                        JOptionPane.showMessageDialog(null, " Success to add customer!");
                 }
-                clearText();
-                showAccounts();
-                setComponent(false);
-                setEditDeleteBtn(false);
-                setAddBtn(true);
-                break;
-            case 1:
-                //do nothing
-                break;
-            default:
-                throw new AssertionError();
+            }else{
+                 int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to change Customer?", "Confirmation",JOptionPane.YES_NO_OPTION);
+                 if(getAnswer == JOptionPane.YES_OPTION){
+                         Customers c = new Customers(selectedIdCustomer, inputFirstName.getText(), inputLastName.getText(), inputEmail.getText(), inputPhoneNumber.getText(), inputAddress.getText());
+                         Accounts a = new Accounts(selectedIdAccount, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(),String.valueOf(inputPassword.getPassword()));
+                         customerControl.updateCustomer(c);
+                         accountControl.updateAccounts(a);
+                         JOptionPane.showMessageDialog(null, " Success to change customer!");
+                 }
+            }
+
+            clearText();
+            showAccounts();
+            setComponent(false);
+            setEditDeleteBtn(false);
+            setAddBtn(true);
+        }catch(BlankInputException e){
+            JOptionPane.showConfirmDialog(null, e.message(), "Warning", JOptionPane.DEFAULT_OPTION);
+            System.out.println("Error: " + e.toString());
+        }catch(NumberFormatException e){
+            JOptionPane.showConfirmDialog(null, "Input Balance Must Be Number ! ", "Warning", JOptionPane.DEFAULT_OPTION);
+            System.out.println("Error: " + e.toString());
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -704,7 +726,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
             if(accounts.getRowCount()==0){
                     clearText();
                     inputSearch.setText("");
-                    JOptionPane.showMessageDialog(null,"Data tidak ditemukan!","Konfirmasi", JOptionPane.DEFAULT_OPTION);
+                    JOptionPane.showMessageDialog(this, "Customer not found");
                 }else{
                     tableCustomers.setModel(accounts);
                 }
@@ -738,7 +760,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         int getAnswer = JOptionPane.showConfirmDialog(rootPane,
-            "Apakah yakin ingin menghapus data?", "Konfirmasi",
+            "Are you sure to delete this customer?", "Confirmation",
             JOptionPane.YES_NO_OPTION);
         switch (getAnswer) {
             case 0:
@@ -749,7 +771,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
             setComponent(false);
             setEditDeleteBtn(false);
             setAddBtn(true);
-            JOptionPane.showMessageDialog(null, " Data berhasil dihapus!");
+            JOptionPane.showMessageDialog(null, " Success to delete customer!");
             break;
             case 1:
 
@@ -773,7 +795,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
         setComponent(true);
         setEditDeleteBtn(false);
         inputSearch.setText("");
-        action = "Tambah";
+        action = "Edit^";
     }//GEN-LAST:event_editBtnMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -781,6 +803,10 @@ public class CustomerServiceView extends javax.swing.JFrame {
         this.dispose();
         l.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editBtnActionPerformed
 
     /**
      * @param args the command line arguments

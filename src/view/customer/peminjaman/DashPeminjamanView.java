@@ -190,8 +190,7 @@ public class DashPeminjamanView extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // ini nyari udh ada transaksi loans apa belum
-        Transactions tr = TransactionControl.singleTransaction(account.getAccount_id(), "", "LOA");
-        
+        Transactions tr = TransactionControl.searchByStatusLoan(account.getAccount_id());
         //jika tidak ada sama sekali, masuk form
         if(tr==null){
             this.dispose();
@@ -199,6 +198,7 @@ public class DashPeminjamanView extends javax.swing.JFrame {
             return;
         } 
         Loans loan = LoansControl.getLoan(tr.getTransaction_fk(), "Menunggu Konfirmasi");
+        //System.out.println(loan.getLoan_id());
         if(loan != null){
             JOptionPane.showMessageDialog(null, "Anda sudah memiliki peminjaman yang belum dikonfirmasi!");
             return;
@@ -214,35 +214,25 @@ public class DashPeminjamanView extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        Transactions tr = TransactionControl.singleTransaction(account.getAccount_id(), "", "LOA");
-        if(tr != null){
-            Loans loan = LoansControl.getLoan(tr.getTransaction_fk(), "Menunggu Konfirmasi");
-            if(loan != null){
-                this.dispose();
-                new CompletePeminjaman(account, tr, loan).setVisible(true);
-            } else {
-                Loans loan2 = LoansControl.getLoan(tr.getTransaction_fk(), "Dibatalkan");
-                if(loan2 != null){
-                    JOptionPane.showMessageDialog(null, "Anda belum memiliki peminjaman!");
-                } else {
-                    Loans loan3 = LoansControl.getLoan(tr.getTransaction_fk(), "Lunas");
-                    if(loan3 != null){
-                        JOptionPane.showMessageDialog(null, "Anda belum memiliki peminjaman!");
-                    } else {
-                        Loans loan4 = LoansControl.getLoan(tr.getTransaction_fk(), "Dikonfirmasi");
-                        if(loan4 != null){
-                            this.dispose();
-                            new CompletePeminjaman(account, tr, loan4).setVisible(true);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Anda belum memiliki peminjaman!");
-                        }
-                    }
-                }
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Anda belum memiliki peminjaman!");
-        }
+        Transactions tr = TransactionControl.searchByStatusLoan(account.getAccount_id());
         
+        if(tr==null){
+            JOptionPane.showMessageDialog(null, "Anda belum memiliki peminjaman!");
+            return;
+        }
+        Loans loan = LoansControl.getLoan(tr.getTransaction_fk(), "Menunggu Konfirmasi");
+        if(loan!=null){
+            this.dispose();
+            new CompletePeminjaman(account, tr, loan).setVisible(true);
+            return;
+        }
+        loan = LoansControl.getLoan(tr.getTransaction_fk(), "Dikonfirmasi");
+        if(loan!=null){
+            this.dispose();
+            new CompletePeminjaman(account, tr, loan).setVisible(true);
+            return;
+        }
+        JOptionPane.showMessageDialog(null, "Anda belum memiliki peminjaman!");
     }//GEN-LAST:event_jLabel3MouseClicked
 
     /**

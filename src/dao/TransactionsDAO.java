@@ -113,6 +113,7 @@ public class TransactionsDAO {
                 }
                 statement.close();
                 rs.close();
+                DbCon.closeConnection();
                 return tJoins;
             }else{
                 String sql = "SELECT t.*, tf.* FROM transactions as t JOIN transfers as tf ON (t.transaction_fk = tf.transfer_id)"
@@ -135,6 +136,7 @@ public class TransactionsDAO {
                 }
                 statement.close();
                 rs.close();
+                DbCon.closeConnection();
                 return tJoins;
             }
         } catch (Exception e) {
@@ -159,6 +161,7 @@ public class TransactionsDAO {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+            DbCon.closeConnection();
             return null;
         }else{
             try {
@@ -174,8 +177,29 @@ public class TransactionsDAO {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+            DbCon.closeConnection();
             return null;
         }
+    }
+    public Transactions singleOnGoingLoans(int account_id, String status){
+        conn = DbCon.makeConnection();
+        Transactions tr = null;
+        try{
+            conn = DbCon.makeConnection();
+                String sql ="SELECT * FROM transactions as t JOIN loans as l ON (t.transaction_fk = l.loan_id) WHERE t.account_id = '"+account_id+"' AND l.confirm ='"+status+"'";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                if (rs.next()) {
+                    tr = new Transactions(rs.getString("transaction_id"), account_id, rs.getString("transaction_fk"), rs.getString("transaction_date"));
+                }
+                stmt.close();
+                rs.close();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        DbCon.closeConnection();
+        System.out.println("Ini Hasil TR :"+tr);
+        return tr;
     }
     
 }

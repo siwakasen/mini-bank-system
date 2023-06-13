@@ -7,6 +7,9 @@ import model.Loans;
 import control.AccountsControl;
 import control.TransactionsControl;
 import control.LoansControl;
+import exception.BlankInputException;
+import exception.InvalidCalendarException;
+import exception.StatusLoansException;
 import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
 import java.math.BigDecimal;
@@ -40,6 +43,8 @@ public class TellerLoanView extends javax.swing.JFrame {
     String idLoan = null;
     String idAcc = null;
     
+    private int lastStatusIndex;
+    
     
     public TellerLoanView() {
         initComponents();
@@ -71,7 +76,7 @@ public class TellerLoanView extends javax.swing.JFrame {
     public void setComponent(boolean value){
         tampilIdPinjaman.setEnabled(value);
         tampilInterestRate.setEnabled(value);
-        tampilNamaNasabah.setEnabled(value);
+        namaInput.setEnabled(value);
         cancelPeminjamBtn.setEnabled(value);
         cbStatus.setEnabled(value);
         batalkanPinjamanBtn.setEnabled(value);
@@ -84,13 +89,13 @@ public class TellerLoanView extends javax.swing.JFrame {
         cekPeminjamBtn.setEnabled(value);
         if (value==true) {
             inputIdNasabah.setText("");
-            tampilNamaNasabah.setText("");
+            namaInput.setText("");
         }
     }
     
     public void clearText(){
         tampilIdPinjaman.setText("");
-        tampilNamaNasabah.setText("");
+        namaInput.setText("");
         inputIdNasabah.setText("");
         inputJumlahPinjaman.setText("");
         tampilBiayaBulan.setText("");
@@ -114,55 +119,18 @@ public class TellerLoanView extends javax.swing.JFrame {
         tampilBiayaBulan.setEnabled(value);
         batalkanPinjamanBtn.setEnabled(!value);
     }
-    
-//    private void hideColumnHistory(){
-//        loanTable.getColumnModel().getColumn(7).setWidth(0);
-//        loanTable.getColumnModel().getColumn(7).setMinWidth(0);
-//        loanTable.getColumnModel().getColumn(7).setMaxWidth(0); 
-//        
-//        loanTable.getColumnModel().getColumn(8).setWidth(0);
-//        loanTable.getColumnModel().getColumn(8).setMinWidth(0);
-//        loanTable.getColumnModel().getColumn(8).setMaxWidth(0); 
-//        
-//        loanTable.getColumnModel().getColumn(9).setWidth(0);
-//        loanTable.getColumnModel().getColumn(9).setMinWidth(0);
-//        loanTable.getColumnModel().getColumn(9).setMaxWidth(0); 
-//        
-//        loanTable.getColumnModel().getColumn(10).setWidth(0);
-//        loanTable.getColumnModel().getColumn(10).setMinWidth(0);
-//        loanTable.getColumnModel().getColumn(10).setMaxWidth(0); 
-//    }
     public void showDataHistory(){
         loanTable.getTableHeader().setOpaque(false);
         loanTable.getTableHeader().setForeground(new Color(0, 61, 121));
         loanTable.setRowHeight(25);
         loanTable.setModel(lControl.showAllJoinLoans("LOA", "Lunas", "Dibatalkan"));
-//        hideColumnHistory();
     }
     
-//    private void hideColumnCurrently(){
-//        confirmLoanTable.getColumnModel().getColumn(7).setWidth(0);
-//        confirmLoanTable.getColumnModel().getColumn(7).setMinWidth(0);
-//        confirmLoanTable.getColumnModel().getColumn(7).setMaxWidth(0); 
-//        
-//        confirmLoanTable.getColumnModel().getColumn(8).setWidth(0);
-//        confirmLoanTable.getColumnModel().getColumn(8).setMinWidth(0);
-//        confirmLoanTable.getColumnModel().getColumn(8).setMaxWidth(0); 
-//        
-//        confirmLoanTable.getColumnModel().getColumn(9).setWidth(0);
-//        confirmLoanTable.getColumnModel().getColumn(9).setMinWidth(0);
-//        confirmLoanTable.getColumnModel().getColumn(9).setMaxWidth(0); 
-//        
-//        confirmLoanTable.getColumnModel().getColumn(10).setWidth(0);
-//        confirmLoanTable.getColumnModel().getColumn(10).setMinWidth(0);
-//        confirmLoanTable.getColumnModel().getColumn(10).setMaxWidth(0); 
-//    }
     public void showDataCurrently(){
         confirmLoanTable.getTableHeader().setOpaque(false);
         confirmLoanTable.getTableHeader().setForeground(new Color(0, 61, 121));
         confirmLoanTable.setRowHeight(25);
         confirmLoanTable.setModel(lControl.showAllJoinLoans("LOA", "Dikonfirmasi", "Menunggu Konfirmasi"));
-//        hideColumnCurrently();
     }
     
     public String convDateSql(Date input){
@@ -184,10 +152,12 @@ public class TellerLoanView extends javax.swing.JFrame {
         if (cbTipePinjaman.getSelectedIndex()==1){
             type = "Kredit Usaha Rakyat";
             rate = (float) 0.07;
-        }else if(cbTipePinjaman.getSelectedIndex()==2){
+        }
+        if(cbTipePinjaman.getSelectedIndex()==2){
             type = "Kredit Modal Kerja";
             rate = (float) 0.08;
-        }else{
+        }
+        if(cbTipePinjaman.getSelectedIndex()==3){
             type = "Kredit Investasi";
             rate = (float) 0.1;
         }
@@ -203,13 +173,17 @@ public class TellerLoanView extends javax.swing.JFrame {
         inputJumlahPinjaman.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
-                warn();
-                double kalkulasi_perbulan = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100)/12;
-                double kalkulasi_pertahun = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100);
-                BigDecimal bcBulan = new BigDecimal(kalkulasi_perbulan).setScale(0, RoundingMode.HALF_EVEN);
-                BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
-                tampilBiayaBulan.setText(formatNominal(bcBulan));
-                tampilBiayaTahun.setText(formatNominal(bcTahun));
+                try{
+                    double kalkulasi_perbulan = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100)/12;
+                    double kalkulasi_pertahun = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100);
+                    BigDecimal bcBulan = new BigDecimal(kalkulasi_perbulan).setScale(0, RoundingMode.HALF_EVEN);
+                    BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
+                    tampilBiayaBulan.setText(formatNominal(bcBulan));
+                    tampilBiayaTahun.setText(formatNominal(bcTahun));
+                } catch(NumberFormatException e1){
+                    JOptionPane.showMessageDialog(null, "Invalid loan amount");
+                    System.out.println("Error "+ e1.toString());
+              }
             }
             @Override
             public void removeUpdate(DocumentEvent e) {
@@ -220,33 +194,24 @@ public class TellerLoanView extends javax.swing.JFrame {
                 BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
                 tampilBiayaBulan.setText(formatNominal(bcBulan));
                 tampilBiayaTahun.setText(formatNominal(bcTahun));
-              } catch(Exception handling){
-//                  pass
+              } catch(NumberFormatException e1){
+                    JOptionPane.showMessageDialog(null, "Invalid loan amount");
+                    System.out.println("Error "+ e1.toString());
               }
             }
             @Override
             public void insertUpdate(DocumentEvent e) {
-                warn();
+                try{
                 double kalkulasi_perbulan = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100)/12;
                 double kalkulasi_pertahun = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100);
                 BigDecimal bcBulan = new BigDecimal(kalkulasi_perbulan).setScale(0, RoundingMode.HALF_EVEN);
                 BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
                 tampilBiayaBulan.setText(formatNominal(bcBulan));
                 tampilBiayaTahun.setText(formatNominal(bcTahun));
-            }
-
-            public void warn() {
-                try{
-                    if (Double.parseDouble(inputJumlahPinjaman.getText())<=0){
-                      JOptionPane.showMessageDialog(null,
-                         "Nominal harus lebih dari 0!", "Error Message",
-                         JOptionPane.ERROR_MESSAGE);
-                    }
-                }catch (NumberFormatException e){
-                    JOptionPane.showMessageDialog(null,
-                         "Nominal tidak valid!", "Error Message",
-                         JOptionPane.ERROR_MESSAGE);
-                }
+                } catch(NumberFormatException e1){
+                    JOptionPane.showMessageDialog(null, "Invalid loan amount");
+                    System.out.println("Error "+ e1.toString());
+              }
             }
         });
     }
@@ -268,7 +233,7 @@ public class TellerLoanView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         panelDetailPeminjaman = new view.PanelRound();
-        tampilNamaNasabah = new javax.swing.JTextField();
+        namaInput = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         cekPeminjamBtn = new javax.swing.JButton();
         inputIdNasabah = new javax.swing.JTextField();
@@ -416,12 +381,12 @@ public class TellerLoanView extends javax.swing.JFrame {
         panelDetailPeminjaman.setRoundTopLeft(20);
         panelDetailPeminjaman.setRoundTopRight(20);
 
-        tampilNamaNasabah.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        tampilNamaNasabah.setForeground(new java.awt.Color(0, 0, 0));
-        tampilNamaNasabah.setPreferredSize(new java.awt.Dimension(64, 27));
-        tampilNamaNasabah.addActionListener(new java.awt.event.ActionListener() {
+        namaInput.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        namaInput.setForeground(new java.awt.Color(0, 0, 0));
+        namaInput.setPreferredSize(new java.awt.Dimension(64, 27));
+        namaInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tampilNamaNasabahActionPerformed(evt);
+                namaInputActionPerformed(evt);
             }
         });
 
@@ -513,7 +478,7 @@ public class TellerLoanView extends javax.swing.JFrame {
                     .addComponent(cancelPeminjamBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelDetailPeminjamanLayout.createSequentialGroup()
                         .addGroup(panelDetailPeminjamanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(tampilNamaNasabah, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                            .addComponent(namaInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                             .addComponent(inputIdNasabah, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cekPeminjamBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -541,7 +506,7 @@ public class TellerLoanView extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(jLabel3)
                 .addGap(4, 4, 4)
-                .addComponent(tampilNamaNasabah, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(namaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(cancelPeminjamBtn)
                 .addGap(15, 15, 15))
@@ -1117,20 +1082,20 @@ public class TellerLoanView extends javax.swing.JFrame {
        tv.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void tampilNamaNasabahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tampilNamaNasabahActionPerformed
+    private void namaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaInputActionPerformed
 
-    }//GEN-LAST:event_tampilNamaNasabahActionPerformed
+    }//GEN-LAST:event_namaInputActionPerformed
 
     private void cekPeminjamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cekPeminjamBtnActionPerformed
         try {
             peminjam = aControl.searchAccount(Integer.parseInt(inputIdNasabah.getText()));
             if(peminjam!=null){
-                tampilNamaNasabah.setText(peminjam.getCustomer().getFirst_name()+" "+peminjam.getCustomer().getLast_name());
+                namaInput.setText(peminjam.getCustomer().getFirst_name()+" "+peminjam.getCustomer().getLast_name());
                 setDetailPeminjamanArea(false);
                 cancelPeminjamBtn.setEnabled(true);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Data tidak ditemukan","Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showMessageDialog(null,"Account not found","Confirmation", JOptionPane.DEFAULT_OPTION);
         }
     }//GEN-LAST:event_cekPeminjamBtnActionPerformed
 
@@ -1160,7 +1125,7 @@ public class TellerLoanView extends javax.swing.JFrame {
         idAcc = tableModel.getValueAt(clickedRow,1).toString();
         inputIdNasabah.setText(idAcc);
         peminjam = aControl.searchAccount(Integer.parseInt(inputIdNasabah.getText()));
-        tampilNamaNasabah.setText(peminjam.getCustomer().getFirst_name()+" "+peminjam.getCustomer().getLast_name());
+        namaInput.setText(peminjam.getCustomer().getFirst_name()+" "+peminjam.getCustomer().getLast_name());
         Calendar c = Calendar.getInstance();
         c.set(Integer.parseInt(tableModel.getValueAt(clickedRow,5).toString().substring(6, 10)),
                 Integer.parseInt(tableModel.getValueAt(clickedRow,5).toString().substring(3, 5))-1,
@@ -1174,11 +1139,33 @@ public class TellerLoanView extends javax.swing.JFrame {
         cbTipePinjaman.setSelectedItem(tableModel.getValueAt(clickedRow,2).toString());
         cbJenisBunga.setSelectedItem(tableModel.getValueAt(clickedRow,8).toString());
         cbStatus.setSelectedItem(tableModel.getValueAt(clickedRow,6).toString());
+        lastStatusIndex=cbStatus.getSelectedIndex();
         setRate();
         if (cbJenisBunga.getSelectedIndex()==1) tampilBiayaTahun.setText("");
         else tampilBiayaBulan.setText("");
     }//GEN-LAST:event_confirmLoanTableMouseClicked
-
+    private void statusLoansException() throws StatusLoansException{
+        if(cbStatus.getSelectedIndex()==0){
+            throw new StatusLoansException();
+        }else if(cbStatus.getSelectedIndex()<lastStatusIndex){
+            throw new StatusLoansException();
+        }
+    }
+    private void blankInputException() throws BlankInputException{
+        if(namaInput.getText().isEmpty() || inputJumlahPinjaman.getText().isEmpty()
+           || tampilInterestRate.getText().isEmpty()){
+                throw new BlankInputException();
+        }else if(tampilBiayaBulan.getText().isEmpty() && tampilBiayaTahun.getText().isEmpty()){
+                throw new BlankInputException();
+        }
+    }
+    private void invalidCalendarException() throws InvalidCalendarException{
+        if(dateStartPicker.getCalendar()==null || dateEndPicker.getCalendar()==null){
+            throw new InvalidCalendarException();
+        }else if(dateStartPicker.getCalendar().compareTo(dateEndPicker.getCalendar())>0){
+            throw new InvalidCalendarException();
+        }
+    }
     private void ajukanPinjamanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajukanPinjamanBtnActionPerformed
         String interest_type = null;
         setRate();
@@ -1187,21 +1174,29 @@ public class TellerLoanView extends javax.swing.JFrame {
         
         split = split.replaceAll(",", "");
         split = split.replaceAll("\\.", "");
-        
-        if (tampilBiayaTahun.getText().equals("") || tampilBiayaBulan.getText().equals("")) {
-            
-            lControl.updateLoan(new Loans(tampilIdPinjaman.getText(), 
-                            type, convDateSql(dateStartPicker.getDate()),
-                            convDateSql(dateEndPicker.getDate()), 
-                            Double.parseDouble(inputJumlahPinjaman.getText()), 
-                            rate*100, cbJenisBunga.getSelectedItem().toString(), 
-                            Double.parseDouble(split), cbStatus.getSelectedItem().toString()));
-        }else{
-            int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah menambah data pinjaman?", "Konfirmasi",JOptionPane.YES_NO_OPTION);
-            switch (getAnswer) {
-                case 0:
-
-                    tControl.insertTransaction(new Transactions("TR-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)), 
+        try{
+            blankInputException();
+            invalidCalendarException();
+            statusLoansException();
+                if (tampilBiayaTahun.getText().equals("") || tampilBiayaBulan.getText().equals("")) {
+                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to changes loan status?", "Confirmationi",JOptionPane.YES_NO_OPTION);
+                if(getAnswer == JOptionPane.YES_OPTION){
+                    lControl.updateLoan(new Loans(tampilIdPinjaman.getText(), 
+                    type, convDateSql(dateStartPicker.getDate()),
+                    convDateSql(dateEndPicker.getDate()), 
+                    Double.parseDouble(inputJumlahPinjaman.getText()), 
+                    rate*100, cbJenisBunga.getSelectedItem().toString(), 
+                    Double.parseDouble(split), cbStatus.getSelectedItem().toString()));
+                    clearText();
+                    setDetailPeminjamanArea(true);
+                    tampilInterestRate.setText("");
+                }else{
+                 JOptionPane.showMessageDialog(this, "Failed to changes loan status");
+                }
+            }else{
+                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add new loan?", "Confirmationi",JOptionPane.YES_NO_OPTION);
+              if(getAnswer == JOptionPane.YES_OPTION){
+                  tControl.insertTransaction(new Transactions("TR-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)), 
                             peminjam.getAccount_id(), tampilIdPinjaman.getText(), LocalDate.now().toString()));
                     lControl.insertLoan(new Loans(tampilIdPinjaman.getText(), 
                             type, convDateSql(dateStartPicker.getDate()),
@@ -1209,21 +1204,29 @@ public class TellerLoanView extends javax.swing.JFrame {
                             Double.parseDouble(inputJumlahPinjaman.getText()), 
                             rate*100, cbJenisBunga.getSelectedItem().toString(), 
                             Double.parseDouble(split), "Dikonfirmasi"));
-                    break;
-                case 1:
-                    //do nothing
-                    break;
-                default:
-                    throw new AssertionError();
+                            clearText();
+                            setDetailPeminjamanArea(true);
+                            tampilInterestRate.setText("");
+              }else{
+                  JOptionPane.showMessageDialog(this, "Failed to add new loan");
+              }
             }
+        }catch(BlankInputException e){
+            JOptionPane.showConfirmDialog(null, e.message(), "Warning", JOptionPane.DEFAULT_OPTION);
+            System.out.println("Error: " + e.toString());
+        }catch(InvalidCalendarException e){
+            JOptionPane.showConfirmDialog(null, e.message(), "Warning", JOptionPane.DEFAULT_OPTION);
+            System.out.println("Error: " + e.toString());
+        }catch(StatusLoansException e){
+            JOptionPane.showConfirmDialog(null, e.message(), "Warning", JOptionPane.DEFAULT_OPTION);
+            System.out.println("Error: " + e.toString());
+        }catch(NumberFormatException e){
+            JOptionPane.showConfirmDialog(null, "Amount Loan must be digits", "Warning", JOptionPane.DEFAULT_OPTION);
+            System.out.println("Error: " + e.toString());
         }
         
-        clearText();
-        JOptionPane.showMessageDialog(null, " Data berhasil ditambah!");
-        setDetailPeminjamanArea(true);
         showDataHistory();
         showDataCurrently();
-        tampilInterestRate.setText("");
         generateIdLOA();
     }//GEN-LAST:event_ajukanPinjamanBtnActionPerformed
 
@@ -1319,6 +1322,7 @@ public class TellerLoanView extends javax.swing.JFrame {
     private javax.swing.JLabel labelPane;
     private javax.swing.JLabel labelPane1;
     private javax.swing.JTable loanTable;
+    private javax.swing.JTextField namaInput;
     private view.PanelRound panelDetailPeminjaman;
     private view.PanelRound panelJumlahPinjaman;
     private view.PanelRound panelJumlahPinjaman1;
@@ -1331,7 +1335,6 @@ public class TellerLoanView extends javax.swing.JFrame {
     private javax.swing.JTextField tampilBiayaTahun;
     private javax.swing.JTextField tampilIdPinjaman;
     private javax.swing.JTextField tampilInterestRate;
-    private javax.swing.JTextField tampilNamaNasabah;
     private javaswingdev.swing.titlebar.TitleBar titleBar;
     // End of variables declaration//GEN-END:variables
 }

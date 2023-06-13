@@ -32,6 +32,9 @@ public class EmployeesControl {
     public Employees searchEmployees(Employees e){
         return employDao.searchEmployee(e);
     }
+    public Employees searchByUsername(String user){ 
+        return employDao.searchByUsername(user);
+    }
     
     public int countEmployee(){
         return showEmployees("").getRowCount();
@@ -44,5 +47,10 @@ public class EmployeesControl {
                  max=listEmp.get(i).getEmployee_id();
         }
         return max+1;
+    }
+    public TableEmployees showTableEmp(String query){
+        List<Employees> list = employDao.searchShowEmp(query);
+        TableEmployees table = new TableEmployees(list);
+        return table;
     }
 }

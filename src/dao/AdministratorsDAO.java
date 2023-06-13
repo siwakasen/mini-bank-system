@@ -154,9 +154,12 @@ public class AdministratorsDAO {
             
             if (rs!=null) {
                 while (rs.next()) {                    
-                    Administrators a = new Administrators(rs.getInt("administrator_id"),
-                            rs.getString("username"), rs.getString("password"));
-                            
+                    Administrators a = new Administrators(
+                            rs.getInt("administrator_id"),
+                            rs.getString("username"), 
+                            rs.getString("password"));
+                    
+                    dbcon.closeConnection();        
                     return a;
                 }
             }
@@ -169,4 +172,38 @@ public class AdministratorsDAO {
         dbcon.closeConnection();
         return null;
     }
+    
+    public List<Administrators> showAdministrators(String query) {
+        con = dbcon.makeConnection();
+        
+        String sql = "SELECT * FROM administrators "
+                + "WHERE ( username LIKE '%" + query + "%'"
+                + " OR password LIKE '%" + query + "%')";
+        System.out.println("Mengambil data Admins...");       
+        List<Administrators> list = new ArrayList<>();
+        
+        try {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            
+            if (rs!=null){
+                while(rs.next()){
+                    Administrators a = new Administrators(
+                            rs.getInt("administrator_id"),
+                            rs.getString("username"), 
+                            rs.getString("password"));
+                    list.add(a);
+                }
+            }
+            rs.close();
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("Error reading database...");
+            System.out.println(e);
+        }
+        dbcon.closeConnection();
+        
+        return list;
+    }
+
 }

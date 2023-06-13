@@ -70,6 +70,7 @@ public class LoansDAO {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+            
             return null;
         }else{
             try {
@@ -80,12 +81,15 @@ public class LoansDAO {
                 ResultSet rs = stmt.executeQuery(sql);
                 if(rs.next()){
                     Loans loan = new Loans(rs.getString("loan_id"), rs.getString("loan_type"), rs.getString("loan_start_date"), rs.getString("loan_end_date"), rs.getDouble("amount"), rs.getFloat("interest_rate"), rs.getString("interest_rate_type"), rs.getDouble("end_amount_pay"), rs.getString("confirm"));
+                    DbCon.closeConnection();
                     return loan;
                 }
                 stmt.close();
+                
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+            DbCon.closeConnection();
             return null;
         }
     }

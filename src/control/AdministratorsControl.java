@@ -5,7 +5,6 @@
 
 package control;
 import dao.AdministratorsDAO;
-import dao.EmployeesDAO;
 import model.Administrators;
 import table.TableAdministrators;
 import java.util.List;
@@ -36,8 +35,7 @@ public class AdministratorsControl {
         return null;
     }
     public Administrators searchByUsername(String user){
-        adminDao.searchByUsername(user);
-        return null;
+        return adminDao.searchByUsername(user);
     }
     
     public int countAdmin(){
@@ -46,5 +44,12 @@ public class AdministratorsControl {
     public int autoGenerateID(){
         List<Administrators> listAdmin = adminDao.showListAdministrator();
         return listAdmin.get(listAdmin.size()-1).getAdministrator_id()+1;
+    }
+    
+   public TableAdministrators showTableAdmins(String query){
+        List<Administrators> list = adminDao.showAdministrators(query);
+        TableAdministrators tableAccounts = new TableAdministrators(list);
+        
+        return tableAccounts;
     }
 }

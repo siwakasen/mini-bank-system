@@ -8,6 +8,8 @@ import model.Transfers;
 import control.AccountsControl;
 import control.TransactionsControl;
 import control.TransfersControl;
+import exception.BlankInputException;
+import exception.NotEnoughBalanceException;
 import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
 import java.util.List;
@@ -614,7 +616,7 @@ public class TellerTransferView extends javax.swing.JFrame {
                 if(cancelPenerimaBtn.isEnabled()) idTransferInput.setText("TN-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)));
             }
         }else{
-           JOptionPane.showMessageDialog(null,"Data pengirim dan penerima sama!","Konfirmasi", JOptionPane.DEFAULT_OPTION);
+           JOptionPane.showMessageDialog(null,"Source and Destination Transfer Can't be same!","Warning", JOptionPane.DEFAULT_OPTION);
         }
     }//GEN-LAST:event_okPengirimBtnActionPerformed
 
@@ -634,7 +636,7 @@ public class TellerTransferView extends javax.swing.JFrame {
                 if(cancelPengirimBtn.isEnabled()) idTransferInput.setText("TN-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)));
             }
         }else{
-            JOptionPane.showMessageDialog(null,"Data pengirim dan penerima sama!","Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showMessageDialog(null,"Source and Destination Transfer Can't be same!","Warning", JOptionPane.DEFAULT_OPTION);
         }
     }//GEN-LAST:event_okPenerimaBtnActionPerformed
 
@@ -642,27 +644,47 @@ public class TellerTransferView extends javax.swing.JFrame {
         setPenerimaArea(true);
         cancelPenerimaBtn.setEnabled(false);
     }//GEN-LAST:event_cancelPenerimaBtnActionPerformed
-
-    private void transferBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferBtnActionPerformed
-        
-        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah menambah data transfer?", "Konfirmasi",JOptionPane.YES_NO_OPTION);
-        switch (getAnswer) {
-            case 0:
-                transactionControl.insertTransaction(new Transactions("TR-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)), 
-                        Integer.parseInt(noRekPengirimInput.getText()), idTransferInput.getText(), LocalDate.now().toString()));
-                transferControl.insertTransfer(new Transfers(idTransferInput.getText(), Integer.parseInt(noRekPengirimInput.getText()), 
-                        Integer.parseInt(noRekPenerimaInput.getText()), Double.parseDouble(jumlahTransferInput.getText())));
-                break;
-                
-            case 1:
-                //do nothing
-                break;
-            default:
-                throw new AssertionError();
+    private void blankInputException() throws BlankInputException{
+        if(namaPenerimaInput.getText().isEmpty() || namaPengirimInput.getText().isEmpty() || jumlahTransferInput.getText().isEmpty()){
+            throw new BlankInputException();
         }
-        
-        clearText();
-        JOptionPane.showMessageDialog(null, " Data berhasil ditambah!");
+    }
+    private void notEnoughBalance() throws NotEnoughBalanceException{
+        if(aControl.searchAccount(Integer.parseInt(noRekPengirimInput.getText())).getBalance()<Double.parseDouble(jumlahTransferInput.getText())){
+            throw new NotEnoughBalanceException();
+        }
+    }
+    private void transferBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferBtnActionPerformed
+        try{
+            blankInputException();
+            notEnoughBalance();
+            int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to transfer?", "Confirmation",JOptionPane.YES_NO_OPTION);
+            switch (getAnswer) {
+                case 0:
+                    transactionControl.insertTransaction(new Transactions("TR-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)), 
+                            Integer.parseInt(noRekPengirimInput.getText()), idTransferInput.getText(), LocalDate.now().toString()));
+                    transferControl.insertTransfer(new Transfers(idTransferInput.getText(), Integer.parseInt(noRekPengirimInput.getText()), 
+                            Integer.parseInt(noRekPenerimaInput.getText()), Double.parseDouble(jumlahTransferInput.getText())));
+                    JOptionPane.showMessageDialog(null, "Transfer success !");
+                    clearText();
+                    break;
+
+                case 1:
+                    //do nothing
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        }catch(BlankInputException e){
+            JOptionPane.showConfirmDialog(null, e.message(), "Warning", JOptionPane.DEFAULT_OPTION);
+            System.out.println("Error: " + e.toString());
+        }catch(NumberFormatException e){
+            JOptionPane.showConfirmDialog(null, "Amount Transfer Must Be Number ! ", "Warning", JOptionPane.DEFAULT_OPTION);
+            System.out.println("Error: " + e.toString());
+        }catch(NotEnoughBalanceException e){
+            JOptionPane.showConfirmDialog(null, e.message(), "Warning", JOptionPane.DEFAULT_OPTION);
+            System.out.println("Error: " + e.toString());
+        }
         showTransfer();
     }//GEN-LAST:event_transferBtnActionPerformed
 

@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import model.Employees;
 import model.Administrators;
+import table.TableEmployees;
 import view.LoginView;
 
 
@@ -112,7 +113,6 @@ public class EmployeeManageView extends javax.swing.JFrame {
             }
         }
     }
-    
     public String convDateSql(Date input){
         String dateSql = null;
         Date fromView = input;    
@@ -136,7 +136,9 @@ public class EmployeeManageView extends javax.swing.JFrame {
     private void invalidCalendarException() throws InvalidCalendarException{
         if(startWorkDate.getCalendar()==null || endWorkDate.getCalendar()==null){
             throw new InvalidCalendarException();
-        } 
+        }else if(startWorkDate.getCalendar().compareTo(endWorkDate.getCalendar())>0){
+            throw new InvalidCalendarException();
+        }
     }
 
     /**
@@ -165,8 +167,8 @@ public class EmployeeManageView extends javax.swing.JFrame {
         deleteBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         saveCancelPane = new javax.swing.JPanel();
-        saveBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         employeeTable = new javax.swing.JTable();
         inputPane = new javax.swing.JPanel();
@@ -196,6 +198,8 @@ public class EmployeeManageView extends javax.swing.JFrame {
         officeLabel = new javax.swing.JLabel();
         stationInput = new javax.swing.JTextField();
         stationLabel = new javax.swing.JLabel();
+        searchInput = new javax.swing.JTextField();
+        searchBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -408,19 +412,6 @@ public class EmployeeManageView extends javax.swing.JFrame {
 
         saveCancelPane.setBackground(new java.awt.Color(187, 187, 187));
 
-        saveBtn.setBackground(new java.awt.Color(13, 110, 253));
-        saveBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        saveBtn.setForeground(new java.awt.Color(255, 255, 255));
-        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-save.png"))); // NOI18N
-        saveBtn.setText("Simpan");
-        saveBtn.setBorder(null);
-        saveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        saveBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveBtnActionPerformed(evt);
-            }
-        });
-
         cancelBtn.setBackground(new java.awt.Color(220, 53, 69));
         cancelBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -434,13 +425,26 @@ public class EmployeeManageView extends javax.swing.JFrame {
             }
         });
 
+        saveBtn.setBackground(new java.awt.Color(13, 110, 253));
+        saveBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        saveBtn.setForeground(new java.awt.Color(255, 255, 255));
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-save.png"))); // NOI18N
+        saveBtn.setText("Simpan");
+        saveBtn.setBorder(null);
+        saveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout saveCancelPaneLayout = new javax.swing.GroupLayout(saveCancelPane);
         saveCancelPane.setLayout(saveCancelPaneLayout);
         saveCancelPaneLayout.setHorizontalGroup(
             saveCancelPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(saveCancelPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -449,9 +453,11 @@ public class EmployeeManageView extends javax.swing.JFrame {
             saveCancelPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(saveCancelPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(saveCancelPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(saveCancelPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(saveCancelPaneLayout.createSequentialGroup()
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(saveBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -731,7 +737,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
                         .addComponent(officeInput, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(officeLabel, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(stationLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         stationOfficePaneLayout.setVerticalGroup(
             stationOfficePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -747,6 +753,25 @@ public class EmployeeManageView extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
+        searchInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInputActionPerformed(evt);
+            }
+        });
+
+        searchBtn.setBackground(new java.awt.Color(13, 110, 253));
+        searchBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        searchBtn.setForeground(new java.awt.Color(255, 255, 255));
+        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-save.png"))); // NOI18N
+        searchBtn.setText("Cari");
+        searchBtn.setBorder(null);
+        searchBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
         base.setLayout(baseLayout);
         baseLayout.setHorizontalGroup(
@@ -757,7 +782,6 @@ public class EmployeeManageView extends javax.swing.JFrame {
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(baseLayout.createSequentialGroup()
                         .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(EmployeeBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -780,7 +804,14 @@ public class EmployeeManageView extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(saveCancelPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1393, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(baseLayout.createSequentialGroup()
+                        .addComponent(btnPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(673, 673, 673)
+                        .addComponent(searchInput)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109))))
         );
         baseLayout.setVerticalGroup(
             baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -790,8 +821,15 @@ public class EmployeeManageView extends javax.swing.JFrame {
             .addGroup(baseLayout.createSequentialGroup()
                 .addComponent(EmployeeBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(baseLayout.createSequentialGroup()
+                        .addComponent(btnPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createSequentialGroup()
+                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(searchInput, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                            .addComponent(searchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(21, 21, 21)))
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(baseLayout.createSequentialGroup()
                         .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1042,6 +1080,29 @@ public class EmployeeManageView extends javax.swing.JFrame {
         lv.setVisible(true);
     }//GEN-LAST:event_logoutBtnActionPerformed
 
+    private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInputActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+       setComponent(false);
+         setEditDeleteBtn(false);
+         try{
+             TableEmployees empTab = employeesControl.showTableEmp(searchInput.getText());
+            if(empTab.getRowCount()==0){
+                    clearText();
+                    searchInput.setText("");
+                    JOptionPane.showMessageDialog(this, "Employees not found");
+                }else{
+                    employeeTable.setModel(empTab);
+                }
+            clearText();
+            searchInput.setText("");
+         }catch (Exception e) {
+            System.out.println("Eror : "+e.getMessage());
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1116,6 +1177,8 @@ public class EmployeeManageView extends javax.swing.JFrame {
     private javax.swing.JPanel rolePane;
     private javax.swing.JButton saveBtn;
     private javax.swing.JPanel saveCancelPane;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JTextField searchInput;
     private javax.swing.JLabel startLabel;
     private com.toedter.calendar.JDateChooser startWorkDate;
     private javax.swing.JPanel startendPane;
