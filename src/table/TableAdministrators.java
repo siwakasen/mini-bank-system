@@ -28,9 +28,9 @@ public class TableAdministrators extends AbstractTableModel{
             case 0: 
                 return admin.get(row).getAdministrator_id();
             case 1: 
-                return admin.get(row).getUsername();
-            case 2: 
-                return admin.get(row).getPassword();
+                    return admin.get(row).getUsername();
+            case 2:
+                 return admin.get(row).getPassword();
             default: 
                 return null;
         }

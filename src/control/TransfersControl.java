@@ -6,19 +6,18 @@
 package control;
 
 import dao.TransfersDAO;
+import dao.TransactionsDAO;
 import java.util.List;
 import model.Transfers;
 import model.Accounts;
+import model.TransactionsJoins;
 import table.TableTransfer;
 import table.TableDaftarTransfer;
+import table.TableJoinTransfers;
 
-/**
- * @author 
- * Made Riksi Purnama Sadnya Agung / 210711396
- * Pemrograman Berorientasi Obyek C
- */
 public class TransfersControl {
     private TransfersDAO transfersDAO = new TransfersDAO();
+    private TransactionsDAO transactionDAO = new TransactionsDAO();
 
     public void insertTransfer(Transfers transfer){
         transfersDAO.insertTransfer(transfer);
@@ -32,10 +31,26 @@ public class TransfersControl {
         return transfersDAO.checkBalance(account_id, amount);
     }
 
-    public TableDaftarTransfer getAccounts(int customer_id){
-        List<Accounts> accounts = transfersDAO.getAccounts(customer_id);
+    public TableDaftarTransfer getAccounts(int account_id){
+        List<Accounts> accounts = transfersDAO.getAccounts(account_id);
         TableDaftarTransfer table = new TableDaftarTransfer(accounts);
         return table;
+    }
+    
+    public TableJoinTransfers showTransfer(String type, String status1, String status2){
+        List<TransactionsJoins> tf = transactionDAO.showAllTransactions(type, status1, status2);
+        TableJoinTransfers table = new TableJoinTransfers(tf);
+        return table;
+    }
+    
+    public TableDaftarTransfer getSearchList(int account_id, String search_id){
+        List<Accounts> accounts = transfersDAO.searchTransferList(account_id, search_id);
+        TableDaftarTransfer search = new TableDaftarTransfer(accounts);
+        return search;
+    }
+    
+    public Transfers singleTransfers(String search_id){
+        return transfersDAO.singleTransfers(search_id);
     }
     
 }

@@ -5,17 +5,40 @@
 
 package control;
 import dao.LoansDAO;
+import dao.TransactionsDAO;
 import model.Loans;
 import java.util.List;
+import model.TransactionsJoins;
+import table.TableJoinLoans;
+import table.TableLoans;
 /**
  * @author 
  * Made Riksi Purnama Sadnya Agung / 210711396
  * Pemrograman Berorientasi Obyek C
  */
 public class LoansControl {
-    private LoansDAO loansDao = new LoansDAO();
-    public void insertLoans(String loan_id, String loan_type, double amount, float interest_rate, String loan_start_date, String loan_end_date){
-        loansDao.insertLoan(loan_id, loan_type, amount, interest_rate, loan_start_date, loan_end_date);
+    private static LoansDAO LoansDAO = new LoansDAO();
+    private TransactionsDAO transactionDao = new TransactionsDAO();
+
+    public void insertLoan(Loans loan){
+        LoansDAO.insertLoan(loan);
     }
-    
+
+    public void updateLoan(Loans loan){
+        LoansDAO.updateLoan(loan);
+    }
+
+    public void deleteLoan(Loans loan){
+        LoansDAO.deleteLoan(loan);
+    }
+
+    public Loans getLoan(String loan_id, String status){
+        return LoansDAO.getLoan(loan_id, status);
+    }
+
+    public TableJoinLoans showAllJoinLoans(String type, String status1, String status2){
+        List<TransactionsJoins> tf = transactionDao.showAllTransactions(type, status1, status2);
+        TableJoinLoans table = new TableJoinLoans(tf);
+        return table;
+    }
 }
