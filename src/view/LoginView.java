@@ -75,7 +75,7 @@ public class LoginView extends javax.swing.JFrame {
         userlabel.setText("Username");
 
         loginBtn.setBackground(new java.awt.Color(102, 153, 255));
-        loginBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        loginBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         loginBtn.setForeground(new java.awt.Color(245, 245, 245));
         loginBtn.setText("Login");
         loginBtn.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -110,7 +110,7 @@ public class LoginView extends javax.swing.JFrame {
         panelRound1Layout.setHorizontalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(loginlabel)
                     .addComponent(userlabel)
@@ -118,12 +118,12 @@ public class LoginView extends javax.swing.JFrame {
                     .addComponent(passlabel)
                     .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                .addGap(21, 21, 21))
         );
         panelRound1Layout.setVerticalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(25, 25, 25)
                 .addComponent(loginlabel)
                 .addGap(18, 18, 18)
                 .addComponent(userlabel)
@@ -135,7 +135,7 @@ public class LoginView extends javax.swing.JFrame {
                 .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
@@ -143,16 +143,16 @@ public class LoginView extends javax.swing.JFrame {
         rightPanelLayout.setHorizontalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1210, Short.MAX_VALUE))
+                .addGap(165, 165, 165)
+                .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1213, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGap(222, 222, 222)
-                .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(398, Short.MAX_VALUE))
+                .addGap(216, 216, 216)
+                .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(388, Short.MAX_VALUE))
         );
 
         minibankLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 48)); // NOI18N
@@ -185,12 +185,10 @@ public class LoginView extends javax.swing.JFrame {
             .addGroup(katakataPanelLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(katakataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(katakataPanelLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(baris3))
-                    .addComponent(baris2)
-                    .addComponent(baris1))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(baris2, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(baris3, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(baris1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         katakataPanelLayout.setVerticalGroup(
             katakataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,7 +287,7 @@ public class LoginView extends javax.swing.JFrame {
                csv.setVisible(true);
            }
        }else{
-           JOptionPane.showMessageDialog(this,"Username atau Password Salah !");
+           JOptionPane.showMessageDialog(this,"Username or Password was Incorrect!");
        }
     }//GEN-LAST:event_loginBtnActionPerformed
 
@@ -325,7 +323,7 @@ public class LoginView extends javax.swing.JFrame {
                csv.setVisible(true);
            }
        }else{
-           JOptionPane.showMessageDialog(this,"Username atau Password Salah !");
+           JOptionPane.showMessageDialog(this,"Username or Password was Incorrect!");
        }
     }//GEN-LAST:event_loginBtnKeyPressed
 

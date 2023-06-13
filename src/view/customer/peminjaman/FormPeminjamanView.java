@@ -36,6 +36,7 @@ public class FormPeminjamanView extends javax.swing.JFrame {
         interest_rate.setText(sukuBunga+"%");
         setDefault();
         runUpdate();
+        syarat.setSelected(false);
     }
     
     public void setDefault(){
@@ -50,6 +51,7 @@ public class FormPeminjamanView extends javax.swing.JFrame {
     }
     
     public void runUpdate(){
+        
         amount.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
@@ -60,6 +62,7 @@ public class FormPeminjamanView extends javax.swing.JFrame {
                 BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
                 perbulan.setText("Rp. "+formatNominal(bcBulan));
                 pertahun.setText("Rp. "+formatNominal(bcTahun));
+
             }
             @Override
             public void removeUpdate(DocumentEvent e) {
@@ -76,13 +79,17 @@ public class FormPeminjamanView extends javax.swing.JFrame {
             }
             @Override
             public void insertUpdate(DocumentEvent e) {
-              warn();
-              double kalkulasi_perbulan = ((Double.parseDouble(amount.getText()) * sukuBunga)/100)/12;
-              double kalkulasi_pertahun = ((Double.parseDouble(amount.getText()) * sukuBunga)/100);
-              BigDecimal bcBulan = new BigDecimal(kalkulasi_perbulan).setScale(0, RoundingMode.HALF_EVEN);
-              BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
-              perbulan.setText("Rp. "+formatNominal(bcBulan));
-              pertahun.setText("Rp. "+formatNominal(bcTahun));
+                try{
+                    warn();
+                    double kalkulasi_perbulan = ((Double.parseDouble(amount.getText()) * sukuBunga)/100)/12;
+                    double kalkulasi_pertahun = ((Double.parseDouble(amount.getText()) * sukuBunga)/100);
+                    BigDecimal bcBulan = new BigDecimal(kalkulasi_perbulan).setScale(0, RoundingMode.HALF_EVEN);
+                    BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
+                    perbulan.setText("Rp. "+formatNominal(bcBulan));
+                    pertahun.setText("Rp. "+formatNominal(bcTahun));
+               }catch(NumberFormatException e1){
+                    System.out.println(e1.toString());
+              }
             }
 
             public void warn() {
@@ -96,6 +103,7 @@ public class FormPeminjamanView extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null,
                          "Nominal tidak valid!", "Error Message",
                          JOptionPane.ERROR_MESSAGE);
+                    System.out.println(e.toString());
                 }
             }
         });
@@ -123,7 +131,7 @@ public class FormPeminjamanView extends javax.swing.JFrame {
         syarat = new javax.swing.JCheckBox();
         nextButton = new view.PanelRound();
         jLabel9 = new javax.swing.JLabel();
-        nextButton1 = new view.PanelRound();
+        backBtn = new view.PanelRound();
         jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -193,6 +201,11 @@ public class FormPeminjamanView extends javax.swing.JFrame {
         nextButton.setRoundBottomRight(50);
         nextButton.setRoundTopLeft(50);
         nextButton.setRoundTopRight(50);
+        nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nextButtonMouseClicked(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -215,11 +228,11 @@ public class FormPeminjamanView extends javax.swing.JFrame {
             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
-        nextButton1.setBackground(java.awt.Color.gray);
-        nextButton1.setRoundBottomLeft(50);
-        nextButton1.setRoundBottomRight(50);
-        nextButton1.setRoundTopLeft(50);
-        nextButton1.setRoundTopRight(50);
+        backBtn.setBackground(java.awt.Color.gray);
+        backBtn.setRoundBottomLeft(50);
+        backBtn.setRoundBottomRight(50);
+        backBtn.setRoundTopLeft(50);
+        backBtn.setRoundTopRight(50);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -231,14 +244,14 @@ public class FormPeminjamanView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout nextButton1Layout = new javax.swing.GroupLayout(nextButton1);
-        nextButton1.setLayout(nextButton1Layout);
-        nextButton1Layout.setHorizontalGroup(
-            nextButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout backBtnLayout = new javax.swing.GroupLayout(backBtn);
+        backBtn.setLayout(backBtnLayout);
+        backBtnLayout.setHorizontalGroup(
+            backBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
         );
-        nextButton1Layout.setVerticalGroup(
-            nextButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        backBtnLayout.setVerticalGroup(
+            backBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
@@ -329,7 +342,7 @@ public class FormPeminjamanView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(nextButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nextButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(backBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -374,7 +387,7 @@ public class FormPeminjamanView extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(syarat)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(nextButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -398,11 +411,13 @@ public class FormPeminjamanView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void syaratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_syaratActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_syaratActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        // TODO add your handling code here:
+        if(!syarat.isSelected()){
+            JOptionPane.showMessageDialog(null, "Belum menyetujui Syarat"); return;
+        }  
         if(amount.getText().length() <= 6){
             JOptionPane.showMessageDialog(null, "Nominal peminjaman harus lebih dari ratusan ribu");
         }else{
@@ -419,6 +434,7 @@ public class FormPeminjamanView extends javax.swing.JFrame {
                 new ConfirmPeminjaman(account, new Loans("", tipePeminjaman.getSelectedItem().toString(),LocalDate.now().toString(), LocalDate.now().plusMonths(12).toString(), Double.parseDouble(amount.getText()), sukuBunga, jenis_bunga.getSelectedItem().toString(), Double.parseDouble(split)+Double.parseDouble(amount.getText()), "Menunggu Konfirmasi")).setVisible(true);
             }
         }
+
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
@@ -482,6 +498,28 @@ public class FormPeminjamanView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jenis_bungaActionPerformed
 
+    private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseClicked
+        if(!syarat.isSelected()){
+            JOptionPane.showMessageDialog(null, "Belum menyetujui Syarat"); return;
+        }  
+        if(amount.getText().length() <= 6){
+            JOptionPane.showMessageDialog(null, "Nominal peminjaman harus lebih dari ratusan ribu");
+        }else{
+            this.dispose();
+            if(jenis_bunga.getSelectedItem().equals("Perbulan")){
+                String split = perbulan.getText().split(" ")[1];
+                split = split.replaceAll(",", "");
+                split = split.replaceAll("\\.", "");
+                new ConfirmPeminjaman(account, new Loans("", tipePeminjaman.getSelectedItem().toString(),LocalDate.now().toString(), LocalDate.now().plusMonths(12).toString(), Double.parseDouble(amount.getText()), sukuBunga, jenis_bunga.getSelectedItem().toString(), Double.parseDouble(split), "Menunggu Konfirmasi")).setVisible(true);
+            }else if(jenis_bunga.getSelectedItem().equals("Pertahun")){
+                String split = pertahun.getText().split(" ")[1];
+                split = split.replaceAll(",", "");
+                split = split.replaceAll("\\.", "");
+                new ConfirmPeminjaman(account, new Loans("", tipePeminjaman.getSelectedItem().toString(),LocalDate.now().toString(), LocalDate.now().plusMonths(12).toString(), Double.parseDouble(amount.getText()), sukuBunga, jenis_bunga.getSelectedItem().toString(), Double.parseDouble(split)+Double.parseDouble(amount.getText()), "Menunggu Konfirmasi")).setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_nextButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -520,6 +558,7 @@ public class FormPeminjamanView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amount;
+    private view.PanelRound backBtn;
     private javax.swing.JTextField interest_rate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -538,7 +577,6 @@ public class FormPeminjamanView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JComboBox<String> jenis_bunga;
     private view.PanelRound nextButton;
-    private view.PanelRound nextButton1;
     private javax.swing.JTextField perbulan;
     private javax.swing.JTextField pertahun;
     private javax.swing.JCheckBox syarat;

@@ -1,8 +1,6 @@
 
 package view.employee;
 
-import java.awt.geom.RoundRectangle2D;
-
 import model.Accounts;
 import model.Customers;
 import control.AccountsControl;
@@ -11,9 +9,7 @@ import exception.BlankInputException;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.geom.RoundRectangle2D;
-import java.util.List;
 import javax.swing.JOptionPane;
-import table.TableCustomers;
 import javax.swing.table.TableModel;
 import table.TableAccounts;
 import view.LoginView;
@@ -59,6 +55,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
         inputPassword.setEnabled(value);
         inputBalance.setEnabled(value);
         accountTypeComboBox.setEnabled(value);
+        accountTypeComboBox.setSelectedIndex(0);
         
         saveBtn.setEnabled(value);
         cancelBtn.setEnabled(value);
@@ -138,12 +135,12 @@ public class CustomerServiceView extends javax.swing.JFrame {
         backgroundTable = new view.PanelRound();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCustomers = new javax.swing.JTable();
-        inputSearch = new javax.swing.JTextField();
-        searchBtn = new view.PanelRound();
-        labelDelete1 = new javax.swing.JLabel();
         addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        searchBtn1 = new javax.swing.JButton();
+        inputSearch = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -165,6 +162,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(194, 16, 16));
         jButton1.setFont(new java.awt.Font("Montserrat SemiBold", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-logout.png"))); // NOI18N
         jButton1.setText("Logout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,7 +307,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
         saveBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         saveBtn.setForeground(new java.awt.Color(255, 255, 255));
         saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-save.png"))); // NOI18N
-        saveBtn.setText("Simpan");
+        saveBtn.setText("Save");
         saveBtn.setBorder(null);
         saveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -322,7 +320,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
         cancelBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
         cancelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-cancel.png"))); // NOI18N
-        cancelBtn.setText("Batal");
+        cancelBtn.setText("Cancel");
         cancelBtn.setBorder(null);
         cancelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -375,18 +373,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(baseInputCusLayout.createSequentialGroup()
-                        .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(username)
-                            .addComponent(password)
-                            .addComponent(balanceLabel)
-                            .addComponent(accountTypeLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(accountTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inputBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(baseInputCusLayout.createSequentialGroup()
-                        .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelCus)
+                        .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(baseInputCusLayout.createSequentialGroup()
                                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(firstNameLabel)
@@ -403,16 +390,27 @@ public class CustomerServiceView extends javax.swing.JFrame {
                                     .addComponent(inputFirstName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelAcc)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(baseInputCusLayout.createSequentialGroup()
-                                .addGap(145, 145, 145)
-                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 7, Short.MAX_VALUE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(username)
+                                    .addComponent(password)
+                                    .addComponent(balanceLabel)
+                                    .addComponent(accountTypeLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(inputBalance, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(accountTypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(17, 17, 17))
+                    .addComponent(labelCus)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelAcc)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(baseInputCusLayout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27))
         );
         baseInputCusLayout.setVerticalGroup(
             baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,35 +422,35 @@ public class CustomerServiceView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(firstNameLabel)
-                    .addComponent(inputFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lastNameLabel)
-                    .addComponent(inputLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailLabel)
-                    .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phoneNumberLabel)
-                    .addComponent(inputPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addressLabel)
-                    .addComponent(inputAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                    .addComponent(inputAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(labelAcc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username)
-                    .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(password)
-                    .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(balanceLabel)
@@ -465,7 +463,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
                 .addGroup(baseInputCusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         backgroundTable.setBackground(new java.awt.Color(255, 255, 255));
@@ -515,36 +513,10 @@ public class CustomerServiceView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        inputSearch.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                inputSearchMouseClicked(evt);
-            }
-        });
-
-        searchBtn.setBackground(new java.awt.Color(153, 89, 222));
-        searchBtn.setPreferredSize(new java.awt.Dimension(285, 100));
-        searchBtn.setRoundBottomLeft(20);
-        searchBtn.setRoundBottomRight(20);
-        searchBtn.setRoundTopLeft(20);
-        searchBtn.setRoundTopRight(20);
-        searchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                searchBtnMouseClicked(evt);
-            }
-        });
-        searchBtn.setLayout(null);
-
-        labelDelete1.setBackground(new java.awt.Color(255, 255, 255));
-        labelDelete1.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 18)); // NOI18N
-        labelDelete1.setForeground(new java.awt.Color(255, 255, 255));
-        labelDelete1.setText("Cari");
-        searchBtn.add(labelDelete1);
-        labelDelete1.setBounds(20, 0, 50, 30);
-
         addBtn.setBackground(new java.awt.Color(0, 61, 121));
         addBtn.setFont(new java.awt.Font("Montserrat SemiBold", 1, 18)); // NOI18N
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
-        addBtn.setText("Tambah");
+        addBtn.setText("Add");
         addBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addBtnMouseClicked(evt);
@@ -554,7 +526,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
         editBtn.setBackground(new java.awt.Color(255, 183, 0));
         editBtn.setFont(new java.awt.Font("Montserrat SemiBold", 1, 18)); // NOI18N
         editBtn.setForeground(new java.awt.Color(255, 255, 255));
-        editBtn.setText("Ubah");
+        editBtn.setText("Edit");
         editBtn.setNextFocusableComponent(baseInputCus);
         editBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -570,18 +542,60 @@ public class CustomerServiceView extends javax.swing.JFrame {
         deleteBtn.setBackground(new java.awt.Color(220, 53, 69));
         deleteBtn.setFont(new java.awt.Font("Montserrat SemiBold", 1, 18)); // NOI18N
         deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
-        deleteBtn.setText("Hapus");
+        deleteBtn.setText("Delete");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteBtnActionPerformed(evt);
             }
         });
 
+        jPanel3.setBackground(new java.awt.Color(245, 245, 245));
+
+        searchBtn1.setBackground(new java.awt.Color(13, 110, 253));
+        searchBtn1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        searchBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        searchBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-search.png"))); // NOI18N
+        searchBtn1.setText("Search");
+        searchBtn1.setBorder(null);
+        searchBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searchBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtn1ActionPerformed(evt);
+            }
+        });
+
+        inputSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inputSearchMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(inputSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(searchBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inputSearch)
+                    .addComponent(searchBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
         base.setLayout(baseLayout);
         baseLayout.setHorizontalGroup(
             baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(baseLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(baseInputCus, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -591,33 +605,29 @@ public class CustomerServiceView extends javax.swing.JFrame {
                         .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createSequentialGroup()
-                        .addComponent(inputSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(backgroundTable, javax.swing.GroupLayout.PREFERRED_SIZE, 843, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addComponent(backgroundTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 843, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46))
             .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1366, Short.MAX_VALUE)
         );
         baseLayout.setVerticalGroup(
             baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(baseLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createSequentialGroup()
                 .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(baseInputCus, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
-                    .addComponent(backgroundTable, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
-                .addGap(0, 35, Short.MAX_VALUE))
+                    .addComponent(backgroundTable, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                    .addComponent(baseInputCus, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -667,6 +677,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
         setAddBtn(true);
         clearText();
         inputSearch.setText("");
+        showAccounts();
     }//GEN-LAST:event_cancelBtnActionPerformed
     private void blankInputException() throws BlankInputException{
         if(inputFirstName.getText().isEmpty() || inputLastName.getText().isEmpty()
@@ -681,22 +692,22 @@ public class CustomerServiceView extends javax.swing.JFrame {
         try{
             blankInputException();
             if (action=="Tambah") {
-                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add Customer?", "Confirmation",JOptionPane.YES_NO_OPTION);
+                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add new Customer?", "Confirmation",JOptionPane.YES_NO_OPTION);
                 if(getAnswer == JOptionPane.YES_OPTION){
                         Customers c = new Customers((customerControl.lastCostumer() + 1), inputFirstName.getText(), inputLastName.getText(), inputEmail.getText(), inputPhoneNumber.getText(), inputAddress.getText());
                         Accounts a = new Accounts(0, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(),String.valueOf(inputPassword.getPassword()));
                         customerControl.insertCustomer(c);
                         accountControl.insertAccounts(a);
-                        JOptionPane.showMessageDialog(null, " Success to add customer!");
+                        JOptionPane.showMessageDialog(null, "Success adding new Customer!");
                 }
             }else{
-                 int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to change Customer?", "Confirmation",JOptionPane.YES_NO_OPTION);
+                 int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to edit this Customer?", "Confirmation",JOptionPane.YES_NO_OPTION);
                  if(getAnswer == JOptionPane.YES_OPTION){
                          Customers c = new Customers(selectedIdCustomer, inputFirstName.getText(), inputLastName.getText(), inputEmail.getText(), inputPhoneNumber.getText(), inputAddress.getText());
                          Accounts a = new Accounts(selectedIdAccount, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(),String.valueOf(inputPassword.getPassword()));
                          customerControl.updateCustomer(c);
                          accountControl.updateAccounts(a);
-                         JOptionPane.showMessageDialog(null, " Success to change customer!");
+                         JOptionPane.showMessageDialog(null, "Success editing Employee!");
                  }
             }
 
@@ -709,7 +720,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(null, e.message(), "Warning", JOptionPane.DEFAULT_OPTION);
             System.out.println("Error: " + e.toString());
         }catch(NumberFormatException e){
-            JOptionPane.showConfirmDialog(null, "Input Balance Must Be Number ! ", "Warning", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showConfirmDialog(null, "Balance must be digits! ", "Warning", JOptionPane.DEFAULT_OPTION);
             System.out.println("Error: " + e.toString());
         }
     }//GEN-LAST:event_saveBtnActionPerformed
@@ -717,26 +728,6 @@ public class CustomerServiceView extends javax.swing.JFrame {
     private void accountTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountTypeComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_accountTypeComboBoxActionPerformed
-
-    private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
-        setComponent(false);
-         setEditDeleteBtn(false);
-         try{
-             TableAccounts accounts = accountControl.showTableAccounts(inputSearch.getText());
-            if(accounts.getRowCount()==0){
-                    clearText();
-                    inputSearch.setText("");
-                    JOptionPane.showMessageDialog(this, "Customer not found");
-                }else{
-                    tableCustomers.setModel(accounts);
-                }
-            clearText();
-            inputSearch.setText("");
-         }catch (Exception e) {
-            System.out.println("Eror : "+e.getMessage());
-        }
-        
-    }//GEN-LAST:event_searchBtnMouseClicked
 
     private void inputSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputSearchMouseClicked
        
@@ -795,7 +786,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
         setComponent(true);
         setEditDeleteBtn(false);
         inputSearch.setText("");
-        action = "Edit^";
+        action = "Edit";
     }//GEN-LAST:event_editBtnMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -807,6 +798,25 @@ public class CustomerServiceView extends javax.swing.JFrame {
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editBtnActionPerformed
+
+    private void searchBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtn1ActionPerformed
+        setComponent(false);
+         setEditDeleteBtn(false);
+         try{
+             TableAccounts accounts = accountControl.showTableAccounts(inputSearch.getText());
+            if(accounts.getRowCount()==0){
+                    clearText();
+                    inputSearch.setText("");
+                    JOptionPane.showMessageDialog(this, "Customer not found");
+                }else{
+                    tableCustomers.setModel(accounts);
+                }
+            clearText();
+            inputSearch.setText("");
+         }catch (Exception e) {
+            System.out.println("Eror : "+e.getMessage());
+        }
+    }//GEN-LAST:event_searchBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -870,17 +880,17 @@ public class CustomerServiceView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel labelAcc;
     private javax.swing.JLabel labelCus;
-    private javax.swing.JLabel labelDelete1;
     private javax.swing.JLabel labelPane;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JLabel password;
     private javax.swing.JLabel phoneNumberLabel;
     private javax.swing.JButton saveBtn;
-    private view.PanelRound searchBtn;
+    private javax.swing.JButton searchBtn1;
     private javax.swing.JTable tableCustomers;
     private javaswingdev.swing.titlebar.TitleBar titleBar;
     private javax.swing.JLabel username;

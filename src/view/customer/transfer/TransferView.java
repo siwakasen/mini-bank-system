@@ -94,6 +94,11 @@ public class TransferView extends javax.swing.JFrame {
         nominal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         nominal.setBorder(BorderFactory.createMatteBorder(0,0,2,0, new java.awt.Color(73, 105, 166)));
         nominal.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        nominal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nominalActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(29, 50, 74));
 
@@ -284,6 +289,10 @@ public class TransferView extends javax.swing.JFrame {
             new ConfirmTransfer(account, to_account_id, nama, Double.parseDouble(nominal.getText())).setVisible(true);
         }
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void nominalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nominalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nominalActionPerformed
 
     /**
      * @param args the command line arguments

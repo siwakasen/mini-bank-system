@@ -223,6 +223,9 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/assets/buttons/icon-logout.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Back"/>
                   </Properties>
                   <Events>
@@ -281,12 +284,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="okPenerimaBtn" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="noRekPenerimaInput" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="noRekPenerimaInput" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="namaPenerimaLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="namaPenerimaInput" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="namaPenerimaInput" min="-2" pref="26" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="cancelPenerimaBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -363,6 +366,7 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="okPenerimaBtnActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="okPenerimaBtnKeyPressed"/>
               </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel10">
@@ -445,16 +449,16 @@
                       <Component id="pengirimRekLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="noRekPengirimInput" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="noRekPengirimInput" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="okPengirimBtn" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="namaPengirimLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                      <Component id="namaPengirimInput" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="namaPengirimInput" min="-2" pref="26" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="cancelPengirimBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -528,6 +532,7 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="okPengirimBtnActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="okPengirimBtnKeyPressed"/>
               </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel5">

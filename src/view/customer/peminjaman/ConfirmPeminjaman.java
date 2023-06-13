@@ -58,7 +58,7 @@ public class ConfirmPeminjaman extends javax.swing.JFrame {
         nextButton = new view.PanelRound();
         jLabel3 = new javax.swing.JLabel();
         nextButton1 = new view.PanelRound();
-        jLabel4 = new javax.swing.JLabel();
+        batalBtn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,7 +66,7 @@ public class ConfirmPeminjaman extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Konfirmasi Transfer");
+        jLabel1.setText("Konfirmasi Peminjaman");
 
         password.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -114,13 +114,13 @@ public class ConfirmPeminjaman extends javax.swing.JFrame {
         nextButton1.setRoundTopLeft(50);
         nextButton1.setRoundTopRight(50);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Batal");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        batalBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        batalBtn.setForeground(new java.awt.Color(255, 255, 255));
+        batalBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        batalBtn.setText("Batal");
+        batalBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                batalBtnMouseClicked(evt);
             }
         });
 
@@ -128,11 +128,11 @@ public class ConfirmPeminjaman extends javax.swing.JFrame {
         nextButton1.setLayout(nextButton1Layout);
         nextButton1Layout.setHorizontalGroup(
             nextButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(batalBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         nextButton1Layout.setVerticalGroup(
             nextButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+            .addComponent(batalBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -211,10 +211,10 @@ public class ConfirmPeminjaman extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jLabel4MouseClicked
+    private void batalBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batalBtnMouseClicked
+         this.dispose();
+        new FormPeminjamanView(account).setVisible(true);
+    }//GEN-LAST:event_batalBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -255,10 +255,10 @@ public class ConfirmPeminjaman extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel batalBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private view.PanelRound nextButton;
     private view.PanelRound nextButton1;

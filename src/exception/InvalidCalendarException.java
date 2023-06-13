@@ -12,6 +12,6 @@ package exception;
  */
 public class InvalidCalendarException extends Exception{
     public String message(){
-            return "Date Input is Invalid !";
+            return "Inputan Tanggal Invalid !";
         }  
 }

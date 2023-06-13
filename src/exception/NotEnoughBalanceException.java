@@ -12,6 +12,6 @@ package exception;
  */
 public class NotEnoughBalanceException extends Exception{
     public String message(){
-        return "Amount in Balance is not Enough";
+        return "Jumlah uang pengirim tidak cukup";
     }  
 }

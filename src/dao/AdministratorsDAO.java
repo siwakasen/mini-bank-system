@@ -90,13 +90,6 @@ public class AdministratorsDAO {
                 while (rs.next()) {                    
                     Administrators a = new Administrators(rs.getInt("administrator_id"),
                             rs.getString("username"), rs.getString("password"));
-                    
-                    String conv = "";
-                    for (int i = 0; i < a.getPassword().length(); i++) {
-                         conv += "*";
-                    }
-                    
-                    a.setPassword(conv);
                     list.add(a);
                 }
             }

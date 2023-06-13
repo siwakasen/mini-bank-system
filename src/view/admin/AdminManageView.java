@@ -330,7 +330,7 @@ public class AdminManageView extends javax.swing.JFrame {
         addBtn.setFont(new java.awt.Font("Century Gothic", 1, 17)); // NOI18N
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-add.png"))); // NOI18N
-        addBtn.setText("Tambah");
+        addBtn.setText("Add");
         addBtn.setBorder(null);
         addBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -343,7 +343,7 @@ public class AdminManageView extends javax.swing.JFrame {
         deleteBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
         deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-delete.png"))); // NOI18N
-        deleteBtn.setText("Hapus");
+        deleteBtn.setText("Delete");
         deleteBtn.setBorder(null);
         deleteBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -356,7 +356,7 @@ public class AdminManageView extends javax.swing.JFrame {
         editBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         editBtn.setForeground(new java.awt.Color(255, 255, 255));
         editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-edit.png"))); // NOI18N
-        editBtn.setText("Ubah");
+        editBtn.setText("Edit");
         editBtn.setBorder(null);
         editBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -395,7 +395,7 @@ public class AdminManageView extends javax.swing.JFrame {
         saveBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         saveBtn.setForeground(new java.awt.Color(255, 255, 255));
         saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-save.png"))); // NOI18N
-        saveBtn.setText("Simpan");
+        saveBtn.setText("Save");
         saveBtn.setBorder(null);
         saveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -408,7 +408,7 @@ public class AdminManageView extends javax.swing.JFrame {
         cancelBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
         cancelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-cancel.png"))); // NOI18N
-        cancelBtn.setText("Batal");
+        cancelBtn.setText("Cancel");
         cancelBtn.setBorder(null);
         cancelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -484,8 +484,8 @@ public class AdminManageView extends javax.swing.JFrame {
         searchBtn.setBackground(new java.awt.Color(13, 110, 253));
         searchBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
-        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-save.png"))); // NOI18N
-        searchBtn.setText("Cari");
+        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-search.png"))); // NOI18N
+        searchBtn.setText("Search");
         searchBtn.setBorder(null);
         searchBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         searchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -581,7 +581,7 @@ public class AdminManageView extends javax.swing.JFrame {
     
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         if(admin.getAdministrator_id()!=1){
-            JOptionPane.showMessageDialog(this, "You don't have permissions to add new Administrators");
+            JOptionPane.showMessageDialog(this, "You don't have permission to add new administrators");
             return;
         }
        
@@ -596,10 +596,10 @@ public class AdminManageView extends javax.swing.JFrame {
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         System.out.println("This admin ID : "+admin.getAdministrator_id());
         if(admin.getAdministrator_id()!=1){
-            JOptionPane.showMessageDialog(this, "You don't have permissions to delete another Administrators");
+            JOptionPane.showMessageDialog(this, "You don't have permission to delete another administrators");
             return;
         }
-        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to delete this administrator?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to delete this admin?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if(getAnswer == 0){
             try{
                 administratorsControl.deleteAdministrator(Integer.parseInt(idInput.getText()));
@@ -608,7 +608,7 @@ public class AdminManageView extends javax.swing.JFrame {
                 setEditDeleteBtn(false);
                 addBtn.setEnabled(true);
                 showAdministrators();
-                JOptionPane.showMessageDialog(this, "Successfully delete administrators data");
+                JOptionPane.showMessageDialog(this, "Success deleting admin");
             } catch(Exception e){
                 System.out.println("Error deleting data...");
                 System.out.println(e);
@@ -620,7 +620,7 @@ public class AdminManageView extends javax.swing.JFrame {
         TableModel tableModel = adminTable.getModel();
         int clickedRow = adminTable.getSelectedRow();
         if(admin.getAdministrator_id()!=1 && !admin.getUsername().equals(tableModel.getValueAt(clickedRow, 1).toString())){
-            JOptionPane.showMessageDialog(this, "You don't have permissions to edit another Administrators");
+            JOptionPane.showMessageDialog(this, "You don't have permission to edit another admin");
             return;
         }
         addBtn.setEnabled(false);
@@ -647,25 +647,25 @@ public class AdminManageView extends javax.swing.JFrame {
         try{
             blankInputException();
             if(action.equals("Add")){
-                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add administrator?","Confirmation", JOptionPane.YES_NO_OPTION);
+                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add new Administrator?","Confirmation", JOptionPane.YES_NO_OPTION);
                 if(getAnswer == JOptionPane.YES_OPTION){
                     Administrators a = new Administrators (Integer.parseInt(idInput.getText()), userInput.getText(), passInput.getText());
                     administratorsControl.insertAdministrator(a);
-                    JOptionPane.showMessageDialog(this, "Success to add administrators");
+                    JOptionPane.showMessageDialog(this, "Success adding new admin");
                 }else {
-                    JOptionPane.showMessageDialog(this, "Failed to add administrators");
+                    JOptionPane.showMessageDialog(this, "Adding new admin canceled");
                 }
             }else{
-                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to change this administrator?","Confirmation", JOptionPane.YES_NO_OPTION);
+                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to edit this admin?","Confirmation", JOptionPane.YES_NO_OPTION);
                 if(getAnswer == JOptionPane.YES_OPTION){
                     Administrators a = new Administrators (Integer.parseInt(idInput.getText()), userInput.getText(), passInput.getText());
                     administratorsControl.updateAdministrator(a);
-                    JOptionPane.showMessageDialog(this, "Success to change administrators");
+                    JOptionPane.showMessageDialog(this, "Sucess editing admin");
                     if(a.getAdministrator_id()==admin.getAdministrator_id()){
                         admin=a;
                     }
                 }else {
-                    JOptionPane.showMessageDialog(this, "Failed to change administrators");
+                    JOptionPane.showMessageDialog(this, "Editing admin canceled");
                 }
             }
             clearText();

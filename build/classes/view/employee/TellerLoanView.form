@@ -261,6 +261,9 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/assets/buttons/icon-logout.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Back"/>
                   </Properties>
                   <Events>
@@ -365,7 +368,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Nama Nasabah"/>
+                <Property name="text" type="java.lang.String" value="Customer Name"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="cekPeminjamBtn">
@@ -382,7 +385,9 @@
                 <Property name="text" type="java.lang.String" value="OK"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cekPeminjamBtnMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cekPeminjamBtnActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cekPeminjamBtnKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="inputIdNasabah">
@@ -406,7 +411,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="79" green="3d" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Detail Peminjam"/>
+                <Property name="text" type="java.lang.String" value="Loan Detail"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel16">
@@ -417,7 +422,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="ID Nasabah"/>
+                <Property name="text" type="java.lang.String" value="Customer ID"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="cancelPeminjamBtn">
@@ -488,7 +493,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="79" green="3d" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="ID Pinjaman"/>
+                <Property name="text" type="java.lang.String" value="Loan ID"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tampilIdPinjaman">
@@ -596,7 +601,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="79" green="3d" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Tipe Pinjaman"/>
+                <Property name="text" type="java.lang.String" value="Loan Type"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel7">
@@ -634,7 +639,7 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
-                    <StringItem index="0" value="Pilih Tipe Pinjaman"/>
+                    <StringItem index="0" value="Select Loan Type"/>
                     <StringItem index="1" value="Kredit Usaha Rakyat"/>
                     <StringItem index="2" value="Kredit Modal Kerja"/>
                     <StringItem index="3" value="Kredit Investasi"/>
@@ -669,9 +674,9 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jPanel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jPanel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel19" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="dateStartPicker" alignment="0" max="32767" attributes="0"/>
+                          <Component id="dateStartPicker" pref="206" max="32767" attributes="0"/>
                           <Component id="dateEndPicker" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -731,7 +736,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="79" green="3d" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Tanggal Mulai Pinjaman"/>
+                <Property name="text" type="java.lang.String" value="Loan Start Date"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel3">
@@ -762,7 +767,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="79" green="3d" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Tanggal Jatuh Tempo"/>
+                <Property name="text" type="java.lang.String" value="Loan End Date"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -944,14 +949,14 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="79" green="3d" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Status Pinjaman"/>
+                <Property name="text" type="java.lang.String" value="Loan Status"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbStatus">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
-                    <StringItem index="0" value="Status Peminjaman"/>
+                    <StringItem index="0" value="Select Loan Status"/>
                     <StringItem index="1" value="Menunggu Konfirmasi"/>
                     <StringItem index="2" value="Dikonfirmasi"/>
                     <StringItem index="3" value="Lunas"/>
@@ -1178,14 +1183,14 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="79" green="3d" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Jenis Bunga"/>
+                <Property name="text" type="java.lang.String" value="Interest Rate Type"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbJenisBunga">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
-                    <StringItem index="0" value="Pilih Jenis Bunga"/>
+                    <StringItem index="0" value="Select Interest Type"/>
                     <StringItem index="1" value="Perbulan"/>
                     <StringItem index="2" value="Pertahun"/>
                   </StringArray>
@@ -1203,7 +1208,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Biaya Per Bulan"/>
+                <Property name="text" type="java.lang.String" value="Monthly Cost"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tampilBiayaTahun">
@@ -1224,7 +1229,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Biaya Per Tahun"/>
+                <Property name="text" type="java.lang.String" value="Annual Cost"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -1324,7 +1329,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="79" green="3d" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Jumlah Pinjaman"/>
+                <Property name="text" type="java.lang.String" value="Amount"/>
               </Properties>
             </Component>
           </SubComponents>

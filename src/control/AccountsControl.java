@@ -2,8 +2,8 @@
 package control;
 
 import dao.AccountsDAO;
-import java.util.List;
 import model.Accounts;
+import model.Customers;
 import table.TableAccounts;
 import java.util.List;
 
@@ -44,4 +44,7 @@ public class AccountsControl {
     public Accounts searchAccount(int account_id){
             return AccountsDAO.searchAccounts(account_id);
         }
+    public Accounts checkLoginAccount(String user, String pass){
+        return AccountsDAO.checkLogin(user, pass);
+    }
 }

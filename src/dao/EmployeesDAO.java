@@ -147,8 +147,6 @@ public class EmployeesDAO {
                     
                     e.setEnd_work_date(e.getEnd_work_date().substring(8, 10)+e.getEnd_work_date().substring(4, 8)+
                             e.getEnd_work_date().substring(0, 4));
-                    
-                    
                     list.add(e);
                 }
             }
@@ -229,6 +227,12 @@ public class EmployeesDAO {
                             rs.getString("start_work_date"), rs.getString("end_work_date"),
                             rs.getInt("role_id"), rs.getString("office_number"), 
                             rs.getString("station_number"));
+                    String conv = "";
+                    for (int i = 0; i < e.getPassword().length(); i++) {
+                         conv += "*";
+                    }
+                    
+                    e.setPassword(conv);
                     list.add(e);
                 }
             }

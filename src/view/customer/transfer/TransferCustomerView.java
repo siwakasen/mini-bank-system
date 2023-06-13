@@ -165,14 +165,14 @@ public class TransferCustomerView extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(AccountsControl.checkAccountAvail(Integer.parseInt(to_account_id.getText()))){
             if(Integer.parseInt(to_account_id.getText()) == account.getAccount_id()){
-                JOptionPane.showMessageDialog(null, "Account tidak valid!");
+                JOptionPane.showMessageDialog(null, "Pengguna tidak valid!");
             }else{
                 Accounts get_accounts = AccountsControl.selectAccount(Integer.parseInt(to_account_id.getText()));
                 this.dispose();
                 new TransferView(account, Integer.parseInt(to_account_id.getText()), get_accounts.getCustomer().getFirst_name() + " " + get_accounts.getCustomer().getLast_name()).setVisible(true);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Account tidak ditemukan");
+            JOptionPane.showMessageDialog(null, "Pengguna tidak ditemukan");
         }
         
     }//GEN-LAST:event_jLabel3MouseClicked

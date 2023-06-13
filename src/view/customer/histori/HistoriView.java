@@ -208,7 +208,7 @@ public class HistoriView extends javax.swing.JFrame {
                     account, 
                     TransactionsControl.singleTransaction(account.getAccount_id(), selectedTransactionID, ""), 
                     TransfersControl.singleTransfers(selectedTransactionFK), 
-                    AccountsControl.selectAccount(210700001)).setVisible(true);
+                    AccountsControl.selectAccount(account.getAccount_id())).setVisible(true);
         }
        
     }//GEN-LAST:event_jLabel5MouseClicked

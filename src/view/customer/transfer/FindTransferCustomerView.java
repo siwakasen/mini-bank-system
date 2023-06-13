@@ -296,6 +296,9 @@ public class FindTransferCustomerView extends javax.swing.JFrame {
     private void cariLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cariLabelMouseClicked
         // TODO add your handling code here:
         tabelHistori.setModel(transfersControl.getSearchList(account.getAccount_id(), cariField.getText()));
+        if(tabelHistori.getRowCount()==0){
+            JOptionPane.showMessageDialog(null, "Akun tidak ditemukan!\nSilahkan tambahkan pengguna baru");
+        }
     }//GEN-LAST:event_cariLabelMouseClicked
 
     private void nextPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextPanelMouseClicked
@@ -333,7 +336,7 @@ public class FindTransferCustomerView extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
         if(selectedAccountID == -1){
-            JOptionPane.showMessageDialog(null, "Silahkan memilih account terlebih dahulu!");
+            JOptionPane.showMessageDialog(null, "Mohon pilih pengguna terlebih dahulu!");
         }else{
             this.dispose();
             new TransferView(account, selectedAccountID, selectedAccountNama).setVisible(true);

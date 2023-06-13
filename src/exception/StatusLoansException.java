@@ -12,6 +12,6 @@ package exception;
  */
 public class StatusLoansException extends Exception{
     public String message(){
-        return "Invalid Status Change";
+        return "Status Peminjaman Tidak Valid";
     }  
 }

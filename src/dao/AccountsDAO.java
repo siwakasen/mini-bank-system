@@ -146,6 +146,8 @@ public class AccountsDAO {
             rs.close();
             statement.close();
         } catch (Exception e) {
+            System.out.println("Error checking search account");
+            System.out.println(e.toString());
         }
         dbCon.closeConnection();
         return a;
@@ -163,6 +165,8 @@ public class AccountsDAO {
             }
         } catch (Exception e){
             dbCon.closeConnection();
+            System.out.println("Error checking select account");
+            System.out.println(e.toString());
             return null;
         }
         dbCon.closeConnection();
@@ -182,9 +186,44 @@ public class AccountsDAO {
             rs.close();
             stmt.close();
         } catch (Exception e){
+            System.out.println("Error checking availabel account");
+            System.out.println(e.toString());
             return false;
         }
         dbCon.closeConnection();
         return false;
+    }
+    public Accounts checkLogin(String user, String pass){
+        con= dbCon.makeConnection();
+        Accounts a=null;
+        String sql = "SELECT a.*,c.* FROM accounts as a JOIN customers as c ON a.customer_id = c.customer_id WHERE a.username = '"+user+"' AND a.password = '"+pass+"'";
+        try{
+             Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            
+            if (rs!=null){
+                while(rs.next()){
+                    Customers c = new Customers(
+                            Integer.parseInt(rs.getString("c.customer_id")),
+                            rs.getString("c.first_name"),
+                            rs.getString("c.last_name"),
+                            rs.getString("c.email"),
+                            rs.getString("c.phone_number"),
+                            rs.getString("c.address")
+                    );
+
+                    a = new Accounts(Integer.parseInt(rs.getString("a.account_id")),
+                            rs.getString("a.account_type"), Double.parseDouble(rs.getString("a.balance")),
+                            c, rs.getString("a.username"), rs.getString("a.password"));
+                }
+            }
+            rs.close();
+            statement.close();
+        }catch(Exception e){
+            System.out.println("Error to logged in...");
+            System.out.println(e.toString());
+        }
+         dbCon.closeConnection();
+        return a;
     }
 }

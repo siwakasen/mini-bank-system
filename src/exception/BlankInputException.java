@@ -12,6 +12,6 @@ package exception;
 */
 public class BlankInputException extends Exception {
     public String message(){
-        return "Input Cannot Be Empty !";
+        return "Inputan tidak boleh kosong !";
     }  
 }

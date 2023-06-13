@@ -1,4 +1,5 @@
 /*
+
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -9,10 +10,11 @@ import connection.DbConnection;
 
 import model.Accounts;
 import model.Customers;
-
+import control.AccountsControl;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +23,7 @@ import java.sql.Statement;
 public class LoginCustomerView extends javax.swing.JFrame {
     private DbConnection DbCon = new DbConnection();
     private Connection conn;
+    private AccountsControl aControl= new AccountsControl();
     /**
      * Creates new form LoginCustomerView
      */
@@ -66,6 +69,11 @@ public class LoginCustomerView extends javax.swing.JFrame {
                 jToggleButton1ActionPerformed(evt);
             }
         });
+        jToggleButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jToggleButton1KeyPressed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         jLabel2.setText("Password");
@@ -108,9 +116,6 @@ public class LoginCustomerView extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addComponent(baris1))
                     .addGroup(topPanelLayout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jLabel3))
-                    .addGroup(topPanelLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(baris2)
@@ -119,7 +124,10 @@ public class LoginCustomerView extends javax.swing.JFrame {
                                 .addComponent(baris3))))
                     .addGroup(topPanelLayout.createSequentialGroup()
                         .addGap(115, 115, 115)
-                        .addComponent(jLabel5)))
+                        .addComponent(jLabel5))
+                    .addGroup(topPanelLayout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         topPanelLayout.setVerticalGroup(
@@ -168,11 +176,11 @@ public class LoginCustomerView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                     .addComponent(username, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(password))
+                    .addComponent(password)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -216,23 +224,27 @@ public class LoginCustomerView extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-        try{
-            conn = DbCon.makeConnection();
-            Statement stmt = conn.createStatement();
-            String sql = "SELECT * FROM accounts JOIN customers ON accounts.customer_id = customers.customer_id WHERE username = '"+username.getText()+"' AND password = '"+String.valueOf(password.getPassword())+"'";
-            ResultSet rs = stmt.executeQuery(sql);
-            if(rs.next()){
-                this.dispose();
-                new CustomerView(new Accounts(rs.getInt("account_id"), rs.getString("account_type"), rs.getDouble("balance"), 
-                        new Customers(rs.getInt("customers.customer_id"), rs.getString("customers.first_name"), rs.getString("customers.last_name"), rs.getString("customers.email"), rs.getString("phone_number"), rs.getString("address")), rs.getString("username"), rs.getString("password"))).setVisible(true);
-            } else {
-                System.out.println("Login Gagal");
-            }
-        } catch(Exception e){
-            System.out.println("Message "+e);
+         Accounts a = aControl.checkLoginAccount(username.getText(),String.valueOf(password.getPassword()));
+        if(a==null){
+             JOptionPane.showMessageDialog(null, "Username atau password salah!"); return;
         }
+        
+        this.dispose();
+        CustomerView cv = new CustomerView(a);
+        cv.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jToggleButton1KeyPressed
+       Accounts a = aControl.checkLoginAccount(username.getText(),String.valueOf(password.getPassword()));
+        if(a==null){
+            
+            JOptionPane.showMessageDialog(null, "Username atau Password salah!"); return;
+        }
+        
+        this.dispose();
+        CustomerView cv = new CustomerView(a);
+        cv.setVisible(true);
+    }//GEN-LAST:event_jToggleButton1KeyPressed
 
     /**
      * @param args the command line arguments

@@ -16,14 +16,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import javax.swing.table.TableModel;
-import table.TableTransactions;
-import table.TableLoans;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -169,21 +165,17 @@ public class TellerLoanView extends javax.swing.JFrame {
         return df.format(nominal);
     }
     
-    public void runUpdate(){
+   public void runUpdate(){
         inputJumlahPinjaman.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
-                try{
-                    double kalkulasi_perbulan = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100)/12;
-                    double kalkulasi_pertahun = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100);
-                    BigDecimal bcBulan = new BigDecimal(kalkulasi_perbulan).setScale(0, RoundingMode.HALF_EVEN);
-                    BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
-                    tampilBiayaBulan.setText(formatNominal(bcBulan));
-                    tampilBiayaTahun.setText(formatNominal(bcTahun));
-                } catch(NumberFormatException e1){
-                    JOptionPane.showMessageDialog(null, "Invalid loan amount");
-                    System.out.println("Error "+ e1.toString());
-              }
+                warn();
+                double kalkulasi_perbulan = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100)/12;
+                double kalkulasi_pertahun = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100);
+                BigDecimal bcBulan = new BigDecimal(kalkulasi_perbulan).setScale(0, RoundingMode.HALF_EVEN);
+                BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
+                tampilBiayaBulan.setText(formatNominal(bcBulan));
+                tampilBiayaTahun.setText(formatNominal(bcTahun));
             }
             @Override
             public void removeUpdate(DocumentEvent e) {
@@ -194,24 +186,38 @@ public class TellerLoanView extends javax.swing.JFrame {
                 BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
                 tampilBiayaBulan.setText(formatNominal(bcBulan));
                 tampilBiayaTahun.setText(formatNominal(bcTahun));
-              } catch(NumberFormatException e1){
-                    JOptionPane.showMessageDialog(null, "Invalid loan amount");
-                    System.out.println("Error "+ e1.toString());
+              } catch(Exception handling){
+//                  pass
               }
             }
             @Override
             public void insertUpdate(DocumentEvent e) {
                 try{
-                double kalkulasi_perbulan = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100)/12;
-                double kalkulasi_pertahun = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100);
-                BigDecimal bcBulan = new BigDecimal(kalkulasi_perbulan).setScale(0, RoundingMode.HALF_EVEN);
-                BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
-                tampilBiayaBulan.setText(formatNominal(bcBulan));
-                tampilBiayaTahun.setText(formatNominal(bcTahun));
-                } catch(NumberFormatException e1){
-                    JOptionPane.showMessageDialog(null, "Invalid loan amount");
-                    System.out.println("Error "+ e1.toString());
+                    warn();
+                    double kalkulasi_perbulan = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100)/12;
+                    double kalkulasi_pertahun = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100);
+                    BigDecimal bcBulan = new BigDecimal(kalkulasi_perbulan).setScale(0, RoundingMode.HALF_EVEN);
+                    BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
+                    tampilBiayaBulan.setText(formatNominal(bcBulan));
+                    tampilBiayaTahun.setText(formatNominal(bcTahun));
+                }catch(NumberFormatException e1){
+                    System.out.println(e1.toString());
               }
+            }
+
+            public void warn() {
+                try{
+                    if (Double.parseDouble(inputJumlahPinjaman.getText())<=0){
+                      JOptionPane.showMessageDialog(null,
+                         "Amount must be more than 0!", "Error Message",
+                         JOptionPane.ERROR_MESSAGE);
+                    }
+                }catch (NumberFormatException e){
+                    JOptionPane.showMessageDialog(null,
+                         "Amount invalid!", "Error Message",
+                         JOptionPane.ERROR_MESSAGE);
+                    System.out.println("Error "+ e.toString());
+                }
             }
         });
     }
@@ -314,6 +320,7 @@ public class TellerLoanView extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(194, 16, 16));
         jButton1.setFont(new java.awt.Font("Montserrat SemiBold", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-logout.png"))); // NOI18N
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -392,15 +399,25 @@ public class TellerLoanView extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Nama Nasabah");
+        jLabel3.setText("Customer Name");
 
         cekPeminjamBtn.setBackground(new java.awt.Color(13, 110, 253));
         cekPeminjamBtn.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         cekPeminjamBtn.setForeground(new java.awt.Color(255, 255, 255));
         cekPeminjamBtn.setText("OK");
+        cekPeminjamBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cekPeminjamBtnMouseClicked(evt);
+            }
+        });
         cekPeminjamBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cekPeminjamBtnActionPerformed(evt);
+            }
+        });
+        cekPeminjamBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cekPeminjamBtnKeyPressed(evt);
             }
         });
 
@@ -410,11 +427,11 @@ public class TellerLoanView extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 61, 121));
-        jLabel15.setText("Detail Peminjam");
+        jLabel15.setText("Loan Detail");
 
         jLabel16.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel16.setText("ID Nasabah");
+        jLabel16.setText("Customer ID");
 
         cancelPeminjamBtn.setBackground(new java.awt.Color(194, 16, 16));
         cancelPeminjamBtn.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
@@ -455,7 +472,7 @@ public class TellerLoanView extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 61, 121));
-        jLabel2.setText("ID Pinjaman");
+        jLabel2.setText("Loan ID");
 
         tampilIdPinjaman.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         tampilIdPinjaman.setForeground(new java.awt.Color(0, 0, 0));
@@ -537,7 +554,7 @@ public class TellerLoanView extends javax.swing.JFrame {
 
         jLabel20.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 61, 121));
-        jLabel20.setText("Tipe Pinjaman");
+        jLabel20.setText("Loan Type");
 
         jPanel7.setBackground(new java.awt.Color(255, 183, 0));
 
@@ -556,7 +573,7 @@ public class TellerLoanView extends javax.swing.JFrame {
         jLabel21.setForeground(new java.awt.Color(0, 61, 121));
         jLabel21.setText("Interest Rate");
 
-        cbTipePinjaman.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Tipe Pinjaman", "Kredit Usaha Rakyat", "Kredit Modal Kerja", "Kredit Investasi" }));
+        cbTipePinjaman.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Loan Type", "Kredit Usaha Rakyat", "Kredit Modal Kerja", "Kredit Investasi" }));
         cbTipePinjaman.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTipePinjamanActionPerformed(evt);
@@ -617,7 +634,7 @@ public class TellerLoanView extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(0, 61, 121));
-        jLabel19.setText("Tanggal Mulai Pinjaman");
+        jLabel19.setText("Loan Start Date");
 
         jPanel3.setBackground(new java.awt.Color(255, 183, 0));
 
@@ -634,7 +651,7 @@ public class TellerLoanView extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 61, 121));
-        jLabel17.setText("Tanggal Jatuh Tempo");
+        jLabel17.setText("Loan End Date");
 
         javax.swing.GroupLayout panelRound3Layout = new javax.swing.GroupLayout(panelRound3);
         panelRound3.setLayout(panelRound3Layout);
@@ -645,9 +662,9 @@ public class TellerLoanView extends javax.swing.JFrame {
                 .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel19)
                     .addComponent(jLabel17)
-                    .addComponent(dateStartPicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateStartPicker, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                     .addComponent(dateEndPicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -759,9 +776,9 @@ public class TellerLoanView extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 61, 121));
-        jLabel18.setText("Status Pinjaman");
+        jLabel18.setText("Loan Status");
 
-        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status Peminjaman", "Menunggu Konfirmasi", "Dikonfirmasi", "Lunas", "Dibatalkan" }));
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Loan Status", "Menunggu Konfirmasi", "Dikonfirmasi", "Lunas", "Dibatalkan" }));
 
         javax.swing.GroupLayout panelJumlahPinjamanLayout = new javax.swing.GroupLayout(panelJumlahPinjaman);
         panelJumlahPinjaman.setLayout(panelJumlahPinjamanLayout);
@@ -885,20 +902,20 @@ public class TellerLoanView extends javax.swing.JFrame {
 
         jLabel24.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 61, 121));
-        jLabel24.setText("Jenis Bunga");
+        jLabel24.setText("Interest Rate Type");
 
-        cbJenisBunga.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Jenis Bunga", "Perbulan", "Pertahun" }));
+        cbJenisBunga.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Interest Type", "Perbulan", "Pertahun" }));
 
         jLabel4.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Biaya Per Bulan");
+        jLabel4.setText("Monthly Cost");
 
         tampilBiayaTahun.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         tampilBiayaTahun.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel5.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("Biaya Per Tahun");
+        jLabel5.setText("Annual Cost");
 
         javax.swing.GroupLayout panelRound6Layout = new javax.swing.GroupLayout(panelRound6);
         panelRound6.setLayout(panelRound6Layout);
@@ -970,7 +987,7 @@ public class TellerLoanView extends javax.swing.JFrame {
 
         jLabel25.setFont(new java.awt.Font("Montserrat ExtraBold", 1, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 61, 121));
-        jLabel25.setText("Jumlah Pinjaman");
+        jLabel25.setText("Amount");
 
         javax.swing.GroupLayout panelJumlahPinjaman1Layout = new javax.swing.GroupLayout(panelJumlahPinjaman1);
         panelJumlahPinjaman1.setLayout(panelJumlahPinjaman1Layout);
@@ -1107,9 +1124,11 @@ public class TellerLoanView extends javax.swing.JFrame {
     private void cbTipePinjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipePinjamanActionPerformed
         if (cbTipePinjaman.getSelectedIndex()==1){
             tampilInterestRate.setText("7%");
-        }else if(cbTipePinjaman.getSelectedIndex()==2){
+        }
+        if(cbTipePinjaman.getSelectedIndex()==2){
             tampilInterestRate.setText("8%");
-        }else{
+        }
+        if(cbTipePinjaman.getSelectedIndex()==3){
             tampilInterestRate.setText("10%");
         }
         setRate();
@@ -1145,17 +1164,13 @@ public class TellerLoanView extends javax.swing.JFrame {
         else tampilBiayaBulan.setText("");
     }//GEN-LAST:event_confirmLoanTableMouseClicked
     private void statusLoansException() throws StatusLoansException{
-        if(cbStatus.getSelectedIndex()==0){
-            throw new StatusLoansException();
-        }else if(cbStatus.getSelectedIndex()<lastStatusIndex){
+        if(cbStatus.getSelectedIndex()<lastStatusIndex){
             throw new StatusLoansException();
         }
     }
     private void blankInputException() throws BlankInputException{
         if(namaInput.getText().isEmpty() || inputJumlahPinjaman.getText().isEmpty()
-           || tampilInterestRate.getText().isEmpty()){
-                throw new BlankInputException();
-        }else if(tampilBiayaBulan.getText().isEmpty() && tampilBiayaTahun.getText().isEmpty()){
+           || cbTipePinjaman.getSelectedIndex()==0  || cbJenisBunga.getSelectedIndex()==0){
                 throw new BlankInputException();
         }
     }
@@ -1187,9 +1202,6 @@ public class TellerLoanView extends javax.swing.JFrame {
                     Double.parseDouble(inputJumlahPinjaman.getText()), 
                     rate*100, cbJenisBunga.getSelectedItem().toString(), 
                     Double.parseDouble(split), cbStatus.getSelectedItem().toString()));
-                    clearText();
-                    setDetailPeminjamanArea(true);
-                    tampilInterestRate.setText("");
                 }else{
                  JOptionPane.showMessageDialog(this, "Failed to changes loan status");
                 }
@@ -1204,9 +1216,7 @@ public class TellerLoanView extends javax.swing.JFrame {
                             Double.parseDouble(inputJumlahPinjaman.getText()), 
                             rate*100, cbJenisBunga.getSelectedItem().toString(), 
                             Double.parseDouble(split), "Dikonfirmasi"));
-                            clearText();
-                            setDetailPeminjamanArea(true);
-                            tampilInterestRate.setText("");
+                            
               }else{
                   JOptionPane.showMessageDialog(this, "Failed to add new loan");
               }
@@ -1221,12 +1231,17 @@ public class TellerLoanView extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(null, e.message(), "Warning", JOptionPane.DEFAULT_OPTION);
             System.out.println("Error: " + e.toString());
         }catch(NumberFormatException e){
-            JOptionPane.showConfirmDialog(null, "Amount Loan must be digits", "Warning", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showConfirmDialog(null, "Amount must be digit", "Warning", JOptionPane.DEFAULT_OPTION);
             System.out.println("Error: " + e.toString());
         }
-        
+        clearText();
+        setDetailPeminjamanArea(true);
+        tampilInterestRate.setText("");
         showDataHistory();
         showDataCurrently();
+        setComponent(false);
+        setEditComponent(true);
+        cbStatus.setEnabled(false);
         generateIdLOA();
     }//GEN-LAST:event_ajukanPinjamanBtnActionPerformed
 
@@ -1237,6 +1252,23 @@ public class TellerLoanView extends javax.swing.JFrame {
         setComponent(false);
         generateIdLOA();
     }//GEN-LAST:event_batalkanPinjamanBtnActionPerformed
+
+    private void cekPeminjamBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cekPeminjamBtnKeyPressed
+       try {
+            peminjam = aControl.searchAccount(Integer.parseInt(inputIdNasabah.getText()));
+            if(peminjam!=null){
+                namaInput.setText(peminjam.getCustomer().getFirst_name()+" "+peminjam.getCustomer().getLast_name());
+                setDetailPeminjamanArea(false);
+                cancelPeminjamBtn.setEnabled(true);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Account not found","Confirmation", JOptionPane.DEFAULT_OPTION);
+        }
+    }//GEN-LAST:event_cekPeminjamBtnKeyPressed
+
+    private void cekPeminjamBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cekPeminjamBtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cekPeminjamBtnMouseClicked
 
     /**
      * @param args the command line arguments

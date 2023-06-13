@@ -5,7 +5,6 @@
  */
 package view.customer.histori;
 
-import view.customer.transfer.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -13,7 +12,8 @@ import model.Accounts;
 import model.Customers;
 import model.Transactions;
 import model.Transfers;
-import view.customer.CustomerView;
+import control.CustomersControl;
+import control.AccountsControl;
 
 /**
  *
@@ -24,6 +24,10 @@ public class HistoriTransferView extends javax.swing.JFrame {
     private Accounts get;
     private Transactions transaction;
     private Transfers transfer;
+    private Accounts a;
+    private Customers c;
+    private CustomersControl cl = new CustomersControl();
+    private AccountsControl ac = new AccountsControl();
     
     /**
      * Creates new form CompleteTransferView
@@ -33,10 +37,12 @@ public class HistoriTransferView extends javax.swing.JFrame {
         this.transaction = transaction;
         this.transfer = transfer;
         this.get = get;
+        this.a= ac.searchAccount(transfer.getTo_account_id());
+        this.c= cl.searchCustomer(a.getCustomer().getCustomer_id());
         initComponents();
         
         date_idtrans.setText(create_date(transaction.getTransaction_date())+" ∙ No. Transaksi : "+transaction.getTransaction_id());
-        nama_penerima.setText(get.getCustomer().getFirst_name() + " " + get.getCustomer().getLast_name());
+        nama_penerima.setText(c.getFirst_name() + " " + c.getLast_name());
         to_accid.setText("Account ID - "+transfer.getTo_account_id());
         BigDecimal total = new BigDecimal(transfer.getAmount()).setScale(0, RoundingMode.HALF_EVEN);
         total_transfer.setText("Rp. "+formatNominal(total));

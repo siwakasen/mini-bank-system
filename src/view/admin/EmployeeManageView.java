@@ -351,7 +351,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
         addBtn.setFont(new java.awt.Font("Century Gothic", 1, 17)); // NOI18N
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-add.png"))); // NOI18N
-        addBtn.setText("Tambah");
+        addBtn.setText("Add");
         addBtn.setBorder(null);
         addBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -364,7 +364,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
         deleteBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
         deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-delete.png"))); // NOI18N
-        deleteBtn.setText("Hapus");
+        deleteBtn.setText("Delete");
         deleteBtn.setBorder(null);
         deleteBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -377,7 +377,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
         editBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         editBtn.setForeground(new java.awt.Color(255, 255, 255));
         editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-edit.png"))); // NOI18N
-        editBtn.setText("Ubah");
+        editBtn.setText("Edit");
         editBtn.setBorder(null);
         editBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -429,7 +429,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
         saveBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         saveBtn.setForeground(new java.awt.Color(255, 255, 255));
         saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-save.png"))); // NOI18N
-        saveBtn.setText("Simpan");
+        saveBtn.setText("Save");
         saveBtn.setBorder(null);
         saveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -762,8 +762,8 @@ public class EmployeeManageView extends javax.swing.JFrame {
         searchBtn.setBackground(new java.awt.Color(13, 110, 253));
         searchBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
-        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-save.png"))); // NOI18N
-        searchBtn.setText("Cari");
+        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-search.png"))); // NOI18N
+        searchBtn.setText("Search");
         searchBtn.setBorder(null);
         searchBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -896,7 +896,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure want to delete data?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to delete this Employee?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if(getAnswer == 0){
             try{
                 employeesControl.deleteEmployees(Integer.parseInt(idInput.getText()));
@@ -905,7 +905,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
                 setEditDeleteBtn(false);
                 addBtn.setEnabled(true);
                 showEmployees();
-                JOptionPane.showMessageDialog(this, "Successfully delete employee data");
+                JOptionPane.showMessageDialog(this, "Success deleting employee");
             } catch(Exception e){
                 System.out.println("Error deleting data...");
                 System.out.println(e);
@@ -932,38 +932,38 @@ public class EmployeeManageView extends javax.swing.JFrame {
                         blankInputException();
                         invalidCalendarException();
                         if(action.equals("Add")){
-                            int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure want to add employee?","Confirmation", JOptionPane.YES_NO_OPTION);
+                            int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add new Employee?","Confirmation", JOptionPane.YES_NO_OPTION);
                             if(getAnswer == JOptionPane.YES_OPTION){
                                 if(tellerRadio.isSelected()){
                                     Employees e = new Employees (Integer.parseInt(idInput.getText()), firstInput.getText(), lastInput.getText(), userInput.getText(), passInput.getText(),
                                             convDateSql(startWorkDate.getDate()), convDateSql(endWorkDate.getDate()), 1, officeInput.getText(), stationInput.getText());
                                     employeesControl.insertEmployees(e);
-                                    JOptionPane.showMessageDialog(this, "Success to add employee");
+                                    JOptionPane.showMessageDialog(this, "Success add new Employee");
                                 }else{
                                     Employees e = new Employees (Integer.parseInt(idInput.getText()), firstInput.getText(), lastInput.getText(), userInput.getText(), passInput.getText(),
                                         convDateSql(startWorkDate.getDate()), convDateSql(endWorkDate.getDate()), 2, officeInput.getText(), stationInput.getText());
                                     employeesControl.insertEmployees(e);
-                                    JOptionPane.showMessageDialog(this, "Success to add employee");
+                                    JOptionPane.showMessageDialog(this, "Success add new Employee");
                                 }
                             }else {
-                                JOptionPane.showMessageDialog(this, "Failed to add employee");
+                                JOptionPane.showMessageDialog(this, "Adding new Employee is canceled");
                             }
                         }else{
-                            int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure want to change employee?","Confirmation", JOptionPane.YES_NO_OPTION);
+                            int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to edit this Employee?","Confirmation", JOptionPane.YES_NO_OPTION);
                             if(getAnswer == JOptionPane.YES_OPTION){
                                 if(tellerRadio.isSelected()){
                                     Employees e = new Employees (Integer.parseInt(idInput.getText()), firstInput.getText(), lastInput.getText(), userInput.getText(), passInput.getText(),
                                         convDateSql(startWorkDate.getDate()), convDateSql(endWorkDate.getDate()), 1, officeInput.getText(), stationInput.getText());
                                     employeesControl.updateEmployees(e);
-                                    JOptionPane.showMessageDialog(this, "Success to change employee");
+                                    JOptionPane.showMessageDialog(this, "Success editing Employee");
                                 }else{
                                     Employees e = new Employees (Integer.parseInt(idInput.getText()), firstInput.getText(), lastInput.getText(), userInput.getText(), passInput.getText(),
                                         convDateSql(startWorkDate.getDate()), convDateSql(endWorkDate.getDate()), 2, officeInput.getText(), stationInput.getText());
                                     employeesControl.updateEmployees(e);
-                                    JOptionPane.showMessageDialog(this, "Success to change employee");
+                                    JOptionPane.showMessageDialog(this, "Success editing Employee");
                                 }
                             }else {
-                                JOptionPane.showMessageDialog(this, "Failed to change employee");
+                                JOptionPane.showMessageDialog(this, "Editing employee is canceled");
                             }
                         }
                         clearText();
@@ -1049,8 +1049,6 @@ public class EmployeeManageView extends javax.swing.JFrame {
                 Integer.parseInt(tableModel.getValueAt(clickedRow,6).toString().substring(3, 5))-1,
                 Integer.parseInt(tableModel.getValueAt(clickedRow,6).toString().substring(0, 2)));
         endWorkDate.setCalendar(c);
-//        startWorkDate.setText(tableModel.getValueAt(clickedRow, 5).toString());
-//        endWorkDate.setText(tableModel.getValueAt(clickedRow, 6).toString());
         if(tableModel.getValueAt(clickedRow, 7).toString().equals("Teller")){
             tellerRadio.setSelected(true);
         }else if(tableModel.getValueAt(clickedRow, 7).toString().equals("Customer Services")){
@@ -1092,7 +1090,7 @@ public class EmployeeManageView extends javax.swing.JFrame {
             if(empTab.getRowCount()==0){
                     clearText();
                     searchInput.setText("");
-                    JOptionPane.showMessageDialog(this, "Employees not found");
+                    JOptionPane.showMessageDialog(this, "Employee not found");
                 }else{
                     employeeTable.setModel(empTab);
                 }

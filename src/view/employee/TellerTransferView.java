@@ -12,10 +12,6 @@ import exception.BlankInputException;
 import exception.NotEnoughBalanceException;
 import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
-import java.util.List;
-import javax.swing.table.TableModel;
-import table.TableTransactions;
-import table.TableTransfer;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.time.LocalDate;
@@ -161,6 +157,7 @@ public class TellerTransferView extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(194, 16, 16));
         jButton1.setFont(new java.awt.Font("Poppins Medium", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/buttons/icon-logout.png"))); // NOI18N
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,6 +251,11 @@ public class TellerTransferView extends javax.swing.JFrame {
                 okPenerimaBtnActionPerformed(evt);
             }
         });
+        okPenerimaBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                okPenerimaBtnKeyPressed(evt);
+            }
+        });
 
         jPanel10.setBackground(new java.awt.Color(255, 183, 0));
 
@@ -303,11 +305,11 @@ public class TellerTransferView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(penerimaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okPenerimaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(noRekPenerimaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(noRekPenerimaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(namaPenerimaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(namaPenerimaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(namaPenerimaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cancelPenerimaBtn)
                 .addGap(37, 37, 37))
@@ -349,6 +351,11 @@ public class TellerTransferView extends javax.swing.JFrame {
         okPengirimBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okPengirimBtnActionPerformed(evt);
+            }
+        });
+        okPengirimBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                okPengirimBtnKeyPressed(evt);
             }
         });
 
@@ -399,15 +406,15 @@ public class TellerTransferView extends javax.swing.JFrame {
                 .addComponent(pengirimRekLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pengirimPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noRekPengirimInput, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(noRekPengirimInput, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(okPengirimBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(namaPengirimLabel)
                 .addGap(3, 3, 3)
-                .addComponent(namaPengirimInput, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(namaPengirimInput, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cancelPengirimBtn)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         transferPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -614,6 +621,8 @@ public class TellerTransferView extends javax.swing.JFrame {
                 setPengirimArea(false);            
                 cancelPengirimBtn.setEnabled(true);
                 if(cancelPenerimaBtn.isEnabled()) idTransferInput.setText("TN-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)));
+            }else{
+                JOptionPane.showMessageDialog(null, "Account not found !");
             }
         }else{
            JOptionPane.showMessageDialog(null,"Source and Destination Transfer Can't be same!","Warning", JOptionPane.DEFAULT_OPTION);
@@ -634,6 +643,8 @@ public class TellerTransferView extends javax.swing.JFrame {
                 setPenerimaArea(false);            
                 cancelPenerimaBtn.setEnabled(true);
                 if(cancelPengirimBtn.isEnabled()) idTransferInput.setText("TN-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)));
+            }else{
+                JOptionPane.showMessageDialog(null, "Account not found !");
             }
         }else{
             JOptionPane.showMessageDialog(null,"Source and Destination Transfer Can't be same!","Warning", JOptionPane.DEFAULT_OPTION);
@@ -687,6 +698,38 @@ public class TellerTransferView extends javax.swing.JFrame {
         }
         showTransfer();
     }//GEN-LAST:event_transferBtnActionPerformed
+
+    private void okPengirimBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_okPengirimBtnKeyPressed
+        if(!noRekPenerimaInput.getText().equalsIgnoreCase(noRekPengirimInput.getText())){
+            pengirim = aControl.searchAccount(Integer.parseInt(noRekPengirimInput.getText()));
+            if(pengirim!=null){
+                namaPengirimInput.setText(pengirim.getCustomer().getFirst_name()+" "+pengirim.getCustomer().getLast_name());
+                setPengirimArea(false);            
+                cancelPengirimBtn.setEnabled(true);
+                if(cancelPenerimaBtn.isEnabled()) idTransferInput.setText("TN-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)));
+            }else{
+                JOptionPane.showMessageDialog(null, "Account not found !");
+            }
+        }else{
+           JOptionPane.showMessageDialog(null,"Source and Destination Transfer Can't be same!","Warning", JOptionPane.DEFAULT_OPTION);
+        }
+    }//GEN-LAST:event_okPengirimBtnKeyPressed
+
+    private void okPenerimaBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_okPenerimaBtnKeyPressed
+        if(!noRekPenerimaInput.getText().equalsIgnoreCase(noRekPengirimInput.getText())){
+            penerima = aControl.searchAccount(Integer.parseInt(noRekPenerimaInput.getText()));
+            if(penerima!=null){
+                namaPenerimaInput.setText(penerima.getCustomer().getFirst_name()+" "+penerima.getCustomer().getLast_name());
+                setPenerimaArea(false);            
+                cancelPenerimaBtn.setEnabled(true);
+                if(cancelPengirimBtn.isEnabled()) idTransferInput.setText("TN-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)));
+            }else{
+                JOptionPane.showMessageDialog(null, "Account not found !");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,"Source and Destination Transfer Can't be same!","Warning", JOptionPane.DEFAULT_OPTION);
+        }
+    }//GEN-LAST:event_okPenerimaBtnKeyPressed
 
     /**
      * @param args the command line arguments
