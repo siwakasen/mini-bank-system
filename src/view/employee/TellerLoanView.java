@@ -39,7 +39,6 @@ public class TellerLoanView extends javax.swing.JFrame {
     String idLoan = null;
     String idAcc = null;
     
-    private int lastStatusIndex;
     
     
     public TellerLoanView() {
@@ -170,8 +169,8 @@ public class TellerLoanView extends javax.swing.JFrame {
             @Override
             public void changedUpdate(DocumentEvent e) {
                 warn();
-                double kalkulasi_perbulan = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100)/12;
-                double kalkulasi_pertahun = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100);
+                double kalkulasi_perbulan = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate))/12;
+                double kalkulasi_pertahun = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate));
                 BigDecimal bcBulan = new BigDecimal(kalkulasi_perbulan).setScale(0, RoundingMode.HALF_EVEN);
                 BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
                 tampilBiayaBulan.setText(formatNominal(bcBulan));
@@ -180,8 +179,8 @@ public class TellerLoanView extends javax.swing.JFrame {
             @Override
             public void removeUpdate(DocumentEvent e) {
               try{
-                double kalkulasi_perbulan = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100)/12;
-                double kalkulasi_pertahun = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100);
+                double kalkulasi_perbulan = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate))/12;
+                double kalkulasi_pertahun = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate));
                 BigDecimal bcBulan = new BigDecimal(kalkulasi_perbulan).setScale(0, RoundingMode.HALF_EVEN);
                 BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
                 tampilBiayaBulan.setText(formatNominal(bcBulan));
@@ -194,8 +193,8 @@ public class TellerLoanView extends javax.swing.JFrame {
             public void insertUpdate(DocumentEvent e) {
                 try{
                     warn();
-                    double kalkulasi_perbulan = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100)/12;
-                    double kalkulasi_pertahun = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate)/100);
+                    double kalkulasi_perbulan = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate))/12;
+                    double kalkulasi_pertahun = ((Double.parseDouble(inputJumlahPinjaman.getText()) * rate));
                     BigDecimal bcBulan = new BigDecimal(kalkulasi_perbulan).setScale(0, RoundingMode.HALF_EVEN);
                     BigDecimal bcTahun = new BigDecimal(kalkulasi_pertahun).setScale(0, RoundingMode.HALF_EVEN);
                     tampilBiayaBulan.setText(formatNominal(bcBulan));
@@ -1158,16 +1157,11 @@ public class TellerLoanView extends javax.swing.JFrame {
         cbTipePinjaman.setSelectedItem(tableModel.getValueAt(clickedRow,2).toString());
         cbJenisBunga.setSelectedItem(tableModel.getValueAt(clickedRow,8).toString());
         cbStatus.setSelectedItem(tableModel.getValueAt(clickedRow,6).toString());
-        lastStatusIndex=cbStatus.getSelectedIndex();
         setRate();
         if (cbJenisBunga.getSelectedIndex()==1) tampilBiayaTahun.setText("");
         else tampilBiayaBulan.setText("");
     }//GEN-LAST:event_confirmLoanTableMouseClicked
-    private void statusLoansException() throws StatusLoansException{
-        if(cbStatus.getSelectedIndex()<lastStatusIndex){
-            throw new StatusLoansException();
-        }
-    }
+
     private void blankInputException() throws BlankInputException{
         if(namaInput.getText().isEmpty() || inputJumlahPinjaman.getText().isEmpty()
            || cbTipePinjaman.getSelectedIndex()==0  || cbJenisBunga.getSelectedIndex()==0){
@@ -1192,9 +1186,8 @@ public class TellerLoanView extends javax.swing.JFrame {
         try{
             blankInputException();
             invalidCalendarException();
-            statusLoansException();
                 if (tampilBiayaTahun.getText().equals("") || tampilBiayaBulan.getText().equals("")) {
-                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to changes loan status?", "Confirmationi",JOptionPane.YES_NO_OPTION);
+                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to changes loan status?", "Confirmation",JOptionPane.YES_NO_OPTION);
                 if(getAnswer == JOptionPane.YES_OPTION){
                     lControl.updateLoan(new Loans(tampilIdPinjaman.getText(), 
                     type, convDateSql(dateStartPicker.getDate()),
@@ -1202,12 +1195,26 @@ public class TellerLoanView extends javax.swing.JFrame {
                     Double.parseDouble(inputJumlahPinjaman.getText()), 
                     rate*100, cbJenisBunga.getSelectedItem().toString(), 
                     Double.parseDouble(split), cbStatus.getSelectedItem().toString()));
+                    
+                    if(cbStatus.getSelectedItem().equals("Dikonfirmasi")){
+                        try {
+                            peminjam = aControl.searchAccount(Integer.parseInt(inputIdNasabah.getText()));
+                            peminjam.setBalance(peminjam.getBalance()+Double.parseDouble(inputJumlahPinjaman.getText()));
+                            aControl.updateAccounts(peminjam);
+                        }catch(Exception e){
+                            // pass
+                        }
+                    }
                 }else{
                  JOptionPane.showMessageDialog(this, "Failed to changes loan status");
                 }
             }else{
                 int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add new loan?", "Confirmationi",JOptionPane.YES_NO_OPTION);
-              if(getAnswer == JOptionPane.YES_OPTION){
+              Transactions trans = tControl.searchByStatusLoan(Integer.parseInt(inputIdNasabah.getText()));
+              if(trans!=null){
+                  JOptionPane.showMessageDialog(null, "Pengguna sudah memiliki peminjaman!");
+              }else{
+                if(getAnswer == JOptionPane.YES_OPTION){
                   tControl.insertTransaction(new Transactions("TR-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)), 
                             peminjam.getAccount_id(), tampilIdPinjaman.getText(), LocalDate.now().toString()));
                     lControl.insertLoan(new Loans(tampilIdPinjaman.getText(), 
@@ -1217,17 +1224,15 @@ public class TellerLoanView extends javax.swing.JFrame {
                             rate*100, cbJenisBunga.getSelectedItem().toString(), 
                             Double.parseDouble(split), "Dikonfirmasi"));
                             
-              }else{
-                  JOptionPane.showMessageDialog(this, "Failed to add new loan");
+                }else{
+                    JOptionPane.showMessageDialog(this, "Failed to add new loan");
+                }
               }
             }
         }catch(BlankInputException e){
             JOptionPane.showConfirmDialog(null, e.message(), "Warning", JOptionPane.DEFAULT_OPTION);
             System.out.println("Error: " + e.toString());
         }catch(InvalidCalendarException e){
-            JOptionPane.showConfirmDialog(null, e.message(), "Warning", JOptionPane.DEFAULT_OPTION);
-            System.out.println("Error: " + e.toString());
-        }catch(StatusLoansException e){
             JOptionPane.showConfirmDialog(null, e.message(), "Warning", JOptionPane.DEFAULT_OPTION);
             System.out.println("Error: " + e.toString());
         }catch(NumberFormatException e){
@@ -1243,6 +1248,8 @@ public class TellerLoanView extends javax.swing.JFrame {
         setEditComponent(true);
         cbStatus.setEnabled(false);
         generateIdLOA();
+        tampilBiayaBulan.setEnabled(false);
+        tampilBiayaTahun.setEnabled(false); 
     }//GEN-LAST:event_ajukanPinjamanBtnActionPerformed
 
     private void batalkanPinjamanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalkanPinjamanBtnActionPerformed

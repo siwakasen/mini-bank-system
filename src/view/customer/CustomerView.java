@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package view.customer;
+import control.AccountsControl;
 import view.customer.transfer.FindTransferCustomerView;
 import model.Accounts;
 import model.Customers;
@@ -19,13 +20,16 @@ import view.customer.peminjaman.DashPeminjamanView;
  */
 public class CustomerView extends javax.swing.JFrame {
     private Accounts account;
+    private AccountsControl aControl;
     /**
      * Creates new form ViewCustomer
      * @param account_id
      * @param nama
      */
     public CustomerView(Accounts account) {
+        aControl = new AccountsControl();
         this.account = account;
+        this.account = aControl.searchAccount(account.getAccount_id());
         initComponents();
         sayhello.setText("Halo, "+account.getCustomer().getFirst_name());
         jenis_kartu.setText("Kartu "+account.getAccount_type());
