@@ -16,6 +16,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.util.concurrent.ThreadLocalRandom;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 
 public class TellerTransferView extends javax.swing.JFrame {
     AccountsControl aControl;
@@ -131,6 +132,7 @@ public class TellerTransferView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         transferTable = new javax.swing.JTable();
         transferBtn = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -414,7 +416,7 @@ public class TellerTransferView extends javax.swing.JFrame {
                 .addComponent(namaPengirimInput, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cancelPengirimBtn)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         transferPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -518,6 +520,11 @@ public class TellerTransferView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        transferTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transferTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(transferTable);
 
         javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
@@ -547,6 +554,16 @@ public class TellerTransferView extends javax.swing.JFrame {
             }
         });
 
+        cancelBtn.setBackground(new java.awt.Color(194, 16, 16));
+        cancelBtn.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
+        cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
         base.setLayout(baseLayout);
         baseLayout.setHorizontalGroup(
@@ -559,7 +576,10 @@ public class TellerTransferView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(transferPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(transferBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(baseLayout.createSequentialGroup()
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(transferBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(panelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -579,7 +599,9 @@ public class TellerTransferView extends javax.swing.JFrame {
                             .addComponent(transferPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(transferBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(transferBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(penerimaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(baseLayout.createSequentialGroup()
@@ -731,6 +753,31 @@ public class TellerTransferView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_okPenerimaBtnKeyPressed
 
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        clearText();
+        showTransfer();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void transferTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferTableMouseClicked
+        noRekPenerimaInput.setEnabled(false);
+        okPenerimaBtn.setEnabled(false);
+        noRekPengirimInput.setEnabled(false);
+        okPengirimBtn.setEnabled(false);
+        jumlahTransferInput.setEnabled(false);
+        int clickedRow = transferTable.getSelectedRow();
+        TableModel tableModel = transferTable.getModel();
+        
+        noRekPengirimInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
+        Accounts p = aControl.searchAccount(Integer.parseInt((noRekPengirimInput.getText())));
+        namaPengirimInput.setText(p.getCustomer().getFirst_name()+" "+p.getCustomer().getLast_name());
+        
+        noRekPenerimaInput.setText(tableModel.getValueAt(clickedRow,3).toString());
+        p = aControl.searchAccount(Integer.parseInt(noRekPenerimaInput.getText()));
+        namaPenerimaInput.setText(p.getCustomer().getFirst_name()+" "+p.getCustomer().getLast_name());
+        jumlahTransferInput.setText(tableModel.getValueAt(clickedRow, 4).toString());
+        idTransferInput.setText(tableModel.getValueAt(clickedRow, 1).toString());
+    }//GEN-LAST:event_transferTableMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -768,6 +815,7 @@ public class TellerTransferView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel base;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JButton cancelPenerimaBtn;
     private javax.swing.JButton cancelPengirimBtn;
     private javax.swing.JPanel headerPane;
