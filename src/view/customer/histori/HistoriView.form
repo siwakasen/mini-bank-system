@@ -51,8 +51,8 @@
                           <Component id="jScrollPane1" min="-2" pref="335" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="nextButton2" alignment="0" max="32767" attributes="0"/>
-                      <Component id="nextButton5" alignment="1" max="32767" attributes="0"/>
+                      <Component id="detail" alignment="0" max="32767" attributes="0"/>
+                      <Component id="back" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -66,9 +66,9 @@
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="233" max="-2" attributes="0"/>
                   <EmptySpace pref="54" max="32767" attributes="0"/>
-                  <Component id="nextButton5" min="-2" max="-2" attributes="0"/>
+                  <Component id="back" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="nextButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="detail" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -108,7 +108,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="view.PanelRound" name="nextButton2">
+        <Container class="view.PanelRound" name="detail">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="a6" green="69" red="49" type="rgb"/>
@@ -149,7 +149,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="view.PanelRound" name="nextButton5">
+        <Container class="view.PanelRound" name="back">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>

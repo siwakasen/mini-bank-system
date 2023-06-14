@@ -756,6 +756,8 @@ public class TellerTransferView extends javax.swing.JFrame {
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         clearText();
         showTransfer();
+        transferBtn.setEnabled(true);
+        jumlahTransferInput.setEnabled(true);
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void transferTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferTableMouseClicked
@@ -776,6 +778,7 @@ public class TellerTransferView extends javax.swing.JFrame {
         namaPenerimaInput.setText(p.getCustomer().getFirst_name()+" "+p.getCustomer().getLast_name());
         jumlahTransferInput.setText(tableModel.getValueAt(clickedRow, 4).toString());
         idTransferInput.setText(tableModel.getValueAt(clickedRow, 1).toString());
+        transferBtn.setEnabled(false);
     }//GEN-LAST:event_transferTableMouseClicked
 
     /**

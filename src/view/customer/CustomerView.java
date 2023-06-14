@@ -31,10 +31,10 @@ public class CustomerView extends javax.swing.JFrame {
         this.account = account;
         this.account = aControl.searchAccount(account.getAccount_id());
         initComponents();
-        sayhello.setText("Halo, "+account.getCustomer().getFirst_name());
-        jenis_kartu.setText("Kartu "+account.getAccount_type());
-        account_rek.setText(String.valueOf(account.getAccount_id()));
-        BigDecimal saldoDc = new BigDecimal(account.getBalance()).setScale(0, RoundingMode.HALF_EVEN);
+        sayhello.setText("Halo, "+this.account.getCustomer().getFirst_name());
+        jenis_kartu.setText("Kartu "+this.account.getAccount_type());
+        account_rek.setText(String.valueOf(this.account.getAccount_id()));
+        BigDecimal saldoDc = new BigDecimal(this.account.getBalance()).setScale(0, RoundingMode.HALF_EVEN);
         saldo.setText("Rp. "+formatNominal(saldoDc));
 
     }
@@ -54,30 +54,30 @@ public class CustomerView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        base = new javax.swing.JPanel();
         sayhello = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        detail = new javax.swing.JPanel();
         jenis_kartu = new javax.swing.JLabel();
         account_rek = new javax.swing.JLabel();
         saldo = new javax.swing.JLabel();
         Histori = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        historiLabel = new javax.swing.JLabel();
         Transfer = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        transferLabel = new javax.swing.JLabel();
         Peminjaman = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        peminjamanLabel = new javax.swing.JLabel();
         Logout = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        logoutLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        base.setBackground(new java.awt.Color(255, 255, 255));
 
         sayhello.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         sayhello.setText("Halo, ");
 
-        jPanel1.setBackground(new java.awt.Color(29, 50, 74));
+        detail.setBackground(new java.awt.Color(29, 50, 74));
 
         jenis_kartu.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jenis_kartu.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,23 +91,23 @@ public class CustomerView extends javax.swing.JFrame {
         saldo.setForeground(new java.awt.Color(255, 255, 255));
         saldo.setText("Rp. 111111111111");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout detailLayout = new javax.swing.GroupLayout(detail);
+        detail.setLayout(detailLayout);
+        detailLayout.setHorizontalGroup(
+            detailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(detailLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(detailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(detailLayout.createSequentialGroup()
                         .addComponent(account_rek)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jenis_kartu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        detailLayout.setVerticalGroup(
+            detailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(detailLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jenis_kartu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -124,14 +124,14 @@ public class CustomerView extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Histori Transaksi");
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        historiLabel.setBackground(new java.awt.Color(255, 255, 255));
+        historiLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        historiLabel.setForeground(new java.awt.Color(255, 255, 255));
+        historiLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        historiLabel.setText("Histori Transaksi");
+        historiLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                historiLabelMouseClicked(evt);
             }
         });
 
@@ -139,11 +139,11 @@ public class CustomerView extends javax.swing.JFrame {
         Histori.setLayout(HistoriLayout);
         HistoriLayout.setHorizontalGroup(
             HistoriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(historiLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         HistoriLayout.setVerticalGroup(
             HistoriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+            .addComponent(historiLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
         );
 
         Transfer.setBackground(new java.awt.Color(102, 102, 255));
@@ -153,23 +153,23 @@ public class CustomerView extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Transfer");
+        transferLabel.setBackground(new java.awt.Color(255, 255, 255));
+        transferLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        transferLabel.setForeground(new java.awt.Color(255, 255, 255));
+        transferLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        transferLabel.setText("Transfer");
 
         javax.swing.GroupLayout TransferLayout = new javax.swing.GroupLayout(Transfer);
         Transfer.setLayout(TransferLayout);
         TransferLayout.setHorizontalGroup(
             TransferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TransferLayout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(transferLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         TransferLayout.setVerticalGroup(
             TransferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+            .addComponent(transferLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
         );
 
         Peminjaman.setBackground(new java.awt.Color(255, 204, 51));
@@ -179,21 +179,21 @@ public class CustomerView extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Peminjaman Uang");
+        peminjamanLabel.setBackground(new java.awt.Color(255, 255, 255));
+        peminjamanLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        peminjamanLabel.setForeground(new java.awt.Color(255, 255, 255));
+        peminjamanLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        peminjamanLabel.setText("Peminjaman Uang");
 
         javax.swing.GroupLayout PeminjamanLayout = new javax.swing.GroupLayout(Peminjaman);
         Peminjaman.setLayout(PeminjamanLayout);
         PeminjamanLayout.setHorizontalGroup(
             PeminjamanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(peminjamanLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         PeminjamanLayout.setVerticalGroup(
             PeminjamanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+            .addComponent(peminjamanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
         );
 
         Logout.setBackground(new java.awt.Color(255, 102, 102));
@@ -203,14 +203,14 @@ public class CustomerView extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Logout");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        logoutLabel.setBackground(new java.awt.Color(255, 255, 255));
+        logoutLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        logoutLabel.setForeground(new java.awt.Color(255, 255, 255));
+        logoutLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoutLabel.setText("Logout");
+        logoutLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                logoutLabelMouseClicked(evt);
             }
         });
 
@@ -218,39 +218,39 @@ public class CustomerView extends javax.swing.JFrame {
         Logout.setLayout(LogoutLayout);
         LogoutLayout.setHorizontalGroup(
             LogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logoutLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         LogoutLayout.setVerticalGroup(
             LogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addComponent(logoutLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
+        base.setLayout(baseLayout);
+        baseLayout.setHorizontalGroup(
+            baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(baseLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(baseLayout.createSequentialGroup()
                         .addComponent(sayhello)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(baseLayout.createSequentialGroup()
+                        .addGroup(baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Transfer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Peminjaman, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Histori, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Logout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(detail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 23, Short.MAX_VALUE))))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        baseLayout.setVerticalGroup(
+            baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(baseLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(sayhello)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(detail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(Transfer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
@@ -266,11 +266,11 @@ public class CustomerView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(base, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(base, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -283,11 +283,11 @@ public class CustomerView extends javax.swing.JFrame {
         new LoginCustomerView().setVisible(true);
     }//GEN-LAST:event_LogoutMouseClicked
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void logoutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseClicked
         // TODO add your handling code here:
         this.dispose();
         new LoginCustomerView().setVisible(true);
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_logoutLabelMouseClicked
 
     private void PeminjamanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PeminjamanMouseClicked
         // TODO add your handling code here:
@@ -306,11 +306,11 @@ public class CustomerView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_HistoriMouseClicked
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void historiLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historiLabelMouseClicked
         // TODO add your handling code here:
         this.dispose();
         new HistoriView(account).setVisible(true);
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_historiLabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -354,14 +354,14 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JPanel Peminjaman;
     private javax.swing.JPanel Transfer;
     private javax.swing.JLabel account_rek;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel base;
+    private javax.swing.JPanel detail;
+    private javax.swing.JLabel historiLabel;
     private javax.swing.JLabel jenis_kartu;
+    private javax.swing.JLabel logoutLabel;
+    private javax.swing.JLabel peminjamanLabel;
     private javax.swing.JLabel saldo;
     private javax.swing.JLabel sayhello;
+    private javax.swing.JLabel transferLabel;
     // End of variables declaration//GEN-END:variables
 }

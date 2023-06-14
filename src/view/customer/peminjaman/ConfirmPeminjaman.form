@@ -48,8 +48,8 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="nextButton" alignment="1" max="32767" attributes="0"/>
-                      <Component id="nextButton1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="kirimBtn" alignment="1" max="32767" attributes="0"/>
+                      <Component id="back" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -70,9 +70,9 @@
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="password" min="-2" pref="46" max="-2" attributes="0"/>
                   <EmptySpace pref="212" max="32767" attributes="0"/>
-                  <Component id="nextButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="back" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="nextButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="kirimBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -111,7 +111,7 @@
             <Property name="text" type="java.lang.String" value="Silahkan masukkan password anda"/>
           </Properties>
         </Component>
-        <Container class="view.PanelRound" name="nextButton">
+        <Container class="view.PanelRound" name="kirimBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="a6" green="69" red="49" type="rgb"/>
@@ -152,7 +152,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="view.PanelRound" name="nextButton1">
+        <Container class="view.PanelRound" name="back">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>

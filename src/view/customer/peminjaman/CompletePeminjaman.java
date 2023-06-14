@@ -209,7 +209,7 @@ public class CompletePeminjaman extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         total_peminjaman = new javax.swing.JLabel();
-        nextButton1 = new view.PanelRound();
+        back = new view.PanelRound();
         jLabel13 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -285,11 +285,11 @@ public class CompletePeminjaman extends javax.swing.JFrame {
         total_peminjaman.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         total_peminjaman.setText("Rp. 1.000.000");
 
-        nextButton1.setBackground(new java.awt.Color(73, 105, 166));
-        nextButton1.setRoundBottomLeft(50);
-        nextButton1.setRoundBottomRight(50);
-        nextButton1.setRoundTopLeft(50);
-        nextButton1.setRoundTopRight(50);
+        back.setBackground(new java.awt.Color(73, 105, 166));
+        back.setRoundBottomLeft(50);
+        back.setRoundBottomRight(50);
+        back.setRoundTopLeft(50);
+        back.setRoundTopRight(50);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -301,14 +301,14 @@ public class CompletePeminjaman extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout nextButton1Layout = new javax.swing.GroupLayout(nextButton1);
-        nextButton1.setLayout(nextButton1Layout);
-        nextButton1Layout.setHorizontalGroup(
-            nextButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout backLayout = new javax.swing.GroupLayout(back);
+        back.setLayout(backLayout);
+        backLayout.setHorizontalGroup(
+            backLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        nextButton1Layout.setVerticalGroup(
-            nextButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        backLayout.setVerticalGroup(
+            backLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
@@ -374,7 +374,7 @@ public class CompletePeminjaman extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(nextButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -470,7 +470,7 @@ public class CompletePeminjaman extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(status)
                 .addGap(42, 42, 42)
-                .addComponent(nextButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -542,6 +542,7 @@ public class CompletePeminjaman extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private view.PanelRound back;
     private javax.swing.JLabel bunga;
     private javax.swing.JLabel date_idtrans;
     private javax.swing.JLabel jLabel1;
@@ -562,7 +563,6 @@ public class CompletePeminjaman extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel metode_pembayaran;
     private javax.swing.JLabel nama_penerima;
-    private view.PanelRound nextButton1;
     private javax.swing.JLabel status;
     private javax.swing.JLabel tanggal_kembali;
     private javax.swing.JLabel tanggal_peminjaman;

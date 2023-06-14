@@ -175,7 +175,7 @@ public class HistoriTransferView extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         nama_pengirim = new javax.swing.JLabel();
         from_accid = new javax.swing.JLabel();
-        nextButton1 = new view.PanelRound();
+        back = new view.PanelRound();
         jLabel13 = new javax.swing.JLabel();
 
         jLabel6.setText("jLabel6");
@@ -250,11 +250,11 @@ public class HistoriTransferView extends javax.swing.JFrame {
         from_accid.setForeground(new java.awt.Color(102, 102, 102));
         from_accid.setText("Account ID - 210711111");
 
-        nextButton1.setBackground(new java.awt.Color(73, 105, 166));
-        nextButton1.setRoundBottomLeft(50);
-        nextButton1.setRoundBottomRight(50);
-        nextButton1.setRoundTopLeft(50);
-        nextButton1.setRoundTopRight(50);
+        back.setBackground(new java.awt.Color(73, 105, 166));
+        back.setRoundBottomLeft(50);
+        back.setRoundBottomRight(50);
+        back.setRoundTopLeft(50);
+        back.setRoundTopRight(50);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -266,14 +266,14 @@ public class HistoriTransferView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout nextButton1Layout = new javax.swing.GroupLayout(nextButton1);
-        nextButton1.setLayout(nextButton1Layout);
-        nextButton1Layout.setHorizontalGroup(
-            nextButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout backLayout = new javax.swing.GroupLayout(back);
+        back.setLayout(backLayout);
+        backLayout.setHorizontalGroup(
+            backLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        nextButton1Layout.setVerticalGroup(
-            nextButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        backLayout.setVerticalGroup(
+            backLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
@@ -301,7 +301,7 @@ public class HistoriTransferView extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nextButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -339,7 +339,7 @@ public class HistoriTransferView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(from_accid)
                 .addGap(98, 98, 98)
-                .addComponent(nextButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -414,6 +414,7 @@ public class HistoriTransferView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private view.PanelRound back;
     private javax.swing.JLabel date_idtrans;
     private javax.swing.JLabel from_accid;
     private javax.swing.JLabel jLabel1;
@@ -429,7 +430,6 @@ public class HistoriTransferView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel nama_penerima;
     private javax.swing.JLabel nama_pengirim;
-    private view.PanelRound nextButton1;
     private javax.swing.JLabel to_accid;
     private javax.swing.JLabel total_transfer;
     // End of variables declaration//GEN-END:variables

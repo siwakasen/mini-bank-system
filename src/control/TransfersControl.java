@@ -11,7 +11,6 @@ import java.util.List;
 import model.Transfers;
 import model.Accounts;
 import model.TransactionsJoins;
-import table.TableTransfer;
 import table.TableDaftarTransfer;
 import table.TableJoinTransfers;
 

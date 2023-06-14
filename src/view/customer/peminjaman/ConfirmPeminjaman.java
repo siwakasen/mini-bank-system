@@ -55,9 +55,9 @@ public class ConfirmPeminjaman extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
-        nextButton = new view.PanelRound();
+        kirimBtn = new view.PanelRound();
         jLabel3 = new javax.swing.JLabel();
-        nextButton1 = new view.PanelRound();
+        back = new view.PanelRound();
         batalBtn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -81,11 +81,11 @@ public class ConfirmPeminjaman extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Silahkan masukkan password anda");
 
-        nextButton.setBackground(new java.awt.Color(73, 105, 166));
-        nextButton.setRoundBottomLeft(50);
-        nextButton.setRoundBottomRight(50);
-        nextButton.setRoundTopLeft(50);
-        nextButton.setRoundTopRight(50);
+        kirimBtn.setBackground(new java.awt.Color(73, 105, 166));
+        kirimBtn.setRoundBottomLeft(50);
+        kirimBtn.setRoundBottomRight(50);
+        kirimBtn.setRoundTopLeft(50);
+        kirimBtn.setRoundTopRight(50);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -97,22 +97,22 @@ public class ConfirmPeminjaman extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout nextButtonLayout = new javax.swing.GroupLayout(nextButton);
-        nextButton.setLayout(nextButtonLayout);
-        nextButtonLayout.setHorizontalGroup(
-            nextButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout kirimBtnLayout = new javax.swing.GroupLayout(kirimBtn);
+        kirimBtn.setLayout(kirimBtnLayout);
+        kirimBtnLayout.setHorizontalGroup(
+            kirimBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        nextButtonLayout.setVerticalGroup(
-            nextButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        kirimBtnLayout.setVerticalGroup(
+            kirimBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
-        nextButton1.setBackground(java.awt.Color.gray);
-        nextButton1.setRoundBottomLeft(50);
-        nextButton1.setRoundBottomRight(50);
-        nextButton1.setRoundTopLeft(50);
-        nextButton1.setRoundTopRight(50);
+        back.setBackground(java.awt.Color.gray);
+        back.setRoundBottomLeft(50);
+        back.setRoundBottomRight(50);
+        back.setRoundTopLeft(50);
+        back.setRoundTopRight(50);
 
         batalBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         batalBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,14 +124,14 @@ public class ConfirmPeminjaman extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout nextButton1Layout = new javax.swing.GroupLayout(nextButton1);
-        nextButton1.setLayout(nextButton1Layout);
-        nextButton1Layout.setHorizontalGroup(
-            nextButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout backLayout = new javax.swing.GroupLayout(back);
+        back.setLayout(backLayout);
+        backLayout.setHorizontalGroup(
+            backLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(batalBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        nextButton1Layout.setVerticalGroup(
-            nextButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        backLayout.setVerticalGroup(
+            backLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(batalBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
@@ -144,8 +144,8 @@ public class ConfirmPeminjaman extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nextButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nextButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(kirimBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
@@ -162,9 +162,9 @@ public class ConfirmPeminjaman extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
-                .addComponent(nextButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(kirimBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
 
@@ -255,13 +255,13 @@ public class ConfirmPeminjaman extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private view.PanelRound back;
     private javax.swing.JLabel batalBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private view.PanelRound nextButton;
-    private view.PanelRound nextButton1;
+    private view.PanelRound kirimBtn;
     private javax.swing.JPasswordField password;
     // End of variables declaration//GEN-END:variables
 }

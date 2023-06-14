@@ -10,7 +10,6 @@ import model.Loans;
 import java.util.List;
 import model.TransactionsJoins;
 import table.TableJoinLoans;
-import table.TableLoans;
 /**
  * @author 
  * Made Riksi Purnama Sadnya Agung / 210711396

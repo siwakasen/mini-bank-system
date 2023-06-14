@@ -1109,6 +1109,8 @@ public class TellerLoanView extends javax.swing.JFrame {
                 namaInput.setText(peminjam.getCustomer().getFirst_name()+" "+peminjam.getCustomer().getLast_name());
                 setDetailPeminjamanArea(false);
                 cancelPeminjamBtn.setEnabled(true);
+            }else{
+                JOptionPane.showMessageDialog(null,"Account not found","Confirmation", JOptionPane.DEFAULT_OPTION);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Account not found","Confirmation", JOptionPane.DEFAULT_OPTION);
@@ -1214,6 +1216,18 @@ public class TellerLoanView extends javax.swing.JFrame {
                             // pass
                         }
                     }
+                    clearText();
+                    setDetailPeminjamanArea(true);
+                    tampilInterestRate.setText("");
+                    showDataHistory();
+                    showDataCurrently();
+                    setComponent(false);
+                    setEditComponent(true);
+                    cbStatus.setEnabled(false);
+                    generateIdLOA();
+                    tampilBiayaBulan.setEnabled(false);
+                    tampilBiayaTahun.setEnabled(false); 
+                    ajukanPinjamanBtn.setEnabled(true);
                 }else{
                  JOptionPane.showMessageDialog(this, "Failed to changes loan status");
                 }
@@ -1222,20 +1236,38 @@ public class TellerLoanView extends javax.swing.JFrame {
               if(trans!=null){
                   JOptionPane.showMessageDialog(null, "Pengguna sudah memiliki peminjaman!");
               }else{
-                  int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add new loan?", "Confirmationi",JOptionPane.YES_NO_OPTION);
-                if(getAnswer == JOptionPane.YES_OPTION){
-                  tControl.insertTransaction(new Transactions("TR-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)), 
+                  if(inputJumlahPinjaman.getText().length() <= 6){
+                      JOptionPane.showMessageDialog(null, "Nominal peminjaman harus lebih dari ratusan ribu");
+                  }else{
+                      int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add new loan?", "Confirmationi",JOptionPane.YES_NO_OPTION);
+                      if(getAnswer == JOptionPane.YES_OPTION){
+                            tControl.insertTransaction(new Transactions("TR-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)), 
                             peminjam.getAccount_id(), tampilIdPinjaman.getText(), LocalDate.now().toString()));
-                    lControl.insertLoan(new Loans(tampilIdPinjaman.getText(), 
+                            lControl.insertLoan(new Loans(tampilIdPinjaman.getText(), 
                             type, convDateSql(dateStartPicker.getDate()),
                             convDateSql(dateEndPicker.getDate()), 
                             Double.parseDouble(inputJumlahPinjaman.getText()), 
                             rate*100, cbJenisBunga.getSelectedItem().toString(), 
                             Double.parseDouble(split), "Dikonfirmasi"));
-                            
-                }else{
-                    JOptionPane.showMessageDialog(this, "Failed to add new loan");
-                }
+
+
+                            clearText();
+                            setDetailPeminjamanArea(true);
+                            tampilInterestRate.setText("");
+                            showDataHistory();
+                            showDataCurrently();
+                            setComponent(false);
+                            setEditComponent(true);
+                            cbStatus.setEnabled(false);
+                            generateIdLOA();
+                            tampilBiayaBulan.setEnabled(false);
+                            tampilBiayaTahun.setEnabled(false); 
+                            ajukanPinjamanBtn.setEnabled(true);
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Failed to add new loan");
+                        }
+                  }
+                    
               }
             }
         }catch(BlankInputException e){
@@ -1251,18 +1283,7 @@ public class TellerLoanView extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(null, "Invalid Loan Status", "Warning", JOptionPane.DEFAULT_OPTION);
             System.out.println("Error: " + e.toString());
         }
-        clearText();
-        setDetailPeminjamanArea(true);
-        tampilInterestRate.setText("");
-        showDataHistory();
-        showDataCurrently();
-        setComponent(false);
-        setEditComponent(true);
-        cbStatus.setEnabled(false);
-        generateIdLOA();
-        tampilBiayaBulan.setEnabled(false);
-        tampilBiayaTahun.setEnabled(false); 
-        ajukanPinjamanBtn.setEnabled(true);
+        
     }//GEN-LAST:event_ajukanPinjamanBtnActionPerformed
 
     private void batalkanPinjamanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalkanPinjamanBtnActionPerformed
@@ -1271,6 +1292,7 @@ public class TellerLoanView extends javax.swing.JFrame {
         clearText();
         setComponent(false);
         generateIdLOA();
+        cekPeminjamBtn.setEnabled(true);
         ajukanPinjamanBtn.setEnabled(true);
     }//GEN-LAST:event_batalkanPinjamanBtnActionPerformed
 

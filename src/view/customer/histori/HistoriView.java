@@ -10,6 +10,7 @@ import control.LoansControl;
 import control.TransactionsControl;
 import control.TransfersControl;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import model.Accounts;
 import model.Customers;
@@ -40,11 +41,11 @@ public class HistoriView extends javax.swing.JFrame {
     }
     
     public void setDefault(){
-        nextButton2.setBackground(Color.gray);
+        detail.setBackground(Color.gray);
     }
     
     public void setDetailEnable(){
-        nextButton2.setBackground(new java.awt.Color(73,105,166));
+        detail.setBackground(new java.awt.Color(73,105,166));
     }
     
     public void showDaftarTransfers(){
@@ -64,9 +65,9 @@ public class HistoriView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelHistori = new javax.swing.JTable();
-        nextButton2 = new view.PanelRound();
+        detail = new view.PanelRound();
         jLabel5 = new javax.swing.JLabel();
-        nextButton5 = new view.PanelRound();
+        back = new view.PanelRound();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,11 +96,11 @@ public class HistoriView extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabelHistori);
 
-        nextButton2.setBackground(new java.awt.Color(73, 105, 166));
-        nextButton2.setRoundBottomLeft(50);
-        nextButton2.setRoundBottomRight(50);
-        nextButton2.setRoundTopLeft(50);
-        nextButton2.setRoundTopRight(50);
+        detail.setBackground(new java.awt.Color(73, 105, 166));
+        detail.setRoundBottomLeft(50);
+        detail.setRoundBottomRight(50);
+        detail.setRoundTopLeft(50);
+        detail.setRoundTopRight(50);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -111,22 +112,22 @@ public class HistoriView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout nextButton2Layout = new javax.swing.GroupLayout(nextButton2);
-        nextButton2.setLayout(nextButton2Layout);
-        nextButton2Layout.setHorizontalGroup(
-            nextButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout detailLayout = new javax.swing.GroupLayout(detail);
+        detail.setLayout(detailLayout);
+        detailLayout.setHorizontalGroup(
+            detailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        nextButton2Layout.setVerticalGroup(
-            nextButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        detailLayout.setVerticalGroup(
+            detailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
-        nextButton5.setBackground(java.awt.Color.gray);
-        nextButton5.setRoundBottomLeft(50);
-        nextButton5.setRoundBottomRight(50);
-        nextButton5.setRoundTopLeft(50);
-        nextButton5.setRoundTopRight(50);
+        back.setBackground(java.awt.Color.gray);
+        back.setRoundBottomLeft(50);
+        back.setRoundBottomRight(50);
+        back.setRoundTopLeft(50);
+        back.setRoundTopRight(50);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -138,14 +139,14 @@ public class HistoriView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout nextButton5Layout = new javax.swing.GroupLayout(nextButton5);
-        nextButton5.setLayout(nextButton5Layout);
-        nextButton5Layout.setHorizontalGroup(
-            nextButton5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout backLayout = new javax.swing.GroupLayout(back);
+        back.setLayout(backLayout);
+        backLayout.setHorizontalGroup(
+            backLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        nextButton5Layout.setVerticalGroup(
-            nextButton5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        backLayout.setVerticalGroup(
+            backLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
@@ -160,8 +161,8 @@ public class HistoriView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(nextButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nextButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(detail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(back, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -172,9 +173,9 @@ public class HistoriView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(nextButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nextButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(detail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
 
@@ -195,22 +196,30 @@ public class HistoriView extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-        if(selectedTipePeminjaman.equals("Peminjaman Uang")){
-            this.dispose();
-            new HistoriPeminjaman(
-                    account, 
-                    TransactionsControl.singleTransaction(account.getAccount_id(), selectedTransactionID, ""), 
-                    LoansControl.getLoan(selectedTransactionFK, "")
-            ).setVisible(true);
-        } else if(selectedTipePeminjaman.equals("Transfers")){
-            this.dispose();
-            new HistoriTransferView(
-                    account, 
-                    TransactionsControl.singleTransaction(account.getAccount_id(), selectedTransactionID, ""), 
-                    TransfersControl.singleTransfers(selectedTransactionFK), 
-                    AccountsControl.selectAccount(account.getAccount_id())).setVisible(true);
+        try{
+            if(selectedTipePeminjaman.equals("Peminjaman Uang")){
+                this.dispose();
+                new HistoriPeminjaman(
+                        account, 
+                        TransactionsControl.singleTransaction(account.getAccount_id(), selectedTransactionID, ""), 
+                        LoansControl.getLoan(selectedTransactionFK, "")
+                ).setVisible(true);
+            } else if(selectedTipePeminjaman.equals("Transfers")){
+                this.dispose();
+                new HistoriTransferView(
+                        account, 
+                        TransactionsControl.singleTransaction(account.getAccount_id(), selectedTransactionID, ""), 
+                        TransfersControl.singleTransfers(selectedTransactionFK), 
+                        AccountsControl.selectAccount(account.getAccount_id())).setVisible(true);
+            }
+        
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Akun Pengguna yang bersangkutan sudah dihapus!");
+            System.out.println(e.toString());
+            HistoriView hv = new HistoriView(account);
+            hv.setVisible(true);
         }
-       
+        
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -266,13 +275,13 @@ public class HistoriView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private view.PanelRound back;
+    private view.PanelRound detail;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private view.PanelRound nextButton2;
-    private view.PanelRound nextButton5;
     private javax.swing.JTable tabelHistori;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
@@ -17,8 +16,6 @@ import javax.swing.event.DocumentListener;
 import model.Accounts;
 import model.Customers;
 import model.Loans;
-import model.Transactions;
-import model.Transfers;
 
 /**
  *

@@ -65,6 +65,7 @@ public class EmployeesDAO {
                 + " username = '"+em.getUsername()+"',"
                 + " password = '"+em.getPassword()+"',"
                 + " end_work_date = '"+em.getEnd_work_date()+"',"
+                + " role_id = '"+em.getRole_id()+"',"
                 + " station_number = '"+em.getStation_number()+"',"
                 + " office_number = '"+em.getOffice_number()+"' "
                 + " WHERE employee_id = '"+em.getEmployee_id()+"'";
@@ -211,7 +212,7 @@ public class EmployeesDAO {
                 + " OR e.end_work_date LIKE '%" + query + "%'"
                 + " OR r.role_name LIKE '%" + query + "%'"
                 + " OR e.station_number LIKE '%" + query + "%'"
-                + " OR e.office_number LIKE '%" + query + "%')";
+                + " OR e.office_number LIKE '%" + query + "%') ORDER BY e.role_id asc";
         System.out.println("Mengambil data Admins...");       
         List<Employees> list = new ArrayList<>();
         
@@ -227,12 +228,11 @@ public class EmployeesDAO {
                             rs.getString("start_work_date"), rs.getString("end_work_date"),
                             rs.getInt("role_id"), rs.getString("office_number"), 
                             rs.getString("station_number"));
-                    String conv = "";
-                    for (int i = 0; i < e.getPassword().length(); i++) {
-                         conv += "*";
-                    }
+                    e.setStart_work_date(e.getStart_work_date().substring(8, 10)+e.getStart_work_date().substring(4, 8)+
+                            e.getStart_work_date().substring(0, 4));
                     
-                    e.setPassword(conv);
+                    e.setEnd_work_date(e.getEnd_work_date().substring(8, 10)+e.getEnd_work_date().substring(4, 8)+
+                            e.getEnd_work_date().substring(0, 4));
                     list.add(e);
                 }
             }
