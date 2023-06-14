@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/admin/EmployeeManageView.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/dao/EmployeesDAO.java</file>
-            <file>file:/D:/File%20Kuliah/Semester%204/TUGAS%20KULIAH/mini-bank-system/src/view/admin/AdminManageView.java</file>
+            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/Make%20view%20tubes/mini-bank-system/src/view/admin/AdminManageView.java</file>
+            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/Make%20view%20tubes/mini-bank-system/src/view/employee/TellerTransferView.java</file>
+            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/Make%20view%20tubes/mini-bank-system/src/view/employee/TellerView.java</file>
+            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/Make%20view%20tubes/mini-bank-system/src/view/admin/DasboardView.java</file>
+            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/Make%20view%20tubes/mini-bank-system/src/view/admin/EmployeeManageView.java</file>
+            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/Make%20view%20tubes/mini-bank-system/src/view/employee/CustomerServiceView.java</file>
+            <file>file:/D:/KULIAH/SMT%204/PBO/Tubes/Make%20view%20tubes/mini-bank-system/src/view/employee/TellerLoanView.java</file>
         </group>
     </open-files>
 </project-private>
