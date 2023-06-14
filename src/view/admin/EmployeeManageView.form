@@ -60,34 +60,38 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="backgroundInput" min="-2" pref="248" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                                  <Component id="backgroundPane2" min="-2" pref="248" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                  <Component id="backgroundInput2" min="-2" pref="248" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="addBtn" min="-2" pref="107" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="editBtn" min="-2" pref="107" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="deleteBtn" min="-2" pref="107" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="backgroundInput" min="-2" pref="248" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                                  <Component id="backgroundPane2" min="-2" pref="248" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                                  <Component id="backgroundPane1" min="-2" pref="248" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="searchInput" max="32767" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="searchBtn" min="-2" pref="96" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                  <Component id="backgroundPane1" min="-2" pref="248" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="saveBtn" min="-2" pref="96" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="cancelBtn" min="-2" pref="96" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="backgroundInput2" min="-2" pref="248" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="saveBtn" min="-2" pref="96" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="cancelBtn" min="-2" pref="96" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -116,19 +120,17 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="backgroundPane1" min="-2" pref="145" max="-2" attributes="0"/>
-                                      <Component id="backgroundInput2" min="-2" pref="145" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="backgroundInput2" min="-2" pref="145" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="cancelBtn" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                                       <Component id="saveBtn" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="backgroundPane2" alignment="0" pref="214" max="32767" attributes="0"/>
-                              <Component id="backgroundInput" alignment="0" pref="214" max="32767" attributes="0"/>
+                              <Component id="backgroundPane2" alignment="0" pref="215" max="32767" attributes="0"/>
+                              <Component id="backgroundInput" alignment="0" pref="215" max="32767" attributes="0"/>
+                              <Component id="backgroundPane1" alignment="0" pref="215" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="backgroundTable" min="-2" pref="289" max="-2" attributes="0"/>
@@ -304,6 +306,8 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelHomeMouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelHomeMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelHomeMouseExited"/>
               </Events>
 
               <Layout>
@@ -344,6 +348,8 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelAdminMouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelAdminMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelAdminMouseExited"/>
               </Events>
 
               <Layout>
@@ -659,7 +665,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
                       <Component id="startLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Component id="startWorkDate" min="-2" max="-2" attributes="0"/>
@@ -780,8 +786,11 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="roleLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="tellerRadio" min="-2" pref="98" max="-2" attributes="0"/>
+                          <Component id="custumerRadio" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Component id="stationInput" alignment="0" max="32767" attributes="0"/>
                               <Component id="officeInput" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
@@ -789,14 +798,20 @@
                           </Group>
                           <Component id="stationLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="roleLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tellerRadio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="custumerRadio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="stationLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Component id="stationInput" min="-2" max="-2" attributes="0"/>
@@ -804,7 +819,7 @@
                       <Component id="officeLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="officeInput" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -848,6 +863,48 @@
                 <Property name="text" type="java.lang.String" value="Station Number"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="roleLabel">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Poppins Medium" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Role"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="tellerRadio">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="roleBtnGroup"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Poppins Medium" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Teller"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tellerRadioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="custumerRadio">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="roleBtnGroup"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Poppins Medium" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Customer Service"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="custumerRadioActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="keeptoo.KGradientPanel" name="kGradientPanel1">
@@ -886,7 +943,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
@@ -953,16 +1010,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="roleLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="tellerRadio" min="-2" pref="98" max="-2" attributes="0"/>
-                          <Component id="custumerRadio" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="userLabel" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
-                              <Component id="passLabel" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
-                              <Component id="userInput" alignment="0" max="32767" attributes="0"/>
-                              <Component id="passInput" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="userLabel" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                          <Component id="passLabel" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
+                          <Component id="userInput" alignment="0" pref="200" max="32767" attributes="0"/>
+                          <Component id="passwordInput" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="24" max="32767" attributes="0"/>
                   </Group>
@@ -978,14 +1030,8 @@
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="passLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="passInput" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="roleLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tellerRadio" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="custumerRadio" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <Component id="passwordInput" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1024,52 +1070,7 @@
                 <Property name="text" type="java.lang.String" value="Password"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="passInput">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passInputActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="roleLabel">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Poppins Medium" size="14" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Role"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="tellerRadio">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="roleBtnGroup"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Poppins Medium" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Teller"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tellerRadioActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="custumerRadio">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="roleBtnGroup"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Poppins Medium" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Customer Service"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="custumerRadioActionPerformed"/>
-              </Events>
+            <Component class="javax.swing.JPasswordField" name="passwordInput">
             </Component>
           </SubComponents>
         </Container>

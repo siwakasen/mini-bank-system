@@ -707,7 +707,7 @@ public class CustomerServiceView extends javax.swing.JFrame {
                          Accounts a = new Accounts(selectedIdAccount, accountTypeComboBox.getSelectedItem().toString(), Double.parseDouble(inputBalance.getText()), c, inputUsername.getText(),String.valueOf(inputPassword.getPassword()));
                          customerControl.updateCustomer(c);
                          accountControl.updateAccounts(a);
-                         JOptionPane.showMessageDialog(null, "Success editing Employee!");
+                         JOptionPane.showMessageDialog(null, "Success editing Customer!");
                  }
             }
 

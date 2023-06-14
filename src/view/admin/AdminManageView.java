@@ -3,6 +3,7 @@ package view.admin;
 
 import control.AdministratorsControl;
 import exception.*;
+import java.awt.Cursor;
 import java.awt.geom.RoundRectangle2D;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -47,7 +48,7 @@ public class AdminManageView extends javax.swing.JFrame {
         
 //        inputPane.setEnabled(value);
         idInput.setEnabled(value);
-        passInput.setEnabled(value);
+        passwordInput.setEnabled(value);
         userInput.setEnabled(value);
         idlabel.setEnabled(value);
         passlabel.setEnabled(value);
@@ -70,12 +71,12 @@ public class AdminManageView extends javax.swing.JFrame {
     
     public void clearText(){
        idInput.setText("");
-       passInput.setText("");
+       passwordInput.setText("");
        userInput.setText("");
     }
     
     public void blankInputException() throws BlankInputException{
-        if(idInput.getText().isEmpty() || passInput.getText().isEmpty() || userInput.getText().isEmpty()){
+        if(idInput.getText().isEmpty() || String.valueOf(passwordInput.getPassword()).isEmpty() || userInput.getText().isEmpty()){
             throw new BlankInputException();
         }
     }
@@ -110,12 +111,12 @@ public class AdminManageView extends javax.swing.JFrame {
         backgroundPane1 = new view.PanelRound();
         passlabel = new javax.swing.JLabel();
         idlabel = new javax.swing.JLabel();
-        passInput = new javax.swing.JTextField();
         userInput = new javax.swing.JTextField();
         userlabel = new javax.swing.JLabel();
         idInput = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         labelCus = new javax.swing.JLabel();
+        passwordInput = new javax.swing.JPasswordField();
         addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
@@ -150,6 +151,11 @@ public class AdminManageView extends javax.swing.JFrame {
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBtnActionPerformed(evt);
+            }
+        });
+        searchBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchBtnKeyPressed(evt);
             }
         });
 
@@ -205,6 +211,12 @@ public class AdminManageView extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panelHomeMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                panelHomeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                panelHomeMouseExited(evt);
+            }
         });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/admin/dashboard.png"))); // NOI18N
@@ -253,6 +265,12 @@ public class AdminManageView extends javax.swing.JFrame {
         panelEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panelEmployeeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                panelEmployeeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                panelEmployeeMouseExited(evt);
             }
         });
 
@@ -362,12 +380,6 @@ public class AdminManageView extends javax.swing.JFrame {
         idlabel.setForeground(new java.awt.Color(51, 51, 51));
         idlabel.setText("ID Admin");
 
-        passInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passInputActionPerformed(evt);
-            }
-        });
-
         userInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userInputActionPerformed(evt);
@@ -379,6 +391,8 @@ public class AdminManageView extends javax.swing.JFrame {
         userlabel.setForeground(new java.awt.Color(51, 51, 51));
         userlabel.setText("Username");
 
+        idInput.setFocusable(false);
+        idInput.setHighlighter(null);
         idInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idInputActionPerformed(evt);
@@ -409,22 +423,21 @@ public class AdminManageView extends javax.swing.JFrame {
             backgroundPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundPane1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(backgroundPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(backgroundPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelCus)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(backgroundPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(passlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(userlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(idlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(passInput)
-                        .addComponent(idInput, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(userInput)))
+                    .addComponent(passlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(userlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(idlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idInput, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                    .addComponent(userInput)
+                    .addComponent(passwordInput))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         backgroundPane1Layout.setVerticalGroup(
             backgroundPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundPane1Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(labelCus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -439,7 +452,7 @@ public class AdminManageView extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(passlabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
 
@@ -495,7 +508,7 @@ public class AdminManageView extends javax.swing.JFrame {
         });
 
         adminTable.setBackground(new java.awt.Color(245, 245, 245));
-        adminTable.setForeground(new java.awt.Color(255, 255, 255));
+        adminTable.setForeground(new java.awt.Color(0, 0, 0));
         adminTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -670,10 +683,6 @@ public class AdminManageView extends javax.swing.JFrame {
         action = "Change";
     }//GEN-LAST:event_editBtnActionPerformed
 
-    private void passInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passInputActionPerformed
-
     private void idInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_idInputActionPerformed
@@ -689,7 +698,7 @@ public class AdminManageView extends javax.swing.JFrame {
             if(action.equals("Add")){
                 int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add new Administrator?","Confirmation", JOptionPane.YES_NO_OPTION);
                 if(getAnswer == JOptionPane.YES_OPTION){
-                    Administrators a = new Administrators (Integer.parseInt(idInput.getText()), userInput.getText(), passInput.getText());
+                    Administrators a = new Administrators (Integer.parseInt(idInput.getText()), userInput.getText(), String.valueOf(passwordInput.getPassword()));
                     administratorsControl.insertAdministrator(a);
                     JOptionPane.showMessageDialog(this, "Success adding new admin");
                 }else {
@@ -698,7 +707,7 @@ public class AdminManageView extends javax.swing.JFrame {
             }else{
                 int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to edit this admin?","Confirmation", JOptionPane.YES_NO_OPTION);
                 if(getAnswer == JOptionPane.YES_OPTION){
-                    Administrators a = new Administrators (Integer.parseInt(idInput.getText()), userInput.getText(), passInput.getText());
+                    Administrators a = new Administrators (Integer.parseInt(idInput.getText()), userInput.getText(), String.valueOf(passwordInput.getPassword()));
                     administratorsControl.updateAdministrator(a);
                     JOptionPane.showMessageDialog(this, "Sucess editing admin");
                     if(a.getAdministrator_id()==admin.getAdministrator_id()){
@@ -739,9 +748,9 @@ public class AdminManageView extends javax.swing.JFrame {
         idInput.setText(tableModel.getValueAt(clickedRow, 0).toString());
         userInput.setText(tableModel.getValueAt(clickedRow, 1).toString());
         if(this.admin.getUsername().equals(tableModel.getValueAt(clickedRow, 1).toString())){
-            passInput.setText(this.admin.getPassword());
+            passwordInput.setText(this.admin.getPassword());
         }else{
-           passInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
+           passwordInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
             
         }
         
@@ -756,22 +765,22 @@ public class AdminManageView extends javax.swing.JFrame {
     }//GEN-LAST:event_searchInputActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        setComponent(false);
-         setEditDeleteBtn(false);
-         try{
-             TableAdministrators admins = administratorsControl.showTableAdmins(searchInput.getText());
-            if(admins.getRowCount()==0){
-                    clearText();
-                    searchInput.setText("");
-                    JOptionPane.showMessageDialog(this, "Admin not found");
-                }else{
-                    adminTable.setModel(admins);
-                }
-            clearText();
-            searchInput.setText("");
-         }catch (Exception e) {
-            System.out.println("Eror : "+e.getMessage());
-        }
+//        setComponent(false);
+//         setEditDeleteBtn(false);
+//         try{
+//             TableAdministrators admins = administratorsControl.showTableAdmins(searchInput.getText());
+//            if(admins.getRowCount()==0){
+//                    clearText();
+//                    searchInput.setText("");
+//                    JOptionPane.showMessageDialog(this, "Admin not found");
+//                }else{
+//                    adminTable.setModel(admins);
+//                }
+//            clearText();
+//            searchInput.setText("");
+//         }catch (Exception e) {
+//            System.out.println("Eror : "+e.getMessage());
+//        }
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
@@ -818,6 +827,45 @@ public class AdminManageView extends javax.swing.JFrame {
        this.dispose();
        dv.setVisible(true);
     }//GEN-LAST:event_panelHomeMouseClicked
+
+    private void panelHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHomeMouseEntered
+        panelHome.setBackground(new java.awt.Color(245, 245, 245));
+        panelHome.setCursor(new Cursor(Cursor.HAND_CURSOR) {
+        });
+    }//GEN-LAST:event_panelHomeMouseEntered
+
+    private void panelHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHomeMouseExited
+       panelHome.setBackground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_panelHomeMouseExited
+
+    private void panelEmployeeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelEmployeeMouseEntered
+        panelEmployee.setBackground(new java.awt.Color(245, 245, 245));
+        panelEmployee.setCursor(new Cursor(Cursor.HAND_CURSOR) {
+        });
+    }//GEN-LAST:event_panelEmployeeMouseEntered
+
+    private void panelEmployeeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelEmployeeMouseExited
+        panelEmployee.setBackground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_panelEmployeeMouseExited
+
+    private void searchBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBtnKeyPressed
+        setComponent(false);
+         setEditDeleteBtn(false);
+         try{
+             TableAdministrators admins = administratorsControl.showTableAdmins(searchInput.getText());
+            if(admins.getRowCount()==0){
+                    clearText();
+                    searchInput.setText("");
+                    JOptionPane.showMessageDialog(this, "Admin not found");
+                }else{
+                    adminTable.setModel(admins);
+                }
+            clearText();
+            searchInput.setText("");
+         }catch (Exception e) {
+            System.out.println("Eror : "+e.getMessage());
+        }
+    }//GEN-LAST:event_searchBtnKeyPressed
 
     /**
      * @param args the command line arguments
@@ -879,8 +927,8 @@ public class AdminManageView extends javax.swing.JFrame {
     private javax.swing.JPanel panelAdmin;
     private javax.swing.JPanel panelEmployee;
     private javax.swing.JPanel panelHome;
-    private javax.swing.JTextField passInput;
     private javax.swing.JLabel passlabel;
+    private javax.swing.JPasswordField passwordInput;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
