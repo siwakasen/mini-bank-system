@@ -1239,7 +1239,7 @@ public class TellerLoanView extends javax.swing.JFrame {
                   if(inputJumlahPinjaman.getText().length() <= 6){
                       JOptionPane.showMessageDialog(null, "Nominal peminjaman harus lebih dari ratusan ribu");
                   }else{
-                      int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add new loan?", "Confirmationi",JOptionPane.YES_NO_OPTION);
+                      int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Are you sure to add new loan?", "Confirmation",JOptionPane.YES_NO_OPTION);
                       if(getAnswer == JOptionPane.YES_OPTION){
                             tControl.insertTransaction(new Transactions("TR-"+String.valueOf(ThreadLocalRandom.current().nextInt(0, 99999)), 
                             peminjam.getAccount_id(), tampilIdPinjaman.getText(), LocalDate.now().toString()));
@@ -1249,7 +1249,13 @@ public class TellerLoanView extends javax.swing.JFrame {
                             Double.parseDouble(inputJumlahPinjaman.getText()), 
                             rate*100, cbJenisBunga.getSelectedItem().toString(), 
                             Double.parseDouble(split), "Dikonfirmasi"));
-
+                            try {
+                                peminjam = aControl.searchAccount(Integer.parseInt(inputIdNasabah.getText()));
+                                peminjam.setBalance(peminjam.getBalance()+Double.parseDouble(inputJumlahPinjaman.getText()));
+                                aControl.updateAccounts(peminjam);
+                            }catch(Exception e){
+                                // pass
+                            }
 
                             clearText();
                             setDetailPeminjamanArea(true);
