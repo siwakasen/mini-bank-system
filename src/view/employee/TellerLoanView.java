@@ -1212,6 +1212,7 @@ public class TellerLoanView extends javax.swing.JFrame {
                             peminjam = aControl.searchAccount(Integer.parseInt(inputIdNasabah.getText()));
                             peminjam.setBalance(peminjam.getBalance()+Double.parseDouble(inputJumlahPinjaman.getText()));
                             aControl.updateAccounts(peminjam);
+                            //jika loan dikonfirmasi, maka langsung menambah balance di akun peminjam
                         }catch(Exception e){
                             // pass
                         }
@@ -1249,13 +1250,7 @@ public class TellerLoanView extends javax.swing.JFrame {
                             Double.parseDouble(inputJumlahPinjaman.getText()), 
                             rate*100, cbJenisBunga.getSelectedItem().toString(), 
                             Double.parseDouble(split), "Dikonfirmasi"));
-                            try {
-                                peminjam = aControl.searchAccount(Integer.parseInt(inputIdNasabah.getText()));
-                                peminjam.setBalance(peminjam.getBalance()+Double.parseDouble(inputJumlahPinjaman.getText()));
-                                aControl.updateAccounts(peminjam);
-                            }catch(Exception e){
-                                // pass
-                            }
+                            //disini tidak perlu menambah balance akun yg minjam karena orangnya datang langsung ke teller
 
                             clearText();
                             setDetailPeminjamanArea(true);
