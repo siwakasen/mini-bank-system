@@ -5,9 +5,7 @@
 package table;
 
 import javax.swing.table.AbstractTableModel;
-import model.Transfers;
 import java.util.List;
-import model.Transactions;
 import model.TransactionsJoins;
 
 public class TableJoinTransfers extends AbstractTableModel{
